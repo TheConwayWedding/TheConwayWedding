@@ -3,7 +3,8 @@
 This is a simple 2-page website:
 
 - **index.html** – Homepage  
-- **video.html** – Video page that autoplay-loops a local video and shows a QR code linking to the homepage
+- **video.html** – Video page that autoplay-loops a local video and shows a QR code linking to the homepage  
+- **RSVP tab** – Links to the Zola wedding page: [Savannah & Daquan RSVP](https://www.zola.com/wedding/savannahanddaquan/rsvp)
 
 ## Deployment Instructions
 
@@ -11,3 +12,4 @@ This is a simple 2-page website:
 2. Commit and push your changes.
 3. Go to **Settings → Pages** and set the source to `main` branch → root.
 4. Your site will be live at `https://<yourusername>.github.io/<yourreponame>/`.
+
