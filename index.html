@@ -3,53 +3,240 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home Page</title>
+  <title>Savannah & Da’Quan — Wedding</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
   <style>
+    /* Global */
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
+      font-family: "Inter", system-ui, Arial, sans-serif;
       background: #f4f4f4;
       color: #333;
+      line-height: 1.5;
     }
+
+    /* Header + Nav (from your version) */
     header {
       background: #222;
       color: #fff;
       padding: 1rem;
       text-align: center;
     }
+
     nav {
       margin: 1rem;
       text-align: center;
     }
+
     nav a {
       margin: 0 1rem;
       text-decoration: none;
       color: #222;
       font-weight: bold;
     }
+
+    /* Container */
     .container {
-      max-width: 800px;
+      max-width: 1100px;
       margin: 2rem auto;
       background: white;
       padding: 2rem;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
+
+    /* Hero section */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 36px;
+      align-items: center;
+      margin-top: 18px;
+    }
+
+    .hero-left {
+      background: #faf7f4;
+      padding: 28px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(30,30,30,0.06);
+    }
+
+    .hero-left h2 {
+      margin: 0;
+      font-family: "Playfair Display", serif;
+      font-size: 36px;
+    }
+
+    .hero-left .sub {
+      margin-top: 6px;
+      font-weight: 600;
+      color: #777;
+    }
+
+    .meta {
+      margin-top: 18px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .meta .date {
+      background: #fff;
+      padding: 10px 12px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      text-align: center;
+    }
+
+    .meta .date .big {
+      font-family: "Playfair Display", serif;
+      font-size: 18px;
+      display: block;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      background: #333;
+      color: white;
+      font-weight: 600;
+    }
+
+    .countdown {
+      margin-top: 12px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .count-item {
+      background: #fff;
+      min-width: 70px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .count-item .num {
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .count-item .lbl {
+      font-size: 12px;
+      color: #777;
+    }
+
+    .hero-right {
+      border-radius: 12px;
+      overflow: hidden;
+      min-height: 360px;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 8px 28px rgba(20,20,20,0.08);
+    }
+
+    @media (max-width: 920px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .hero-right {
+        order: -1;
+        min-height: 260px;
+      }
+    }
   </style>
 </head>
+
 <body>
   <header>
-    <h1>Welcome to My Website</h1>
+    <h2>Savannah & Da’Quan — Wedding</h2>
   </header>
+
   <nav>
     <a href="index.html">Home</a>
     <a href="video.html">Random Video</a>
     <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank">RSVP</a>
   </nav>
+
   <div class="container">
-    <h2>Home Page</h2>
-    <p>This is your editable homepage. You can change the text, colors, or layout as you like. Click on the link above to visit the video page.</p>
+    <div class="hero">
+      <div class="hero-left">
+        <h2>Savannah Conway <span style="display:block;font-size:24px">&amp;</span> Da’Quan Conway</h2>
+        <div class="sub">August 4, 2026 · Estes Park, CO</div>
+
+        <div class="meta">
+          <div class="date">
+            <span class="big">August 4, 2026</span>
+            <span style="font-size:12px;color:#777;">Estes Park, CO</span>
+          </div>
+
+          <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank" class="btn">RSVP</a>
+
+          <div style="margin-left:auto; color:#777; font-size:13px">
+            <strong id="guest-counter">274</strong> days
+          </div>
+        </div>
+
+        <div class="countdown">
+          <div class="count-item"><div class="num" id="cd-days">--</div><div class="lbl">Days</div></div>
+          <div class="count-item"><div class="num" id="cd-hours">--</div><div class="lbl">Hours</div></div>
+          <div class="count-item"><div class="num" id="cd-mins">--</div><div class="lbl">Minutes</div></div>
+          <div class="count-item"><div class="num" id="cd-secs">--</div><div class="lbl">Seconds</div></div>
+        </div>
+
+        <div style="margin-top:16px; color:#777; font-size:14px">
+          <strong>Our Story</strong>
+          <p style="margin-top:10px">
+            It all started with… a roommate application. Da’Quan was just having another normal day and Savannah was just trying to sign her very first apartment lease. Fate brought the two together through a series of coincidental events — a DM turned into a first date, and the rest is history.
+          </p>
+        </div>
+      </div>
+
+      <div class="hero-right" style="background-image:url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1400&auto=format&fit=crop');">
+      </div>
+    </div>
   </div>
+
+  <script>
+    // Countdown to August 4, 2026
+    (function() {
+      const target = new Date("2026-08-04T15:00:00");
+      const daysEl = document.getElementById('cd-days');
+      const hoursEl = document.getElementById('cd-hours');
+      const minsEl = document.getElementById('cd-mins');
+      const secsEl = document.getElementById('cd-secs');
+      const guestCounter = document.getElementById('guest-counter');
+
+      function pad(n) { return n.toString().padStart(2, '0'); }
+
+      function update() {
+        const now = new Date();
+        let diff = Math.max(0, target - now);
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        diff -= days * (1000 * 60 * 60 * 24);
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        diff -= hours * (1000 * 60 * 60);
+        const mins = Math.floor(diff / (1000 * 60));
+        diff -= mins * (1000 * 60);
+        const secs = Math.floor(diff / 1000);
+
+        daysEl.textContent = days;
+        hoursEl.textContent = pad(hours);
+        minsEl.textContent = pad(mins);
+        secsEl.textContent = pad(secs);
+        guestCounter.textContent = days;
+      }
+
+      update();
+      setInterval(update, 1000);
+    })();
+  </script>
 </body>
 </html>
