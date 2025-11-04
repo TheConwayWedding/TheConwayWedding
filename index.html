@@ -10,9 +10,9 @@
     body {
       margin: 0;
       font-family: "Georgia", serif;
-      color: #fdf9f3;
+      color: #fdf9f3; /* brighter cream */
       background: url('https://www.transparenttextures.com/patterns/wood-pattern.png') repeat;
-      background-color: #3B352F;
+      background-color: #3B352F; /* dark brown base */
       line-height: 1.6;
     }
 
@@ -92,115 +92,20 @@
     /* ===== WEDDING PARTY ===== */
     #party { background: rgba(0,0,0,0.22); backdrop-filter: blur(3px); }
 
-    /* ===== Tree Connections ===== */
-.party-row.top-row {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  position: relative;
-  margin-bottom: 4rem;
-}
-
-.party-row.top-row::after {
-  content: '';
-  position: absolute;
-  bottom: -1rem;
-  left: 50%;
-  width: 400px;
-  height: 2px;
-  background-color: #e5c982;
-  transform: translateX(-50%);
-  z-index: 0;
-}
-
-.party-split {
-  display: flex;
-  justify-content: space-between;
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-}
-
-/* Vertical line from top row to split row */
-.party-split::before {
-  content: '';
-  position: absolute;
-  top: -4rem;
-  left: 50%;
-  width: 2px;
-  height: 4rem;
-  background-color: #e5c982;
-  transform: translateX(-50%);
-  z-index: 0;
-}
-
-/* Diagonal lines to each side */
-.groomsmen .party-member:not(:last-child)::before,
-.bridesmaids .party-member:not(:last-child)::before {
-  content: '';
-  position: absolute;
-  top: -4rem;
-  width: 2px;
-  height: 4rem;
-  background-color: #e5c982;
-}
-
-.groomsmen .party-member::before {
-  left: -50%;
-  transform: rotate(-30deg);
-}
-
-.bridesmaids .party-member::before {
-  right: -50%;
-  transform: rotate(30deg);
-}
-
-    
-    /* Top row: Best Man & Maid of Honor */
-    .party-row.top-row {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      position: relative;
-      margin-bottom: 4rem;
-    }
-    .party-row.top-row::after {
-      content: '';
-      position: absolute;
-      bottom: -1rem;
-      left: 50%;
-      width: 400px;
-      height: 2px;
-      background-color: #e5c982;
-      transform: translateX(-50%);
-      z-index: 0;
-    }
-
-    /* Split row: Groomsmen & Bridesmaids */
+    /* Side-by-side left/right layout */
     .party-split {
       display: flex;
-      justify-content: space-between;
-      gap: 2rem;
+      justify-content: center;
+      gap: 4rem;
+      flex-wrap: wrap;
       max-width: 1200px;
-      margin: 0 auto;
-      position: relative;
+      margin: 1.6rem auto 0;
     }
-    .party-split::before,
-    .party-split::after {
-      content: '';
-      position: absolute;
-      top: -4rem;
-      width: 2px;
-      height: 4rem;
-      background-color: #e5c982;
+    .groomsmen, .bridesmaids {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
     }
-    .party-split::before { left: 25%; } /* connects Best Man */
-    .party-split::after { right: 25%; } /* connects Maid of Honor */
-
-    .party-side { display: flex; flex-direction: column; gap: 2rem; flex: 1; }
-    .groomsmen { align-items: flex-start; }
-    .bridesmaids { align-items: flex-end; }
 
     .party-member {
       background: rgba(59,53,47,0.62);
@@ -208,7 +113,6 @@
       padding: 1rem;
       text-align: center;
       max-width: 180px;
-      position: relative;
     }
     .party-member img {
       width: 140px;
@@ -270,17 +174,11 @@
     footer a:hover { color:#fff6da; text-decoration:underline; }
 
     /* ===== RESPONSIVE ===== */
-    @media (max-width: 900px) {
-      .party-split { flex-direction: column; align-items: center; }
-      .groomsmen, .bridesmaids { align-items: center; }
-      .party-row.top-row::after,
-      .party-split::before,
-      .party-split::after { display: none; }
-    }
     @media (max-width: 700px){
       header#home { padding:6.5rem 1rem 4.5rem; }
       .place-content { margin:1rem; padding:1.2rem; }
       .party-member img { width:120px; height:120px; }
+      .party-split { flex-direction: column; align-items: center; gap: 3rem; }
     }
   </style>
 </head>
@@ -307,7 +205,7 @@
     <h2>Our Story</h2>
     <hr class="divider"/>
     <div class="story-content">
-It all started with… a roommate application. Da’Quan was just having another normal day and Savannah was just trying to sign her very first apartment lease. But God had other plans. ...
+      <!-- Story content here -->
     </div>
   </section>
 
@@ -330,27 +228,9 @@ It all started with… a roommate application. Da’Quan was just having another
   <section id="party">
     <h2>Wedding Party</h2>
     <hr class="divider"/>
-
-    <!-- Top row: Best Man & Maid of Honor -->
-    <div class="party-row top-row">
-      <div class="party-member">
-        <img src="bestman.jpg" alt="Best Man"/>
-        <h3>Quillon</h3>
-        <div class="role">Best Man</div>
-        <p class="bio">His Daddy</p>
-      </div>
-      <div class="party-member">
-        <img src="maidofhonor.jpg" alt="Maid of Honor"/>
-        <h3>Emily</h3>
-        <div class="role">Maid of Honor</div>
-        <p class="bio">Savannah’s closest sister-friend — planner, encourager, and the heart of the group.</p>
-      </div>
-    </div>
-
-    <!-- Split row: Groomsmen left, Bridesmaids right -->
     <div class="party-split">
-      <div class="party-side groomsmen">
-        <!-- Groomsmen -->
+      <!-- Groomsmen on left -->
+      <div class="groomsmen">
         <div class="party-member">
           <img src="groomsman1.jpg" alt="Groomsman 1"/>
           <h3>James</h3>
@@ -389,8 +269,8 @@ It all started with… a roommate application. Da’Quan was just having another
         </div>
       </div>
 
-      <div class="party-side bridesmaids">
-        <!-- Bridesmaids -->
+      <!-- Bridesmaids on right -->
+      <div class="bridesmaids">
         <div class="party-member">
           <img src="bridesmaid1.jpg" alt="Bridesmaid 1"/>
           <h3>Sarah</h3>
@@ -450,4 +330,3 @@ It all started with… a roommate application. Da’Quan was just having another
 
 </body>
 </html>
-
