@@ -10,14 +10,13 @@
       scroll-behavior: smooth;
     }
 
-    body {
-      margin: 0;
-      font-family: "Georgia", serif;
-      color: #fdf5e6;
-      background: url('https://www.transparenttextures.com/patterns/wood-pattern.png') repeat;
-      background-color: #d2b48c; /* beige-wood tone */
-      line-height: 1.6;
-    }
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+  background-color: #d4b98f; /* page background */
+  color: #f8f4ec;
+  scroll-behavior: smooth;
+}
 
     h1, h2, h3 {
       text-align: center;
@@ -30,13 +29,17 @@
     }
 
     /* ===== Navigation (Static) ===== */
-    nav {
-      background: rgba(0,0,0,0.4);
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      padding: 1rem;
-    }
+   nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #bfa67a; /* warm beige-brown */
+  color: #f8f4ec; /* cream white text */
+  text-align: center;
+  padding: 1rem 0;
+  z-index: 1000;
+}
 
     nav a {
       color: #fdf5e6;
@@ -132,6 +135,7 @@
     <h2>August 26, 2026 — Estes Park, CO</h2>
   </section>
 
+
   <!-- About Section -->
   <section id="about" class="about">
     <h2>Our Story</h2>
@@ -187,3 +191,4 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
 
 </body>
 </html>
+
