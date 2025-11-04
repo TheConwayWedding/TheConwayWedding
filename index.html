@@ -5,291 +5,350 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Da'Quan & Savannah — Wedding</title>
   <style>
-    /* ===== Base Styles ===== */
-    html { scroll-behavior: smooth; }
+    /* ===== BASE STYLES ===== */
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
       font-family: "Georgia", serif;
-      color: #f8f4ec;              /* cream text */
-      /* If you want the subtle texture on top of the color, uncomment the next line */
-      /* background: url('https://www.transparenttextures.com/patterns/wood-pattern.png') repeat; */
-      background-color: #3B352F;   /* darker warm brown from your image */
+      color: #fdf9f3; /* brighter cream */
+      background: url('https://www.transparenttextures.com/patterns/wood-pattern.png') repeat;
+      background-color: #3B352F; /* dark brown */
       line-height: 1.6;
     }
 
-    h1,h2,h3 { text-align: center; letter-spacing: 1px; }
-
-    section { padding: 4rem 1.5rem; text-align: center; position: relative; z-index: 1; }
-
-    /* ===== Fixed Frosted-Glass Navigation ===== */
+    /* ===== NAVIGATION ===== */
     nav {
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(6px);
+      color: #fff8e7;
+      padding: 1rem 2rem;
       position: fixed;
+      width: 100%;
       top: 0;
       left: 0;
-      width: 100%;
-      background-color: rgba(191,166,122,0.25); /* foggy beige-brown */
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      color: #f8f4ec;
+      z-index: 1000;
       display: flex;
       justify-content: center;
-      gap: 3rem;
-      padding: 1rem 0;
-      z-index: 1000;
-      transition: background-color 0.3s ease;
+      gap: 2rem;
     }
 
     nav a {
-      color: #f8f4ec;
+      color: #fff6da;
       text-decoration: none;
-      margin: 0;
-      font-size: 1.05rem;
-      position: relative;
-      transition: color 0.25s ease, text-shadow 0.25s ease;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.45);
-    }
-
-    nav a::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -6px;
-      width: 0;
-      height: 2px;
-      background-color: #d4af37; /* soft gold underline */
-      transition: width 0.3s ease;
+      font-weight: bold;
+      letter-spacing: 0.05em;
+      transition: color 0.3s ease;
     }
 
     nav a:hover {
-      color: #fff;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+      color: #ffe9a9;
     }
 
-    nav a:hover::after { width: 100%; }
-    nav a.active::after { width: 100%; }
+    /* ===== HERO SECTION ===== */
+    header {
+      background: url("your-hero-image.jpg") center/cover no-repeat;
+      color: #fff6da;
+      text-align: center;
+      padding: 12rem 1rem 10rem;
+    }
 
-    /* ===== Hero Section ===== */
-    .hero {
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      font-style: italic;
+      color: #fdf9f3;
+    }
+
+    /* ===== GENERAL SECTIONS ===== */
+    section {
+      padding: 5rem 1.5rem;
+      text-align: center;
+    }
+
+    section h2 {
+      color: #fff6da;
+      font-size: 2.2rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    section p {
+      color: #fdf9f3;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* ===== OUR STORY ===== */
+    #story {
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(5px);
+    }
+
+    .story-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+      background: rgba(59, 53, 47, 0.6);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+
+    .story-content h3 {
+      color: #ffe9a9;
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .story-content p {
+      color: #fdf9f3;
+    }
+
+    /* ===== THE PLACE SECTION ===== */
+    section#place {
       position: relative;
-      height: 100vh;
+      height: 100vh; /* full screen */
+      overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow: hidden;
-      margin-top: 4rem; /* offset for fixed nav */
       text-align: center;
-      color: #f8f4ec;
     }
 
-    /* If you prefer a slideshow rather than a video for hero, replace the video block with an absolutely positioned slideshow element. */
-
-    .hero h1, .hero h2 {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 1.2s forwards;
-      animation-delay: 0.3s;
-      z-index: 2;
-      position: relative;
-    }
-
-    .hero h1 { font-size: 3rem; }
-    .hero h2 { font-weight: normal; margin-top: 0.5rem; font-size: 1.5rem; }
-
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ===== About Section ===== */
-    .about p {
-      max-width: 800px;
-      margin: 2rem auto;
-      text-align: left;
-      line-height: 1.8;
-      white-space: pre-line;
-      color: #f8f4ec;
-    }
-
-    /* ===== Image Grids ===== */
-    .people-grid, .party-grid, .photo-grid {
-      display: grid;
-      gap: 1.5rem;
-      justify-content: center;
-    }
-
-    .people-grid img, .party-grid img, .photo-grid img {
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 10px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    }
-
-    .people-grid img:hover, .party-grid img:hover, .photo-grid img:hover {
-      transform: scale(1.03);
-      box-shadow: 0 8px 18px rgba(0,0,0,0.6);
-    }
-
-    @media (min-width: 600px) {
-      .people-grid, .party-grid, .photo-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        max-width: 1000px;
-        margin: 0 auto;
-      }
-    }
-
-    /* ===== Place Section with Video Background ===== */
-    #place {
-      position: relative;
-      color: #f8f4ec;
-      overflow: hidden;
-      padding: 6rem 1.5rem; /* more vertical space for video section */
-    }
-
-    /* dark overlay above the video to ensure readability */
-    #place::before {
-      content: "";
+    section#place video {
       position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.45);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       z-index: 0;
+      opacity: 0.7;
     }
 
-    #place video {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 120%;
-      height: auto;
-      transform: translate(-50%, -50%);
-      object-fit: cover;
-      z-index: -1;
-      filter: brightness(0.6);
-    }
-
-    #place h2, #place p, #place img {
+    .place-content {
       position: relative;
       z-index: 1;
-    }
-
-    #place img {
-      border-radius: 12px;
-      margin-top: 1.5rem;
-      max-width: 90%;
-      border: 2px solid rgba(248,244,236,0.06);
-    }
-
-    /* ===== Footer ===== */
-    footer {
-      text-align: center;
+      background: rgba(59, 53, 47, 0.7);
       padding: 2rem;
-      font-size: 0.9rem;
-      background: rgba(0,0,0,0.25);
-      color: #f8f4ec;
+      border-radius: 16px;
+      max-width: 700px;
+      margin: 0 1rem;
+      backdrop-filter: blur(6px);
     }
 
-    /* small utility: make sure sections are visible under fixed nav when linked */
-    :target { scroll-margin-top: 90px; }
+    .place-content h2 {
+      color: #fff6da;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .place-content p {
+      color: #fdf9f3;
+      font-size: 1.1rem;
+    }
+
+    .place-content img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 12px;
+      margin-top: 1rem;
+    }
+
+    /* ===== WEDDING PARTY ===== */
+    #party {
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(4px);
+    }
+
+    .party-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 2rem auto 0;
+    }
+
+    .party-member {
+      background: rgba(59, 53, 47, 0.6);
+      border-radius: 12px;
+      padding: 1.5rem;
+      color: #fdf9f3;
+    }
+
+    .party-member img {
+      width: 100%;
+      border-radius: 50%;
+      max-width: 150px;
+      margin-bottom: 0.8rem;
+    }
+
+    .party-member h3 {
+      color: #ffe9a9;
+      font-size: 1.2rem;
+      margin: 0.3rem 0;
+    }
+
+    .party-member p {
+      font-size: 0.95rem;
+      color: #fff8e7;
+    }
+
+    /* ===== BUTTONS ===== */
+    button,
+    a.button {
+      background-color: #c7a96b; /* warm gold base */
+      color: #3B352F; /* dark text */
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-family: "Georgia", serif;
+      font-size: 1rem;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+
+    button:hover,
+    a.button:hover {
+      background-color: #e5c982;
+      color: #2c261f;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(199, 169, 107, 0.3);
+    }
+
+    /* ===== DIVIDERS ===== */
+    hr {
+      border: none;
+      height: 2px;
+      width: 80px;
+      margin: 1.5rem auto;
+      background: linear-gradient(to right, transparent, #e5c982, transparent);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff8e7;
+      padding: 2rem 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      margin-top: 3rem;
+      backdrop-filter: blur(4px);
+    }
+
+    footer a {
+      color: #ffe9a9;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer a:hover {
+      color: #fff6da;
+      text-decoration: underline;
+    }
   </style>
 </head>
-<body>
 
-  <!-- Navigation -->
+<body>
   <nav>
-    <a href="#about">Our Story</a>
-    <a href="#party">Wedding Party</a>
+    <a href="#home">Home</a>
+    <a href="#story">Our Story</a>
     <a href="#place">The Place</a>
+    <a href="#party">Wedding Party</a>
     <a href="#photos">Photos</a>
-    <a href="video.html">Video</a>
-    <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank">RSVP</a>
-    <a href="https://www.amazon.com/wedding-reg/your-registry-link" target="_blank">Registry</a>
+    <a href="#rsvp">RSVP</a>
   </nav>
 
-  <!-- Hero Section (kept simple so video moved down to place section) -->
-  <section class="hero" id="home">
-    <div class="hero-content">
-      <h1>Da'Quan & Savannah</h1>
-      <h2>August 26, 2026 — Estes Park, CO</h2>
+  <header id="home">
+    <h1>Da'Quan & Savannah</h1>
+    <p>Join us in celebrating our forever</p>
+  </header>
+
+  <section id="story">
+    <h2>Our Story</h2>
+    <hr />
+    <div class="story-content">
+      <h3>How It All Began</h3>
+      <p>
+        From strangers to soulmates — our story is one of faith, laughter, and timing.
+        What started as a simple friendship soon became something deeper, guided by
+        love and grace. Every moment since has led us here: a promise of forever.
+      </p>
     </div>
   </section>
 
-  <!-- About Section -->
-  <section id="about" class="about">
-    <h2>Our Story</h2>
-    <p>
-It all started with… a roommate application. Da’Quan was just having another normal day and Savannah was just trying to sign her very first apartment lease. But God had other plans. Savannah was in a rush to sign her new lease because all the good apartments were getting taken. Desperate not to lose out on another apartment she decided to meet up with her roommate at her current location. However, her roommate mentioned she had just finished working out with a friend.
-
-That friend, happened to be one of Da’Quan’s best friends and current roommate. Fate brought the two together through a series of coincidental events. All it took for him was one gaze to know he had to figure out who this never before seen woman was. With little hesitation he asked for Savannah’s Instagram, and the story began.
-
-What started as a single DM turned into hours of conversation, a first date filled with laughter, deep talks, and Da’Quan sweetly calling her “beloved”. Savannah, naturally shy, was stunned by how easy it felt. Like she’d known him forever. From there, things escalated quickly in the best way. Love letters and random flower deliveries were a regular. And yes, Da’Quan somehow found a dress that Savannah had only casually mentioned without any descriptions, and surprised her with it. While also rewriting her resume to help her land a new job, and waking up at 3 am to make sure her car got towed. Meanwhile, Savannah showed her love in other meaningful ways like making homemade lunches for him to take to work, or preparing a full recovery program for him to rehab his on-going knee injuries, and even facetiming him to make sure he did his workouts for the day, sometimes even doing it with him. Her kindness, warmth, and just being herself spoke straight to Da’Quan’s heart. He knew she was The One when multiple people randomly asked him why he looked so happy lately. The answer was evident to him. That was all he needed to know.
-
-Eventually, the moment came. Not the moment (yet), but a pretty important one:
-At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will you be my girlfriend?” written out in chocolate syrup on a dessert plate (Savannah having made it clear, a few times, that time was ticking). Roses included. That night marked the start of something even bigger than either of them imagined. A love story full of laughter, long talks that never feel long enough, a strong bond and most importantly, building their relationship with Jesus together. And now, they can’t wait to continue their never ending chapter together.
-    </p>
+  <section id="place">
+    <video autoplay muted loop playsinline>
+      <source src="estes-park.mp4" type="video/mp4" />
+    </video>
+    <div class="place-content">
+      <h2>The Place</h2>
+      <p>
+        Nestled in the heart of Estes Park, surrounded by Colorado’s breathtaking mountain peaks,
+        our ceremony will take place where love meets nature — calm, beautiful, and timeless.
+      </p>
+      <img src="estes.jpg" alt="Estes Park" />
+    </div>
   </section>
 
-  <!-- Wedding Party Section -->
   <section id="party">
     <h2>Wedding Party</h2>
+    <hr />
     <div class="party-grid">
-      <img src="https://via.placeholder.com/200" alt="Groomsman" />
-      <img src="https://via.placeholder.com/200" alt="Bridesmaid" />
-      <img src="https://via.placeholder.com/200" alt="Best Man" />
-      <img src="https://via.placeholder.com/200" alt="Maid of Honor" />
+      <div class="party-member">
+        <img src="bestman.jpg" alt="Best Man" />
+        <h3>Michael</h3>
+        <p>Best Man</p>
+      </div>
+      <div class="party-member">
+        <img src="maidofhonor.jpg" alt="Maid of Honor" />
+        <h3>Emily</h3>
+        <p>Maid of Honor</p>
+      </div>
+      <div class="party-member">
+        <img src="groomsman.jpg" alt="Groomsman" />
+        <h3>Jordan</h3>
+        <p>Groomsman</p>
+      </div>
+      <div class="party-member">
+        <img src="bridesmaid.jpg" alt="Bridesmaid" />
+        <h3>Olivia</h3>
+        <p>Bridesmaid</p>
+      </div>
     </div>
   </section>
 
-  <!-- Place Section with Video Background -->
-  <section id="place" aria-label="The Place">
-    <video autoplay muted loop playsinline>
-      <source src="estes-lake.mp4" type="video/mp4">
-      <!-- If you prefer a hosted sample, replace src above with a public mp4 URL -->
-    </video>
-
-    <h2>The Place</h2>
-    <p>
-      Estes Park, Colorado — a breathtaking mountain town surrounded by nature’s
-      finest views. It’s where our story will continue, under the open sky and
-      among the people we love most.
-    </p>
-
-    <img src="https://via.placeholder.com/600x400" alt="Estes Park" />
-  </section>
-
-  <!-- Photos Section -->
   <section id="photos">
     <h2>Photos</h2>
-    <div class="photo-grid">
-      <img src="https://via.placeholder.com/200" alt="Photo 1" />
-      <img src="https://via.placeholder.com/200" alt="Photo 2" />
-      <img src="https://via.placeholder.com/200" alt="Photo 3" />
-      <img src="https://via.placeholder.com/200" alt="Photo 4" />
-    </div>
+    <hr />
+    <p>Moments that tell our story — from laughter to love, and everything in between.</p>
   </section>
 
-  <!-- Footer -->
+  <section id="rsvp">
+    <h2>RSVP</h2>
+    <hr />
+    <p>We can’t wait to celebrate with you! Please confirm your attendance below.</p>
+    <a href="https://www.zola.com/wedding/daquansavannah" target="_blank" class="button">RSVP Now</a>
+  </section>
+
   <footer>
-    <p>With love — Da'Quan & Savannah • August 26, 2026</p>
+    <p>With love — Da'Quan & Savannah © 2025</p>
+    <p><a href="#home">Back to top</a></p>
   </footer>
-
-  <!-- Active Section Highlight Script -->
-  <script>
-    const sections = document.querySelectorAll("section[id]");
-    const navLinks = document.querySelectorAll("nav a[href^='#']");
-
-    window.addEventListener("scroll", () => {
-      let current = "";
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 140;
-        if (pageYOffset >= sectionTop) current = section.getAttribute("id");
-      });
-
-      navLinks.forEach(link => {
-        link.classList.remove("active");
-        if (link.getAttribute("href") === "#" + current) link.classList.add("active");
-      });
-    });
-  </script>
 </body>
 </html>
