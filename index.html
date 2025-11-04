@@ -1,228 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Da'Quan & Savannah — Wedding</title>
-<style>
-  /* ===== BASE ===== */
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    font-family: "Georgia", serif;
-    color: #fdf9f3;
-    background: url('https://www.transparenttextures.com/patterns/wood-pattern.png') repeat;
-    background-color: #3B352F;
-    line-height: 1.6;
-  }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Da'Quan & Savannah — Wedding</title>
+  <style>
+    /* ===== BASE ===== */
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Georgia", serif;
+      color: #fdf9f3; /* brighter cream */
+      background: url('https://www.transparenttextures.com/patterns/wood-pattern.png') repeat;
+      background-color: #3B352F; /* dark brown base */
+      line-height: 1.6;
+    }
 
-  /* ===== NAV ===== */
-  nav {
-    background: rgba(0,0,0,0.55);
-    backdrop-filter: blur(6px);
-    color: #fff8e7;
-    padding: 1rem 1.5rem;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    gap: 1.4rem;
-  }
-  nav a {
-    color: #fff6da;
-    text-decoration: none;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    transition: color 0.25s ease;
-    position: relative;
-    padding: 0.25rem 0;
-  }
-  nav a::after{
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 2px;
-    bottom: -6px;
-    width: 0;
-    margin: 0 auto;
-    background: linear-gradient(90deg, transparent, #e5c982, transparent);
-    transition: width 0.25s ease;
-  }
-  nav a:hover { color: #ffe9a9; }
-  nav a:hover::after, nav a.active::after { width: 70%; }
+    /* ===== NAV ===== */
+    nav {
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(6px);
+      color: #fff8e7;
+      padding: 1rem 1.5rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      gap: 1.4rem;
+    }
+    nav a {
+      color: #fff6da;
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      transition: color 0.25s ease;
+      position: relative;
+      padding: 0.25rem 0;
+    }
+    nav a::after{
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 2px;
+      bottom: -6px;
+      width: 0;
+      margin: 0 auto;
+      background: linear-gradient(90deg, transparent, #e5c982, transparent);
+      transition: width 0.25s ease;
+    }
+    nav a:hover { color: #ffe9a9; }
+    nav a:hover::after, nav a.active::after { width: 70%; }
 
-  header, section { padding-top: 4.5rem; }
+    header, section { padding-top: 4.5rem; }
 
-  /* ===== HOME ===== */
-  header#home {
-    padding: 8.5rem 1rem 6rem;
-    text-align: center;
-    color: #fff6da;
-  }
-  header#home h1 { font-size: 3rem; margin: 0 0 0.6rem; letter-spacing: 2px; }
-  header#home p { font-size: 1.15rem; margin: 0; color: #fdf9f3; font-style: italic; }
+    /* ===== HOME ===== */
+    header#home {
+      padding: 8.5rem 1rem 6rem;
+      text-align: center;
+      color: #fff6da;
+    }
+    header#home h1 { font-size: 3rem; margin: 0 0 0.6rem; letter-spacing: 2px; }
+    header#home p { font-size: 1.15rem; margin: 0; color: #fdf9f3; font-style: italic; }
 
-  /* ===== GENERIC SECTION ===== */
-  section { padding: 4.5rem 1.5rem; text-align: center; }
-  section h2 {
-    color: #fff6da;
-    font-size: 2.2rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin: 0 0 0.6rem;
-  }
-  hr.divider { border: none; height: 2px; width: 80px; margin: 1rem auto 1.6rem; background: linear-gradient(to right, transparent, #e5c982, transparent); }
-  section p { color: #fdf9f3; font-size: 1.05rem; line-height: 1.7; max-width: 800px; margin: 0 auto; white-space: pre-line; }
+    /* ===== GENERIC SECTION ===== */
+    section { padding: 4.5rem 1.5rem; text-align: center; }
+    section h2 {
+      color: #fff6da;
+      font-size: 2.2rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin: 0 0 0.6rem;
+    }
+    hr.divider { border: none; height: 2px; width: 80px; margin: 1rem auto 1.6rem; background: linear-gradient(to right, transparent, #e5c982, transparent); }
+    section p { color: #fdf9f3; font-size: 1.05rem; line-height: 1.7; max-width: 800px; margin: 0 auto; white-space: pre-line; }
 
-  /* ===== OUR STORY ===== */
-  #story { background: rgba(0,0,0,0.28); backdrop-filter: blur(4px); }
-  .story-content { max-width: 900px; margin: 0 auto; text-align: left; background: rgba(59,53,47,0.62); border-radius: 14px; padding: 1.6rem 1.6rem; }
+    /* ===== OUR STORY ===== */
+    #story { background: rgba(0,0,0,0.28); backdrop-filter: blur(4px); }
+    .story-content { max-width: 900px; margin: 0 auto; text-align: left; background: rgba(59,53,47,0.62); border-radius: 14px; padding: 1.6rem 1.6rem; }
 
-  /* ===== PLACE ===== */
-  #place { position: relative; height: 100vh; overflow: hidden; display:flex; align-items: center; justify-content: center; padding:0; }
-  #place video { position: absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; filter: brightness(0.55); }
-  .place-content { position: relative; z-index:1; background: rgba(59,53,47,0.72); padding:2rem; border-radius:14px; max-width:820px; margin:2rem; text-align:center; backdrop-filter: blur(6px); }
-  .place-content h2 { margin-top:0; color:#fff6da; font-size:2.4rem; }
+    /* ===== PLACE ===== */
+    #place { position: relative; height: 100vh; overflow: hidden; display:flex; align-items: center; justify-content: center; padding:0; }
+    #place video { position: absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; filter: brightness(0.55); }
+    .place-content { position: relative; z-index:1; background: rgba(59,53,47,0.72); padding:2rem; border-radius:14px; max-width:820px; margin:2rem; text-align:center; backdrop-filter: blur(6px); }
+    .place-content h2 { margin-top:0; color:#fff6da; font-size:2.4rem; }
 
-  /* ===== WEDDING PARTY ===== */
-  #party { background: rgba(0,0,0,0.22); backdrop-filter: blur(3px); }
-  .party-container { display: flex; flex-direction: column; align-items: center; gap: 3rem; }
+    /* ===== WEDDING PARTY ===== */
+    #party { background: rgba(0,0,0,0.22); backdrop-filter: blur(3px); }
+    .party-tree { display: flex; justify-content: center; flex-wrap: wrap; gap: 2rem; max-width: 1200px; margin: 1.6rem auto 0; }
+    .party-member {
+      background: rgba(59,53,47,0.62);
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+      max-width: 180px;
+    }
+    .party-member img {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+      margin: 0 auto 0.8rem;
+      border: 4px solid rgba(230,200,130,0.12);
+    }
+    .party-member h3 { margin: 0.25rem 0 0.45rem; color: #ffe9a9; font-size: 1.05rem; }
+    .party-member .role { color: #fff8e7; font-size:0.95rem; margin-bottom:0.6rem; }
+    .party-member .bio { color:#fdf9f3; font-size:0.95rem; line-height:1.45; margin:0.35rem 0 0; }
 
-  /* Top row: Best Man & Maid of Honor */
-  .party-top {
-    display: flex;
-    justify-content: center;
-    gap: 6rem;
-    flex-wrap: wrap;
-  }
-  .top-member {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 270px;
-    text-align: center;
-    border: 3px solid #e5c982;
-    padding: 0.5rem;
-    border-radius: 12px;
-    background: rgba(255, 233, 169, 0.1);
-    box-shadow: 0 0 15px rgba(229,201,130,0.5);
-  }
-  .top-member img {
-    width: 250px;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 0.5rem;
-  }
-  .top-member .bio {
-    font-size: 0.95rem;
-    margin-top: 0.5rem;
-    color:#fdf9f3;
-  }
+    /* ===== GALLERY ===== */
+    #gallery .photo-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+      max-width:1000px;
+      margin:1.2rem auto 0;
+    }
+    .photo-grid img { width:100%; height:160px; object-fit:cover; border-radius:10px; }
 
-  /* Bottom row: Groomsmen left / Bridesmaids right */
-  .party-bottom {
-    display: flex;
-    justify-content: center;
-    gap: 6rem;
-    flex-wrap: wrap;
-    width: 100%;
-  }
-  .groomsmen, .bridesmaids {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    justify-items: center;
-    margin: 1rem 0;
-  }
-  .party-member {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    max-width: 160px;
-  }
-  .party-member img {
-    width: 140px;
-    height: 140px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 0.5rem;
-    border: 4px solid rgba(230,200,130,0.12);
-  }
-  .party-member h3 {
-    margin: 0.2rem 0 0.2rem;
-    color: #ffe9a9;
-    font-size: 1rem;
-  }
-  .party-member .role {
-    color: #fff8e7;
-    font-size: 0.85rem;
-    margin-bottom: 0.25rem;
-  }
-  .party-member .bio {
-    color: #fdf9f3;
-    font-size: 0.85rem;
-    line-height: 1.2;
-  }
+    /* ===== BUTTONS ===== */
+    button, a.button {
+      background-color: #c7a96b;
+      color: #3B352F;
+      border: none;
+      padding: 0.72rem 1.25rem;
+      border-radius: 8px;
+      font-family: "Georgia", serif;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    button:hover, a.button:hover {
+      background-color: #e5c982;
+      color: #2c261f;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(199,169,107,0.25);
+    }
 
-  /* ===== PHOTOS ===== */
-  #photos .photo-grid {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
-    max-width:1000px;
-    margin:1.2rem auto 0;
-  }
-  .photo-grid img { width:100%; height:160px; object-fit:cover; border-radius:10px; }
+    /* ===== FOOTER ===== */
+    footer {
+      background: rgba(0,0,0,0.5);
+      color:#fff8e7;
+      padding:2rem 1rem;
+      text-align:center;
+      font-size:0.95rem;
+      letter-spacing:0.04em;
+      margin-top:2rem;
+      backdrop-filter: blur(4px);
+    }
+    footer a { color:#ffe9a9; text-decoration:none; font-weight:700; }
+    footer a:hover { color:#fff6da; text-decoration:underline; }
 
-  /* ===== FOOTER ===== */
-  footer {
-    background: rgba(0,0,0,0.5);
-    color:#fff8e7;
-    padding:2rem 1rem;
-    text-align:center;
-    font-size:0.95rem;
-    letter-spacing:0.04em;
-    margin-top:2rem;
-    backdrop-filter: blur(4px);
-  }
-
-  /* ===== RESPONSIVE ===== */
-  @media (max-width: 900px){
-    .party-top { gap: 3rem; }
-    .party-bottom { flex-direction: column; gap: 3rem; align-items: center; }
-    .groomsmen, .bridesmaids { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-  }
-</style>
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 700px){
+      header#home { padding:6.5rem 1rem 4.5rem; }
+      .place-content { margin:1rem; padding:1.2rem; }
+      .party-member img { width:120px; height:120px; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="#home">Home</a>
-  <a href="#story">Our Story</a>
-  <a href="#place">The Place</a>
-  <a href="#party">Wedding Party</a>
-  <a href="#photos">Photos</a>
-  <a href="#rsvp">RSVP</a>
-</nav>
+  <!-- NAV -->
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#travel">Travel</a>
+    <a href="#party">Wedding Party</a>
+    <a href="#gallery">Gallery</a>
+  </nav>
 
-<!-- HOME -->
-<header id="home">
-  <h1>Da'Quan & Savannah</h1>
-  <p>Join us in celebrating our forever</p>
-</header>
+  <!-- HOME -->
+  <header id="home">
+    <h1>Da'Quan & Savannah</h1>
+    <p>Join us in celebrating our forever</p>
+  </header>
 
-<!-- OUR STORY -->
-<section id="story">
-  <h2>Our Story</h2>
-  <hr class="divider"/>
-  <div class="story-content">
+  <!-- OUR STORY -->
+  <section id="story">
+    <h2>Our Story</h2>
+    <hr class="divider"/>
+    <div class="story-content">
 It all started with… a roommate application. Da’Quan was just having another normal day and Savannah was just trying to sign her very first apartment lease. But God had other plans. Savannah was in a rush to sign her new lease because all the good apartments were getting taken. Desperate not to lose out on another apartment she decided to meet up with her roommate at her current location. However, her roommate mentioned she had just finished working out with a friend.
 
 That friend, happened to be one of Da’Quan’s best friends and current roommate. Fate brought the two together through a series of coincidental events. All it took for him was one gaze to know he had to figure out who this never before seen woman was. With little hesitation he asked for Savannah’s Instagram, and the story began.
@@ -231,86 +195,91 @@ What started as a single DM turned into hours of conversation, a first date fill
 
 Eventually, the moment came. Not the moment (yet), but a pretty important one:
 At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will you be my girlfriend?” written out in chocolate syrup on a dessert plate (Savannah having made it clear, a few times, that time was ticking). Roses included. That night marked the start of something even bigger than either of them imagined. A love story full of laughter, long talks that never feel long enough, a strong bond and most importantly, building their relationship with Jesus together. And now, they can’t wait to continue their never ending chapter together.
-  </div>
-</section>
+    </div>
+  </section>
 
-<!-- PLACE -->
-<section id="place">
-  <video autoplay muted loop playsinline>
-    <source src="estes-park.mp4" type="video/mp4"/>
-    Your browser does not support the video tag.
-  </video>
-  <div class="place-content">
-    <h2>The Place</h2>
-    <p>
-      Nestled in the heart of Estes Park, surrounded by Colorado’s breathtaking mountain peaks,
-      our ceremony will take place where love meets nature — calm, beautiful, and timeless.
-    </p>
-  </div>
-</section>
+  <!-- PLACE -->
+  <section id="place">
+    <video autoplay muted loop playsinline>
+      <source src="estes-park.mp4" type="video/mp4"/>
+      Your browser does not support the video tag.
+    </video>
+    <div class="place-content">
+      <h2>The Place</h2>
+      <p>
+        Nestled in the heart of Estes Park, surrounded by Colorado’s breathtaking mountain peaks,
+        our ceremony will take place where love meets nature — calm, beautiful, and timeless.
+      </p>
+    </div>
+  </section>
 
-<!-- WEDDING PARTY -->
-<section id="party">
-  <h2>Wedding Party</h2>
-  <hr class="divider"/>
-  <div class="party-container">
+  <!-- SCHEDULE -->
+  <section id="schedule">
+    <h2>Schedule</h2>
+    <hr class="divider"/>
+    <div class="story-content">
+      <p>
+        Ceremony: 4:00 PM at Estes Park Venue<br/>
+        Cocktail Hour: 5:00 PM<br/>
+        Reception: 6:00 PM<br/>
+        Dancing & Celebration: 7:00 PM until 11:00 PM
+      </p>
+    </div>
+  </section>
 
-    <!-- Top row: Best Man & Maid of Honor -->
-    <div class="party-top">
-      <div class="top-member">
+  <!-- TRAVEL -->
+  <section id="travel">
+    <h2>Travel</h2>
+    <hr class="divider"/>
+    <div class="story-content">
+      <p>
+        Recommended Airport: Denver International Airport (DEN)<br/>
+        Car Rental & Shuttle Info: Available at the venue<br/>
+        Nearby Hotels: The Stanley Hotel, Estes Park Resort, and local Airbnbs<br/>
+        Directions & Parking: Detailed instructions will be provided in the RSVP confirmation
+      </p>
+    </div>
+  </section>
+
+  <!-- WEDDING PARTY -->
+  <section id="party">
+    <h2>Wedding Party</h2>
+    <hr class="divider"/>
+    <div class="party-tree">
+      <div class="party-member">
         <img src="bestman.jpg" alt="Best Man"/>
         <h3>Quillon</h3>
         <div class="role">Best Man</div>
-        <div class="bio">His Daddy — always supportive and loving, the anchor of the group.</div>
+        <p class="bio">His Daddy</p>
       </div>
-      <div class="top-member">
+      <div class="party-member">
         <img src="maidofhonor.jpg" alt="Maid of Honor"/>
-        <h3>Alexis</h3>
+        <h3>Emily</h3>
         <div class="role">Maid of Honor</div>
-        <div class="bio">Savannah’s closest sister-friend — planner, encourager, and the heart of the group.</div>
+        <p class="bio">Savannah’s closest sister-friend — planner, encourager, and the heart of the group.</p>
       </div>
+
+      <!-- Groomsmen and Bridesmaids here as before -->
+      <!-- Add the rest of party members as needed -->
     </div>
+  </section>
 
-    <!-- Bottom row: Groomsmen left / Bridesmaids right -->
-    <div class="party-bottom">
-      <div class="groomsmen">
-        <div class="party-member"><img src="groomsman1.jpg" alt="James"/><h3>James</h3><div class="role">Groomsman</div><div class="bio">Da'Quan’s college buddy, always making us laugh.</div></div>
-        <div class="party-member"><img src="groomsman2.jpg" alt="David"/><h3>David</h3><div class="role">Groomsman</div><div class="bio">Team player and loyal friend.</div></div>
-        <div class="party-member"><img src="groomsman3.jpg" alt="Robert"/><h3>Robert</h3><div class="role">Groomsman</div><div class="bio">Always has Da'Quan’s back.</div></div>
-        <div class="party-member"><img src="groomsman4.jpg" alt="Anthony"/><h3>Anthony</h3><div class="role">Groomsman</div><div class="bio">Full of energy and encouragement.</div></div>
-        <div class="party-member"><img src="groomsman5.jpg" alt="William"/><h3>William</h3><div class="role">Groomsman</div><div class="bio">Our storyteller, always fun to be around.</div></div>
-        <div class="party-member"><img src="groomsman6.jpg" alt="Joseph"/><h3>Joseph</h3><div class="role">Groomsman</div><div class="bio">Reliable and steady — a true brother.</div></div>
-      </div>
-
-      <div class="bridesmaids">
-        <div class="party-member"><img src="bridesmaid1.jpg" alt="Sarah"/><h3>Sarah</h3><div class="role">Bridesmaid</div><div class="bio">Savannah’s friend and constant cheerleader.</div></div>
-        <div class="party-member"><img src="bridesmaid2.jpg" alt="Jessica"/><h3>Jessica</h3><div class="role">Bridesmaid</div><div class="bio">Creative spirit with a loving heart.</div></div>
-        <div class="party-member"><img src="bridesmaid3.jpg" alt="Rachel"/><h3>Rachel</h3><div class="role">Bridesmaid</div><div class="bio">Always spreads joy and kindness.</div></div>
-        <div class="party-member"><img src="bridesmaid4.jpg" alt="Hannah"/><h3>Hannah</h3><div class="role">Bridesmaid</div><div class="bio">Supportive and fun-loving.</div></div>
-        <div class="party-member"><img src="bridesmaid5.jpg" alt="Olivia"/><h3>Olivia</h3><div class="role">Bridesmaid</div><div class="bio">Always ready to lend a helping hand.</div></div>
-        <div class="party-member"><img src="bridesmaid6.jpg" alt="Emma"/><h3>Emma</h3><div class="role">Bridesmaid</div><div class="bio">Brings laughter and warmth everywhere she goes.</div></div>
-      </div>
+  <!-- GALLERY -->
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <hr class="divider"/>
+    <div class="photo-grid">
+      <img src="photo1.jpg" alt="Photo 1"/>
+      <img src="photo2.jpg" alt="Photo 2"/>
+      <img src="photo3.jpg" alt="Photo 3"/>
+      <img src="photo4.jpg" alt="Photo 4"/>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- PHOTOS -->
-<section id="photos">
-  <h2>Photos</h2>
-  <hr class="divider"/>
-  <div class="photo-grid">
-    <img src="photo1.jpg" alt="Photo 1"/>
-    <img src="photo2.jpg" alt="Photo 2"/>
-    <img src="photo3.jpg" alt="Photo 3"/>
-    <img src="photo4.jpg" alt="Photo 4"/>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <p>With love — Da'Quan & Savannah • August 26, 2026</p>
-</footer>
+  <!-- FOOTER -->
+  <footer>
+    <p>With love — Da'Quan & Savannah • August 26, 2026</p>
+  </footer>
 
 </body>
 </html>
-
