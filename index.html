@@ -48,7 +48,26 @@
     }
 
     /* Nav Links */
-  nav a {
+  /* ===== Fixed Frosted-Glass Navigation (Foggy Look) ===== */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(191, 166, 122, 0.3); /* foggy/translucent beige-brown */
+  backdrop-filter: blur(12px); /* frosted glass effect */
+  -webkit-backdrop-filter: blur(12px);
+  color: #f8f4ec;
+  display: flex;
+  justify-content: center;
+  gap: 3rem; /* spacing between links */
+  padding: 1rem 0;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+/* Nav Links */
+nav a {
   color: #f8f4ec;
   text-decoration: none;
   margin: 0;
@@ -77,6 +96,7 @@ nav a:hover {
 nav a:hover::after {
   width: 100%;
 }
+
 
     nav a.active::after {
       width: 100%;
@@ -244,5 +264,6 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
 
 </body>
 </html>
+
 
 
