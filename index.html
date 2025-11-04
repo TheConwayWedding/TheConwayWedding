@@ -1,242 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Savannah & Da’Quan — Wedding</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Da'Quan & Savannah - Wedding</title>
   <style>
-    /* Global */
     body {
       margin: 0;
-      font-family: "Inter", system-ui, Arial, sans-serif;
-      background: #f4f4f4;
-      color: #333;
-      line-height: 1.5;
+      font-family: 'Georgia', serif;
+      background-color: #d2b48c; /* Beige/Wood Brown */
+      color: #fdf5e6; /* Cream White */
     }
 
-    /* Header + Nav (from your version) */
     header {
-      background: #222;
-      color: #fff;
-      padding: 1rem;
       text-align: center;
+      padding: 4rem 1rem;
     }
 
-    nav {
-      margin: 1rem;
-      text-align: center;
-    }
-
-    nav a {
-      margin: 0 1rem;
-      text-decoration: none;
-      color: #222;
-      font-weight: bold;
-    }
-
-    /* Container */
-    .container {
-      max-width: 1100px;
-      margin: 2rem auto;
-      background: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    /* Hero section */
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr 420px;
-      gap: 36px;
-      align-items: center;
-      margin-top: 18px;
-    }
-
-    .hero-left {
-      background: #faf7f4;
-      padding: 28px;
-      border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(30,30,30,0.06);
-    }
-
-    .hero-left h2 {
+    header h1 {
+      font-size: 3rem;
       margin: 0;
-      font-family: "Playfair Display", serif;
-      font-size: 36px;
     }
 
-    .hero-left .sub {
-      margin-top: 6px;
-      font-weight: 600;
-      color: #777;
+    header p {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
     }
 
-    .meta {
-      margin-top: 18px;
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      flex-wrap: wrap;
+    section {
+      max-width: 900px;
+      margin: 4rem auto;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
     }
 
-    .meta .date {
-      background: #fff;
-      padding: 10px 12px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .about, .people, .place, .photos, .video {
       text-align: center;
     }
 
-    .meta .date .big {
-      font-family: "Playfair Display", serif;
-      font-size: 18px;
-      display: block;
+    .about p {
+      font-size: 1.1rem;
+      line-height: 1.6;
     }
 
-    .btn {
-      display: inline-block;
-      padding: 10px 18px;
-      border-radius: 8px;
-      text-decoration: none;
-      background: #333;
-      color: white;
-      font-weight: 600;
+    .people-grid, .party-grid, .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      justify-items: center;
     }
 
-    .countdown {
-      margin-top: 12px;
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      flex-wrap: wrap;
+    .people-grid img, .party-grid img, .photo-grid img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     }
 
-    .count-item {
-      background: #fff;
-      min-width: 70px;
-      padding: 8px 10px;
-      border-radius: 8px;
+    .caption {
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    iframe {
+      width: 100%;
+      height: 500px;
+      border-radius: 10px;
+      border: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    footer {
       text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      padding: 2rem;
+      font-size: 0.9rem;
+      background: rgba(0, 0, 0, 0.2);
     }
 
-    .count-item .num {
-      font-weight: 700;
-      font-size: 18px;
-    }
-
-    .count-item .lbl {
-      font-size: 12px;
-      color: #777;
-    }
-
-    .hero-right {
-      border-radius: 12px;
-      overflow: hidden;
-      min-height: 360px;
-      background-size: cover;
-      background-position: center;
-      box-shadow: 0 8px 28px rgba(20,20,20,0.08);
-    }
-
-    @media (max-width: 920px) {
-      .hero {
-        grid-template-columns: 1fr;
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header {
+        padding: 2rem 1rem;
       }
-      .hero-right {
-        order: -1;
-        min-height: 260px;
+
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      header p {
+        font-size: 1rem;
+      }
+
+      section {
+        margin: 2rem 1rem;
+        padding: 1.5rem;
+      }
+
+      h2 {
+        font-size: 1.6rem;
+      }
+
+      iframe {
+        height: 300px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+
+      section {
+        padding: 1rem;
+      }
+
+      .people-grid img, .party-grid img, .photo-grid img {
+        height: 200px;
       }
     }
   </style>
 </head>
-
 <body>
   <header>
-    <h2>Savannah & Da’Quan — Wedding</h2>
+    <h1>Da'Quan & Savannah</h1>
+    <p>August 26, 2026 · Estes Park, CO</p>
   </header>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="video.html">Random Video</a>
-    <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank">RSVP</a>
-  </nav>
+  <section class="about">
+    <h2>Our Story</h2>
+    <p>From the moment we met, we knew this was something special. Through laughter, adventures, and late-night talks, our bond grew into a love that feels like home. We can’t wait to celebrate this next chapter with the people we cherish most — you.</p>
+  </section>
 
-  <div class="container">
-    <div class="hero">
-      <div class="hero-left">
-        <h2>Savannah Conway <span style="display:block;font-size:24px">&amp;</span> Da’Quan Conway</h2>
-        <div class="sub">August 4, 2026 · Estes Park, CO</div>
-
-        <div class="meta">
-          <div class="date">
-            <span class="big">August 4, 2026</span>
-            <span style="font-size:12px;color:#777;">Estes Park, CO</span>
-          </div>
-
-          <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank" class="btn">RSVP</a>
-
-          <div style="margin-left:auto; color:#777; font-size:13px">
-            <strong id="guest-counter">274</strong> days
-          </div>
-        </div>
-
-        <div class="countdown">
-          <div class="count-item"><div class="num" id="cd-days">--</div><div class="lbl">Days</div></div>
-          <div class="count-item"><div class="num" id="cd-hours">--</div><div class="lbl">Hours</div></div>
-          <div class="count-item"><div class="num" id="cd-mins">--</div><div class="lbl">Minutes</div></div>
-          <div class="count-item"><div class="num" id="cd-secs">--</div><div class="lbl">Seconds</div></div>
-        </div>
-
-        <div style="margin-top:16px; color:#777; font-size:14px">
-          <strong>Our Story</strong>
-          <p style="margin-top:10px">
-            It all started with… a roommate application. Da’Quan was just having another normal day and Savannah was just trying to sign her very first apartment lease. Fate brought the two together through a series of coincidental events — a DM turned into a first date, and the rest is history.
-          </p>
-        </div>
+  <section class="people">
+    <h2>The Couple</h2>
+    <div class="people-grid">
+      <div>
+        <img src="https://via.placeholder.com/300x400" alt="Da'Quan">
+        <p class="caption">Da'Quan</p>
       </div>
-
-      <div class="hero-right" style="background-image:url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1400&auto=format&fit=crop');">
+      <div>
+        <img src="https://via.placeholder.com/300x400" alt="Savannah">
+        <p class="caption">Savannah</p>
       </div>
     </div>
-  </div>
+  </section>
 
-  <script>
-    // Countdown to August 4, 2026
-    (function() {
-      const target = new Date("2026-08-04T15:00:00");
-      const daysEl = document.getElementById('cd-days');
-      const hoursEl = document.getElementById('cd-hours');
-      const minsEl = document.getElementById('cd-mins');
-      const secsEl = document.getElementById('cd-secs');
-      const guestCounter = document.getElementById('guest-counter');
+  <section class="party">
+    <h2>Wedding Party</h2>
+    <div class="party-grid">
+      <div>
+        <img src="https://via.placeholder.com/300x300" alt="Best Man">
+        <p class="caption">Best Man - Marcus</p>
+      </div>
+      <div>
+        <img src="https://via.placeholder.com/300x300" alt="Maid of Honor">
+        <p class="caption">Maid of Honor - Emily</p>
+      </div>
+      <div>
+        <img src="https://via.placeholder.com/300x300" alt="Groomsman">
+        <p class="caption">Groomsman - Chris</p>
+      </div>
+      <div>
+        <img src="https://via.placeholder.com/300x300" alt="Bridesmaid">
+        <p class="caption">Bridesmaid - Lily</p>
+      </div>
+    </div>
+  </section>
 
-      function pad(n) { return n.toString().padStart(2, '0'); }
+  <section class="place">
+    <h2>The Place</h2>
+    <p>Join us in the breathtaking beauty of Estes Park, Colorado — surrounded by mountains, fresh air, and the people we love. The ceremony and reception will take place at a charming mountain lodge with stunning views of the Rockies.</p>
+  </section>
 
-      function update() {
-        const now = new Date();
-        let diff = Math.max(0, target - now);
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        diff -= days * (1000 * 60 * 60 * 24);
-        const hours = Math.floor(diff / (1000 * 60 * 60));
-        diff -= hours * (1000 * 60 * 60);
-        const mins = Math.floor(diff / (1000 * 60));
-        diff -= mins * (1000 * 60);
-        const secs = Math.floor(diff / 1000);
+  <section class="photos">
+    <h2>Photo Gallery</h2>
+    <div class="photo-grid">
+      <img src="https://via.placeholder.com/400x300" alt="Photo 1">
+      <img src="https://via.placeholder.com/400x300" alt="Photo 2">
+      <img src="https://via.placeholder.com/400x300" alt="Photo 3">
+      <img src="https://via.placeholder.com/400x300" alt="Photo 4">
+    </div>
+  </section>
 
-        daysEl.textContent = days;
-        hoursEl.textContent = pad(hours);
-        minsEl.textContent = pad(mins);
-        secsEl.textContent = pad(secs);
-        guestCounter.textContent = days;
-      }
+  <section class="video">
+    <h2>Our Video</h2>
+    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+  </section>
 
-      update();
-      setInterval(update, 1000);
-    })();
-  </script>
+  <footer>
+    <p>With love, Da'Quan & Savannah · August 26, 2026</p>
+  </footer>
 </body>
 </html>
+
+
