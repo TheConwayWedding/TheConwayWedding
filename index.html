@@ -10,13 +10,14 @@
       scroll-behavior: smooth;
     }
 
-body {
-  margin: 0;
-  font-family: Georgia, serif;
-  background-color: #d4b98f; /* page background */
-  color: #f8f4ec;
-  scroll-behavior: smooth;
-}
+    body {
+      margin: 0;
+      font-family: "Georgia", serif;
+      color: #f8f4ec;
+      background: url('https://www.transparenttextures.com/patterns/wood-pattern.png') repeat;
+      background-color: #d4b98f;
+      line-height: 1.6;
+    }
 
     h1, h2, h3 {
       text-align: center;
@@ -28,34 +29,62 @@ body {
       text-align: center;
     }
 
-    /* ===== Navigation (Static) ===== */
-   nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #bfa67a; /* warm beige-brown */
-  color: #f8f4ec; /* cream white text */
-  text-align: center;
-  padding: 1rem 0;
-  z-index: 1000;
-}
+    /* ===== Fixed Frosted-Glass Navigation ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(191, 166, 122, 0.8); /* beige-brown transparent */
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: #f8f4ec;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem 0;
+      z-index: 1000;
+      transition: background-color 0.3s ease;
+    }
 
+    /* Nav Links */
     nav a {
-      color: #fdf5e6;
+      color: #f8f4ec;
       text-decoration: none;
-      font-weight: bold;
+      margin: 0 1.5rem;
+      font-size: 1.1rem;
+      position: relative;
       transition: color 0.3s ease;
     }
 
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background-color: #d4af37; /* soft gold underline */
+      transition: width 0.3s ease;
+    }
+
     nav a:hover {
-      color: #ffffff;
+      color: #fff;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    nav a.active::after {
+      width: 100%;
     }
 
     /* ===== Hero Section ===== */
     .hero {
       background: rgba(0,0,0,0.5);
-      padding: 6rem 2rem;
+      padding: 8rem 2rem 6rem;
+      margin-top: 4rem; /* offset for fixed nav */
     }
 
     .hero h1 {
@@ -135,7 +164,6 @@ body {
     <h2>August 26, 2026 — Estes Park, CO</h2>
   </section>
 
-
   <!-- About Section -->
   <section id="about" class="about">
     <h2>Our Story</h2>
@@ -189,6 +217,28 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
     <p>With love — Da'Quan & Savannah • August 26, 2026</p>
   </footer>
 
+  <!-- Active Section Highlight Script -->
+  <script>
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll("nav a[href^='#']");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (pageYOffset >= sectionTop) {
+          current = section.getAttribute("id");
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+
 </body>
 </html>
-
