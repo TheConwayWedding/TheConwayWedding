@@ -10,9 +10,9 @@
     body {
       margin: 0;
       font-family: "Georgia", serif;
-      color: #fdf9f3; /* brighter cream */
+      color: #fdf9f3; 
       background: url('https://www.transparenttextures.com/patterns/wood-pattern.png') repeat;
-      background-color: #3B352F; /* dark brown base */
+      background-color: #3B352F;
       line-height: 1.6;
     }
 
@@ -80,36 +80,31 @@
 
     /* ===== OUR STORY ===== */
     #story { background: rgba(0,0,0,0.28); backdrop-filter: blur(4px); }
-    .story-content { max-width: 900px; margin: 0 auto; text-align: left; background: rgba(59,53,47,0.62); border-radius: 14px; padding: 1.6rem 1.6rem; }
+    .story-content { max-width: 900px; margin: 0 auto; text-align: left; background: rgba(59,53,47,0.62); border-radius: 14px; padding: 1.6rem; }
 
     /* ===== PLACE ===== */
     #place { position: relative; height: 100vh; overflow: hidden; display:flex; align-items: center; justify-content: center; padding:0; }
     #place video { position: absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; filter: brightness(0.55); }
     .place-content { position: relative; z-index:1; background: rgba(59,53,47,0.72); padding:2rem; border-radius:14px; max-width:820px; margin:2rem; text-align:center; backdrop-filter: blur(6px); }
     .place-content h2 { margin-top:0; color:#fff6da; font-size:2.4rem; }
+    .place-content img { width:100%; max-width:560px; border-radius:12px; margin-top:1rem; }
+
+    /* ===== SCHEDULE & TRAVEL ===== */
+    .section-box { max-width:800px; margin:0 auto; background: rgba(59,53,47,0.62); border-radius:14px; padding:2rem; text-align:left; backdrop-filter: blur(4px); }
 
     /* ===== WEDDING PARTY ===== */
     #party { background: rgba(0,0,0,0.22); backdrop-filter: blur(3px); }
-    .party-tree { display: flex; justify-content: center; flex-wrap: wrap; gap: 2rem; max-width: 1200px; margin: 1.6rem auto 0; }
     .party-member {
       background: rgba(59,53,47,0.62);
       border-radius: 12px;
       padding: 1rem;
       text-align: center;
-      max-width: 180px;
+      margin-bottom:1rem;
     }
-    .party-member img {
-      width: 140px;
-      height: 140px;
-      object-fit: cover;
-      border-radius: 50%;
-      display: block;
-      margin: 0 auto 0.8rem;
-      border: 4px solid rgba(230,200,130,0.12);
-    }
-    .party-member h3 { margin: 0.25rem 0 0.45rem; color: #ffe9a9; font-size: 1.05rem; }
-    .party-member .role { color: #fff8e7; font-size:0.95rem; margin-bottom:0.6rem; }
-    .party-member .bio { color:#fdf9f3; font-size:0.95rem; line-height:1.45; margin:0.35rem 0 0; }
+    .party-member img { border-radius: 8px; width:140px; height:140px; object-fit:cover; display:block; margin:0 auto 0.5rem; border:4px solid rgba(230,200,130,0.12);}
+    .party-member h3 { margin:0.25rem 0; color:#ffe9a9; font-size:1.05rem;}
+    .party-member .role { color:#fff8e7; font-size:0.95rem; margin-bottom:0.35rem;}
+    .party-member .bio { color:#fdf9f3; font-size:0.95rem; line-height:1.45; margin:0;}
 
     /* ===== GALLERY ===== */
     #gallery .photo-grid {
@@ -160,7 +155,7 @@
     /* ===== RESPONSIVE ===== */
     @media (max-width: 700px){
       header#home { padding:6.5rem 1rem 4.5rem; }
-      .place-content { margin:1rem; padding:1.2rem; }
+      .place-content, .section-box { margin:1rem; padding:1.2rem; }
       .party-member img { width:120px; height:120px; }
     }
   </style>
@@ -198,32 +193,12 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
     </div>
   </section>
 
-  <!-- PLACE -->
-  <section id="place">
-    <video autoplay muted loop playsinline>
-      <source src="estes-park.mp4" type="video/mp4"/>
-      Your browser does not support the video tag.
-    </video>
-    <div class="place-content">
-      <h2>The Place</h2>
-      <p>
-        Nestled in the heart of Estes Park, surrounded by Colorado’s breathtaking mountain peaks,
-        our ceremony will take place where love meets nature — calm, beautiful, and timeless.
-      </p>
-    </div>
-  </section>
-
   <!-- SCHEDULE -->
   <section id="schedule">
     <h2>Schedule</h2>
     <hr class="divider"/>
-    <div class="story-content">
-      <p>
-        Ceremony: 4:00 PM at Estes Park Venue<br/>
-        Cocktail Hour: 5:00 PM<br/>
-        Reception: 6:00 PM<br/>
-        Dancing & Celebration: 7:00 PM until 11:00 PM
-      </p>
+    <div class="section-box">
+      <p>Details about ceremony, reception, and other wedding day events will go here.</p>
     </div>
   </section>
 
@@ -231,13 +206,8 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
   <section id="travel">
     <h2>Travel</h2>
     <hr class="divider"/>
-    <div class="story-content">
-      <p>
-        Recommended Airport: Denver International Airport (DEN)<br/>
-        Car Rental & Shuttle Info: Available at the venue<br/>
-        Nearby Hotels: The Stanley Hotel, Estes Park Resort, and local Airbnbs<br/>
-        Directions & Parking: Detailed instructions will be provided in the RSVP confirmation
-      </p>
+    <div class="section-box">
+      <p>Information about accommodations, transportation, and directions to the venue will go here.</p>
     </div>
   </section>
 
@@ -245,124 +215,104 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
   <section id="party">
     <h2>Wedding Party</h2>
     <hr class="divider"/>
-    <div class="party-tree">
-      <div class="party-member">
-        <img src="bestman.jpg" alt="Best Man"/>
+
+    <!-- Best Man & Maid of Honor (centered) -->
+    <div style="display:flex; justify-content:center; gap:3rem; margin-bottom:3rem;">
+      <div class="party-member" style="max-width:220px;">
+        <img src="bestman.jpg" alt="Best Man" style="width:220px; height:220px; border-radius:8px; border:4px solid #e5c982;">
         <h3>Quillon</h3>
         <div class="role">Best Man</div>
         <p class="bio">His Daddy</p>
       </div>
-      <div class="party-member">
-        <img src="maidofhonor.jpg" alt="Maid of Honor"/>
-        <h3>Emily</h3>
+      <div class="party-member" style="max-width:220px;">
+        <img src="maidofhonor.jpg" alt="Maid of Honor" style="width:220px; height:220px; border-radius:8px; border:4px solid #e5c982;">
+        <h3>Alexis</h3>
         <div class="role">Maid of Honor</div>
         <p class="bio">Savannah’s closest sister-friend — planner, encourager, and the heart of the group.</p>
       </div>
+    </div>
 
-      <!-- Groomsmen and Bridesmaids here as before -->
-      <!-- WEDDING PARTY -->
-<section id="party">
-  <h2>Wedding Party</h2>
-  <hr class="divider"/>
-  
-  <!-- Best Man & Maid of Honor -->
-  <div class="party-tree" style="justify-content:center; gap:3rem; margin-bottom:3rem;">
-    <div class="party-member" style="max-width:220px;">
-      <img src="bestman.jpg" alt="Best Man" style="width:220px; height:220px; border-radius:8px; border:4px solid #e5c982;">
-      <h3>Quillon</h3>
-      <div class="role">Best Man</div>
-      <p class="bio">His Daddy</p>
-    </div>
-    <div class="party-member" style="max-width:220px;">
-      <img src="maidofhonor.jpg" alt="Maid of Honor" style="width:220px; height:220px; border-radius:8px; border:4px solid #e5c982;">
-      <h3>Emily</h3>
-      <div class="role">Maid of Honor</div>
-      <p class="bio">Savannah’s closest sister-friend — planner, encourager, and the heart of the group.</p>
-    </div>
-  </div>
-  
-  <!-- Groomsmen (Left) -->
-  <div style="display:flex; justify-content:center; flex-wrap:wrap; gap:2rem; margin-bottom:2rem;">
-    <div class="party-member">
-      <img src="groomsman1.jpg" alt="Groomsman 1"/>
-      <h3>James</h3>
-      <div class="role">Groomsman</div>
-      <p class="bio">Da'Quan’s college buddy, always making us laugh.</p>
-    </div>
-    <div class="party-member">
-      <img src="groomsman2.jpg" alt="Groomsman 2"/>
-      <h3>David</h3>
-      <div class="role">Groomsman</div>
-      <p class="bio">Team player and loyal friend.</p>
-    </div>
-    <div class="party-member">
-      <img src="groomsman3.jpg" alt="Groomsman 3"/>
-      <h3>Robert</h3>
-      <div class="role">Groomsman</div>
-      <p class="bio">Always has Da'Quan’s back.</p>
-    </div>
-    <div class="party-member">
-      <img src="groomsman4.jpg" alt="Groomsman 4"/>
-      <h3>Anthony</h3>
-      <div class="role">Groomsman</div>
-      <p class="bio">Full of energy and encouragement.</p>
-    </div>
-    <div class="party-member">
-      <img src="groomsman5.jpg" alt="Groomsman 5"/>
-      <h3>William</h3>
-      <div class="role">Groomsman</div>
-      <p class="bio">Our storyteller, always fun to be around.</p>
-    </div>
-    <div class="party-member">
-      <img src="groomsman6.jpg" alt="Groomsman 6"/>
-      <h3>Joseph</h3>
-      <div class="role">Groomsman</div>
-      <p class="bio">Reliable and steady — a true brother.</p>
-    </div>
-  </div>
+    <!-- Groomsmen (left) & Bridesmaids (right) -->
+    <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:2rem;">
+      <!-- Groomsmen -->
+      <div style="display:flex; flex-direction:column; gap:2rem; flex:1;">
+        <div class="party-member">
+          <img src="groomsman1.jpg" alt="Groomsman 1"/>
+          <h3>James</h3>
+          <div class="role">Groomsman</div>
+          <p class="bio">Da'Quan’s college buddy, always making us laugh.</p>
+        </div>
+        <div class="party-member">
+          <img src="groomsman2.jpg" alt="Groomsman 2"/>
+          <h3>David</h3>
+          <div class="role">Groomsman</div>
+          <p class="bio">Team player and loyal friend.</p>
+        </div>
+        <div class="party-member">
+          <img src="groomsman3.jpg" alt="Groomsman 3"/>
+          <h3>Robert</h3>
+          <div class="role">Groomsman</div>
+          <p class="bio">Always has Da'Quan’s back.</p>
+        </div>
+        <div class="party-member">
+          <img src="groomsman4.jpg" alt="Groomsman 4"/>
+          <h3>Anthony</h3>
+          <div class="role">Groomsman</div>
+          <p class="bio">Full of energy and encouragement.</p>
+        </div>
+        <div class="party-member">
+          <img src="groomsman5.jpg" alt="Groomsman 5"/>
+          <h3>William</h3>
+          <div class="role">Groomsman</div>
+          <p class="bio">Our storyteller, always fun to be around.</p>
+        </div>
+        <div class="party-member">
+          <img src="groomsman6.jpg" alt="Groomsman 6"/>
+          <h3>Joseph</h3>
+          <div class="role">Groomsman</div>
+          <p class="bio">Reliable and steady — a true brother.</p>
+        </div>
+      </div>
 
-  <!-- Bridesmaids (Right) -->
-  <div style="display:flex; justify-content:center; flex-wrap:wrap; gap:2rem;">
-    <div class="party-member">
-      <img src="bridesmaid1.jpg" alt="Bridesmaid 1"/>
-      <h3>Sarah</h3>
-      <div class="role">Bridesmaid</div>
-      <p class="bio">Savannah’s friend and constant cheerleader.</p>
-    </div>
-    <div class="party-member">
-      <img src="bridesmaid2.jpg" alt="Bridesmaid 2"/>
-      <h3>Jessica</h3>
-      <div class="role">Bridesmaid</div>
-      <p class="bio">Creative spirit with a loving heart.</p>
-    </div>
-    <div class="party-member">
-      <img src="bridesmaid3.jpg" alt="Bridesmaid 3"/>
-      <h3>Rachel</h3>
-      <div class="role">Bridesmaid</div>
-      <p class="bio">Always spreads joy and kindness.</p>
-    </div>
-    <div class="party-member">
-      <img src="bridesmaid4.jpg" alt="Bridesmaid 4"/>
-      <h3>Hannah</h3>
-      <div class="role">Bridesmaid</div>
-      <p class="bio">Supportive and fun-loving.</p>
-    </div>
-    <div class="party-member">
-      <img src="bridesmaid5.jpg" alt="Bridesmaid 5"/>
-      <h3>Olivia</h3>
-      <div class="role">Bridesmaid</div>
-      <p class="bio">Always ready to lend a helping hand.</p>
-    </div>
-    <div class="party-member">
-      <img src="bridesmaid6.jpg" alt="Bridesmaid 6"/>
-      <h3>Emma</h3>
-      <div class="role">Bridesmaid</div>
-      <p class="bio">Brings laughter and warmth everywhere she goes.</p>
-    </div>
-  </div>
-</section>
-
-      <!-- Add the rest of party members as needed -->
+      <!-- Bridesmaids -->
+      <div style="display:flex; flex-direction:column; gap:2rem; flex:1; align-items:flex-end;">
+        <div class="party-member">
+          <img src="bridesmaid1.jpg" alt="Bridesmaid 1"/>
+          <h3>Sarah</h3>
+          <div class="role">Bridesmaid</div>
+          <p class="bio">Savannah’s friend and constant cheerleader.</p>
+        </div>
+        <div class="party-member">
+          <img src="bridesmaid2.jpg" alt="Bridesmaid 2"/>
+          <h3>Jessica</h3>
+          <div class="role">Bridesmaid</div>
+          <p class="bio">Creative spirit with a loving heart.</p>
+        </div>
+        <div class="party-member">
+          <img src="bridesmaid3.jpg" alt="Bridesmaid 3"/>
+          <h3>Rachel</h3>
+          <div class="role">Bridesmaid</div>
+          <p class="bio">Always spreads joy and kindness.</p>
+        </div>
+        <div class="party-member">
+          <img src="bridesmaid4.jpg" alt="Bridesmaid 4"/>
+          <h3>Hannah</h3>
+          <div class="role">Bridesmaid</div>
+          <p class="bio">Supportive and fun-loving.</p>
+        </div>
+        <div class="party-member">
+          <img src="bridesmaid5.jpg" alt="Bridesmaid 5"/>
+          <h3>Olivia</h3>
+          <div class="role">Bridesmaid</div>
+          <p class="bio">Always ready to lend a helping hand.</p>
+        </div>
+        <div class="party-member">
+          <img src="bridesmaid6.jpg" alt="Bridesmaid 6"/>
+          <h3>Emma</h3>
+          <div class="role">Bridesmaid</div>
+          <p class="bio">Brings laughter and warmth everywhere she goes.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -385,4 +335,3 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
 
 </body>
 </html>
-
