@@ -27,8 +27,6 @@
     section {
       padding: 4rem 1.5rem;
       text-align: center;
-      position: relative;
-      z-index: 1;
     }
 
     /* ===== Fixed Frosted-Glass Navigation ===== */
@@ -52,7 +50,6 @@
     nav a {
       color: #f8f4ec;
       text-decoration: none;
-      margin: 0;
       font-size: 1.1rem;
       position: relative;
       transition: color 0.3s ease, text-shadow 0.3s ease;
@@ -75,10 +72,7 @@
       text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
     }
 
-    nav a:hover::after {
-      width: 100%;
-    }
-
+    nav a:hover::after,
     nav a.active::after {
       width: 100%;
     }
@@ -86,40 +80,32 @@
     /* ===== Hero Section ===== */
     .hero {
       position: relative;
-      height: 100vh;
+      height: 80vh;
       display: flex;
       justify-content: center;
       align-items: center;
       overflow: hidden;
-      margin-top: 4rem; /* offset for fixed nav */
+      margin-top: 4rem;
       text-align: center;
       color: #f8f4ec;
-    }
-
-    .hero h1, .hero h2 {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 1.2s forwards;
-      animation-delay: 0.3s;
-      z-index: 1;
-      position: relative;
+      background: rgba(0,0,0,0.3);
     }
 
     .hero h1 {
       font-size: 3rem;
+      animation: fadeUp 1.2s forwards;
     }
 
     .hero h2 {
       font-weight: normal;
       margin-top: 0.5rem;
       font-size: 1.5rem;
+      animation: fadeUp 1.2s forwards 0.3s;
     }
 
     @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* ===== About Section ===== */
@@ -132,13 +118,13 @@
     }
 
     /* ===== Image Grids ===== */
-    .party-grid, .photo-grid {
+    .people-grid, .party-grid, .photo-grid {
       display: grid;
       gap: 1.5rem;
       justify-content: center;
     }
 
-    .party-grid img, .photo-grid img {
+    .people-grid img, .party-grid img, .photo-grid img {
       width: 200px;
       height: 200px;
       object-fit: cover;
@@ -146,36 +132,31 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
+    .people-grid img:hover,
     .party-grid img:hover,
     .photo-grid img:hover {
       transform: scale(1.03);
       box-shadow: 0 6px 12px rgba(0,0,0,0.4);
     }
 
+    /* ===== Responsive Layouts ===== */
     @media (min-width: 600px) {
-      .party-grid, .photo-grid {
+      .people-grid, .party-grid, .photo-grid {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         max-width: 1000px;
         margin: 0 auto;
       }
     }
 
-    /* ===== Place Section with Video Background ===== */
-    #place {
+    /* ===== Place Section with Background Video ===== */
+    .place {
       position: relative;
       color: #f8f4ec;
+      z-index: 1;
       overflow: hidden;
     }
 
-    #place::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.45);
-      z-index: 0;
-    }
-
-    #place video {
+    .place video {
       position: absolute;
       top: 0;
       left: 0;
@@ -183,15 +164,14 @@
       height: 100%;
       object-fit: cover;
       z-index: -1;
+      filter: brightness(0.6);
     }
 
-    #place h2, #place p, #place img {
+    .place-content {
       position: relative;
       z-index: 1;
-    }
-
-    #place img {
-      border: 3px solid #f8f4ec;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
     /* ===== Footer ===== */
@@ -216,7 +196,7 @@
     <a href="https://www.amazon.com/wedding-reg/your-registry-link" target="_blank">Registry</a>
   </nav>
 
-  <!-- Hero Section -->
+  <!-- Hero Section (no video now) -->
   <section class="hero">
     <div class="hero-content">
       <h1>Da'Quan & Savannah</h1>
@@ -230,9 +210,7 @@
     <p>
 It all started with… a roommate application. Da’Quan was just having another normal day and Savannah was just trying to sign her very first apartment lease. But God had other plans. Savannah was in a rush to sign her new lease because all the good apartments were getting taken. Desperate not to lose out on another apartment she decided to meet up with her roommate at her current location. However, her roommate mentioned she had just finished working out with a friend.
 
-That friend, happened to be one of Da’Quan’s best friends and current roommate. Fate brought the two together through a series of coincidental events. All it took for him was one gaze to know he had to figure out who this never before seen woman was. With little hesitation he asked for Savannah’s Instagram, and the story began.
-
-What started as a single DM turned into hours of conversation, a first date filled with laughter, deep talks, and Da’Quan sweetly calling her “beloved”. Savannah, naturally shy, was stunned by how easy it felt. Like she’d known him forever. From there, things escalated quickly in the best way...
+That friend, happened to be one of Da’Quan’s best friends and current roommate. Fate brought the two together through a series of coincidental events...
     </p>
   </section>
 
@@ -247,19 +225,22 @@ What started as a single DM turned into hours of conversation, a first date fill
     </div>
   </section>
 
-  <!-- Place Section with Video Background -->
-  <section id="place">
+  <!-- Place Section (video background added here) -->
+  <section id="place" class="place">
     <video autoplay muted loop playsinline>
       <source src="estes-park.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
-    <h2>The Place</h2>
-    <p>
-      Estes Park, Colorado — a breathtaking mountain town surrounded by nature’s
-      finest views. It’s where our story will continue, under the open sky and
-      among the people we love most.
-    </p>
-    <img src="https://via.placeholder.com/600x400" alt="Estes Park" style="width:90%;max-width:600px;border-radius:12px;margin-top:1.5rem;" />
+    <div class="place-content">
+      <h2>The Place</h2>
+      <p>
+        Estes Park, Colorado — a breathtaking mountain town surrounded by nature’s
+        finest views. It’s where our story will continue, under the open sky and
+        among the people we love most.
+      </p>
+      <img src="https://via.placeholder.com/600x400" alt="Estes Park"
+           style="width:90%;max-width:600px;border-radius:12px;margin-top:1.5rem;" />
+    </div>
   </section>
 
   <!-- Photos Section -->
@@ -278,9 +259,11 @@ What started as a single DM turned into hours of conversation, a first date fill
     <p>With love — Da'Quan & Savannah • August 26, 2026</p>
   </footer>
 
+  <!-- Active Section Highlight Script -->
   <script>
     const sections = document.querySelectorAll("section");
     const navLinks = document.querySelectorAll("nav a[href^='#']");
+
     window.addEventListener("scroll", () => {
       let current = "";
       sections.forEach(section => {
@@ -289,6 +272,7 @@ What started as a single DM turned into hours of conversation, a first date fill
           current = section.getAttribute("id");
         }
       });
+
       navLinks.forEach(link => {
         link.classList.remove("active");
         if (link.getAttribute("href") === "#" + current) {
