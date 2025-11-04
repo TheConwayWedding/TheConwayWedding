@@ -10,9 +10,9 @@
     body {
       margin: 0;
       font-family: "Georgia", serif;
-      color: #fdf9f3; /* brighter cream */
+      color: #fdf9f3;
       background: url('https://www.transparenttextures.com/patterns/wood-pattern.png') repeat;
-      background-color: #3B352F; /* dark brown base */
+      background-color: #3B352F;
       line-height: 1.6;
     }
 
@@ -91,21 +91,59 @@
 
     /* ===== WEDDING PARTY ===== */
     #party { background: rgba(0,0,0,0.22); backdrop-filter: blur(3px); }
-    .party-tree {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    
+    /* Top row: Best Man & Maid of Honor */
+    .party-row.top-row {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      position: relative;
+      margin-bottom: 4rem;
+    }
+    .party-row.top-row::after {
+      content: '';
+      position: absolute;
+      bottom: -1rem;
+      left: 50%;
+      width: 400px;
+      height: 2px;
+      background-color: #e5c982;
+      transform: translateX(-50%);
+      z-index: 0;
+    }
+
+    /* Split row: Groomsmen & Bridesmaids */
+    .party-split {
+      display: flex;
+      justify-content: space-between;
       gap: 2rem;
       max-width: 1200px;
-      margin: 1.6rem auto 0;
-      justify-items: center;
+      margin: 0 auto;
+      position: relative;
     }
-    .party-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 2rem; margin-bottom: 2rem; }
+    .party-split::before,
+    .party-split::after {
+      content: '';
+      position: absolute;
+      top: -4rem;
+      width: 2px;
+      height: 4rem;
+      background-color: #e5c982;
+    }
+    .party-split::before { left: 25%; } /* connects Best Man */
+    .party-split::after { right: 25%; } /* connects Maid of Honor */
+
+    .party-side { display: flex; flex-direction: column; gap: 2rem; flex: 1; }
+    .groomsmen { align-items: flex-start; }
+    .bridesmaids { align-items: flex-end; }
+
     .party-member {
       background: rgba(59,53,47,0.62);
       border-radius: 12px;
       padding: 1rem;
       text-align: center;
       max-width: 180px;
+      position: relative;
     }
     .party-member img {
       width: 140px;
@@ -167,6 +205,13 @@
     footer a:hover { color:#fff6da; text-decoration:underline; }
 
     /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .party-split { flex-direction: column; align-items: center; }
+      .groomsmen, .bridesmaids { align-items: center; }
+      .party-row.top-row::after,
+      .party-split::before,
+      .party-split::after { display: none; }
+    }
     @media (max-width: 700px){
       header#home { padding:6.5rem 1rem 4.5rem; }
       .place-content { margin:1rem; padding:1.2rem; }
@@ -197,14 +242,7 @@
     <h2>Our Story</h2>
     <hr class="divider"/>
     <div class="story-content">
-It all started with… a roommate application. Da’Quan was just having another normal day and Savannah was just trying to sign her very first apartment lease. But God had other plans. Savannah was in a rush to sign her new lease because all the good apartments were getting taken. Desperate not to lose out on another apartment she decided to meet up with her roommate at her current location. However, her roommate mentioned she had just finished working out with a friend.
-
-That friend, happened to be one of Da’Quan’s best friends and current roommate. Fate brought the two together through a series of coincidental events. All it took for him was one gaze to know he had to figure out who this never before seen woman was. With little hesitation he asked for Savannah’s Instagram, and the story began.
-
-What started as a single DM turned into hours of conversation, a first date filled with laughter, deep talks, and Da’Quan sweetly calling her “beloved”. Savannah, naturally shy, was stunned by how easy it felt. Like she’d known him forever. From there, things escalated quickly in the best way. Love letters and random flower deliveries were a regular. And yes, Da’Quan somehow found a dress that Savannah had only casually mentioned without any descriptions, and surprised her with it. While also rewriting her resume to help her land a new job, and waking up at 3 am to make sure her car got towed. Meanwhile, Savannah showed her love in other meaningful ways like making homemade lunches for him to take to work, or preparing a full recovery program for him to rehab his on-going knee injuries, and even facetiming him to make sure he did his workouts for the day, sometimes even doing it with him. Her kindness, warmth, and just being herself spoke straight to Da’Quan’s heart. He knew she was The One when multiple people randomly asked him why he looked so happy lately. The answer was evident to him. That was all he needed to know.
-
-Eventually, the moment came. Not the moment (yet), but a pretty important one:
-At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will you be my girlfriend?” written out in chocolate syrup on a dessert plate (Savannah having made it clear, a few times, that time was ticking). Roses included. That night marked the start of something even bigger than either of them imagined. A love story full of laughter, long talks that never feel long enough, a strong bond and most importantly, building their relationship with Jesus together. And now, they can’t wait to continue their never ending chapter together.
+It all started with… a roommate application. Da’Quan was just having another normal day and Savannah was just trying to sign her very first apartment lease. But God had other plans. ...
     </div>
   </section>
 
@@ -227,8 +265,9 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
   <section id="party">
     <h2>Wedding Party</h2>
     <hr class="divider"/>
-    <!-- Top row -->
-    <div class="party-row">
+
+    <!-- Top row: Best Man & Maid of Honor -->
+    <div class="party-row top-row">
       <div class="party-member">
         <img src="bestman.jpg" alt="Best Man"/>
         <h3>Quillon</h3>
@@ -243,82 +282,86 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
       </div>
     </div>
 
-    <!-- Second row: Tree layout -->
-    <div class="party-tree">
-      <!-- Groomsmen (6) -->
-      <div class="party-member">
-        <img src="groomsman1.jpg" alt="Groomsman 1"/>
-        <h3>James</h3>
-        <div class="role">Groomsman</div>
-        <p class="bio">Da'Quan’s college buddy, always making us laugh.</p>
-      </div>
-      <div class="party-member">
-        <img src="groomsman2.jpg" alt="Groomsman 2"/>
-        <h3>David</h3>
-        <div class="role">Groomsman</div>
-        <p class="bio">Team player and loyal friend.</p>
-      </div>
-      <div class="party-member">
-        <img src="groomsman3.jpg" alt="Groomsman 3"/>
-        <h3>Robert</h3>
-        <div class="role">Groomsman</div>
-        <p class="bio">Always has Da'Quan’s back.</p>
-      </div>
-      <div class="party-member">
-        <img src="groomsman4.jpg" alt="Groomsman 4"/>
-        <h3>Anthony</h3>
-        <div class="role">Groomsman</div>
-        <p class="bio">Full of energy and encouragement.</p>
-      </div>
-      <div class="party-member">
-        <img src="groomsman5.jpg" alt="Groomsman 5"/>
-        <h3>William</h3>
-        <div class="role">Groomsman</div>
-        <p class="bio">Our storyteller, always fun to be around.</p>
-      </div>
-      <div class="party-member">
-        <img src="groomsman6.jpg" alt="Groomsman 6"/>
-        <h3>Joseph</h3>
-        <div class="role">Groomsman</div>
-        <p class="bio">Reliable and steady — a true brother.</p>
+    <!-- Split row: Groomsmen left, Bridesmaids right -->
+    <div class="party-split">
+      <div class="party-side groomsmen">
+        <!-- Groomsmen -->
+        <div class="party-member">
+          <img src="groomsman1.jpg" alt="Groomsman 1"/>
+          <h3>James</h3>
+          <div class="role">Groomsman</div>
+          <p class="bio">Da'Quan’s college buddy, always making us laugh.</p>
+        </div>
+        <div class="party-member">
+          <img src="groomsman2.jpg" alt="Groomsman 2"/>
+          <h3>David</h3>
+          <div class="role">Groomsman</div>
+          <p class="bio">Team player and loyal friend.</p>
+        </div>
+        <div class="party-member">
+          <img src="groomsman3.jpg" alt="Groomsman 3"/>
+          <h3>Robert</h3>
+          <div class="role">Groomsman</div>
+          <p class="bio">Always has Da'Quan’s back.</p>
+        </div>
+        <div class="party-member">
+          <img src="groomsman4.jpg" alt="Groomsman 4"/>
+          <h3>Anthony</h3>
+          <div class="role">Groomsman</div>
+          <p class="bio">Full of energy and encouragement.</p>
+        </div>
+        <div class="party-member">
+          <img src="groomsman5.jpg" alt="Groomsman 5"/>
+          <h3>William</h3>
+          <div class="role">Groomsman</div>
+          <p class="bio">Our storyteller, always fun to be around.</p>
+        </div>
+        <div class="party-member">
+          <img src="groomsman6.jpg" alt="Groomsman 6"/>
+          <h3>Joseph</h3>
+          <div class="role">Groomsman</div>
+          <p class="bio">Reliable and steady — a true brother.</p>
+        </div>
       </div>
 
-      <!-- Bridesmaids (6) -->
-      <div class="party-member">
-        <img src="bridesmaid1.jpg" alt="Bridesmaid 1"/>
-        <h3>Sarah</h3>
-        <div class="role">Bridesmaid</div>
-        <p class="bio">Savannah’s friend and constant cheerleader.</p>
-      </div>
-      <div class="party-member">
-        <img src="bridesmaid2.jpg" alt="Bridesmaid 2"/>
-        <h3>Jessica</h3>
-        <div class="role">Bridesmaid</div>
-        <p class="bio">Creative spirit with a loving heart.</p>
-      </div>
-      <div class="party-member">
-        <img src="bridesmaid3.jpg" alt="Bridesmaid 3"/>
-        <h3>Rachel</h3>
-        <div class="role">Bridesmaid</div>
-        <p class="bio">Always spreads joy and kindness.</p>
-      </div>
-      <div class="party-member">
-        <img src="bridesmaid4.jpg" alt="Bridesmaid 4"/>
-        <h3>Hannah</h3>
-        <div class="role">Bridesmaid</div>
-        <p class="bio">Supportive and fun-loving.</p>
-      </div>
-      <div class="party-member">
-        <img src="bridesmaid5.jpg" alt="Bridesmaid 5"/>
-        <h3>Olivia</h3>
-        <div class="role">Bridesmaid</div>
-        <p class="bio">Always ready to lend a helping hand.</p>
-      </div>
-      <div class="party-member">
-        <img src="bridesmaid6.jpg" alt="Bridesmaid 6"/>
-        <h3>Emma</h3>
-        <div class="role">Bridesmaid</div>
-        <p class="bio">Brings laughter and warmth everywhere she goes.</p>
+      <div class="party-side bridesmaids">
+        <!-- Bridesmaids -->
+        <div class="party-member">
+          <img src="bridesmaid1.jpg" alt="Bridesmaid 1"/>
+          <h3>Sarah</h3>
+          <div class="role">Bridesmaid</div>
+          <p class="bio">Savannah’s friend and constant cheerleader.</p>
+        </div>
+        <div class="party-member">
+          <img src="bridesmaid2.jpg" alt="Bridesmaid 2"/>
+          <h3>Jessica</h3>
+          <div class="role">Bridesmaid</div>
+          <p class="bio">Creative spirit with a loving heart.</p>
+        </div>
+        <div class="party-member">
+          <img src="bridesmaid3.jpg" alt="Bridesmaid 3"/>
+          <h3>Rachel</h3>
+          <div class="role">Bridesmaid</div>
+          <p class="bio">Always spreads joy and kindness.</p>
+        </div>
+        <div class="party-member">
+          <img src="bridesmaid4.jpg" alt="Bridesmaid 4"/>
+          <h3>Hannah</h3>
+          <div class="role">Bridesmaid</div>
+          <p class="bio">Supportive and fun-loving.</p>
+        </div>
+        <div class="party-member">
+          <img src="bridesmaid5.jpg" alt="Bridesmaid 5"/>
+          <h3>Olivia</h3>
+          <div class="role">Bridesmaid</div>
+          <p class="bio">Always ready to lend a helping hand.</p>
+        </div>
+        <div class="party-member">
+          <img src="bridesmaid6.jpg" alt="Bridesmaid 6"/>
+          <h3>Emma</h3>
+          <div class="role">Bridesmaid</div>
+          <p class="bio">Brings laughter and warmth everywhere she goes.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -342,5 +385,3 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
 
 </body>
 </html>
-
-
