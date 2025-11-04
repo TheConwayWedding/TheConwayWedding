@@ -91,6 +91,71 @@
 
     /* ===== WEDDING PARTY ===== */
     #party { background: rgba(0,0,0,0.22); backdrop-filter: blur(3px); }
+
+    /* ===== Tree Connections ===== */
+.party-row.top-row {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  position: relative;
+  margin-bottom: 4rem;
+}
+
+.party-row.top-row::after {
+  content: '';
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  width: 400px;
+  height: 2px;
+  background-color: #e5c982;
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+.party-split {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Vertical line from top row to split row */
+.party-split::before {
+  content: '';
+  position: absolute;
+  top: -4rem;
+  left: 50%;
+  width: 2px;
+  height: 4rem;
+  background-color: #e5c982;
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+/* Diagonal lines to each side */
+.groomsmen .party-member:not(:last-child)::before,
+.bridesmaids .party-member:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  top: -4rem;
+  width: 2px;
+  height: 4rem;
+  background-color: #e5c982;
+}
+
+.groomsmen .party-member::before {
+  left: -50%;
+  transform: rotate(-30deg);
+}
+
+.bridesmaids .party-member::before {
+  right: -50%;
+  transform: rotate(30deg);
+}
+
     
     /* Top row: Best Man & Maid of Honor */
     .party-row.top-row {
@@ -385,3 +450,4 @@ It all started with… a roommate application. Da’Quan was just having another
 
 </body>
 </html>
+
