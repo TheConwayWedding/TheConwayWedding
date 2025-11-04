@@ -6,14 +6,17 @@
   <title>Da'Quan & Savannah — Wedding</title>
   <style>
     /* ===== Base Styles ===== */
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: "Georgia", serif;
-      color: #fdf5e6;
+      color: #f8f4ec;
       background: url('https://www.transparenttextures.com/patterns/wood-pattern.png') repeat;
-      background-color: #d2b48c;
+      background-color: #d4b98f;
       line-height: 1.6;
-      scroll-behavior: smooth;
     }
 
     h1, h2, h3 {
@@ -28,29 +31,52 @@
       z-index: 2;
     }
 
-    /* ===== Navigation ===== */
+    /* ===== Foggy Transparent Navigation ===== */
     nav {
       position: fixed;
       top: 0;
+      left: 0;
       width: 100%;
-      z-index: 100;
+      background-color: rgba(191, 166, 122, 0.3); /* foggy beige-brown */
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: #f8f4ec;
       display: flex;
       justify-content: center;
-      gap: 2rem;
-      padding: 1rem;
-      background: rgba(0, 0, 0, 0.3); /* foggy transparency */
-      backdrop-filter: blur(6px);
+      gap: 3rem;
+      padding: 1rem 0;
+      z-index: 1000;
+      transition: background-color 0.3s ease;
     }
 
     nav a {
-      color: #fdf5e6;
+      color: #f8f4ec;
       text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s ease;
+      font-size: 1.1rem;
+      position: relative;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background-color: #d4af37;
+      transition: width 0.3s ease;
     }
 
     nav a:hover {
-      color: #ffffff;
+      color: #fff;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    }
+
+    nav a:hover::after,
+    nav a.active::after {
+      width: 100%;
     }
 
     /* ===== Hero Section with Slideshow ===== */
@@ -63,29 +89,38 @@
       justify-content: center;
       align-items: center;
       color: #fff;
+      text-align: center;
     }
 
     .hero::before {
       content: "";
       position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.45);
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.45);
       z-index: 1;
     }
 
     .slideshow {
       position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      z-index: 0;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background-size: cover;
       background-position: center;
+      z-index: 0;
       animation: slideShow 18s infinite;
     }
 
     @keyframes slideShow {
-      0%, 33% { background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=80'); }
-      34%, 66% { background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80'); }
-      67%, 100% { background-image: url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1600&q=80'); }
+      0%, 33% {
+        background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=80');
+      }
+      34%, 66% {
+        background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80');
+      }
+      67%, 100% {
+        background-image: url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1600&q=80');
+      }
     }
 
     .hero h1, .hero h2 {
@@ -98,13 +133,14 @@
 
     .hero h1 {
       animation-delay: 0.3s;
-      font-size: 2.8rem;
+      font-size: 3rem;
     }
 
     .hero h2 {
       animation-delay: 0.6s;
       font-weight: normal;
       margin-top: 0.5rem;
+      font-size: 1.2rem;
     }
 
     @keyframes fadeUp {
@@ -114,7 +150,44 @@
       }
     }
 
-    /* ===== Place Section Video Background ===== */
+    /* ===== About Section ===== */
+    .about p {
+      max-width: 800px;
+      margin: 2rem auto;
+      text-align: left;
+      line-height: 1.8;
+      white-space: pre-line;
+    }
+
+    /* ===== Wedding Party ===== */
+    .party-grid {
+      display: grid;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .party-grid img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .party-grid img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+    }
+
+    @media (min-width: 600px) {
+      .party-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+    }
+
+    /* ===== Place Section (Video Background) ===== */
     #place {
       position: relative;
       color: #fff;
@@ -123,7 +196,8 @@
 
     #place video {
       position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       object-fit: cover;
       z-index: 0;
       opacity: 0.4;
@@ -134,9 +208,29 @@
       z-index: 2;
       max-width: 700px;
       margin: 0 auto;
-      background: rgba(0,0,0,0.4);
+      background: rgba(0,0,0,0.45);
       padding: 2rem;
       border-radius: 12px;
+    }
+
+    /* ===== Photos Section ===== */
+    .photo-grid {
+      display: grid;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .photo-grid img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .photo-grid img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.4);
     }
 
     /* ===== Footer ===== */
@@ -152,42 +246,59 @@
 
   <!-- Navigation -->
   <nav>
-    <a href="#hero">Home</a>
     <a href="#about">Our Story</a>
     <a href="#party">Wedding Party</a>
     <a href="#place">The Place</a>
     <a href="#photos">Photos</a>
     <a href="video.html">Video</a>
     <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank">RSVP</a>
-    <a href="https://www.amazon.com/wedding-reg" target="_blank">Registry</a>
+    <a href="https://www.amazon.com/wedding-reg/your-registry-link" target="_blank">Registry</a>
   </nav>
 
   <!-- Hero Section with Slideshow -->
-  <section class="hero" id="hero">
+  <section class="hero">
     <div class="slideshow"></div>
     <h1>Da'Quan & Savannah</h1>
     <h2>August 26, 2026 — Estes Park, CO</h2>
   </section>
 
-  <!-- Our Story -->
-  <section id="about">
+  <!-- About Section -->
+  <section id="about" class="about">
     <h2>Our Story</h2>
-    <p>
-      It all started with… a roommate application. Da’Quan was just having another normal day and Savannah was just trying to sign her very first apartment lease. But God had other plans...
-      <!-- (your full paragraph goes here) -->
+    <p>It all started with… a roommate application. Da’Quan was just having another normal day and Savannah was just trying to sign her very first apartment lease. But God had other plans...
     </p>
   </section>
 
-  <!-- The Place with Video Background -->
+  <!-- Wedding Party -->
+  <section id="party">
+    <h2>Wedding Party</h2>
+    <div class="party-grid">
+      <img src="https://via.placeholder.com/200" alt="Groomsman" />
+      <img src="https://via.placeholder.com/200" alt="Bridesmaid" />
+      <img src="https://via.placeholder.com/200" alt="Best Man" />
+      <img src="https://via.placeholder.com/200" alt="Maid of Honor" />
+    </div>
+  </section>
+
+  <!-- Place Section with Video -->
   <section id="place">
     <video autoplay muted loop playsinline>
       <source src="estes-lake.mp4" type="video/mp4">
     </video>
     <div class="content">
       <h2>The Place</h2>
-      <p>
-        Estes Park, Colorado — a breathtaking mountain town surrounded by nature’s finest views. It’s where our story will continue, under the open sky and among the people we love most.
-      </p>
+      <p>Estes Park, Colorado — a breathtaking mountain town surrounded by nature’s finest views. It’s where our story will continue, under the open sky and among the people we love most.</p>
+    </div>
+  </section>
+
+  <!-- Photos -->
+  <section id="photos">
+    <h2>Photos</h2>
+    <div class="photo-grid">
+      <img src="https://via.placeholder.com/200" alt="Photo 1" />
+      <img src="https://via.placeholder.com/200" alt="Photo 2" />
+      <img src="https://via.placeholder.com/200" alt="Photo 3" />
+      <img src="https://via.placeholder.com/200" alt="Photo 4" />
     </div>
   </section>
 
@@ -196,5 +307,26 @@
     <p>With love — Da'Quan & Savannah • August 26, 2026</p>
   </footer>
 
+  <!-- Active Nav Highlight Script -->
+  <script>
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll("nav a[href^='#']");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (pageYOffset >= sectionTop) {
+          current = section.getAttribute("id");
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
 </body>
 </html>
