@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Da'Quan & Savannah — Wedding</title>
+  <title>Da’Quan & Savannah — Wedding</title>
   <style>
-    /* ===== Base Styles ===== */
     html {
       scroll-behavior: smooth;
     }
@@ -13,172 +12,152 @@
     body {
       margin: 0;
       font-family: "Georgia", serif;
-      color: #f8f4ec;
-      background: url('https://www.transparenttextures.com/patterns/wood-pattern.png') repeat;
+      color: #fff8ef;
       background-color: #3B352F;
+      background: url('https://www.transparenttextures.com/patterns/wood-pattern.png') repeat, #3B352F;
       line-height: 1.6;
     }
 
+    /* ===== Background Video ===== */
+    .background-video {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.25;
+    }
+
+    /* ===== Navigation ===== */
     nav {
+      background-color: rgba(30, 25, 20, 0.9);
       display: flex;
       justify-content: center;
-      background-color: rgba(20, 18, 16, 0.8);
+      gap: 2rem;
       padding: 1rem;
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 1000;
     }
 
     nav a {
-      color: #f9f6f0;
       text-decoration: none;
-      margin: 0 1.2rem;
+      color: #fff8ef;
       font-weight: bold;
-      transition: color 0.3s;
+      transition: color 0.3s ease;
     }
 
     nav a:hover {
-      color: #e0c9a6;
+      color: #f1cfa0;
     }
 
-    header {
-      text-align: center;
-      padding: 4rem 1rem;
-    }
-
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-    }
-
-    header p {
-      font-size: 1.2rem;
-    }
-
+    /* ===== Sections ===== */
     section {
-      padding: 3rem 1rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    h2 {
+      padding: 4rem 2rem;
       text-align: center;
-      font-size: 2rem;
-      color: #f3eadf;
+      position: relative;
     }
 
     .divider {
-      width: 60px;
-      height: 3px;
-      background-color: #e0c9a6;
-      border: none;
-      margin: 1rem auto 2rem auto;
-    }
-
-    .story-content p {
-      max-width: 850px;
-      margin: auto;
-      font-size: 1.1rem;
-      color: #f5efe6;
-      text-align: justify;
+      width: 80%;
+      height: 2px;
+      background-color: rgba(255, 255, 255, 0.2);
+      margin: 3rem auto;
     }
 
     /* ===== Wedding Party ===== */
-    .party-highlight {
-      display: flex;
-      justify-content: center;
-      gap: 4rem;
-      margin-bottom: 3rem;
-    }
-
-    .party-highlight .party-member.large {
-      text-align: center;
-      width: 220px;
-    }
-
-    .party-highlight .party-member.large img {
-      width: 220px;
-      height: 220px;
-      object-fit: cover;
-      border-radius: 1rem;
-      border: 3px solid #f1e8d8;
-    }
-
-    .party-grid {
+    .party {
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
-      margin-top: 3rem;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
-    .groomsmen, .bridesmaids {
-      width: 48%;
+    .party-side {
+      width: 45%;
     }
 
-    .party-row {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 2rem;
+    .party h3 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      color: #f1cfa0;
     }
 
-    .party-member {
-      width: 48%;
+    .best {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .best img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 20px;
+      border: 3px solid #f1cfa0;
+    }
+
+    .best h4 {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      color: #f1cfa0;
+    }
+
+    .best p {
+      font-size: 0.9rem;
+      color: #fff8ef;
+      max-width: 400px;
+      margin: 0.5rem auto;
+    }
+
+    .members {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      justify-items: center;
+    }
+
+    .member {
       text-align: center;
     }
 
-    .party-member img {
-      width: 100%;
-      aspect-ratio: 1/1;
-      object-fit: cover;
-      border-radius: 1rem;
-      box-shadow: 0 0 10px rgba(0,0,0,0.4);
-    }
-
-    .party-member h3 {
-      margin-top: 0.5rem;
-      font-size: 1.2rem;
-      color: #f9f6f0;
-    }
-
-    .party-member .bio {
-      font-size: 0.95rem;
-      color: #e3dfd9;
-    }
-
-    /* ===== Gallery ===== */
-    .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1rem;
-    }
-
-    .photo-grid img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
+    .member img {
+      width: 130px;
+      height: 130px;
       border-radius: 10px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.3);
+      object-fit: cover;
+      border: 2px solid #f1cfa0;
     }
 
-    /* ===== Footer ===== */
+    .member h4 {
+      margin-top: 0.5rem;
+      color: #f1cfa0;
+      font-size: 1rem;
+    }
+
+    .member p {
+      font-size: 0.8rem;
+      color: #fff8ef;
+      max-width: 150px;
+      margin: 0.3rem auto;
+    }
+
     footer {
       text-align: center;
-      padding: 2rem;
+      padding: 1rem;
       font-size: 0.9rem;
-      background-color: rgba(20, 18, 16, 0.9);
-      color: #f5efe6;
-      margin-top: 4rem;
-    }
-
-    footer a {
-      color: #e0c9a6;
-      text-decoration: none;
+      color: #f1cfa0;
     }
   </style>
 </head>
 <body>
+  <video autoplay muted loop class="background-video">
+    <source src="your-background-video.mp4" type="video/mp4">
+  </video>
 
-  <!-- NAV -->
   <nav>
     <a href="#home">Home</a>
     <a href="#schedule">Schedule</a>
@@ -187,135 +166,89 @@
     <a href="#gallery">Gallery</a>
   </nav>
 
-  <!-- HEADER -->
-  <header id="home">
-    <h1>Da'Quan & Savannah</h1>
-    <p>Join us in celebrating our wedding day</p>
-  </header>
-
-  <!-- OUR STORY -->
-  <section id="story">
-    <h2>Our Story</h2>
-    <hr class="divider"/>
-    <div class="story-content">
-      <p>
-        It all started with… a roommate application. Da’Quan was just having another normal day and Savannah was just trying to sign her very first apartment lease. But God had other plans. Savannah was in a rush to sign her new lease because all the good apartments were getting taken. Desperate not to lose out on another apartment she decided to meet up with her roommate at her current location. However, her roommate mentioned she had just finished working out with a friend.
-      </p>
-      <p>
-        That friend, happened to be one of Da’Quan’s best friends and current roommate. Fate brought the two together through a series of coincidental events. All it took for him was one gaze to know he had to figure out who this never before seen woman was. With little hesitation he asked for Savannah’s Instagram, and the story began.
-      </p>
-      <p>
-        What started as a single DM turned into hours of conversation, a first date filled with laughter, deep talks, and Da’Quan sweetly calling her “beloved”. Savannah, naturally shy, was stunned by how easy it felt. Like she’d known him forever. From there, things escalated quickly in the best way. Love letters and random flower deliveries were a regular. And yes, Da’Quan somehow found a dress that Savannah had only casually mentioned without any descriptions, and surprised her with it. While also rewriting her resume to help her land a new job, and waking up at 3 am to make sure her car got towed. Meanwhile, Savannah showed her love in other meaningful ways like making homemade lunches for him to take to work, or preparing a full recovery program for him to rehab his on-going knee injuries, and even facetiming him to make sure he did his workouts for the day, sometimes even doing it with him. Her kindness, warmth, and just being herself spoke straight to Da’Quan’s heart. He knew she was The One when multiple people randomly asked him why he looked so happy lately. The answer was evident to him. That was all he needed to know.
-      </p>
-      <p>
-        Eventually, the moment came. Not the moment (yet), but a pretty important one: At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will you be my girlfriend?” written out in chocolate syrup on a dessert plate (Savannah having made it clear, a few times, that time was ticking). Roses included. That night marked the start of something even bigger than either of them imagined. A love story full of laughter, long talks that never feel long enough, a strong bond and most importantly, building their relationship with Jesus together. And now, they can’t wait to continue their never ending chapter together.
-      </p>
-    </div>
+  <!-- Home -->
+  <section id="home">
+    <h1>Da’Quan & Savannah</h1>
+    <p>Join us in celebrating our forever.</p>
   </section>
 
-  <!-- SCHEDULE -->
+  <div class="divider"></div>
+
+  <!-- Schedule -->
   <section id="schedule">
-    <h2>Schedule</h2>
-    <hr class="divider"/>
-    <div class="story-content">
-      <p>
-        Ceremony: 4:00 PM at Estes Park Venue<br/>
-        Cocktail Hour: 5:00 PM<br/>
-        Reception: 6:00 PM<br/>
-        Dancing & Celebration: 7:00 PM – 11:00 PM
-      </p>
-    </div>
+    <h2>Wedding Schedule</h2>
+    <p>Details about ceremony, reception, and more coming soon.</p>
   </section>
 
-  <!-- TRAVEL -->
+  <div class="divider"></div>
+
+  <!-- Travel -->
   <section id="travel">
-    <h2>Travel</h2>
-    <hr class="divider"/>
-    <div class="story-content">
-      <p>
-        Recommended Airport: Denver International Airport (DEN)<br/>
-        Car Rental & Shuttle Info: Available at the venue<br/>
-        Nearby Hotels: The Stanley Hotel, Estes Park Resort, and local Airbnbs<br/>
-        Directions & Parking: Details provided in RSVP confirmation
-      </p>
-    </div>
+    <h2>Travel Information</h2>
+    <p>Hotel options, airport details, and transportation info coming soon.</p>
   </section>
 
-  <!-- WEDDING PARTY -->
+  <div class="divider"></div>
+
+  <!-- Wedding Party -->
   <section id="party">
     <h2>Wedding Party</h2>
-    <hr class="divider"/>
 
-    <!-- Best Man & Maid of Honor -->
-    <div class="party-highlight">
-      <div class="party-member large">
-        <img src="bestman.jpg" alt="Best Man"/>
-        <h3>Quillon</h3>
-        <div class="role">Best Man</div>
-        <p class="bio">Lifelong friend and brother at heart.</p>
-      </div>
-      <div class="party-member large">
-        <img src="maidofhonor.jpg" alt="Maid of Honor"/>
-        <h3>Alexis</h3>
-        <div class="role">Maid of Honor</div>
-        <p class="bio">Savannah’s best friend and sister in Christ.</p>
+    <div class="best">
+      <h3>Best Man & Maid of Honor</h3>
+      <div style="display: flex; justify-content: center; gap: 4rem;">
+        <div>
+          <img src="bestman.jpg" alt="Best Man">
+          <h4>Jordan — Best Man</h4>
+          <p>Da’Quan’s brother and lifelong supporter, always keeping the groom on track.</p>
+        </div>
+        <div>
+          <img src="maidofhonor.jpg" alt="Maid of Honor">
+          <h4>Alexis — Maid of Honor</h4>
+          <p>Savannah’s sister and best friend, full of love and laughter through it all.</p>
+        </div>
       </div>
     </div>
 
-    <div class="party-grid">
+    <div class="party">
       <!-- Groomsmen -->
-      <div class="groomsmen">
+      <div class="party-side">
         <h3>Groomsmen</h3>
-        <div class="party-row">
-          <div class="party-member"><img src="g1.jpg" alt="G1"/><h3>Marcus</h3><p class="bio">Always has Da’Quan’s back no matter what.</p></div>
-          <div class="party-member"><img src="g2.jpg" alt="G2"/><h3>Jordan</h3><p class="bio">Known for his jokes and loyalty.</p></div>
-        </div>
-        <div class="party-row">
-          <div class="party-member"><img src="g3.jpg" alt="G3"/><h3>Chris</h3><p class="bio">The life of every celebration.</p></div>
-          <div class="party-member"><img src="g4.jpg" alt="G4"/><h3>Michael</h3><p class="bio">Reliable and supportive through everything.</p></div>
-        </div>
-        <div class="party-row">
-          <div class="party-member"><img src="g5.jpg" alt="G5"/><h3>David</h3><p class="bio">Da’Quan’s gym partner and motivator.</p></div>
-          <div class="party-member"><img src="g6.jpg" alt="G6"/><h3>Isaiah</h3><p class="bio">Always brings good vibes and energy.</p></div>
+        <div class="members">
+          <div class="member"><img src="g1.jpg"><h4>Marcus</h4><p>Always brings the energy and the jokes.</p></div>
+          <div class="member"><img src="g2.jpg"><h4>Chris</h4><p>Loyal, dependable, and the first to dance.</p></div>
+          <div class="member"><img src="g3.jpg"><h4>Tony</h4><p>Da’Quan’s day-one from high school.</p></div>
+          <div class="member"><img src="g4.jpg"><h4>Jalen</h4><p>Calm, cool, and collected under pressure.</p></div>
+          <div class="member"><img src="g5.jpg"><h4>Malik</h4><p>Brings the jokes and keeps everyone laughing.</p></div>
+          <div class="member"><img src="g6.jpg"><h4>Dre</h4><p>Reliable and always got your back.</p></div>
         </div>
       </div>
 
       <!-- Bridesmaids -->
-      <div class="bridesmaids">
+      <div class="party-side">
         <h3>Bridesmaids</h3>
-        <div class="party-row">
-          <div class="party-member"><img src="b1.jpg" alt="B1"/><h3>Faith</h3><p class="bio">Sweet, thoughtful, and Savannah’s go-to confidant.</p></div>
-          <div class="party-member"><img src="b2.jpg" alt="B2"/><h3>Riley</h3><p class="bio">Always brings calm and balance to the group.</p></div>
-        </div>
-        <div class="party-row">
-          <div class="party-member"><img src="b3.jpg" alt="B3"/><h3>Naomi</h3><p class="bio">Encouraging and dependable, always full of joy.</p></div>
-          <div class="party-member"><img src="b4.jpg" alt="B4"/><h3>Hannah</h3><p class="bio">Her laughter makes every moment better.</p></div>
-        </div>
-        <div class="party-row">
-          <div class="party-member"><img src="b5.jpg" alt="B5"/><h3>Olivia</h3><p class="bio">Brings laughter and kindness wherever she goes.</p></div>
-          <div class="party-member"><img src="b6.jpg" alt="B6"/><h3>Emma</h3><p class="bio">Creative, loyal, and always cheering everyone on.</p></div>
+        <div class="members">
+          <div class="member"><img src="b1.jpg"><h4>Emily</h4><p>Sweet, caring, and always by Savannah’s side.</p></div>
+          <div class="member"><img src="b2.jpg"><h4>Taylor</h4><p>Full of joy and the life of the party.</p></div>
+          <div class="member"><img src="b3.jpg"><h4>Briana</h4><p>Savannah’s college roommate turned sister.</p></div>
+          <div class="member"><img src="b4.jpg"><h4>Olivia</h4><p>Thoughtful and always lending a helping hand.</p></div>
+          <div class="member"><img src="b5.jpg"><h4>Kennedy</h4><p>Heart of gold and contagious laughter.</p></div>
+          <div class="member"><img src="b6.jpg"><h4>Mia</h4><p>Always there to brighten the day.</p></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- GALLERY -->
+  <div class="divider"></div>
+
+  <!-- Gallery -->
   <section id="gallery">
     <h2>Gallery</h2>
-    <hr class="divider"/>
-    <div class="photo-grid">
-      <img src="photo1.jpg" alt="Gallery 1"/>
-      <img src="photo2.jpg" alt="Gallery 2"/>
-      <img src="photo3.jpg" alt="Gallery 3"/>
-      <img src="photo4.jpg" alt="Gallery 4"/>
-      <img src="photo5.jpg" alt="Gallery 5"/>
-      <img src="photo6.jpg" alt="Gallery 6"/>
-    </div>
+    <p>Photo memories of Da’Quan & Savannah’s love story coming soon.</p>
   </section>
 
-  <!-- FOOTER -->
   <footer>
-    © 2025 Da'Quan & Savannah. All rights reserved.
+    <p>© Da’Quan & Savannah Wedding, 2026</p>
   </footer>
 
 </body>
