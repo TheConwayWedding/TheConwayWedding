@@ -6,30 +6,21 @@
   <title>Da'Quan & Savannah — Wedding</title>
   <style>
     /* ===== Base Styles ===== */
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
-      body {
-  margin: 0;
-  font-family: "Georgia", serif;
-  color: #f8f4ec;
-  background-color: #5C534A;
-  line-height: 1.6;
-}
-
+      margin: 0;
+      font-family: "Georgia", serif;
+      color: #f8f4ec;              /* cream text */
+      /* If you want the subtle texture on top of the color, uncomment the next line */
+      /* background: url('https://www.transparenttextures.com/patterns/wood-pattern.png') repeat; */
+      background-color: #3B352F;   /* darker warm brown from your image */
+      line-height: 1.6;
     }
 
-    h1, h2, h3 {
-      text-align: center;
-      letter-spacing: 1px;
-    }
+    h1,h2,h3 { text-align: center; letter-spacing: 1px; }
 
-    section {
-      padding: 4rem 1.5rem;
-      text-align: center;
-    }
+    section { padding: 4rem 1.5rem; text-align: center; position: relative; z-index: 1; }
 
     /* ===== Fixed Frosted-Glass Navigation ===== */
     nav {
@@ -37,7 +28,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      background-color: rgba(191, 166, 122, 0.3);
+      background-color: rgba(191,166,122,0.25); /* foggy beige-brown */
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       color: #f8f4ec;
@@ -52,61 +43,60 @@
     nav a {
       color: #f8f4ec;
       text-decoration: none;
-      font-size: 1.1rem;
+      margin: 0;
+      font-size: 1.05rem;
       position: relative;
-      transition: color 0.3s ease, text-shadow 0.3s ease;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+      transition: color 0.25s ease, text-shadow 0.25s ease;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.45);
     }
 
     nav a::after {
       content: '';
       position: absolute;
       left: 0;
-      bottom: -4px;
+      bottom: -6px;
       width: 0;
       height: 2px;
-      background-color: #d4af37;
+      background-color: #d4af37; /* soft gold underline */
       transition: width 0.3s ease;
     }
 
     nav a:hover {
       color: #fff;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
     }
 
-    nav a:hover::after,
-    nav a.active::after {
-      width: 100%;
-    }
+    nav a:hover::after { width: 100%; }
+    nav a.active::after { width: 100%; }
 
     /* ===== Hero Section ===== */
     .hero {
       position: relative;
-      height: 80vh;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       overflow: hidden;
-      margin-top: 4rem;
+      margin-top: 4rem; /* offset for fixed nav */
       text-align: center;
       color: #f8f4ec;
-      background: rgba(0,0,0,0.3);
     }
 
-    .hero h1 {
-      font-size: 3rem;
+    /* If you prefer a slideshow rather than a video for hero, replace the video block with an absolutely positioned slideshow element. */
+
+    .hero h1, .hero h2 {
+      opacity: 0;
+      transform: translateY(20px);
       animation: fadeUp 1.2s forwards;
+      animation-delay: 0.3s;
+      z-index: 2;
+      position: relative;
     }
 
-    .hero h2 {
-      font-weight: normal;
-      margin-top: 0.5rem;
-      font-size: 1.5rem;
-      animation: fadeUp 1.2s forwards 0.3s;
-    }
+    .hero h1 { font-size: 3rem; }
+    .hero h2 { font-weight: normal; margin-top: 0.5rem; font-size: 1.5rem; }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
@@ -117,6 +107,7 @@
       text-align: left;
       line-height: 1.8;
       white-space: pre-line;
+      color: #f8f4ec;
     }
 
     /* ===== Image Grids ===== */
@@ -132,16 +123,14 @@
       object-fit: cover;
       border-radius: 10px;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     }
 
-    .people-grid img:hover,
-    .party-grid img:hover,
-    .photo-grid img:hover {
+    .people-grid img:hover, .party-grid img:hover, .photo-grid img:hover {
       transform: scale(1.03);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.6);
     }
 
-    /* ===== Responsive Layouts ===== */
     @media (min-width: 600px) {
       .people-grid, .party-grid, .photo-grid {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -150,50 +139,58 @@
       }
     }
 
-   /* ===== Place Section (Cinematic) ===== */
-.place {
-  position: relative;
-  height: 100vh; /* full-screen height */
-  color: #f8f4ec;
-  z-index: 1;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 1.5rem;
-}
+    /* ===== Place Section with Video Background ===== */
+    #place {
+      position: relative;
+      color: #f8f4ec;
+      overflow: hidden;
+      padding: 6rem 1.5rem; /* more vertical space for video section */
+    }
 
-.place video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
-  filter: brightness(0.6);
-}
+    /* dark overlay above the video to ensure readability */
+    #place::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 0;
+    }
 
-.place-content {
-  position: relative;
-  z-index: 1;
-  max-width: 800px;
-  margin: 0 auto;
-  background: rgba(0, 0, 0, 0.35); /* subtle overlay for readability */
-  padding: 2rem;
-  border-radius: 12px;
-  backdrop-filter: blur(4px);
-}
+    #place video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120%;
+      height: auto;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      z-index: -1;
+      filter: brightness(0.6);
+    }
 
+    #place h2, #place p, #place img {
+      position: relative;
+      z-index: 1;
+    }
+
+    #place img {
+      border-radius: 12px;
+      margin-top: 1.5rem;
+      max-width: 90%;
+      border: 2px solid rgba(248,244,236,0.06);
+    }
 
     /* ===== Footer ===== */
     footer {
       text-align: center;
       padding: 2rem;
       font-size: 0.9rem;
-      background: rgba(0,0,0,0.4);
+      background: rgba(0,0,0,0.25);
+      color: #f8f4ec;
     }
+
+    /* small utility: make sure sections are visible under fixed nav when linked */
+    :target { scroll-margin-top: 90px; }
   </style>
 </head>
 <body>
@@ -209,8 +206,8 @@
     <a href="https://www.amazon.com/wedding-reg/your-registry-link" target="_blank">Registry</a>
   </nav>
 
-  <!-- Hero Section (no video now) -->
-  <section class="hero">
+  <!-- Hero Section (kept simple so video moved down to place section) -->
+  <section class="hero" id="home">
     <div class="hero-content">
       <h1>Da'Quan & Savannah</h1>
       <h2>August 26, 2026 — Estes Park, CO</h2>
@@ -243,24 +240,22 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
     </div>
   </section>
 
- <!-- Place Section (cinematic full-height video background) -->
-<section id="place" class="place">
-  <video autoplay muted loop playsinline>
-    <source src="estes-park.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <div class="place-content">
+  <!-- Place Section with Video Background -->
+  <section id="place" aria-label="The Place">
+    <video autoplay muted loop playsinline>
+      <source src="estes-lake.mp4" type="video/mp4">
+      <!-- If you prefer a hosted sample, replace src above with a public mp4 URL -->
+    </video>
+
     <h2>The Place</h2>
     <p>
       Estes Park, Colorado — a breathtaking mountain town surrounded by nature’s
       finest views. It’s where our story will continue, under the open sky and
       among the people we love most.
     </p>
-    <img src="https://via.placeholder.com/600x400" alt="Estes Park"
-         style="width:90%;max-width:600px;border-radius:12px;margin-top:1.5rem;" />
-  </div>
-</section>
 
+    <img src="https://via.placeholder.com/600x400" alt="Estes Park" />
+  </section>
 
   <!-- Photos Section -->
   <section id="photos">
@@ -280,29 +275,21 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
 
   <!-- Active Section Highlight Script -->
   <script>
-    const sections = document.querySelectorAll("section");
+    const sections = document.querySelectorAll("section[id]");
     const navLinks = document.querySelectorAll("nav a[href^='#']");
 
     window.addEventListener("scroll", () => {
       let current = "";
       sections.forEach(section => {
-        const sectionTop = section.offsetTop - 120;
-        if (pageYOffset >= sectionTop) {
-          current = section.getAttribute("id");
-        }
+        const sectionTop = section.offsetTop - 140;
+        if (pageYOffset >= sectionTop) current = section.getAttribute("id");
       });
 
       navLinks.forEach(link => {
         link.classList.remove("active");
-        if (link.getAttribute("href") === "#" + current) {
-          link.classList.add("active");
-        }
+        if (link.getAttribute("href") === "#" + current) link.classList.add("active");
       });
     });
   </script>
-
 </body>
 </html>
-
-
-
