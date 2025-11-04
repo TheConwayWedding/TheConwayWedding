@@ -148,31 +148,42 @@
       }
     }
 
-    /* ===== Place Section with Background Video ===== */
-    .place {
-      position: relative;
-      color: #f8f4ec;
-      z-index: 1;
-      overflow: hidden;
-    }
+   /* ===== Place Section (Cinematic) ===== */
+.place {
+  position: relative;
+  height: 100vh; /* full-screen height */
+  color: #f8f4ec;
+  z-index: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 1.5rem;
+}
 
-    .place video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-      filter: brightness(0.6);
-    }
+.place video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  filter: brightness(0.6);
+}
 
-    .place-content {
-      position: relative;
-      z-index: 1;
-      max-width: 800px;
-      margin: 0 auto;
-    }
+.place-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.35); /* subtle overlay for readability */
+  padding: 2rem;
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+}
+
 
     /* ===== Footer ===== */
     footer {
@@ -225,23 +236,24 @@ That friend, happened to be one of Da’Quan’s best friends and current roomma
     </div>
   </section>
 
-  <!-- Place Section (video background added here) -->
-  <section id="place" class="place">
-    <video autoplay muted loop playsinline>
-      <source src="estes-park.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <div class="place-content">
-      <h2>The Place</h2>
-      <p>
-        Estes Park, Colorado — a breathtaking mountain town surrounded by nature’s
-        finest views. It’s where our story will continue, under the open sky and
-        among the people we love most.
-      </p>
-      <img src="https://via.placeholder.com/600x400" alt="Estes Park"
-           style="width:90%;max-width:600px;border-radius:12px;margin-top:1.5rem;" />
-    </div>
-  </section>
+ <!-- Place Section (cinematic full-height video background) -->
+<section id="place" class="place">
+  <video autoplay muted loop playsinline>
+    <source src="estes-park.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="place-content">
+    <h2>The Place</h2>
+    <p>
+      Estes Park, Colorado — a breathtaking mountain town surrounded by nature’s
+      finest views. It’s where our story will continue, under the open sky and
+      among the people we love most.
+    </p>
+    <img src="https://via.placeholder.com/600x400" alt="Estes Park"
+         style="width:90%;max-width:600px;border-radius:12px;margin-top:1.5rem;" />
+  </div>
+</section>
+
 
   <!-- Photos Section -->
   <section id="photos">
@@ -284,3 +296,4 @@ That friend, happened to be one of Da’Quan’s best friends and current roomma
 
 </body>
 </html>
+
