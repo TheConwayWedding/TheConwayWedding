@@ -1,213 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Da'Quan & Savannah - Wedding</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Da'Quan & Savannah — Wedding</title>
   <style>
+    /* ===== Base Styles ===== */
     body {
       margin: 0;
-      font-family: 'Georgia', serif;
-      background-color: #d2b48c; /* Beige/Wood Brown */
-      color: #fdf5e6; /* Cream White */
+      font-family: "Georgia", serif;
+      color: #fdf5e6;
+      background: url('https://www.transparenttextures.com/patterns/wood-pattern.png') repeat;
+      background-color: #d2b48c; /* beige-wood tone */
+      line-height: 1.6;
+      scroll-behavior: smooth;
     }
 
-    header {
+    h1, h2, h3 {
       text-align: center;
-      padding: 4rem 1rem;
-    }
-
-    header h1 {
-      font-size: 3rem;
-      margin: 0;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      margin-top: 0.5rem;
+      letter-spacing: 1px;
     }
 
     section {
-      max-width: 900px;
-      margin: 4rem auto;
-      padding: 2rem;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 10px;
-    }
-
-    h2 {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .about, .people, .place, .photos, .video {
+      padding: 4rem 1.5rem;
       text-align: center;
     }
 
+    /* ===== Navigation ===== */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(0,0,0,0.4);
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem;
+      backdrop-filter: blur(5px);
+    }
+
+    nav a {
+      color: #fdf5e6;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ffffff;
+    }
+
+    /* ===== Hero Section ===== */
+    .hero {
+      background: rgba(0,0,0,0.5);
+      padding: 6rem 2rem;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+
+    .hero h2 {
+      font-weight: normal;
+      margin-top: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    /* ===== About Section ===== */
     .about p {
-      font-size: 1.1rem;
-      line-height: 1.6;
+      max-width: 700px;
+      margin: 2rem auto;
+      text-align: left;
+      line-height: 1.8;
     }
 
+    /* ===== Image Grids ===== */
     .people-grid, .party-grid, .photo-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1.5rem;
-      justify-items: center;
+      justify-content: center;
     }
 
     .people-grid img, .party-grid img, .photo-grid img {
-      width: 100%;
-      height: 250px;
+      width: 200px;
+      height: 200px;
       object-fit: cover;
       border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .caption {
-      margin-top: 0.5rem;
-      font-style: italic;
+    .people-grid img:hover,
+    .party-grid img:hover,
+    .photo-grid img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.4);
     }
 
-    iframe {
-      width: 100%;
-      height: 500px;
-      border-radius: 10px;
+    /* ===== Responsive Layouts ===== */
+    @media (min-width: 600px) {
+      .people-grid, .party-grid, .photo-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+    }
+
+    /* ===== Video Section ===== */
+    .video-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .video-container iframe {
+      width: 90%;
+      max-width: 700px;
+      height: 400px;
+      border-radius: 12px;
       border: none;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
     }
 
+    /* ===== Footer ===== */
     footer {
       text-align: center;
       padding: 2rem;
       font-size: 0.9rem;
-      background: rgba(0, 0, 0, 0.2);
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      header {
-        padding: 2rem 1rem;
-      }
-
-      header h1 {
-        font-size: 2.2rem;
-      }
-
-      header p {
-        font-size: 1rem;
-      }
-
-      section {
-        margin: 2rem 1rem;
-        padding: 1.5rem;
-      }
-
-      h2 {
-        font-size: 1.6rem;
-      }
-
-      iframe {
-        height: 300px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      header h1 {
-        font-size: 1.8rem;
-      }
-
-      section {
-        padding: 1rem;
-      }
-
-      .people-grid img, .party-grid img, .photo-grid img {
-        height: 200px;
-      }
+      background: rgba(0,0,0,0.4);
     }
   </style>
 </head>
 <body>
-  <header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#about">Our Story</a>
+    <a href="#people">The Couple</a>
+    <a href="#party">Wedding Party</a>
+    <a href="#place">The Place</a>
+    <a href="#photos">Photos</a>
+    <a href="#video">Video</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
     <h1>Da'Quan & Savannah</h1>
-    <p>August 26, 2026 · Estes Park, CO</p>
-  </header>
-
-  <section class="about">
-    <h2>Our Story</h2>
-    <p>It all started with… a roommate application. Da’Quan was just having another normal day and Savannah was just trying to sign her very first apartment lease. But God had other plans. Savannah was in a rush to sign her new lease because all the good apartments were getting taken. Desperate not to lose out on another apartment she decided to meet up with her roommate at her current location. However, her  roommate mentioned she had just finished working out with a friend.
-
-That friend, happened to be one of Da’Quan’s best friends and current roommate. Fate brought the two together through a series of  coincidental events.  All it took for him was one gaze to know he add to figure out who this never before seen woman was. With little hesitation he asked for Savannah’s Instagram, and the story began.
-
-What started as a single DM turned into hours of conversation, a first date filled with laughter, deep talks, and Da’Quan sweetly calling her “beloved”. Savannah, naturally shy, was stunned by how easy it felt. Like she’d known him forever. From there, things escalated quickly in the best way. Love letters and random flower deliveries were a regular. And yes, Da’Quan somehow found a dress that Savannah had only casually mentioned without any descriptions, and surprised her with it. While also rewriting her resume to help her land a new job,  and waking up at 3 am to make sure her car got towed. Meanwhile, Savannah showed her love in other meaningful ways like making homemade lunches for him to take to work, or preparing a full recovery program for him to rehab his on-going knee injuries, and even facetiming him to make sure he did his workouts for the day, sometimes even doing it with him. Her kindness, warmth, and just being herself spoke straight to Da’Quan’s heart. He knew she was The One when multiple people randomly asked him why he looked so happy lately. The answer was evident to him.  That was all he needed to know.
-
-Eventually, the moment came. Not the moment (yet), but a pretty important one:
-At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will you be my girlfriend?” written out in chocolate syrup on a dessert plate (Savannah having made it clear, a few times, that time was ticking). Roses included. That night marked the start of something even bigger than either of them imagined. A love story full of laughter, long talks that never feel long enough, a strong bond and most importantly, building their relationship with Jesus together.  And now, they can’t wait to continue their never ending chapter together.</p>
+    <h2>August 26, 2026 — Estes Park, CO</h2>
   </section>
 
-  <section class="people">
+  <!-- About Section -->
+  <section id="about" class="about">
+    <h2>Our Story</h2>
+    <p>
+      It all began with a simple hello that turned into countless memories.
+      Over time, we realized we were each other's best friend, biggest cheerleader,
+      and favorite adventure. As we take this next step together, we’re grateful
+      to have you share in our joy.
+    </p>
+  </section>
+
+  <!-- People Section -->
+  <section id="people">
     <h2>The Couple</h2>
     <div class="people-grid">
-      <div>
-        <img src="https://via.placeholder.com/300x400" alt="Da'Quan">
-        <p class="caption">Da'Quan</p>
-      </div>
-      <div>
-        <img src="https://via.placeholder.com/300x400" alt="Savannah">
-        <p class="caption">Savannah</p>
-      </div>
+      <img src="https://via.placeholder.com/200" alt="Da'Quan" />
+      <img src="https://via.placeholder.com/200" alt="Savannah" />
     </div>
   </section>
 
-  <section class="party">
+  <!-- Wedding Party Section -->
+  <section id="party">
     <h2>Wedding Party</h2>
     <div class="party-grid">
-      <div>
-        <img src="https://via.placeholder.com/300x300" alt="Best Man">
-        <p class="caption">Best Man - Ya Daddy</p>
-      </div>
-      <div>
-        <img src="https://via.placeholder.com/300x300" alt="Maid of Honor">
-        <p class="caption">Maid of Honor - Emily</p>
-      </div>
-      <div>
-        <img src="https://via.placeholder.com/300x300" alt="Groomsman">
-        <p class="caption">Groomsman - Chris</p>
-      </div>
-      <div>
-        <img src="https://via.placeholder.com/300x300" alt="Bridesmaid">
-        <p class="caption">Bridesmaid - Lily</p>
-      </div>
+      <img src="https://via.placeholder.com/200" alt="Groomsman" />
+      <img src="https://via.placeholder.com/200" alt="Bridesmaid" />
+      <img src="https://via.placeholder.com/200" alt="Best Man" />
+      <img src="https://via.placeholder.com/200" alt="Maid of Honor" />
     </div>
   </section>
 
-  <section class="place">
+  <!-- Place Section -->
+  <section id="place">
     <h2>The Place</h2>
-    <p>Join us in the breathtaking beauty of Estes Park, Colorado — surrounded by mountains, fresh air, and the people we love. The ceremony and reception will take place at a charming mountain lodge with stunning views of the Rockies.</p>
+    <p>
+      Estes Park, Colorado — a breathtaking mountain town surrounded by nature’s
+      finest views. It’s where our story will continue, under the open sky and
+      among the people we love most.
+    </p>
+    <img src="https://via.placeholder.com/600x400" alt="Estes Park" style="width:90%;max-width:600px;border-radius:12px;margin-top:1.5rem;" />
   </section>
 
-  <section class="photos">
-    <h2>Photo Gallery</h2>
+  <!-- Photos Section -->
+  <section id="photos">
+    <h2>Photos</h2>
     <div class="photo-grid">
-      <img src="https://via.placeholder.com/400x300" alt="Photo 1">
-      <img src="https://via.placeholder.com/400x300" alt="Photo 2">
-      <img src="https://via.placeholder.com/400x300" alt="Photo 3">
-      <img src="https://via.placeholder.com/400x300" alt="Photo 4">
+      <img src="https://via.placeholder.com/200" alt="Photo 1" />
+      <img src="https://via.placeholder.com/200" alt="Photo 2" />
+      <img src="https://via.placeholder.com/200" alt="Photo 3" />
+      <img src="https://via.placeholder.com/200" alt="Photo 4" />
     </div>
   </section>
 
-  <section class="video">
+  <!-- Video Section -->
+  <section id="video">
     <h2>Our Video</h2>
-    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+    </div>
   </section>
 
+  <!-- Footer -->
   <footer>
-    <p>With love, Da'Quan & Savannah · August 26, 2026</p>
+    <p>With love — Da'Quan & Savannah • August 26, 2026</p>
   </footer>
+
 </body>
 </html>
-
-
-
-
