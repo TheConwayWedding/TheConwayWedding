@@ -5,6 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Da'Quan & Savannah — Wedding</title>
   <style>
+    /* ===== Hero Section ===== */
+    .hero {
+      background: rgba(0,0,0,0.5);
+      padding: 6rem 2rem;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+
+    .hero h2 {
+      font-weight: normal;
+      margin-top: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    /* ===== Hero Fade-In Animation ===== */
+    .hero h1, .hero h2 {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1.2s forwards;
+      animation-delay: 0.3s;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     /* ===== Base Styles ===== */
     html {
       scroll-behavior: smooth;
@@ -265,6 +296,7 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
 
 </body>
 </html>
+
 
 
 
