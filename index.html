@@ -10,9 +10,9 @@
     body {
       margin: 0;
       font-family: "Georgia", serif;
-      color: #fdf9f3;
+      color: #fdf9f3; /* brighter cream */
       background: url('https://www.transparenttextures.com/patterns/wood-pattern.png') repeat;
-      background-color: #3B352F;
+      background-color: #3B352F; /* dark brown base */
       line-height: 1.6;
     }
 
@@ -110,12 +110,8 @@
     .party-member .role { color: #fff8e7; font-size:0.95rem; margin-bottom:0.6rem; }
     .party-member .bio { color:#fdf9f3; font-size:0.95rem; line-height:1.45; margin:0.35rem 0 0; }
 
-    /* ===== SCHEDULE & TRAVEL ===== */
-    #schedule, #travel { background: rgba(0,0,0,0.28); backdrop-filter: blur(3px); }
-    .section-content { max-width:900px; margin:0 auto; text-align:left; background: rgba(59,53,47,0.62); border-radius:14px; padding:1.6rem; }
-
-    /* ===== GALLERY ===== */
-    #gallery .photo-grid {
+    /* ===== PHOTOS / GALLERY ===== */
+    #photos .photo-grid {
       display: grid;
       gap: 1rem;
       grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
@@ -176,7 +172,7 @@
     <a href="#schedule">Schedule</a>
     <a href="#travel">Travel</a>
     <a href="#party">Wedding Party</a>
-    <a href="#gallery">Gallery</a>
+    <a href="#photos">Gallery</a>
   </nav>
 
   <!-- HOME -->
@@ -220,18 +216,14 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
   <section id="schedule">
     <h2>Schedule</h2>
     <hr class="divider"/>
-    <div class="section-content">
-      <p>Details about ceremony, reception, and other events will go here.</p>
-    </div>
+    <p>Details about the wedding day timeline will go here.</p>
   </section>
 
   <!-- TRAVEL -->
   <section id="travel">
     <h2>Travel</h2>
     <hr class="divider"/>
-    <div class="section-content">
-      <p>Information on accommodations, transportation, and local tips will go here.</p>
-    </div>
+    <p>Information about hotels, transportation, and directions will go here.</p>
   </section>
 
   <!-- WEDDING PARTY -->
@@ -255,7 +247,7 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
       </div>
     </div>
 
-    <!-- Groomsmen & Bridesmaids staggered rows of 2 -->
+    <!-- Groomsmen & Bridesmaids in rows of 2 -->
     <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:2rem;">
       <!-- Groomsmen left -->
       <div style="flex:1; display:flex; flex-wrap:wrap; gap:2rem; justify-content:flex-start;">
@@ -340,22 +332,22 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
   </section>
 
   <!-- GALLERY -->
-  <section id="gallery">
+  <section id="photos">
     <h2>Gallery</h2>
     <hr class="divider"/>
     <div class="photo-grid">
-      <img src="photo1.jpg" alt="Gallery photo 1"/>
-      <img src="photo2.jpg" alt="Gallery photo 2"/>
-      <img src="photo3.jpg" alt="Gallery photo 3"/>
-      <img src="photo4.jpg" alt="Gallery photo 4"/>
-      <img src="photo5.jpg" alt="Gallery photo 5"/>
-      <img src="photo6.jpg" alt="Gallery photo 6"/>
+      <img src="photo1.jpg" alt="Photo 1"/>
+      <img src="photo2.jpg" alt="Photo 2"/>
+      <img src="photo3.jpg" alt="Photo 3"/>
+      <img src="photo4.jpg" alt="Photo 4"/>
+      <img src="photo5.jpg" alt="Photo 5"/>
+      <img src="photo6.jpg" alt="Photo 6"/>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <p>© 2025 Da'Quan & Savannah. All rights reserved.</p>
+    &copy; 2025 Da'Quan & Savannah Wedding | <a href="#home">Back to Top</a>
   </footer>
 
 </body>
