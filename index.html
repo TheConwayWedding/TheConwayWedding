@@ -572,14 +572,17 @@ function toggleMenu() {
 }
 
 // Slideshow
-let slideIndex = 0;
-const slides = document.querySelectorAll('.slide');
-function showSlides() {
-  slides.forEach((s, i) => s.classList.toggle('active', i === slideIndex));
-  slideIndex = (slideIndex + 1) % slides.length;
-  setTimeout(showSlides, 4000);
-}
-showSlides();
+document.addEventListener('DOMContentLoaded', () => {
+  let slideIndex = 0;
+  const slides = document.querySelectorAll('.slide');
+  function showSlides() {
+    slides.forEach((s, i) => s.classList.toggle('active', i === slideIndex));
+    slideIndex = (slideIndex + 1) % slides.length;
+    setTimeout(showSlides, 4000);
+  }
+  showSlides();
+});
+
 
 // Countdown (desktop only)
 function updateCountdown() {
@@ -595,6 +598,7 @@ updateCountdown();
 
 </body>
 </html>
+
 
 
 
