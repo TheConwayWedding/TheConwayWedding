@@ -80,7 +80,16 @@
 
     /* ===== OUR STORY ===== */
     #story { background: rgba(0,0,0,0.28); backdrop-filter: blur(4px); }
-    .story-content { max-width: 900px; margin: 0 auto; text-align: left; background: rgba(59,53,47,0.62); border-radius: 14px; padding: 1.6rem; }
+    .story-content { 
+      max-width: 900px; 
+      margin: 0 auto; 
+      text-align: left; 
+      background: rgba(59,53,47,0.62); 
+      border-radius: 16px; 
+      padding: 2rem; 
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      line-height:1.75;
+    }
 
     /* ===== PLACE ===== */
     #place { position: relative; height: 100vh; overflow: hidden; display:flex; align-items: center; justify-content: center; padding:0; }
@@ -92,21 +101,18 @@
     /* ===== SCHEDULE & TRAVEL ===== */
     .section-box { max-width:800px; margin:0 auto; background: rgba(59,53,47,0.62); border-radius:14px; padding:2rem; text-align:left; backdrop-filter: blur(4px); }
 
-    /* ===== WEDDING PARTY =====
-       NOTE: added rules to create clear left/right sides, center titles, 2-per-row grid on each side,
-       and increased horizontal gap between sides so there's a visible divide.
-    */
+    /* ===== WEDDING PARTY ===== */
     #party { background: rgba(0,0,0,0.22); backdrop-filter: blur(3px); }
     .party-grid {
       display: flex;
       justify-content: space-between;
-      gap: 3rem;                 /* more space between left and right */
+      gap: 3rem;
       max-width: 1200px;
       margin: 0 auto;
       align-items: flex-start;
     }
     .party-side {
-      flex: 1 1 45%;            /* left and right columns, leave space between */
+      flex: 1 1 45%;
       min-width: 260px;
     }
     .party-side .side-title {
@@ -118,7 +124,7 @@
     }
     .party-side .members-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr); /* 2 per row */
+      grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
       justify-items: center;
     }
@@ -127,7 +133,7 @@
       border-radius: 12px;
       padding: 1rem;
       text-align: center;
-      margin-bottom: 0; /* removed extra bottom spacing (grid gap handles it) */
+      margin-bottom: 0;
     }
     .party-member img {
       border-radius: 8px;
@@ -142,7 +148,6 @@
     .party-member .role { color:#fff8e7; font-size:0.95rem; margin-bottom:0.35rem; }
     .party-member .bio { color:#fdf9f3; font-size:0.95rem; line-height:1.45; margin:0; }
 
-    /* Best man / maid highlight (centered above sides) */
     .party-highlight {
       display:flex;
       justify-content:center;
@@ -168,7 +173,8 @@
       max-width:1000px;
       margin:1.2rem auto 0;
     }
-    .photo-grid img { width:100%; height:160px; object-fit:cover; border-radius:10px; }
+    .photo-grid img { width:100%; height:160px; object-fit:cover; border-radius:10px; transition: transform 0.3s; }
+    .photo-grid img:hover { transform: scale(1.05); }
 
     /* ===== BUTTONS ===== */
     button, a.button {
@@ -303,7 +309,6 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
     <h2>Wedding Party</h2>
     <hr class="divider"/>
 
-    <!-- Best Man & Maid of Honor (centered & preserved) -->
     <div class="party-highlight">
       <div class="party-member">
         <img src="bestman.jpg" alt="Best Man" />
@@ -319,9 +324,7 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
       </div>
     </div>
 
-    <!-- Left / Right split, titles centered over each side, 2-per-row on each side -->
     <div class="party-grid">
-      <!-- Groomsmen (left) -->
       <div class="party-side">
         <div class="side-title">Groomsmen</div>
         <div class="members-grid">
@@ -358,7 +361,6 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
         </div>
       </div>
 
-      <!-- Bridesmaids (right) -->
       <div class="party-side">
         <div class="side-title">Bridesmaids</div>
         <div class="members-grid" style="justify-items:end;">
@@ -373,7 +375,7 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
             <p class="bio">Creative spirit with a loving heart.</p>
           </div>
           <div class="party-member">
-            <img src="bridesmaid3.jpg" alt="Bridesmaid 3"/>
+            <img src="bridesmaid3.jpg" alt="Bridesmaid
             <h3>Rachel</h3>
             <p class="bio">Always spreads joy and kindness.</p>
           </div>
@@ -416,6 +418,27 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
     <p>With love — Da'Quan & Savannah • August 26, 2026</p>
   </footer>
 
-</body>
-</html>  
+  <script>
+    // Optional: Highlight current section in nav while scrolling
+    const sections = document.querySelectorAll("section, header");
+    const navLinks = document.querySelectorAll("nav a");
 
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 60;
+        if (pageYOffset >= sectionTop) {
+          current = section.getAttribute("id");
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
