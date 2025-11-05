@@ -18,6 +18,11 @@
 
 
     /* ===== NAV ===== */
+    @media (max-width: 768px) {
+  nav > div:first-child { /* desktop links container */
+    display: none;
+  }
+}
     nav {
       position: fixed;
       top: 0;
@@ -65,6 +70,54 @@
     }
 
     header, section { padding-top: 4.5rem; }
+
+    /* Mobile-only nav */
+#mobile-nav-dropdown {
+  display: none; /* hide on desktop */
+  position: relative;
+}
+
+#mobile-nav-dropdown #mobile-nav-toggle {
+  font-size: 1.8rem;
+  background: rgba(59,53,47,0.7);
+  color: #fff6da;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#mobile-nav-links {
+  display: none;
+  flex-direction: column;
+  background: rgba(59,53,47,0.85);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 1001;
+}
+
+#mobile-nav-links a {
+  color: #fff6da;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  font-weight: 700;
+}
+
+#mobile-nav-links a:hover {
+  color: #ffe9a9;
+}
+
+/* Show toggle button only on mobile */
+@media (max-width: 768px) {
+  #mobile-nav-dropdown {
+    display: block;
+  }
+}
 
   /* ===== HEADER / HOME ===== */
 header#home {
@@ -567,6 +620,20 @@ section h2,
       <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank">RSVP</a>
     </div>
     <div id="nav-countdown"></div>
+    <!-- MOBILE NAV TOGGLE (only visible on mobile) -->
+<div id="mobile-nav-dropdown">
+  <button id="mobile-nav-toggle">☰ Menu</button>
+  <div id="mobile-nav-links">
+    <a href="#home">Home</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#travel">Travel</a>
+    <a href="https://www.amazon.com/wedding-registry/link-to-your-registry" target="_blank">Registry</a>
+    <a href="#party">Wedding Party</a>
+    <a href="#gallery">Gallery</a>
+    <a href="video.html">Video</a>
+    <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank">RSVP</a>
+  </div>
+</div>
   </nav>
 
   <!-- HOME -->
@@ -850,9 +917,20 @@ mobileNavToggle.addEventListener("click", () => {
     mobileNavLinks.style.display = "flex";
   }
 });
+    const mobileNavToggleBtn = document.getElementById("mobile-nav-toggle");
+const mobileNavLinks = document.getElementById("mobile-nav-links");
+
+mobileNavToggleBtn.addEventListener("click", () => {
+  if(mobileNavLinks.style.display === "flex") {
+    mobileNavLinks.style.display = "none";
+  } else {
+    mobileNavLinks.style.display = "flex";
+  }
+});
   </script>
 </body>
 </html>
+
 
 
 
