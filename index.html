@@ -1,206 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Da'Quan & Savannah — Wedding</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Da’Quan & Savannah — Wedding</title>
   <style>
-    /* ===== BASE ===== */
-    html { scroll-behavior: smooth; }
+    /* ===== Base Styles ===== */
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: "Georgia", serif;
-      color: #fdf9f3;
-      background: url('https://www.transparenttextures.com/patterns/wood-pattern.png') repeat;
+      color: #fff9e6;
       background-color: #3B352F;
+      background: url('https://www.transparenttextures.com/patterns/wood-pattern.png') repeat #3B352F;
       line-height: 1.6;
     }
 
-    /* ===== NAV ===== */
+    /* ===== Nav Bar ===== */
     nav {
-      background: rgba(0,0,0,0.55);
-      backdrop-filter: blur(6px);
-      color: #fff8e7;
-      padding: 1rem 1.5rem;
       position: fixed;
       width: 100%;
       top: 0;
-      left: 0;
-      z-index: 1000;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1.4rem;
-    }
-    nav a {
-      color: #fff6da;
-      text-decoration: none;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      transition: color 0.25s ease;
-      position: relative;
-      padding: 0.25rem 0;
-    }
-    nav a::after{
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      height: 2px;
-      bottom: -6px;
-      width: 0;
-      margin: 0 auto;
-      background: linear-gradient(90deg, transparent, #e5c982, transparent);
-      transition: width 0.25s ease;
-    }
-    nav a:hover { color: #ffe9a9; }
-    nav a:hover::after, nav a.active::after { width: 70%; }
-
-    header, section { padding-top: 4.5rem; }
-
-    /* ===== HOME ===== */
-    header#home {
-      padding: 8.5rem 1rem 6rem;
+      background-color: rgba(59, 53, 47, 0.9);
+      padding: 10px 0;
       text-align: center;
-      color: #fff6da;
+      z-index: 1000;
     }
-    header#home h1 { font-size: 3rem; margin: 0 0 0.4rem; letter-spacing: 2px; }
-    header#home h2 { font-size: 2rem; margin: 0 0 0.4rem; color: #e5c982; letter-spacing: 1px; }
-    header#home h3 { font-size: 1.3rem; margin: 0 0 1rem; color: #fff8e7; font-style: italic; }
-    .countdown {
-      font-size: 1.6rem;
+
+    nav a {
+      color: #f9e9c8;
+      text-decoration: none;
+      margin: 0 15px;
       font-weight: bold;
-      color: gold;
-      text-shadow: 0 0 10px rgba(255,215,0,0.6);
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffd700;
+    }
+
+    /* ===== Header ===== */
+    header {
+      text-align: center;
+      padding: 150px 20px 100px;
+      background: rgba(59, 53, 47, 0.6);
+      position: relative;
+    }
+
+    header h1 {
+      font-size: 3.5em;
+      color: #ffd700;
+      text-shadow: 0 0 10px #ffd700;
       animation: glow 2s ease-in-out infinite alternate;
     }
+
+    header h2 {
+      font-size: 2.5em;
+      color: #ffd700;
+      margin-top: -10px;
+      text-shadow: 0 0 10px #ffd700;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    header p {
+      font-size: 1.4em;
+      color: #f9e9c8;
+      margin-top: 10px;
+    }
+
     @keyframes glow {
-      from { text-shadow: 0 0 10px rgba(255,215,0,0.6); }
-      to { text-shadow: 0 0 20px rgba(255,215,0,1); }
+      from { text-shadow: 0 0 10px #ffd700; }
+      to { text-shadow: 0 0 20px #fff2b3; }
     }
 
-    /* ===== GENERIC SECTION ===== */
-    section { padding: 4.5rem 1.5rem; text-align: center; }
-    section h2 {
-      color: #fff6da;
-      font-size: 2.2rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin: 0 0 0.6rem;
+    /* Countdown */
+    #countdown {
+      font-size: 2em;
+      color: #ffd700;
+      text-shadow: 0 0 15px #ffd700;
+      margin-top: 20px;
     }
-    hr.divider { border: none; height: 2px; width: 80px; margin: 1rem auto 1.6rem; background: linear-gradient(to right, transparent, #e5c982, transparent); }
-    section p { color: #fdf9f3; font-size: 1.05rem; line-height: 1.7; max-width: 800px; margin: 0 auto; white-space: pre-line; }
 
-    /* ===== OUR STORY ===== */
-    #story { background: rgba(0,0,0,0.28); backdrop-filter: blur(4px); }
-    .story-content { max-width: 900px; margin: 0 auto; text-align: left; background: rgba(59,53,47,0.62); border-radius: 14px; padding: 1.6rem; }
+    /* ===== Section Styles ===== */
+    section {
+      padding: 80px 20px;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
 
-    /* ===== PLACE ===== */
-    #place { position: relative; height: 100vh; overflow: hidden; display:flex; align-items: center; justify-content: center; padding:0; }
-    #place video { position: absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; filter: brightness(0.55); }
-    .place-content { position: relative; z-index:1; background: rgba(59,53,47,0.72); padding:2rem; border-radius:14px; max-width:820px; margin:2rem; text-align:center; backdrop-filter: blur(6px); }
-    .place-content h2 { margin-top:0; color:#fff6da; font-size:2.4rem; }
+    h2 {
+      font-size: 2.8em;
+      color: #ffd700;
+      text-shadow: 0 0 10px #ffd700;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
 
-    /* ===== SCHEDULE & TRAVEL ===== */
-    .section-box { max-width:800px; margin:0 auto; background: rgba(59,53,47,0.62); border-radius:14px; padding:2rem; text-align:left; backdrop-filter: blur(4px); }
-
-    /* ===== WEDDING PARTY ===== */
-    #party { background: rgba(0,0,0,0.22); backdrop-filter: blur(3px); }
-    .party-grid {
+    /* ===== Wedding Party ===== */
+    .wedding-party {
       display: flex;
       justify-content: space-between;
-      gap: 3rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 30px;
+      padding: 60px 40px;
     }
-    .party-side {
-      flex: 1 1 45%;
-      min-width: 260px;
+
+    .side {
+      width: 45%;
     }
-    .party-side .side-title {
-      text-align: center;
-      margin-bottom: 1rem;
-      color: #fff6da;
-      font-size: 1.2rem;
-      font-weight: 700;
-    }
-    .party-side .members-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      justify-items: center;
-    }
-    .party-member {
-      background: rgba(59,53,47,0.62);
-      border-radius: 12px;
-      padding: 1rem;
+
+    .person {
+      margin: 30px 0;
       text-align: center;
     }
-    .party-member img {
-      border-radius: 8px;
-      width:140px;
-      height:140px;
-      object-fit:cover;
-      margin:0 auto 0.5rem;
-      border:4px solid rgba(230,200,130,0.12);
-    }
-    .party-member h3 { margin:0.25rem 0; color:#ffe9a9; font-size:1.05rem; }
-    .party-member .bio { color:#fdf9f3; font-size:0.95rem; line-height:1.45; margin:0; }
 
-    /* Highlight (Best Man / Maid of Honor) */
-    .party-highlight {
-      display:flex;
-      justify-content:center;
-      gap:3rem;
-      margin-bottom:2rem;
-    }
-    .party-highlight .party-member {
-      max-width:220px;
-    }
-    .party-highlight .party-member img {
-      width:220px;
-      height:220px;
-      border-radius:8px;
-      border:4px solid #e5c982;
-      object-fit:cover;
+    .person img {
+      width: 180px;
+      height: 180px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 3px solid #ffd700;
+      margin-bottom: 10px;
     }
 
-    /* ===== GALLERY ===== */
-    #gallery .photo-grid {
-      display: grid;
-      gap: 1rem;
-      grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
-      max-width:1000px;
-      margin:1.2rem auto 0;
+    .highlight {
+      text-align: center;
+      margin-bottom: 40px;
     }
-    .photo-grid img { width:100%; height:160px; object-fit:cover; border-radius:10px; }
 
-    /* ===== FOOTER ===== */
-    footer {
-      background: rgba(0,0,0,0.5);
-      color:#fff8e7;
-      padding:2rem 1rem;
-      text-align:center;
-      font-size:0.95rem;
-      letter-spacing:0.04em;
-      margin-top:2rem;
-      backdrop-filter: blur(4px);
+    .highlight img {
+      width: 250px;
+      height: 250px;
+      border-radius: 10px;
+      border: 4px solid #ffd700;
+      object-fit: cover;
     }
-    footer a { color:#ffe9a9; text-decoration:none; font-weight:700; }
-    footer a:hover { color:#fff6da; text-decoration:underline; }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 900px) {
-      .party-grid { flex-direction: column; gap: 1.5rem; }
-      .party-highlight { flex-direction: column; gap:1.2rem; }
-      .party-highlight .party-member img { width:160px; height:160px; }
+    .highlight h3 {
+      font-size: 1.6em;
+      color: #ffd700;
+      margin-top: 10px;
+    }
+
+    /* Divider */
+    hr {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.3);
+      width: 80%;
+      margin: 60px auto;
     }
   </style>
 </head>
 <body>
-
-  <!-- NAV -->
+  <!-- Navigation -->
   <nav>
     <a href="#home">Home</a>
     <a href="#schedule">Schedule</a>
@@ -209,95 +163,90 @@
     <a href="#gallery">Gallery</a>
     <a href="video.html">Video</a>
     <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank">RSVP</a>
-    <a href="https://www.amazon.com/wedding" target="_blank">Registry</a>
+    <a href="https://www.amazon.com/wedding-registry" target="_blank">Registry</a>
   </nav>
 
-  <!-- HOME -->
+  <!-- Header -->
   <header id="home">
     <h1>Da’Quan & Savannah</h1>
     <h2>Conway</h2>
-    <h3>August 4th, 2026</h3>
-    <div id="countdown" class="countdown"></div>
+    <p>August 4th, 2026</p>
+    <div id="countdown"></div>
   </header>
 
-  <hr class="divider"/>
-
-  <!-- OUR STORY -->
   <section id="story">
     <h2>Our Story</h2>
-    <hr class="divider"/>
-    <div class="story-content">
-      It all started with… a roommate application. Da’Quan was just having another normal day...
-      <!-- Your full story content remains intact -->
-    </div>
+    <p style="max-width: 800px; margin: 0 auto;">
+      It all started with… a roommate application. Da’Quan was just having another normal day and Savannah was just trying to sign her very first apartment lease. But God had other plans. Savannah was in a rush to sign her new lease because all the good apartments were getting taken...
+      <br><br>
+      ...And now, they can’t wait to continue their never-ending chapter together.
+    </p>
   </section>
 
-  <hr class="divider"/>
+  <hr>
 
-  <!-- PLACE -->
-  <section id="place">
-    <video autoplay muted loop playsinline>
-      <source src="estes-park.mp4" type="video/mp4"/>
-    </video>
-    <div class="place-content">
-      <h2>The Place</h2>
-      <p>
-        Nestled in the heart of Estes Park, surrounded by Colorado’s breathtaking mountain peaks,
-        our ceremony will take place where love meets nature — calm, beautiful, and timeless.
-      </p>
-    </div>
-  </section>
-
-  <hr class="divider"/>
-
-  <!-- SCHEDULE -->
-  <section id="schedule">
-    <h2>Schedule</h2>
-    <hr class="divider"/>
-    <div class="section-box">
-      <p>Details about ceremony, reception, and other wedding day events will go here.</p>
-    </div>
-  </section>
-
-  <hr class="divider"/>
-
-  <!-- TRAVEL -->
-  <section id="travel">
-    <h2>Travel</h2>
-    <hr class="divider"/>
-    <div class="section-box">
-      <p>Information about accommodations, transportation, and directions to the venue will go here.</p>
-    </div>
-  </section>
-
-  <hr class="divider"/>
-
-  <!-- WEDDING PARTY -->
+  <!-- Wedding Party -->
   <section id="party">
     <h2>Wedding Party</h2>
-    <hr class="divider"/>
-    <!-- Existing party-highlight and grids remain unchanged -->
-  </section>
+    <div class="highlight">
+      <div>
+        <img src="bestman.jpg" alt="Best Man">
+        <h3>Marcus — Best Man</h3>
+        <p>Da’Quan’s lifelong friend and brother in Christ.</p>
+      </div>
+      <div>
+        <img src="maidofhonor.jpg" alt="Maid of Honor">
+        <h3>Alexis — Maid of Honor</h3>
+        <p>Savannah’s best friend and biggest supporter.</p>
+      </div>
+    </div>
 
-  <hr class="divider"/>
+    <div class="wedding-party">
+      <div class="side left">
+        <h3 style="color:#ffd700;">Groomsmen</h3>
+        <div class="person"><img src="g1.jpg"><p>John</p></div>
+        <div class="person"><img src="g2.jpg"><p>Michael</p></div>
+        <div class="person"><img src="g3.jpg"><p>Chris</p></div>
+        <div class="person"><img src="g4.jpg"><p>David</p></div>
+        <div class="person"><img src="g5.jpg"><p>Anthony</p></div>
+        <div class="person"><img src="g6.jpg"><p>Tyler</p></div>
+      </div>
 
-  <!-- GALLERY -->
-  <section id="gallery">
-    <h2>Gallery</h2>
-    <hr class="divider"/>
-    <div class="photo-grid">
-      <img src="photo1.jpg"/>
-      <img src="photo2.jpg"/>
-      <img src="photo3.jpg"/>
-      <img src="photo4.jpg"/>
+      <div class="side right">
+        <h3 style="color:#ffd700;">Bridesmaids</h3>
+        <div class="person"><img src="b1.jpg"><p>Emily</p></div>
+        <div class="person"><img src="b2.jpg"><p>Grace</p></div>
+        <div class="person"><img src="b3.jpg"><p>Lauren</p></div>
+        <div class="person"><img src="b4.jpg"><p>Rachel</p></div>
+        <div class="person"><img src="b5.jpg"><p>Hannah</p></div>
+        <div class="person"><img src="b6.jpg"><p>Madison</p></div>
+      </div>
     </div>
   </section>
 
-  <footer>
-    <p>With love — Da'Quan & Savannah • August 26, 2026</p>
-  </footer>
+  <hr>
+
+  <section id="schedule">
+    <h2>Schedule</h2>
+    <p>Details of the ceremony, reception, and after-party coming soon.</p>
+  </section>
+
+  <hr>
+
+  <section id="travel">
+    <h2>Travel</h2>
+    <p>Information about nearby hotels, flights, and local transportation options will be added soon.</p>
+  </section>
+
+  <hr>
+
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <p>Photos and memories coming soon.</p>
+  </section>
 
   <script>
+    // Countdown Script
     const countdown = document.getElementById("countdown");
     const weddingDate = new Date("August 4, 2026 00:00:00").getTime();
 
@@ -305,16 +254,17 @@
       const now = new Date().getTime();
       const distance = weddingDate - now;
 
+      if (distance < 0) {
+        countdown.innerHTML = "Today’s the day!";
+        return;
+      }
+
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
       countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-
-      if (distance < 0) {
-        countdown.innerHTML = "It's Wedding Day!";
-      }
     }
 
     setInterval(updateCountdown, 1000);
