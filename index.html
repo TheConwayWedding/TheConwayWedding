@@ -145,21 +145,7 @@
 
     /* ===== WEDDING PARTY ===== */
    
-@media (max-width: 768px) {
-  .party-grid {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .party-member {
-    width: 80%;
-    margin-bottom: 20px;
-  }
-}
-
-    
+ 
   .party-member {
     width: 80%;
   }
@@ -185,6 +171,25 @@
     .party-highlight { display:flex; justify-content:center; gap:3rem; margin-bottom:2rem; }
     .party-highlight .party-member { max-width:220px; }
     .party-highlight .party-member img { width:220px; height:220px; border-radius:8px; border:4px solid #e5c982; object-fit:cover; }
+
+    /* ===== Force Wedding Party Center on Mobile ===== */
+@media (max-width: 768px) {
+  .wedding-party .party-grid,
+  .party-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .wedding-party .party-member,
+  .party-member {
+    width: 85% !important;
+    margin: 10px 0 !important;
+  }
+}
+
 
 
 
@@ -468,6 +473,7 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
   </script>
 </body>
 </html>
+
 
 
 
