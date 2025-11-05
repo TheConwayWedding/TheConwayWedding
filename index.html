@@ -58,10 +58,9 @@
 
     #nav-countdown {
       position: absolute;
-      right: 4rem;
+      right: 4rem; /* adjust so visible */
       font-weight: 700;
       color: #ffe9a9;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
     }
 
     header, section { padding-top: 4.5rem; }
@@ -69,17 +68,16 @@
     /* ===== HEADER / HOME ===== */
     header#home {
       position: relative;
-      height: 90vh;
+      height: 100vh; /* full viewport height */
       padding: 0;
       text-align: center;
       color: #fff6da;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: center; /* vertically center header content */
     }
 
-    /* Slideshow */
     .header-slideshow {
       position: absolute;
       inset: 0;
@@ -92,11 +90,11 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      width: auto;
+      width: auto;     
       height: 100%;
       object-fit: cover;
       object-position: center;
-      transform: translate(-50%, -50%) scale(1.05);
+      transform: translate(-50%, -50%);
       opacity: 0;
       transition: opacity 1.5s ease-in-out;
     }
@@ -105,55 +103,19 @@
       opacity: 1;
     }
 
-    /* Overlay to make text stand out */
-    .header-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.38);
-      z-index: 0;
-    }
-
-    /* Header content */
     .header-content {
       position: relative;
       z-index: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      padding: 0 1rem;
     }
 
-    .header-content h1,
-    .header-content p {
-      text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.7);
-    }
-
-    header#home h1:first-child {
-      font-size: 4rem;
-      font-weight: 900;
-      letter-spacing: 3px;
-    }
-
-    header#home h1:nth-child(2) {
-      font-size: 4rem;
-      font-weight: 900;
-      letter-spacing: 3px;
-      color: #ffe9a9;
-    }
-
-    header#home p {
-      font-size: 1.35rem;
-      font-style: italic;
-      margin-top: 0.5rem;
-      text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
-    }
-
-    #countdown {
-      margin-top:1.2rem;
-      font-size:1.5rem;
-      font-weight:700;
-      color:#ffe9a9;
-      text-shadow: 2px 2px 12px rgba(0,0,0,0.7);
-    }
+    header#home h1 { font-size: 3rem; margin: 0 0 0.6rem; letter-spacing: 2px; }
+    header#home p { font-size: 1.15rem; margin: 0; color: #fdf9f3; font-style: italic; }
+    #countdown { margin-top:1rem; font-size:1.25rem; color:#ffe9a9; }
 
     /* ===== GENERIC SECTION ===== */
     section { padding: 4.5rem 1.5rem; text-align: center; }
@@ -171,12 +133,38 @@
     #story { background: rgba(0,0,0,0.28); backdrop-filter: blur(4px); }
     .story-content { max-width: 900px; margin: 0 auto; text-align: left; background: rgba(59,53,47,0.62); border-radius: 14px; padding: 1.6rem; }
 
-    /* ===== PLACE ===== */
-    #place { position: relative; height: 100vh; overflow: hidden; display:flex; align-items: center; justify-content: center; padding:0; }
-    #place video { position: absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; filter: brightness(0.55); }
-    .place-content { position: relative; z-index:1; background: rgba(59,53,47,0.72); padding:2rem; border-radius:14px; max-width:820px; margin:2rem; text-align:center; backdrop-filter: blur(6px); }
+    /* ===== PLACE (Background Video) ===== */
+    #place {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding:0;
+    }
+    #place video {
+      position: absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      z-index:0;
+      filter: brightness(0.55);
+    }
+    .place-content {
+      position: relative;
+      z-index:1;
+      background: rgba(59,53,47,0.72);
+      padding:2rem;
+      border-radius:14px;
+      max-width:820px;
+      margin:2rem;
+      text-align:center;
+      backdrop-filter: blur(6px);
+    }
     .place-content h2 { margin-top:0; color:#fff6da; font-size:2.4rem; }
-    .place-content img { width:100%; max-width:560px; border-radius:12px; margin-top:1rem; }
+    .place-content p { margin:0; }
 
     /* ===== SCHEDULE & TRAVEL ===== */
     .section-box { max-width:800px; margin:0 auto; background: rgba(59,53,47,0.62); border-radius:14px; padding:2rem; text-align:left; backdrop-filter: blur(4px); }
@@ -227,9 +215,6 @@
       header#home { padding:6.5rem 1rem 4.5rem; }
       .place-content, .section-box { margin:1rem; padding:1.2rem; }
       .party-member img { width:120px; height:120px; }
-      header#home h1:first-child,
-      header#home h1:nth-child(2) { font-size: 2.8rem; }
-      #countdown { font-size:1.2rem; }
     }
   </style>
 </head>
@@ -241,7 +226,7 @@
       <a href="#home">Home</a>
       <a href="#schedule">Schedule</a>
       <a href="#travel">Travel</a>
-      <a href="https://www.amazon.com/wedding/share/Savannah-and-DaQuan">Registry</a>
+      <a href="https://www.amazon.com/wedding-registry/link-to-your-registry" target="_blank">Registry</a>
       <a href="#party">Wedding Party</a>
       <a href="#gallery">Gallery</a>
       <a href="video.html">Video</a>
@@ -258,8 +243,7 @@
       <img src="slide2.jpg" class="slide" alt="Slide 2">
       <img src="slide3.jpg" class="slide" alt="Slide 3">
     </div>
-    <!-- Overlay -->
-    <div class="header-overlay"></div>
+
     <div class="header-content">
       <h1>Da'Quan & Savannah</h1>
       <h1 style="margin:0.3rem 0; font-size:3rem; letter-spacing:2px; color:#fff6da;">Conway</h1>
@@ -279,54 +263,49 @@ That friend, happened to be one of Da’Quan’s best friends and current roomma
 
 What started as a single DM turned into hours of conversation, a first date filled with laughter, deep talks, and Da’Quan sweetly calling her “beloved”. Savannah, naturally shy, was stunned by how easy it felt. Like she’d known him forever. From there, things escalated quickly in the best way. Love letters and random flower deliveries were a regular. And yes, Da’Quan somehow found a dress that Savannah had only casually mentioned without any descriptions, and surprised her with it. While also rewriting her resume to help her land a new job, and waking up at 3 am to make sure her car got towed. Meanwhile, Savannah showed her love in other meaningful ways like making homemade lunches for him to take to work, or preparing a full recovery program for him to rehab his on-going knee injuries, and even facetiming him to make sure he did his workouts for the day, sometimes even doing it with him. Her kindness, warmth, and just being herself spoke straight to Da’Quan’s heart. He knew she was The One when multiple people randomly asked him why he looked so happy lately. The answer was evident to him. That was all he needed to know.
 
-Eventually, the moment came. Not the moment (yet), but a pretty big moment. Da’Quan planned the perfect engagement. A romantic setting, her favorite color, and a day meant just for them. And Savannah said yes, marking the beginning of a lifetime of love, laughter, and endless adventures together.
+Eventually, the moment came. Not the moment (yet), but a pretty important one:
+At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will you be my girlfriend?” written out in chocolate syrup on a dessert plate (Savannah having made it clear, a few times, that time was ticking). Roses included. That night marked the start of something even bigger than either of them imagined. A love story full of laughter, long talks that never feel long enough, a strong bond and most importantly, building their relationship with Jesus together. And now, they can’t wait to continue their never ending chapter together.
     </div>
   </section>
 
-  <!-- PLACE -->
- <section id="place">
-  <video autoplay muted loop playsinline>
-    <source src="estes-lake.mp4" type="video/mp4"/>
-    Your browser does not support the video tag.
-  </video>
-  <div class="place-content">
-    <h2>The Place</h2>
-    <p>
-      Nestled in the heart of Estes Park, surrounded by Colorado’s breathtaking mountain peaks,
-      our ceremony will take place where love meets nature — calm, beautiful, and timeless.
-    </p>
-  </div>
-</section>
+  <!-- PLACE (Background Video) -->
+  <section id="place">
+    <video autoplay muted loop playsinline>
+      <source src="estes-lake.mp4" type="video/mp4"/>
+      Your browser does not support the video tag.
+    </video>
+    <div class="place-content">
+      <h2>The Place</h2>
+      <p>
+        Nestled in the heart of Estes Park, surrounded by Colorado’s breathtaking mountain peaks,
+        our ceremony will take place where love meets nature — calm, beautiful, and timeless.
+      </p>
+    </div>
+  </section>
 
+  <hr class="divider"/>
 
   <!-- SCHEDULE -->
   <section id="schedule">
     <h2>Schedule</h2>
     <hr class="divider"/>
     <div class="section-box">
-      <h3>Ceremony</h3>
-      <p>4:00 PM — Ceremony at Sunshine Gardens</p>
-      <h3>Reception</h3>
-      <p>6:00 PM — Reception starts, Dinner and Dancing</p>
-      <h3>After Party</h3>
-      <p>10:00 PM — After Party at The Grand Hall</p>
+      <p>Details about ceremony, reception, and other wedding day events will go here.</p>
     </div>
   </section>
+
+  <hr class="divider"/>
 
   <!-- TRAVEL -->
   <section id="travel">
     <h2>Travel</h2>
     <hr class="divider"/>
     <div class="section-box">
-      <p>Nearby hotels:</p>
-      <ul>
-        <li>Sunshine Inn — 5 min from venue</li>
-        <li>Garden Suites — 7 min from venue</li>
-        <li>Luxury Stay — 10 min from venue</li>
-      </ul>
-      <p>Transportation info: Shuttle service will be available from main hotels to venue.</p>
+      <p>Information about accommodations, transportation, and directions to the venue will go here.</p>
     </div>
   </section>
+
+  <hr class="divider"/>
 
   <!-- WEDDING PARTY -->
   <section id="party">
@@ -334,62 +313,105 @@ Eventually, the moment came. Not the moment (yet), but a pretty big moment. Da�
     <hr class="divider"/>
     <div class="party-highlight">
       <div class="party-member">
-        <img src="bride.jpg" alt="Bride">
-        <h3>Savannah</h3>
-        <p class="role">Bride</p>
+        <img src="bestman.jpg" alt="Best Man" />
+        <h3>Quillon</h3>
+        <div class="role">Best Man</div>
+        <p class="bio">His Daddy</p>
       </div>
       <div class="party-member">
-        <img src="groom.jpg" alt="Groom">
-        <h3>Da'Quan</h3>
-        <p class="role">Groom</p>
+        <img src="maidofhonor.jpg" alt="Maid of Honor" />
+        <h3>Alexis</h3>
+        <div class="role">Maid of Honor</div>
+        <p class="bio">Savannah’s closest sister-friend — planner, encourager, and the heart of the group.</p>
       </div>
     </div>
 
     <div class="party-grid">
       <div class="party-side">
-        <div class="side-title">Bridesmaids</div>
-        <div class="members-grid">
-          <div class="party-member">
-            <img src="maid1.jpg" alt="Bridesmaid 1">
-            <h3>Emily</h3>
-            <p class="role">Maid of Honor</p>
-          </div>
-          <div class="party-member">
-            <img src="maid2.jpg" alt="Bridesmaid 2">
-            <h3>Jessica</h3>
-            <p class="role">Bridesmaid</p>
-          </div>
-        </div>
-      </div>
-      <div class="party-side">
         <div class="side-title">Groomsmen</div>
         <div class="members-grid">
           <div class="party-member">
-            <img src="groom1.jpg" alt="Groomsman 1">
-            <h3>Marcus</h3>
-            <p class="role">Best Man</p>
+            <img src="groomsman1.jpg" alt="Groomsman 1"/>
+            <h3>James</h3>
+            <p class="bio">Da'Quan’s college buddy, always making us laugh.</p>
           </div>
           <div class="party-member">
-            <img src="groom2.jpg" alt="Groomsman 2">
-            <h3>James</h3>
-            <p class="role">Groomsman</p>
+            <img src="groomsman2.jpg" alt="Groomsman 2"/>
+            <h3>David</h3>
+            <p class="bio">Team player and loyal friend.</p>
+          </div>
+          <div class="party-member">
+            <img src="groomsman3.jpg" alt="Groomsman 3"/>
+            <h3>Robert</h3>
+            <p class="bio">Always has Da'Quan’s back.</p>
+          </div>
+          <div class="party-member">
+            <img src="groomsman4.jpg" alt="Groomsman 4"/>
+            <h3>Anthony</h3>
+            <p class="bio">Full of energy and encouragement.</p>
+          </div>
+          <div class="party-member">
+            <img src="groomsman5.jpg" alt="Groomsman 5"/>
+            <h3>William</h3>
+            <p class="bio">Our storyteller, always fun to be around.</p>
+          </div>
+          <div class="party-member">
+            <img src="groomsman6.jpg" alt="Groomsman 6"/>
+            <h3>Joseph</h3>
+            <p class="bio">Reliable and steady — a true brother.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="party-side">
+        <div class="side-title">Bridesmaids</div>
+        <div class="members-grid" style="justify-items:end;">
+          <div class="party-member">
+            <img src="bridesmaid1.jpg" alt="Bridesmaid 1"/>
+            <h3>Sarah</h3>
+            <p class="bio">Savannah’s friend and constant cheerleader.</p>
+          </div>
+          <div class="party-member">
+            <img src="bridesmaid2.jpg" alt="Bridesmaid 2"/>
+            <h3>Jessica</h3>
+            <p class="bio">Creative spirit with a loving heart.</p>
+          </div>
+          <div class="party-member">
+            <img src="bridesmaid3.jpg" alt="Bridesmaid 3"/>
+            <h3>Rachel</h3>
+            <p class="bio">Always spreads joy and kindness.</p>
+          </div>
+          <div class="party-member">
+            <img src="bridesmaid4.jpg" alt="Bridesmaid 4"/>
+            <h3>Hannah</h3>
+            <p class="bio">Supportive and fun-loving.</p>
+          </div>
+          <div class="party-member">
+            <img src="bridesmaid5.jpg" alt="Bridesmaid 5"/>
+            <h3>Olivia</h3>
+            <p class="bio">Always ready to lend a helping hand.</p>
+          </div>
+          <div class="party-member">
+            <img src="bridesmaid6.jpg" alt="Bridesmaid 6"/>
+            <h3>Emma</h3>
+            <p class="bio">Brings laughter and warmth everywhere she goes.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <hr class="divider"/>
+
   <!-- GALLERY -->
   <section id="gallery">
     <h2>Gallery</h2>
     <hr class="divider"/>
     <div class="photo-grid">
-      <img src="photo1.jpg" alt="Photo 1">
-      <img src="photo2.jpg" alt="Photo 2">
-      <img src="photo3.jpg" alt="Photo 3">
-      <img src="photo4.jpg" alt="Photo 4">
-      <img src="photo5.jpg" alt="Photo 5">
-      <img src="photo6.jpg" alt="Photo 6">
+      <img src="photo1.jpg" alt="Photo 1"/>
+      <img src="photo2.jpg" alt="Photo 2"/>
+      <img src="photo3.jpg" alt="Photo 3"/>
+      <img src="photo4.jpg" alt="Photo 4"/>
     </div>
   </section>
 
@@ -398,39 +420,53 @@ Eventually, the moment came. Not the moment (yet), but a pretty big moment. Da�
     <p>With love — Da'Quan & Savannah • August 26, 2026</p>
   </footer>
 
-  <!-- ===== SCRIPTS ===== -->
   <script>
-    // Slideshow
-    let slides = document.querySelectorAll('.header-slideshow .slide');
-    let current = 0;
-    setInterval(() => {
-      slides[current].classList.remove('active');
-      current = (current+1) % slides.length;
-      slides[current].classList.add('active');
-    }, 4000);
+  // Header slideshow
+  const slides = document.querySelectorAll('.header-slideshow .slide');
+  let currentSlide = 0;
+  function nextSlide() {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+  }
+  setInterval(nextSlide, 5000);
 
-    // Countdown
-    const countdown = document.getElementById('countdown');
-    const navCountdown = document.getElementById('nav-countdown');
-    const weddingDate = new Date('August 4, 2026 16:00:00').getTime();
+  // Countdown for header
+  const weddingDate = new Date("August 4, 2026 00:00:00").getTime();
+  const countdownEl = document.getElementById("countdown");
+  const navCountdownEl = document.getElementById("nav-countdown");
 
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = weddingDate - now;
-
-      const days = Math.floor(distance/(1000*60*60*24));
-      const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-      const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
-      const seconds = Math.floor((distance%(1000*60))/1000);
-
-      countdown.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-      navCountdown.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+    if(distance < 0){
+      countdownEl.innerHTML = "Wedding Day!";
+      navCountdownEl.innerHTML = "Wedding Day!";
+      clearInterval(countdownInterval);
+      return;
     }
-    setInterval(updateCountdown,1000);
-    updateCountdown();
+    const days = Math.floor(distance / (1000*60*60*24));
+    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+    const seconds = Math.floor((distance % (1000*60)) / 1000);
+    const text = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    countdownEl.innerHTML = text;
+    navCountdownEl.innerHTML = text;
+  }
+
+  const countdownInterval = setInterval(updateCountdown, 1000);
+  updateCountdown();
+
+  // Hide nav countdown on mobile
+  function checkNavCountdownVisibility() {
+    if(window.innerWidth < 900) {
+      navCountdownEl.style.display = "none";
+    } else {
+      navCountdownEl.style.display = "inline-block";
+    }
+  }
+  window.addEventListener("resize", checkNavCountdownVisibility);
+  checkNavCountdownVisibility();
   </script>
 </body>
 </html>
-
-
-
