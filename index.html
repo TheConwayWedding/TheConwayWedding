@@ -1,441 +1,576 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Da'Quan & Savannah — Wedding</title>
-<style>
-/* ===== BASE ===== */
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  font-family: "Georgia", serif;
-  color: #fdf9f3;
-  background: url('https://www.transparenttextures.com/patterns/wood-pattern.png') repeat;
-  background-color: #3B352F;
-  line-height: 1.6;
-}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Da'Quan & Savannah — Wedding</title>
+  <style>
+    /* ===== BASE ===== */
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Georgia", serif;
+      color: #fdf9f3;
+      background: url('https://www.transparenttextures.com/patterns/wood-pattern.png') repeat;
+      background-color: #3B352F;
+      line-height: 1.6;
+    }
 
-/* ===== NAVBAR ===== */
-.navbar {
-  position: fixed;
-  top: 0; left: 0; width: 100%;
-  background: rgba(0,0,0,0.7);
-  z-index: 1000;
-}
-.nav-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  padding: 0.8rem 1.2rem;
-}
-.nav-links {
-  display: flex;
-  list-style: none;
-  gap: 1.8rem;
-}
-.nav-links li a {
-  color: #fff6da;
-  text-decoration: none;
-  font-weight: 500;
-  position: relative;
-  padding: 0.25rem 0;
-}
-.nav-links li a::after{
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 2px;
-  bottom: -6px;
-  width: 0;
-  margin: 0 auto;
-  background: linear-gradient(90deg, transparent, #e5c982, transparent);
-  transition: width 0.25s ease;
-}
-.nav-links li a:hover::after { width: 70%; }
+    /* ===== NAV ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.4rem;
+      padding: 1rem 1.5rem;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(6px);
+      color: #fff8e7;
+    }
+    nav a {
+      color: #fff6da;
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      transition: color 0.25s ease;
+      position: relative;
+      padding: 0.25rem 0;
+    }
+    nav a::after{
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 2px;
+      bottom: -6px;
+      width: 0;
+      margin: 0 auto;
+      background: linear-gradient(90deg, transparent, #e5c982, transparent);
+      transition: width 0.25s ease;
+    }
+    nav a:hover { color: #ffe9a9; }
+    nav a:hover::after, nav a.active::after { width: 70%; }
 
-.countdown {
-  position: absolute;
-  right: 60px;
-  color: #ffe9a9;
-  font-weight: 600;
-}
-.hamburger {
-  display: none;
-  position: absolute;
-  right: 20px;
-  font-size: 1.8rem;
-  color: #fff6da;
-  cursor: pointer;
-}
+    #nav-countdown {
+      position: absolute;
+      right: 4rem; /* adjust so visible */
+      font-weight: 700;
+      color: #ffe9a9;
+    }
 
-/* ===== MOBILE MENU ===== */
-.mobile-menu {
-  display: none;
-  flex-direction: column;
-  background: rgba(0,0,0,0.85);
-  list-style: none;
-  text-align: center;
-  padding: 0.5rem 0;
-}
-.mobile-menu li a {
-  display: block;
-  color: #fff6da;
-  padding: 0.7rem 0;
-  text-decoration: none;
-}
-.mobile-menu li a:hover { background: rgba(255,255,255,0.1); }
+    header, section { padding-top: 4.5rem; }
 
-/* ===== SLIDESHOW ===== */
-.slideshow-container {
-  position: relative;
-  width: 100%;
-  height: 90vh;
-  overflow: hidden;
-}
-.slideshow img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  opacity: 0;
-  transition: opacity 1.2s ease-in-out;
-}
-.slideshow img.active { opacity: 1; }
+    /* ===== HEADER / HOME ===== */
+    header#home {
+      position: relative;
+      height: 100vh; /* full viewport height */
+      padding: 0;
+      text-align: center;
+      color: #fff6da;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* vertically center header content */
+    }
 
-/* ===== MOBILE HEADER ===== */
-.mobile-header {
-  display: none;
-  text-align: center;
-  background: rgba(0,0,0,0.5);
-  padding: 2rem 0;
-  color: #fff6da;
-  font-family: "Georgia", serif;
-}
-.mobile-header h1 { margin: 0.3rem 0; font-size: 2rem; letter-spacing: 1px; }
+    .header-slideshow {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
 
-/* ===== SECTIONS ===== */
-section { padding: 4.5rem 1.5rem; text-align: center; }
-section h2 {
-  color: #fff6da;
-  font-size: 2.2rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin: 0 0 0.6rem;
-}
-hr.divider {
-  border: none;
-  height: 2px;
-  width: 80px;
-  margin: 1rem auto 1.6rem;
-  background: linear-gradient(to right, transparent, #e5c982, transparent);
-}
-section p {
-  color: #fdf9f3;
-  font-size: 1.05rem;
-  line-height: 1.7;
-  max-width: 800px;
-  margin: 0 auto;
-  white-space: pre-line;
-}
+    .header-slideshow img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: auto;     
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
 
-/* ===== OUR STORY ===== */
-#story { background: rgba(0,0,0,0.28); backdrop-filter: blur(4px); }
-.story-content {
-  max-width: 900px;
-  margin: 0 auto;
-  text-align: left;
-  background: rgba(59,53,47,0.62);
-  border-radius: 14px;
-  padding: 1.6rem;
-}
+    .header-slideshow img.active {
+      opacity: 1;
+    }
 
-/* ===== PLACE ===== */
-#place { position: relative; height: 100vh; overflow: hidden; display:flex; align-items: center; justify-content: center; padding:0; }
-#place video { position: absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; filter: brightness(0.55); }
-.place-content {
-  position: relative;
-  z-index:1;
-  background: rgba(59,53,47,0.72);
-  padding:2rem;
-  border-radius:14px;
-  max-width:820px;
-  margin:2rem;
-  text-align:center;
-  backdrop-filter: blur(6px);
-}
-.place-content h2 { margin-top:0; color:#fff6da; font-size:2.4rem; }
-.place-content img { width:100%; max-width:560px; border-radius:12px; margin-top:1rem; }
+    .header-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      padding: 0 1rem;
+    }
 
-/* ===== SCHEDULE & TRAVEL ===== */
-.section-box {
-  max-width:800px;
-  margin:0 auto;
-  background: rgba(59,53,47,0.62);
-  border-radius:14px;
-  padding:2rem;
-  text-align:left;
-  backdrop-filter: blur(4px);
-}
+    header#home h1 { font-size: 3rem; margin: 0 0 0.6rem; letter-spacing: 2px; }
+    header#home p { font-size: 1.15rem; margin: 0; color: #fdf9f3; font-style: italic; }
+    #countdown { margin-top:1rem; font-size:1.25rem; color:#ffe9a9; }
 
+    /* ===== GENERIC SECTION ===== */
+    section { padding: 4.5rem 1.5rem; text-align: center; }
+    section h2 {
+      color: #fff6da;
+      font-size: 2.2rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin: 0 0 0.6rem;
+    }
+    hr.divider { border: none; height: 2px; width: 80px; margin: 1rem auto 1.6rem; background: linear-gradient(to right, transparent, #e5c982, transparent); }
+    section p { color: #fdf9f3; font-size: 1.05rem; line-height: 1.7; max-width: 800px; margin: 0 auto; white-space: pre-line; }
+
+    /* ===== OUR STORY ===== */
+    #story { background: rgba(0,0,0,0.28); backdrop-filter: blur(4px); }
+    .story-content { max-width: 900px; margin: 0 auto; text-align: left; background: rgba(59,53,47,0.62); border-radius: 14px; padding: 1.6rem; }
+
+    /* ===== PLACE ===== */
+    #place { position: relative; height: 100vh; overflow: hidden; display:flex; align-items: center; justify-content: center; padding:0; }
+    #place video { position: absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; filter: brightness(0.55); }
+    .place-content { position: relative; z-index:1; background: rgba(59,53,47,0.72); padding:2rem; border-radius:14px; max-width:820px; margin:2rem; text-align:center; backdrop-filter: blur(6px); }
+    .place-content h2 { margin-top:0; color:#fff6da; font-size:2.4rem; }
+    .place-content img { width:100%; max-width:560px; border-radius:12px; margin-top:1rem; }
+
+    /* ===== SCHEDULE & TRAVEL ===== */
+    .section-box { max-width:800px; margin:0 auto; background: rgba(59,53,47,0.62); border-radius:14px; padding:2rem; text-align:left; backdrop-filter: blur(4px); }
+
+    /* ===== WEDDING PARTY ===== */
+   
+ 
 /* ===== WEDDING PARTY ===== */
-#party { background: rgba(0,0,0,0.22); backdrop-filter: blur(3px); }
-.party-grid { display: flex; justify-content: space-between; gap: 3rem; max-width: 1200px; margin: 0 auto; align-items: flex-start; }
-.party-side { flex: 1 1 45%; min-width: 260px; }
-.party-side .side-title { text-align: center; margin-bottom: 1rem; color: #fff6da; font-size: 1.2rem; font-weight: 700; }
-.party-side .members-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; justify-items: center; }
-.party-member {
-  background: rgba(59,53,47,0.62);
-  border-radius: 12px;
-  padding: 1rem;
-  text-align: center;
-  margin-bottom: 0;
+#party { 
+  background: rgba(0,0,0,0.22); 
+  backdrop-filter: blur(3px); 
 }
-.party-member img {
-  border-radius: 8px;
-  width:140px;
-  height:140px;
-  object-fit:cover;
-  display:block;
-  margin:0 auto 0.5rem;
-  border:4px solid rgba(230,200,130,0.12);
-}
-.party-member h3 { margin:0.25rem 0; color:#ffe9a9; font-size:1.05rem; }
-.party-member .role { color:#fff8e7; font-size:0.95rem; margin-bottom:0.35rem; }
-.party-member .bio { color:#fdf9f3; font-size:0.95rem; line-height:1.45; margin:0; }
-.party-highlight { display:flex; justify-content:center; gap:3rem; margin-bottom:2rem; }
-.party-highlight .party-member { max-width:220px; }
-.party-highlight .party-member img { width:220px; height:220px; border-radius:8px; border:4px solid #e5c982; object-fit:cover; }
 
-/* ===== GALLERY ===== */
-#gallery .photo-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); max-width:1000px; margin:1.2rem auto 0; }
-.photo-grid img { width:100%; height:160px; object-fit:cover; border-radius:10px; }
+.party-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: flex-start;
+}
 
-/* ===== BUTTONS ===== */
-button, a.button {
-  background-color: #c7a96b;
-  color: #3B352F;
-  border: none;
-  padding: 0.72rem 1.25rem;
-  border-radius: 8px
-  ;
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.25s ease;
+.party-side { 
+  flex: 1 1 45%; 
+  min-width: 260px; 
 }
-button:hover, a.button:hover { background-color: #e5c982; }
 
-/* ===== FOOTER ===== */
-footer {
-  background: rgba(0,0,0,0.8);
-  color: #fff6da;
-  text-align: center;
-  padding: 2rem 1rem;
+.party-side .side-title { 
+  text-align: center; 
+  margin-bottom: 1rem; 
+  color: #fff6da; 
+  font-size: 1.2rem; 
+  font-weight: 700; 
 }
-footer p { margin: 0.4rem 0; font-size: 0.95rem; }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 900px){
-  .nav-links { display:none; }
-  .hamburger { display:block; }
-  .mobile-menu { display:flex; flex-direction:column; }
-  .party-grid { flex-direction: column; }
-  .party-side { width:100%; }
-  .party-side .members-grid { grid-template-columns: repeat(2,1fr); }
+.party-side .members-grid { 
+  display: grid; 
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 1rem; 
+  justify-items: center; 
 }
-@media (max-width: 500px){
-  .party-side .members-grid { grid-template-columns: 1fr; }
-  .countdown { position: static; margin-top: 0.6rem; }
-  .mobile-header h1 { font-size: 1.6rem; }
+
+.party-member { 
+  background: rgba(59,53,47,0.62); 
+  border-radius: 12px; 
+  padding: 1rem; 
+  text-align: center; 
+  margin-bottom: 0; 
 }
-</style>
+
+.party-member img { 
+  border-radius: 8px; 
+  width: 140px; 
+  height: 140px; 
+  object-fit: cover; 
+  display: block; 
+  margin: 0 auto 0.5rem; 
+  border: 4px solid rgba(230,200,130,0.12); 
+}
+
+.party-member h3 { 
+  margin: 0.25rem 0; 
+  color: #ffe9a9; 
+  font-size: 1.05rem; 
+}
+
+.party-member .role { 
+  color: #fff8e7; 
+  font-size: 0.95rem; 
+  margin-bottom: 0.35rem; 
+}
+
+.party-member .bio { 
+  color: #fdf9f3; 
+  font-size: 0.95rem; 
+  line-height: 1.45; 
+  margin: 0; 
+}
+
+.party-highlight { 
+  display: flex; 
+  justify-content: center; 
+  gap: 3rem; 
+  margin-bottom: 2rem; 
+}
+
+.party-highlight .party-member { 
+  max-width: 220px; 
+}
+
+.party-highlight .party-member img { 
+  width: 220px; 
+  height: 220px; 
+  border-radius: 8px; 
+  border: 4px solid #e5c982; 
+  object-fit: cover; 
+}
+
+/* ===== Wedding Party Mobile Fix ===== */
+@media (max-width: 768px) {
+  /* Stack the Best Man & Maid of Honor vertically */
+  .party-highlight {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .party-highlight .party-member {
+    max-width: 80%;
+  }
+
+  /* Stack regular members as well */
+  .party-grid {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .party-side {
+    width: 100%;
+  }
+
+  .party-side .members-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .party-member img {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+    .party-side { flex: 1 1 45%; min-width: 260px; }
+    .party-side .side-title { text-align: center; margin-bottom: 1rem; color: #fff6da; font-size: 1.2rem; font-weight: 700; }
+    .party-side .members-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; justify-items: center; }
+    .party-member { background: rgba(59,53,47,0.62); border-radius: 12px; padding: 1rem; text-align: center; margin-bottom: 0; }
+    .party-member img { border-radius: 8px; width:140px; height:140px; object-fit:cover; display:block; margin:0 auto 0.5rem; border:4px solid rgba(230,200,130,0.12); }
+    .party-member h3 { margin:0.25rem 0; color:#ffe9a9; font-size:1.05rem; }
+    .party-member .role { color:#fff8e7; font-size:0.95rem; margin-bottom:0.35rem; }
+    .party-member .bio { color:#fdf9f3; font-size:0.95rem; line-height:1.45; margin:0; }
+    .party-highlight { display:flex; justify-content:center; gap:3rem; margin-bottom:2rem; }
+    .party-highlight .party-member { max-width:220px; }
+    .party-highlight .party-member img { width:220px; height:220px; border-radius:8px; border:4px solid #e5c982; object-fit:cover; }
+
+
+
+
+
+    /* ===== GALLERY ===== */
+    #gallery .photo-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); max-width:1000px; margin:1.2rem auto 0; }
+    .photo-grid img { width:100%; height:160px; object-fit:cover; border-radius:10px; }
+
+    /* ===== BUTTONS ===== */
+    button, a.button { background-color: #c7a96b; color: #3B352F; border: none; padding: 0.72rem 1.25rem; border-radius: 8px; font-family: "Georgia", serif; font-size: 1rem; letter-spacing: 0.02em; cursor: pointer; transition: all 0.25s ease; text-decoration: none; display: inline-block; }
+    button:hover, a.button:hover { background-color: #e5c982; color: #2c261f; transform: translateY(-3px); box-shadow: 0 6px 18px rgba(199,169,107,0.25); }
+
+    /* ===== FOOTER ===== */
+    footer { background: rgba(0,0,0,0.5); color:#fff8e7; padding:2rem 1rem; text-align:center; font-size:0.95rem; letter-spacing:0.04em; margin-top:2rem; backdrop-filter: blur(4px); }
+    footer a { color:#ffe9a9; text-decoration:none; font-weight:700; }
+    footer a:hover { color:#fff6da; text-decoration:underline; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .party-grid { flex-direction: column; gap: 1.5rem; }
+      .party-side { width: 100%; }
+      .party-highlight { flex-direction: column; gap:1.2rem; }
+      .party-highlight .party-member img { width:160px; height:160px; }
+    }
+    @media (max-width: 700px){
+      header#home { padding:6.5rem 1rem 4.5rem; }
+      .place-content, .section-box { margin:1rem; padding:1.2rem; }
+      .party-member img { width:120px; height:120px; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar">
-  <div class="nav-content">
-    <ul class="nav-links">
-      <li><a href="#story">Our Story</a></li>
-      <li><a href="#place">Place</a></li>
-      <li><a href="#schedule">Schedule</a></li>
-      <li><a href="#party">Wedding Party</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-    </ul>
-    <span class="countdown" id="countdown"></span>
-    <span class="hamburger" onclick="toggleMenu()">☰</span>
-  </div>
-  <ul class="mobile-menu" id="mobileMenu">
-    <li><a href="#story">Our Story</a></li>
-    <li><a href="#place">Place</a></li>
-    <li><a href="#schedule">Schedule</a></li>
-    <li><a href="#party">Wedding Party</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-  </ul>
-</nav>
-
-<!-- SLIDESHOW HEADER -->
-<div class="slideshow-container">
-  <div class="slideshow">
-    <img src="https://via.placeholder.com/1920x1080?text=Slide+1" class="active">
-    <img src="https://via.placeholder.com/1920x1080?text=Slide+2">
-    <img src="https://via.placeholder.com/1920x1080?text=Slide+3">
-  </div>
-</div>
-
-<div class="mobile-header">
-  <h1>Da'Quan & Savannah</h1>
-  <p>We’re getting married!</p>
-</div>
-
-<!-- OUR STORY -->
-<section id="story">
-  <h2>Our Story</h2>
-  <hr class="divider">
-  <div class="story-content">
-    <p>
-      From the moment we met, we knew our journey would be extraordinary. Through laughter, adventures, and shared dreams, we’ve grown together and built a love that inspires us daily. Now, we invite you to celebrate our special day with us!
-    </p>
-  </div>
-</section>
-
-<!-- PLACE -->
-<section id="place">
-  <video autoplay muted loop>
-    <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4">
-  </video>
-  <div class="place-content">
-    <h2>The Venue</h2>
-    <p>Join us at the beautiful Sunset Gardens for an unforgettable celebration. Nestled in nature, our venue promises magical moments.</p>
-    <img src="https://via.placeholder.com/600x400?text=Venue+Photo" alt="Venue">
-    <br>
-    <a class="button" href="https://goo.gl/maps/yourvenue" target="_blank">Get Directions</a>
-  </div>
-</section>
-
-<!-- SCHEDULE -->
-<section id="schedule">
-  <h2>Schedule</h2>
-  <hr class="divider">
-  <div class="section-box">
-    <p><strong>3:00 PM</strong> — Guests arrive & welcome drinks</p>
-    <p><strong>4:00 PM</strong> — Ceremony begins</p>
-    <p><strong>5:30 PM</strong> — Cocktail hour</p>
-    <p><strong>6:30 PM</strong> — Dinner & speeches</p>
-    <p><strong>8:00 PM</strong> — Dancing & celebration</p>
-  </div>
-</section>
-
-<!-- WEDDING PARTY -->
-<section id="party">
-  <h2>Wedding Party</h2>
-  <hr class="divider">
-  <div class="party-highlight">
-    <div class="party-member">
-      <img src="https://via.placeholder.com/220" alt="Bride">
-      <h3>Savannah</h3>
-      <div class="role">Bride</div>
+  <!-- NAV -->
+  <nav>
+    <div style="display:flex; gap:1.4rem; justify-content:center;">
+      <a href="#home">Home</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#travel">Travel</a>
+      <a href="https://www.amazon.com/wedding-registry/link-to-your-registry" target="_blank">Registry</a>
+      <a href="#party">Wedding Party</a>
+      <a href="#gallery">Gallery</a>
+      <a href="video.html">Video</a>
+      <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank">RSVP</a>
     </div>
-    <div class="party-member">
-      <img src="https://via.placeholder.com/220" alt="Groom">
-      <h3>Da'Quan</h3>
-      <div class="role">Groom</div>
+    <div id="nav-countdown"></div>
+  </nav>
+
+  <!-- HOME -->
+  <header id="home">
+    <!-- Slideshow -->
+    <div class="header-slideshow">
+      <img src="slide1.jpg" class="slide active" alt="Slide 1">
+      <img src="slide2.jpg" class="slide" alt="Slide 2">
+      <img src="slide3.jpg" class="slide" alt="Slide 3">
     </div>
-  </div>
-  <div class="party-grid">
-    <div class="party-side">
-      <div class="side-title">Bridesmaids</div>
-      <div class="members-grid">
-        <div class="party-member">
-          <img src="https://via.placeholder.com/140" alt="Bridesmaid">
-          <h3>Jane</h3>
-          <div class="role">Maid of Honor</div>
-          <p class="bio">Savannah's sister and best friend.</p>
+
+    <div class="header-content">
+      <h1>Da'Quan & Savannah</h1>
+      <h1 style="margin:0.3rem 0; font-size:3rem; letter-spacing:2px; color:#fff6da;">Conway</h1>
+      <p style="margin:0.3rem 0; font-size:1.15rem; color:#fdf9f3; font-style:italic;">August 4th, 2026</p>
+      <div id="countdown"></div>
+    </div>
+  </header>
+
+  <!-- OUR STORY -->
+  <section id="story">
+    <h2>Our Story</h2>
+    <hr class="divider"/>
+    <div class="story-content">
+It all started with… a roommate application. Da’Quan was just having another normal day and Savannah was just trying to sign her very first apartment lease. But God had other plans. Savannah was in a rush to sign her new lease because all the good apartments were getting taken. Desperate not to lose out on another apartment she decided to meet up with her roommate at her current location. However, her roommate mentioned she had just finished working out with a friend.
+
+That friend, happened to be one of Da’Quan’s best friends and current roommate. Fate brought the two together through a series of coincidental events. All it took for him was one gaze to know he had to figure out who this never before seen woman was. With little hesitation he asked for Savannah’s Instagram, and the story began.
+
+What started as a single DM turned into hours of conversation, a first date filled with laughter, deep talks, and Da’Quan sweetly calling her “beloved”. Savannah, naturally shy, was stunned by how easy it felt. Like she’d known him forever. From there, things escalated quickly in the best way. Love letters and random flower deliveries were a regular. And yes, Da’Quan somehow found a dress that Savannah had only casually mentioned without any descriptions, and surprised her with it. While also rewriting her resume to help her land a new job, and waking up at 3 am to make sure her car got towed. Meanwhile, Savannah showed her love in other meaningful ways like making homemade lunches for him to take to work, or preparing a full recovery program for him to rehab his on-going knee injuries, and even facetiming him to make sure he did his workouts for the day, sometimes even doing it with him. Her kindness, warmth, and just being herself spoke straight to Da’Quan’s heart. He knew she was The One when multiple people randomly asked him why he looked so happy lately. The answer was evident to him. That was all he needed to know.
+
+Eventually, the moment came. Not the moment (yet), but a pretty important one:
+At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will you be my girlfriend?” written out in chocolate syrup on a dessert plate (Savannah having made it clear, a few times, that time was ticking). Roses included. That night marked the start of something even bigger than either of them imagined. A love story full of laughter, long talks that never feel long enough, a strong bond and most importantly, building their relationship with Jesus together. And now, they can’t wait to continue their never ending chapter together.
+    </div>
+  </section>
+
+  <!-- PLACE (background video restored) -->
+  <section id="place">
+    <video autoplay muted loop playsinline>
+      <source src="estes-park.mp4" type="video/mp4"/>
+      Your browser does not support the video tag.
+    </video>
+    <div class="place-content">
+      <h2>The Place</h2>
+      <p>
+        Nestled in the heart of Estes Park, surrounded by Colorado’s breathtaking mountain peaks,
+        our ceremony will take place where love meets nature — calm, beautiful, and timeless.
+      </p>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- SCHEDULE -->
+  <section id="schedule">
+    <h2>Schedule</h2>
+    <hr class="divider"/>
+    <div class="section-box">
+      <p>Details about ceremony, reception, and other wedding day events will go here.</p>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- TRAVEL -->
+  <section id="travel">
+    <h2>Travel</h2>
+    <hr class="divider"/>
+    <div class="section-box">
+      <p>Information about accommodations, transportation, and directions to the venue will go here.</p>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- WEDDING PARTY -->
+  <section id="party">
+    <h2>Wedding Party</h2>
+    <hr class="divider"/>
+    <div class="party-highlight">
+      <div class="party-member">
+        <img src="bestman.jpg" alt="Best Man" />
+        <h3>Quillon</h3>
+        <div class="role">Best Man</div>
+        <p class="bio">His Daddy</p>
+      </div>
+      <div class="party-member">
+        <img src="maidofhonor.jpg" alt="Maid of Honor" />
+        <h3>Alexis</h3>
+        <div class="role">Maid of Honor</div>
+        <p class="bio">Savannah’s closest sister-friend — planner, encourager, and the heart of the group.</p>
+      </div>
+    </div>
+
+    <div class="party-grid">
+      <div class="party-side">
+        <div class="side-title">Groomsmen</div>
+        <div class="members-grid">
+          <div class="party-member">
+            <img src="groomsman1.jpg" alt="Groomsman 1"/>
+            <h3>James</h3>
+            <p class="bio">Da'Quan’s college buddy, always making us laugh.</p>
+          </div>
+          <div class="party-member">
+            <img src="groomsman2.jpg" alt="Groomsman 2"/>
+            <h3>David</h3>
+            <p class="bio">Team player and loyal friend.</p>
+          </div>
+          <div class="party-member">
+            <img src="groomsman3.jpg" alt="Groomsman 3"/>
+            <h3>Robert</h3>
+            <p class="bio">Always has Da'Quan’s back.</p>
+          </div>
+          <div class="party-member">
+            <img src="groomsman4.jpg" alt="Groomsman 4"/>
+            <h3>Anthony</h3>
+            <p class="bio">Full of energy and encouragement.</p>
+          </div>
+          <div class="party-member">
+            <img src="groomsman5.jpg" alt="Groomsman 5"/>
+            <h3>William</h3>
+            <p class="bio">Our storyteller, always fun to be around.</p>
+          </div>
+          <div class="party-member">
+            <img src="groomsman6.jpg" alt="Groomsman 6"/>
+            <h3>Joseph</h3>
+            <p class="bio">Reliable and steady — a true brother.</p>
+          </div>
         </div>
-        <div class="party-member">
-          <img src="https://via.placeholder.com/140" alt="Bridesmaid">
-          <h3>Emily</h3>
-          <div class="role">Bridesmaid</div>
-          <p class="bio">Friend since college days.</p>
+      </div>
+
+      <div class="party-side">
+        <div class="side-title">Bridesmaids</div>
+        <div class="members-grid" style="justify-items:end;">
+          <div class="party-member">
+            <img src="bridesmaid1.jpg" alt="Bridesmaid 1"/>
+            <h3>Sarah</h3>
+            <p class="bio">Savannah’s friend and constant cheerleader.</p>
+          </div>
+          <div class="party-member">
+            <img src="bridesmaid2.jpg" alt="Bridesmaid 2"/>
+            <h3>Jessica</h3>
+            <p class="bio">Creative spirit with a loving heart.</p>
+          </div>
+          <div class="party-member">
+            <img src="bridesmaid3.jpg" alt="Bridesmaid 3"/>
+            <h3>Rachel</h3>
+            <p class="bio">Always spreads joy and kindness.</p>
+          </div>
+          <div class="party-member">
+            <img src="bridesmaid4.jpg" alt="Bridesmaid 4"/>
+            <h3>Hannah</h3>
+            <p class="bio">Supportive and fun-loving.</p>
+          </div>
+          <div class="party-member">
+            <img src="bridesmaid5.jpg" alt="Bridesmaid 5"/>
+            <h3>Olivia</h3>
+            <p class="bio">Always ready to lend a helping hand.</p>
+          </div>
+          <div class="party-member">
+            <img src="bridesmaid6.jpg" alt="Bridesmaid 6"/>
+            <h3>Emma</h3>
+            <p class="bio">Brings laughter and warmth everywhere she goes.</p>
+          </div>
         </div>
       </div>
     </div>
-    <div class="party-side">
-      <div class="side-title">Groomsmen</div>
-      <div class="members-grid">
-        <div class="party-member">
-          <img src="https://via.placeholder.com/140" alt="Groomsman">
-          <h3>Chris</h3>
-          <div class="role">Best Man</div>
-          <p class="bio">Da’Quan’s childhood friend.</p>
-        </div>
-        <div class="party-member">
-          <img src="https://via.placeholder.com/140" alt="Groomsman">
-          <h3>Alex</h3>
-          <div class="role">Groomsman</div>
-          <p class="bio">Colleague and brother from another mother.</p>
-        </div>
-      </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <hr class="divider"/>
+    <div class="photo-grid">
+      <img src="photo1.jpg" alt="Photo 1"/>
+      <img src="photo2.jpg" alt="Photo 2"/>
+      <img src="photo3.jpg" alt="Photo 3"/>
+      <img src="photo4.jpg" alt="Photo 4"/>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- GALLERY -->
-<section id="gallery">
-  <h2>Gallery</h2>
-  <hr class="divider">
-  <div class="photo-grid">
-    <img src="https://via.placeholder.com/300x300?text=Photo1" alt="">
-    <img src="https://via.placeholder.com/300x300?text=Photo2" alt="">
-    <img src="https://via.placeholder.com/300x300?text=Photo3" alt="">
-    <img src="https://via.placeholder.com/300x300?text=Photo4" alt="">
-    <img src="https://via.placeholder.com/300x300?text=Photo5" alt="">
-    <img src="https://via.placeholder.com/300x300?text=Photo6" alt="">
-  </div>
-</section>
+  <!-- FOOTER -->
+  <footer>
+    <p>With love — Da'Quan & Savannah • August 26, 2026</p>
+  </footer>
 
-<!-- FOOTER -->
-<footer>
-  <p>© 2025 Da'Quan & Savannah</p>
-  <p>With love — Da'Quan & Savannah • August 26, 2026</p>
-</footer>
+  <script>
+  // Header slideshow
+  const slides = document.querySelectorAll('.header-slideshow .slide');
+  let currentSlide = 0;
+  function nextSlide() {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+  }
+  setInterval(nextSlide, 5000);
 
-<!-- JS -->
-<script>
-// SLIDESHOW
-let slideIndex = 0;
-const slides = document.querySelectorAll('.slideshow img');
-function showSlides(){
-  slides.forEach(s => s.classList.remove('active'));
-  slideIndex++;
-  if(slideIndex > slides.length) slideIndex = 1;
-  slides[slideIndex-1].classList.add('active');
-  setTimeout(showSlides,4000);
-}
-showSlides();
+  // Countdown for header
+  const weddingDate = new Date("August 4, 2026 00:00:00").getTime();
+  const countdownEl = document.getElementById("countdown");
+  const navCountdownEl = document.getElementById("nav-countdown");
 
-// COUNTDOWN
-const countDownDate = new Date("December 25, 2025 16:00:00").getTime();
-const countdownEl = document.getElementById("countdown");
-setInterval(function(){
-  const now = new Date().getTime();
-  const distance = countDownDate - now;
-  const days = Math.floor(distance/(1000*60*60*24));
-  const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-  const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
-  const seconds = Math.floor((distance%(1000*60))/1000);
-  countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-},1000);
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+    if(distance < 0){
+      countdownEl.innerHTML = "Wedding Day!";
+      navCountdownEl.innerHTML = "Wedding Day!";
+      clearInterval(countdownInterval);
+      return;
+    }
+    const days = Math.floor(distance / (1000*60*60*24));
+    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+    const seconds = Math.floor((distance % (1000*60)) / 1000);
+    const text = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    countdownEl.innerHTML = text;
+    navCountdownEl.innerHTML = text;
+  }
 
-// MOBILE MENU
-function toggleMenu(){
-  const menu = document.getElementById("mobileMenu");
-  menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-}
-</script>
+  const countdownInterval = setInterval(updateCountdown, 1000);
+  updateCountdown();
 
+  // Hide nav countdown on mobile
+  function checkNavCountdownVisibility() {
+    if(window.innerWidth < 900) {
+      navCountdownEl.style.display = "none";
+    } else {
+      navCountdownEl.style.display = "inline-block";
+    }
+  }
+  window.addEventListener("resize", checkNavCountdownVisibility);
+  checkNavCountdownVisibility();
+  </script>
 </body>
 </html>
+
+
+
+
+
+
+
