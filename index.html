@@ -16,185 +16,106 @@
       line-height: 1.6;
     }
 
-    /* ===== NAV ===== */
-    nav {
+    /* ===== NAVBAR ===== */
+    .navbar {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
+      top: 0; left: 0; width: 100%;
+      background: rgba(0,0,0,0.7);
       z-index: 1000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1.4rem;
-      padding: 1rem 1.5rem;
-      background: rgba(0,0,0,0.55);
-      backdrop-filter: blur(6px);
-      color: #fff8e7;
     }
-    nav a {
+    .nav-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 0.8rem 1.2rem;
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.8rem;
+    }
+    .nav-links li a {
       color: #fff6da;
       text-decoration: none;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      transition: color 0.25s ease;
-      position: relative;
-      padding: 0.25rem 0;
+      font-weight: 500;
     }
-    nav a::after{
-      content: "";
+    .countdown {
       position: absolute;
-      left: 0;
-      right: 0;
-      height: 2px;
-      bottom: -6px;
-      width: 0;
-      margin: 0 auto;
-      background: linear-gradient(90deg, transparent, #e5c982, transparent);
-      transition: width 0.25s ease;
-    }
-    nav a:hover { color: #ffe9a9; }
-    nav a:hover::after, nav a.active::after { width: 70%; }
-
-    #nav-countdown {
-      position: absolute;
-      right: 4rem; /* adjust so visible */
-      font-weight: 700;
+      right: 60px;
       color: #ffe9a9;
+      font-weight: 600;
     }
-
-    header, section { padding-top: 4.5rem; }
-
-    /* ===== HEADER / HOME ===== */
-    header#home {
-      position: relative;
-      height: 100vh; /* full viewport height */
-      padding: 0;
-      text-align: center;
+    .hamburger {
+      display: none;
+      position: absolute;
+      right: 20px;
+      font-size: 1.8rem;
       color: #fff6da;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: center; /* vertically center header content */
+      cursor: pointer;
     }
 
-    <!-- ===== SLIDESHOW ===== -->
-<section class="slideshow-container">
-  <div class="slideshow">
-    <img src="images/photo1.jpg" class="slide active" alt="Photo 1">
-    <img src="images/photo2.jpg" class="slide" alt="Photo 2">
-    <img src="images/photo3.jpg" class="slide" alt="Photo 3">
+    /* ===== MOBILE MENU ===== */
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: rgba(0,0,0,0.85);
+      list-style: none;
+      text-align: center;
+      padding: 0.5rem 0;
+    }
+    .mobile-menu li a {
+      display: block;
+      color: #fff6da;
+      padding: 0.7rem 0;
+      text-decoration: none;
+    }
+    .mobile-menu li a:hover {
+      background: rgba(255,255,255,0.1);
+    }
 
-    <!-- Arrows -->
-    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
-    <a class="next" onclick="changeSlide(1)">&#10095;</a>
-  </div>
-
-  <!-- Dots -->
-  <div class="dots-container">
-    <span class="dot active" onclick="currentSlide(0)"></span>
-    <span class="dot" onclick="currentSlide(1)"></span>
-    <span class="dot" onclick="currentSlide(2)"></span>
-  </div>
-</section>
-
-/* Slideshow container */
-.slideshow-container {
-  position: relative;
-  width: 100%;
-  height: 90vh;
-  overflow: hidden;
-}
-
-/* Slides */
-.slideshow img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  opacity: 0;
-  transition: opacity 1.2s ease-in-out;
-}
-
-.slideshow img.active {
-  opacity: 1;
-}
-
-/* Arrows */
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  margin-top: -22px;
-  padding: 12px;
-  color: #ffe9a9;
-  font-weight: bold;
-  font-size: 28px;
-  transition: 0.3s;
-  border-radius: 50%;
-  background: rgba(0,0,0,0.4);
-  user-select: none;
-  z-index: 10;
-}
-
-.prev:hover, .next:hover {
-  background: rgba(0,0,0,0.7);
-}
-
-.prev { left: 10px; }
-.next { right: 10px; }
-
-/* Dots */
-.dots-container {
-  text-align: center;
-  position: absolute;
-  bottom: 15px;
-  width: 100%;
-  z-index: 10;
-}
-
-.dot {
-  cursor: pointer;
-  height: 12px;
-  width: 12px;
-  margin: 0 5px;
-  background-color: rgba(255, 233, 169, 0.5);
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.3s;
-}
-
-.dot.active {
-  background-color: #ffe9a9;
-}
-
-/* Mobile adjustments */
-@media (max-width: 768px) {
-  .prev, .next {
-    font-size: 20px;
-    padding: 8px;
-  }
-
-  .dot {
-    height: 10px;
-    width: 10px;
-  }
-}
-
-    .header-content {
+    /* ===== SLIDESHOW ===== */
+    .slideshow-container {
       position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.5);
-      padding: 0 1rem;
+      width: 100%;
+      height: 90vh;
+      overflow: hidden;
+    }
+    .slideshow img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+    }
+    .slideshow img.active {
+      opacity: 1;
     }
 
-    header#home h1 { font-size: 3rem; margin: 0 0 0.6rem; letter-spacing: 2px; }
-    header#home p { font-size: 1.15rem; margin: 0; color: #fdf9f3; font-style: italic; }
-    #countdown { margin-top:1rem; font-size:1.25rem; color:#ffe9a9; }
+    /* ===== MOBILE HEADER SECTION ===== */
+    .mobile-header {
+      display: none;
+      text-align: center;
+      background: rgba(0,0,0,0.5);
+      padding: 2rem 0;
+      color: #fff6da;
+      font-family: "Georgia", serif;
+    }
+    .mobile-header h1 {
+      margin: 0.3rem 0;
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
+
+    /* ===== MOBILE RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .mobile-header { display: block; }
+      #countdown { display: none; }
+    }
+    .show-menu { display: flex; }
 
     /* ===== GENERIC SECTION ===== */
     section { padding: 4.5rem 1.5rem; text-align: center; }
@@ -223,134 +144,8 @@
     .section-box { max-width:800px; margin:0 auto; background: rgba(59,53,47,0.62); border-radius:14px; padding:2rem; text-align:left; backdrop-filter: blur(4px); }
 
     /* ===== WEDDING PARTY ===== */
-   
- 
-/* ===== WEDDING PARTY ===== */
-#party { 
-  background: rgba(0,0,0,0.22); 
-  backdrop-filter: blur(3px); 
-}
-
-.party-grid {
-  display: flex;
-  justify-content: space-between;
-  gap: 3rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  align-items: flex-start;
-}
-
-.party-side { 
-  flex: 1 1 45%; 
-  min-width: 260px; 
-}
-
-.party-side .side-title { 
-  text-align: center; 
-  margin-bottom: 1rem; 
-  color: #fff6da; 
-  font-size: 1.2rem; 
-  font-weight: 700; 
-}
-
-.party-side .members-grid { 
-  display: grid; 
-  grid-template-columns: repeat(2, 1fr); 
-  gap: 1rem; 
-  justify-items: center; 
-}
-
-.party-member { 
-  background: rgba(59,53,47,0.62); 
-  border-radius: 12px; 
-  padding: 1rem; 
-  text-align: center; 
-  margin-bottom: 0; 
-}
-
-.party-member img { 
-  border-radius: 8px; 
-  width: 140px; 
-  height: 140px; 
-  object-fit: cover; 
-  display: block; 
-  margin: 0 auto 0.5rem; 
-  border: 4px solid rgba(230,200,130,0.12); 
-}
-
-.party-member h3 { 
-  margin: 0.25rem 0; 
-  color: #ffe9a9; 
-  font-size: 1.05rem; 
-}
-
-.party-member .role { 
-  color: #fff8e7; 
-  font-size: 0.95rem; 
-  margin-bottom: 0.35rem; 
-}
-
-.party-member .bio { 
-  color: #fdf9f3; 
-  font-size: 0.95rem; 
-  line-height: 1.45; 
-  margin: 0; 
-}
-
-.party-highlight { 
-  display: flex; 
-  justify-content: center; 
-  gap: 3rem; 
-  margin-bottom: 2rem; 
-}
-
-.party-highlight .party-member { 
-  max-width: 220px; 
-}
-
-.party-highlight .party-member img { 
-  width: 220px; 
-  height: 220px; 
-  border-radius: 8px; 
-  border: 4px solid #e5c982; 
-  object-fit: cover; 
-}
-
-/* ===== Wedding Party Mobile Fix ===== */
-@media (max-width: 768px) {
-  /* Stack the Best Man & Maid of Honor vertically */
-  .party-highlight {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .party-highlight .party-member {
-    max-width: 80%;
-  }
-
-  /* Stack regular members as well */
-  .party-grid {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 2rem;
-  }
-
-  .party-side {
-    width: 100%;
-  }
-
-  .party-side .members-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .party-member img {
-    width: 160px;
-    height: 160px;
-  }
-}
-
+    #party { background: rgba(0,0,0,0.22); backdrop-filter: blur(3px); }
+    .party-grid { display: flex; justify-content: space-between; gap: 3rem; max-width: 1200px; margin: 0 auto; align-items: flex-start; }
     .party-side { flex: 1 1 45%; min-width: 260px; }
     .party-side .side-title { text-align: center; margin-bottom: 1rem; color: #fff6da; font-size: 1.2rem; font-weight: 700; }
     .party-side .members-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; justify-items: center; }
@@ -362,10 +157,6 @@
     .party-highlight { display:flex; justify-content:center; gap:3rem; margin-bottom:2rem; }
     .party-highlight .party-member { max-width:220px; }
     .party-highlight .party-member img { width:220px; height:220px; border-radius:8px; border:4px solid #e5c982; object-fit:cover; }
-
-
-
-
 
     /* ===== GALLERY ===== */
     #gallery .photo-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); max-width:1000px; margin:1.2rem auto 0; }
@@ -396,94 +187,104 @@
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <div style="display:flex; gap:1.4rem; justify-content:center;">
-      <a href="#home">Home</a>
-      <a href="#schedule">Schedule</a>
-      <a href="#travel">Travel</a>
-      <a href="https://www.amazon.com/wedding-registry/link-to-your-registry" target="_blank">Registry</a>
-      <a href="#party">Wedding Party</a>
-      <a href="#gallery">Gallery</a>
-      <a href="video.html">Video</a>
-      <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank">RSVP</a>
-    </div>
-    <div id="nav-countdown"></div>
-  </nav>
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+  <div class="nav-content">
+    <div class="logo">Da'Quan & Savannah</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#schedule">Schedule</a></li>
+      <li><a href="#travel">Travel</a></li>
+      <li><a href="https://www.amazon.com/wedding">Registry</a></li>
+      <li><a href="#party">Wedding Party</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="video.html">Video</a></li>
+      <li><a href="https://www.zola.com/wedding/savannahanddaquan/rsvp">RSVP</a></li>
+    </ul>
+    <div id="countdown" class="countdown"></div>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+  </div>
+  <ul class="mobile-menu">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#schedule">Schedule</a></li>
+    <li><a href="#travel">Travel</a></li>
+    <li><a href="https://www.amazon.com/wedding">Registry</a></li>
+    <li><a href="#party">Wedding Party</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="video.html">Video</a></li>
+    <li><a href="https://www.zola.com/wedding/savannahanddaquan/rsvp">RSVP</a></li>
+  </ul>
+</nav>
 
-  <!-- HOME -->
-  <header id="home">
-    <!-- Slideshow -->
-    <div class="header-slideshow">
-      <img src="slide1.jpg" class="slide active" alt="Slide 1">
-      <img src="slide2.jpg" class="slide" alt="Slide 2">
-      <img src="slide3.jpg" class="slide" alt="Slide 3">
-    </div>
+<!-- ===== SLIDESHOW ===== -->
+<section class="slideshow-container">
+  <div class="slideshow">
+    <img src="images/photo1.jpg" class="slide" alt="">
+    <img src="images/photo2.jpg" class="slide" alt="">
+    <img src="images/photo3.jpg" class="slide" alt="">
+  </div>
+</section>
 
-    <div class="header-content">
-      <h1>Da'Quan & Savannah</h1>
-      <h1 style="margin:0.3rem 0; font-size:3rem; letter-spacing:2px; color:#fff6da;">Conway</h1>
-      <p style="margin:0.3rem 0; font-size:1.15rem; color:#fdf9f3; font-style:italic;">August 4th, 2026</p>
-      <div id="countdown"></div>
-    </div>
-  </header>
+<!-- ===== MOBILE HEADER ===== -->
+<section class="mobile-header">
+  <h1>Da’Quan</h1>
+  <h1>Conway</h1>
+  <h1>&</h1>
+  <h1>Savannah</h1>
+  <h1>Conway</h1>
+</section>
 
-  <!-- OUR STORY -->
-  <section id="story">
-    <h2>Our Story</h2>
-    <hr class="divider"/>
-    <div class="story-content">
-It all started with… a roommate application. Da’Quan was just having another normal day and Savannah was just trying to sign her very first apartment lease. But God had other plans. Savannah was in a rush to sign her new lease because all the good apartments were getting taken. Desperate not to lose out on another apartment she decided to meet up with her roommate at her current location. However, her roommate mentioned she had just finished working out with a friend.
-
-That friend, happened to be one of Da’Quan’s best friends and current roommate. Fate brought the two together through a series of coincidental events. All it took for him was one gaze to know he had to figure out who this never before seen woman was. With little hesitation he asked for Savannah’s Instagram, and the story began.
-
-What started as a single DM turned into hours of conversation, a first date filled with laughter, deep talks, and Da’Quan sweetly calling her “beloved”. Savannah, naturally shy, was stunned by how easy it felt. Like she’d known him forever. From there, things escalated quickly in the best way. Love letters and random flower deliveries were a regular. And yes, Da’Quan somehow found a dress that Savannah had only casually mentioned without any descriptions, and surprised her with it. While also rewriting her resume to help her land a new job, and waking up at 3 am to make sure her car got towed. Meanwhile, Savannah showed her love in other meaningful ways like making homemade lunches for him to take to work, or preparing a full recovery program for him to rehab his on-going knee injuries, and even facetiming him to make sure he did his workouts for the day, sometimes even doing it with him. Her kindness, warmth, and just being herself spoke straight to Da’Quan’s heart. He knew she was The One when multiple people randomly asked him why he looked so happy lately. The answer was evident to him. That was all he needed to know.
-
-Eventually, the moment came. Not the moment (yet), but a pretty important one:
-At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will you be my girlfriend?” written out in chocolate syrup on a dessert plate (Savannah having made it clear, a few times, that time was ticking). Roses included. That night marked the start of something even bigger than either of them imagined. A love story full of laughter, long talks that never feel long enough, a strong bond and most importantly, building their relationship with Jesus together. And now, they can’t wait to continue their never ending chapter together.
-    </div>
-  </section>
-
-  <!-- PLACE (background video restored) -->
-  <section id="place">
-    <video autoplay muted loop playsinline>
-      <source src="estes-park.mp4" type="video/mp4"/>
-      Your browser does not support the video tag.
-    </video>
-    <div class="place-content">
-      <h2>The Place</h2>
-      <p>
-        Nestled in the heart of Estes Park, surrounded by Colorado’s breathtaking mountain peaks,
-        our ceremony will take place where love meets nature — calm, beautiful, and timeless.
-      </p>
-    </div>
-  </section>
-
+<!-- ===== OUR STORY ===== -->
+<section id="story">
+  <h2>Our Story</h2>
   <hr class="divider"/>
+  <div class="story-content">
+    <!-- Full story text here -->
+  </div>
+</section>
 
-  <!-- SCHEDULE -->
-  <section id="schedule">
-    <h2>Schedule</h2>
-    <hr class="divider"/>
-    <div class="section-box">
-      <p>Details about ceremony, reception, and other wedding day events will go here.</p>
-    </div>
-  </section>
+<!-- ===== PLACE ===== -->
+<section id="place">
+  <video autoplay muted loop playsinline>
+    <source src="estes-park.mp4" type="video/mp4"/>
+    Your browser does not support the video tag.
+  </video>
+  <div class="place-content">
+    <h2>The Place</h2>
+    <p>
+      Nestled in the heart of Estes Park, surrounded by Colorado’s breathtaking mountain peaks,
+      our ceremony will take place where love meets nature — calm, beautiful, and timeless.
+    </p>
+  </div>
+</section>
 
+<!-- ===== SCHEDULE ===== -->
+<section id="schedule">
+  <h2>Schedule</h2>
   <hr class="divider"/>
+  <div class="section-box">
+    <p>
+      Ceremony: 4:00 PM — Venue entrance opens at 3:30 PM.<br>
+      Reception: 6:00 PM — Dinner, dancing, and celebration.<br>
+      After-Party: 9:00 PM — Drinks and late-night fun for all guests.
+    </p>
+  </div>
+</section>
 
-  <!-- TRAVEL -->
-  <section id="travel">
-    <h2>Travel</h2>
-    <hr class="divider"/>
-    <div class="section-box">
-      <p>Information about accommodations, transportation, and directions to the venue will go here.</p>
-    </div>
-  </section>
-
+<!-- ===== TRAVEL ===== -->
+<section id="travel">
+  <h2>Travel</h2>
   <hr class="divider"/>
+  <div class="section-box">
+    <p>
+      Accommodations: Estes Park Lodge, Rocky Mountain Inn, and nearby Airbnb options.<br>
+      Transportation: Shuttle service available from the main hotels.<br>
+      Directions: GPS coordinates and map link will be provided via RSVP confirmation email.
+    </p>
+  </div>
+</section>
 
-  <!-- WEDDING PARTY -->
+ <!-- WEDDING PARTY -->
   <section id="party">
     <h2>Wedding Party</h2>
     <hr class="divider"/>
@@ -577,104 +378,51 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
     </div>
   </section>
 
+
+<!-- ===== GALLERY ===== -->
+<section id="gallery">
+  <h2>Gallery</h2>
   <hr class="divider"/>
+  <div class="photo-grid">
+    <img src="photo1.jpg" alt="Photo 1"/>
+    <img src="photo2.jpg" alt="Photo 2"/>
+    <img src="photo3.jpg" alt="Photo 3"/>
+    <img src="photo4.jpg" alt="Photo 4"/>
+    <img src="photo5.jpg" alt="Photo 5"/>
+  </div>
+</section>
 
-  <!-- GALLERY -->
-  <section id="gallery">
-    <h2>Gallery</h2>
-    <hr class="divider"/>
-    <div class="photo-grid">
-      <img src="photo1.jpg" alt="Photo 1"/>
-      <img src="photo2.jpg" alt="Photo 2"/>
-      <img src="photo3.jpg" alt="Photo 3"/>
-      <img src="photo4.jpg" alt="Photo 4"/>
-    </div>
-  </section>
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p>With love — Da'Quan & Savannah • August 26, 2026</p>
+</footer>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>With love — Da'Quan & Savannah • August 26, 2026</p>
-  </footer>
+<script>
+function toggleMenu() {
+  document.querySelector('.mobile-menu').classList.toggle('show-menu');
+}
 
-  <script>
-document.addEventListener('DOMContentLoaded', () => {
-  let slideIndex = 0;
-  const slides = document.querySelectorAll('.slide');
-  const dots = document.querySelectorAll('.dot');
-  let timer;
+// Slideshow
+let slideIndex = 0;
+const slides = document.querySelectorAll('.slide');
+function showSlides() {
+  slides.forEach((s, i) => s.classList.toggle('active', i === slideIndex));
+  slideIndex = (slideIndex + 1) % slides.length;
+  setTimeout(showSlides, 4000);
+}
+showSlides();
 
-  function showSlides(index) {
-    slides.forEach((s, i) => s.classList.toggle('active', i === index));
-    dots.forEach((d, i) => d.classList.toggle('active', i === index));
-  }
+// Countdown
+function updateCountdown() {
+  const target = new Date("August 4, 2026 00:00:00").getTime();
+  const now = new Date().getTime();
+  const diff = target - now;
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  document.getElementById("countdown").innerText = days + " days";
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+</script>
 
-  function nextSlide(n) {
-    slideIndex = (slideIndex + n + slides.length) % slides.length;
-    showSlides(slideIndex);
-    resetTimer();
-  }
-
-  function goToSlide(n) {
-    slideIndex = n;
-    showSlides(slideIndex);
-    resetTimer();
-  }
-
-  function autoSlide() {
-    slideIndex = (slideIndex + 1) % slides.length;
-    showSlides(slideIndex);
-    timer = setTimeout(autoSlide, 4000);
-  }
-
-  function resetTimer() {
-    clearTimeout(timer);
-    timer = setTimeout(autoSlide, 4000);
-  }
-
-  // Expose functions for arrows and dots
-  window.changeSlide = nextSlide;
-  window.currentSlide = goToSlide;
-
-  showSlides(slideIndex);
-  timer = setTimeout(autoSlide, 4000);
-});
-  // Countdown for header
-  const weddingDate = new Date("August 4, 2026 00:00:00").getTime();
-  const countdownEl = document.getElementById("countdown");
-  const navCountdownEl = document.getElementById("nav-countdown");
-
-  function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = weddingDate - now;
-    if(distance < 0){
-      countdownEl.innerHTML = "Wedding Day!";
-      navCountdownEl.innerHTML = "Wedding Day!";
-      clearInterval(countdownInterval);
-      return;
-    }
-    const days = Math.floor(distance / (1000*60*60*24));
-    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-    const seconds = Math.floor((distance % (1000*60)) / 1000);
-    const text = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    countdownEl.innerHTML = text;
-    navCountdownEl.innerHTML = text;
-  }
-
-  const countdownInterval = setInterval(updateCountdown, 1000);
-  updateCountdown();
-
-  // Hide nav countdown on mobile
-  function checkNavCountdownVisibility() {
-    if(window.innerWidth < 900) {
-      navCountdownEl.style.display = "none";
-    } else {
-      navCountdownEl.style.display = "inline-block";
-    }
-  }
-  window.addEventListener("resize", checkNavCountdownVisibility);
-  checkNavCountdownVisibility();
-  </script>
 </body>
 </html>
-
