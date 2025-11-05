@@ -172,24 +172,6 @@
     .party-highlight .party-member { max-width:220px; }
     .party-highlight .party-member img { width:220px; height:220px; border-radius:8px; border:4px solid #e5c982; object-fit:cover; }
 
-    /* ===== Force Wedding Party Center on Mobile ===== */
-@media (max-width: 768px) {
-  .wedding-party .party-grid,
-  .party-grid {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    text-align: center !important;
-  }
-
-  .wedding-party .party-member,
-  .party-member {
-    width: 85% !important;
-    margin: 10px 0 !important;
-  }
-}
-
 
 
 
@@ -470,9 +452,29 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
   }
   window.addEventListener("resize", checkNavCountdownVisibility);
   checkNavCountdownVisibility();
+  
+   /* ===== Force Wedding Party Center on Mobile ===== */
+@media (max-width: 768px) {
+  .wedding-party .party-grid,
+  .party-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .wedding-party .party-member,
+  .party-member {
+    width: 85% !important;
+    margin: 10px 0 !important;
+  }
+}
+ 
   </script>
 </body>
 </html>
+
 
 
 
