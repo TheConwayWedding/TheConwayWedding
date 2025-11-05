@@ -65,7 +65,7 @@
 
     header, section { padding-top: 4.5rem; }
 
-   /* ===== HEADER / HOME ===== */
+  /* ===== HEADER / HOME ===== */
 header#home {
   position: relative;
   height: 100vh; /* full viewport height */
@@ -75,7 +75,8 @@ header#home {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* vertically center header content */
+  justify-content: center; /* vertical centering */
+  align-items: center; /* horizontal centering */
 }
 
 .header-slideshow {
@@ -108,29 +109,33 @@ header#home {
   z-index: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* horizontal centering */
   text-shadow: 0 2px 6px rgba(0,0,0,0.5);
   padding: 0 1rem;
+  width: 100%;
 }
 
 /* ===== Mobile-only header text & dropdown ===== */
 @media (max-width: 768px) {
-  /* hide desktop overlay */
   .header-content { display: none; }
 
-  /* stacked mobile header text below slideshow */
   #mobile-header-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     padding: 1.5rem;
     background: rgba(59,53,47,0.6);
     backdrop-filter: blur(4px);
     border-radius: 12px;
-    margin: 1rem;
+    margin: 1rem auto;
     color: #fff6da;
+    max-width: 90%; /* ensure centered container */
   }
 
   #mobile-header-text h1 {
-    margin: 0.3rem 0;
+    margin: 0.25rem 0; /* consistent spacing */
     font-size: 2rem;
     line-height: 1.2;
   }
@@ -141,45 +146,7 @@ header#home {
     color: #ffe9a9;
     font-weight: 700;
   }
-
-  /* hide desktop nav and countdown */
-  nav { display: none; }
-  #nav-countdown { display: none; }
-
-  /* mobile dropdown nav */
-  #mobile-nav {
-    position: relative;
-    text-align: center;
-    margin: 0.5rem;
-  }
-
-  #mobile-nav-toggle {
-    background-color: #c7a96b;
-    color: #3B352F;
-    border: none;
-    padding: 0.6rem 1rem;
-    border-radius: 6px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    width: 100%;
-  }
-
-  #mobile-nav-links {
-    display: none;
-    flex-direction: column;
-    gap: 0.8rem;
-    margin-top: 0.5rem;
-  }
-
-  #mobile-nav-links a {
-    background: rgba(59,53,47,0.7);
-    padding: 0.6rem 1rem;
-    border-radius: 6px;
-    color: #fff6da;
-    text-decoration: none;
-    font-weight: 600;
-    display: block;
-  }
+}
 
   #mobile-nav-links a:hover { background: rgba(101,90,70,0.85); }
 }
@@ -696,6 +663,7 @@ mobileNavToggle.addEventListener("click", () => {
   </script>
 </body>
 </html>
+
 
 
 
