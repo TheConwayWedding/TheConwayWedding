@@ -146,20 +146,132 @@
     /* ===== WEDDING PARTY ===== */
    
  
-  .party-member {
-    width: 80%;
+/* ===== WEDDING PARTY ===== */
+#party { 
+  background: rgba(0,0,0,0.22); 
+  backdrop-filter: blur(3px); 
+}
+
+.party-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: flex-start;
+}
+
+.party-side { 
+  flex: 1 1 45%; 
+  min-width: 260px; 
+}
+
+.party-side .side-title { 
+  text-align: center; 
+  margin-bottom: 1rem; 
+  color: #fff6da; 
+  font-size: 1.2rem; 
+  font-weight: 700; 
+}
+
+.party-side .members-grid { 
+  display: grid; 
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 1rem; 
+  justify-items: center; 
+}
+
+.party-member { 
+  background: rgba(59,53,47,0.62); 
+  border-radius: 12px; 
+  padding: 1rem; 
+  text-align: center; 
+  margin-bottom: 0; 
+}
+
+.party-member img { 
+  border-radius: 8px; 
+  width: 140px; 
+  height: 140px; 
+  object-fit: cover; 
+  display: block; 
+  margin: 0 auto 0.5rem; 
+  border: 4px solid rgba(230,200,130,0.12); 
+}
+
+.party-member h3 { 
+  margin: 0.25rem 0; 
+  color: #ffe9a9; 
+  font-size: 1.05rem; 
+}
+
+.party-member .role { 
+  color: #fff8e7; 
+  font-size: 0.95rem; 
+  margin-bottom: 0.35rem; 
+}
+
+.party-member .bio { 
+  color: #fdf9f3; 
+  font-size: 0.95rem; 
+  line-height: 1.45; 
+  margin: 0; 
+}
+
+.party-highlight { 
+  display: flex; 
+  justify-content: center; 
+  gap: 3rem; 
+  margin-bottom: 2rem; 
+}
+
+.party-highlight .party-member { 
+  max-width: 220px; 
+}
+
+.party-highlight .party-member img { 
+  width: 220px; 
+  height: 220px; 
+  border-radius: 8px; 
+  border: 4px solid #e5c982; 
+  object-fit: cover; 
+}
+
+/* ===== Wedding Party Mobile Fix ===== */
+@media (max-width: 768px) {
+  /* Stack the Best Man & Maid of Honor vertically */
+  .party-highlight {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .party-highlight .party-member {
+    max-width: 80%;
+  }
+
+  /* Stack regular members as well */
+  .party-grid {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .party-side {
+    width: 100%;
+  }
+
+  .party-side .members-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .party-member img {
+    width: 160px;
+    height: 160px;
   }
 }
-    
-    #party { background: rgba(0,0,0,0.22); backdrop-filter: blur(3px); }
-    .party-grid {
-      display: flex;
-      justify-content: space-between;
-      gap: 3rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      align-items: flex-start;
-    }
+
     .party-side { flex: 1 1 45%; min-width: 260px; }
     .party-side .side-title { text-align: center; margin-bottom: 1rem; color: #fff6da; font-size: 1.2rem; font-weight: 700; }
     .party-side .members-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; justify-items: center; }
@@ -452,28 +564,10 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
   }
   window.addEventListener("resize", checkNavCountdownVisibility);
   checkNavCountdownVisibility();
-  
-   /* ===== Force Wedding Party Center on Mobile ===== */
-@media (max-width: 768px) {
-  .wedding-party .party-grid,
-  .party-grid {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    text-align: center !important;
-  }
-
-  .wedding-party .party-member,
-  .party-member {
-    width: 85% !important;
-    margin: 10px 0 !important;
-  }
-}
- 
   </script>
 </body>
 </html>
+
 
 
 
