@@ -215,6 +215,40 @@ header#home {
     hr.divider { border: none; height: 2px; width: 80px; margin: 1rem auto 1.6rem; background: linear-gradient(to right, transparent, #e5c982, transparent); }
     section p { color: #fdf9f3; font-size: 1.05rem; line-height: 1.7; max-width: 800px; margin: 0 auto; white-space: pre-line; }
 
+    /* MOBILE-ONLY NAMES & COUNTDOWN */
+#names-countdown-mobile {
+  display: none; /* hidden by default */
+  text-align: center;
+  padding: 2rem 1rem;
+  background: rgba(59,53,47,0.6);
+  backdrop-filter: blur(4px);
+  border-radius: 12px;
+  margin: 1.5rem auto;
+  color: #fff6da;
+  max-width: 90%;
+}
+
+#names-countdown-mobile h1 {
+  margin: 0.25rem 0;
+  font-size: 1.8rem;
+  line-height: 1.2;
+}
+
+#names-countdown-timer-mobile {
+  margin-top: 0.8rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffe9a9;
+}
+
+/* Show only on mobile */
+@media (max-width: 768px) {
+  #names-countdown-mobile {
+    display: block;
+  }
+}
+
+   
     /* ===== OUR STORY ===== */
     /* ===== SECTION HEADERS CENTERED ===== */
 section h2,
@@ -573,6 +607,18 @@ section h2,
     </div>
   </header>
 
+<!-- MOBILE-ONLY NAMES & COUNTDOWN SECTION -->
+<section id="names-countdown-mobile">
+  <div id="names-countdown-wrapper-mobile">
+    <h1>Da'Quan</h1>
+    <h1>Conway</h1>
+    <h1>&</h1>
+    <h1>Savannah</h1>
+    <h1>Conway</h1>
+    <div id="names-countdown-timer-mobile"></div>
+  </div>
+</section>
+
   <!-- OUR STORY -->
   <section id="story">
     <h2>Our Story</h2>
@@ -810,6 +856,7 @@ mobileNavToggle.addEventListener("click", () => {
   </script>
 </body>
 </html>
+
 
 
 
