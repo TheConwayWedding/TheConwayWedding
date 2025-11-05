@@ -230,7 +230,13 @@ header#home {
   </div>
 </header>
 
- 
+  <!-- Slideshow -->
+  <div class="header-slideshow">
+    <img src="slide1.jpg" class="slide active" alt="Slide 1">
+    <img src="slide2.jpg" class="slide" alt="Slide 2">
+    <img src="slide3.jpg" class="slide" alt="Slide 3">
+  </div>
+
     /* ===== GENERIC SECTION ===== */
     section { padding: 4.5rem 1.5rem; text-align: center; }
     section h2 {
@@ -597,6 +603,10 @@ section h2,
   }
 }
 
+  </style>
+</head>
+<body>
+
   <!-- NAV -->
   <nav>
     <div style="display:flex; gap:1.4rem; justify-content:center;">
@@ -958,25 +968,7 @@ mobileNavToggleBtn.addEventListener("click", () => {
         links.style.display = links.style.display === "flex" ? "none" : "flex";
       });
     }
-
-      
-        <script>
-  // === Header Slideshow ===
-  let slides = document.querySelectorAll(".header-slideshow img");
-  let current = 0;
-
-  function showNextSlide() {
-    slides[current].classList.remove("active");
-    current = (current + 1) % slides.length;
-    slides[current].classList.add("active");
-  }
-
-  setInterval(showNextSlide, 4000); // change every 4 seconds
-</script>
-
+  </script>
   </script>
 </body>
 </html>
-
-
-
