@@ -207,6 +207,23 @@ header#home {
     /* ===== OUR STORY ===== */
     #story { background: rgba(0,0,0,0.28); backdrop-filter: blur(4px); }
     .story-content { max-width: 900px; margin: 0 auto; text-align: left; background: rgba(59,53,47,0.62); border-radius: 14px; padding: 1.6rem; }
+    /* ===== SECTION HEADERS CENTERED ===== */
+section h2 {
+  color: #fff6da;
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0 0 0.6rem;
+  text-align: center; /* Force centering */
+}
+
+/* Override inner wrappers that might interfere */
+.story-content h2,
+.place-content h2,
+.section-box h2 {
+  text-align: center;
+}
+
 
     /* ===== PLACE ===== */
     #place { position: relative; height: 100vh; overflow: hidden; display:flex; align-items: center; justify-content: center; padding:0; }
@@ -217,12 +234,46 @@ header#home {
 
     /* ===== SCHEDULE & TRAVEL ===== */
     .section-box { max-width:800px; margin:0 auto; background: rgba(59,53,47,0.62); border-radius:14px; padding:2rem; text-align:left; backdrop-filter: blur(4px); }
+    /* ===== SECTION HEADERS CENTERED ===== */
+section h2 {
+  color: #fff6da;
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0 0 0.6rem;
+  text-align: center; /* Force centering */
+}
+
+/* Override inner wrappers that might interfere */
+.story-content h2,
+.place-content h2,
+.section-box h2 {
+  text-align: center;
+}
+
 
     /* ===== WEDDING PARTY ===== */
    
  
 /* ===== WEDDING PARTY ===== */
-#party { 
+/* ===== SECTION HEADERS CENTERED ===== */
+section h2 {
+  color: #fff6da;
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0 0 0.6rem;
+  text-align: center; /* Force centering */
+}
+
+/* Override inner wrappers that might interfere */
+.story-content h2,
+.place-content h2,
+.section-box h2 {
+  text-align: center;
+}
+
+    #party { 
   background: rgba(0,0,0,0.22); 
   backdrop-filter: blur(3px); 
 }
@@ -364,6 +415,23 @@ header#home {
 
 
     /* ===== GALLERY ===== */
+   /* ===== SECTION HEADERS CENTERED ===== */
+section h2 {
+  color: #fff6da;
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0 0 0.6rem;
+  text-align: center; /* Force centering */
+}
+
+/* Override inner wrappers that might interfere */
+.story-content h2,
+.place-content h2,
+.section-box h2 {
+  text-align: center;
+}
+
     #gallery .photo-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); max-width:1000px; margin:1.2rem auto 0; }
     .photo-grid img { width:100%; height:160px; object-fit:cover; border-radius:10px; }
 
@@ -662,6 +730,7 @@ mobileNavToggle.addEventListener("click", () => {
   </script>
 </body>
 </html>
+
 
 
 
