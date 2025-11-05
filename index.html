@@ -53,22 +53,17 @@
       background: linear-gradient(90deg, transparent, #e5c982, transparent);
       transition: width 0.25s ease;
     }
-    nav a:hover {
-      color: #ffe9a9;
-    }
-    nav a:hover::after,
-    nav a.active::after {
-      width: 70%;
-    }
+    nav a:hover { color: #ffe9a9; }
+    nav a:hover::after, nav a.active::after { width: 70%; }
+
     #nav-countdown {
       position: absolute;
       right: 4rem;
       font-weight: 700;
       color: #ffe9a9;
     }
-    header, section {
-      padding-top: 4.5rem;
-    }
+
+    header, section { padding-top: 4.5rem; }
 
     /* ===== HEADER / HOME ===== */
     header#home {
@@ -83,6 +78,7 @@
       justify-content: center;
       align-items: center;
     }
+
     .header-slideshow {
       position: absolute;
       inset: 0;
@@ -90,6 +86,7 @@
       height: 100%;
       z-index: 0;
     }
+
     .header-slideshow img {
       position: absolute;
       top: 50%;
@@ -102,9 +99,11 @@
       opacity: 0;
       transition: opacity 1.5s ease-in-out;
     }
+
     .header-slideshow img.active {
       opacity: 1;
     }
+
     .header-content {
       position: relative;
       z-index: 1;
@@ -118,44 +117,26 @@
 
     /* ===== MOBILE DROPDOWN MENU ===== */
     #mobile-nav { display: none; }
-    #mobile-nav-toggle {
-      background: #c7a96b;
-      border: none;
-      font-size: 1.3rem;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-      color: #3B352F;
+    #mobile-nav-toggle { 
+      background: #c7a96b; 
+      border: none; 
+      font-size: 1.3rem; 
+      padding: 0.5rem 1rem; 
+      border-radius: 6px; 
+      cursor: pointer; 
+      color: #3B352F; 
       font-weight: 700;
       z-index: 1001;
     }
-    #mobile-nav-links {
-      display: none;
-      flex-direction: column;
-      gap: 0.8rem;
-      margin-top: 0.5rem;
-      background: rgba(0,0,0,0.65);
-      padding: 1rem;
-      border-radius: 8px;
-      position: absolute;
-      top: 3.5rem;
-      width: 80%;
-      max-width: 220px;
-      right: 10%;
-    }
-    #mobile-nav-links a {
-      color:#fff6da;
-      font-weight:700;
-      text-decoration:none;
-    }
-    #mobile-nav-links a:hover {
-      color:#ffe9a9;
-    }
+    #mobile-nav-links { display: none; flex-direction: column; gap: 0.8rem; margin-top: 0.5rem; background: rgba(0,0,0,0.65); padding: 1rem; border-radius: 8px; position: absolute; top: 3.5rem; width: 80%; max-width: 220px; right: 10%; }
+    #mobile-nav-links a { color:#fff6da; font-weight:700; text-decoration:none; }
+    #mobile-nav-links a:hover { color:#ffe9a9; }
 
     /* MOBILE RESPONSIVE HEADER TEXT */
     @media (max-width: 768px) {
       .header-content { display: none; }
       #mobile-nav { display: block; position: relative; margin-top: 1rem; }
+
       #mobile-names-countdown { display: block; }
     }
 
@@ -167,24 +148,93 @@
       text-align: center;
       margin-top: 1rem;
     }
+    /* ===== MOBILE-ONLY DROPDOWN MENU ===== */
+#mobile-nav {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 100%;
+  text-align: center;
+}
+
+#mobile-nav-toggle {
+  background: #c7a96b;
+  border: none;
+  font-size: 1.4rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #3B352F;
+  font-weight: 700;
+}
+
+#mobile-nav-links {
+  display: none;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+  background: rgba(0,0,0,0.65);
+  padding: 1rem;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 260px;
+  margin: 0.5rem auto 0;
+}
+
+#mobile-nav-links a {
+  color: #fff6da;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+#mobile-nav-links a:hover {
+  color: #ffe9a9;
+}
+
+#nav-countdown {
+  text-align: center;
+  margin-top: 1rem;
+  font-weight: 700;
+  color: #ffe9a9;
+  display: none;
+}
+
+/* Show only on mobile */
+@media (max-width: 768px) {
+  #mobile-nav {
+    display: block;
+  }
+  #nav-countdown {
+    display: block;
+  }
+}
+
+
   </style>
 </head>
-<body>
-
-  <!-- NAV -->
-  <nav>
-    <div style="display:flex; gap:1.4rem; justify-content:center;">
-      <a href="#home">Home</a>
-      <a href="#schedule">Schedule</a>
-      <a href="#travel">Travel</a>
-      <a href="https://www.amazon.com/wedding-registry/link-to-your-registry" target="_blank">Registry</a>
-      <a href="#party">Wedding Party</a>
-      <a href="#gallery">Gallery</a>
-      <a href="video.html">Video</a>
-      <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank">RSVP</a>
+@@ -167,366 +231,383 @@
     </div>
     <div id="nav-countdown"></div>
   </nav>
+  <!-- NAV (MOBILE-ONLY DROPDOWN) -->
+<nav id="mobile-nav">
+  <button id="mobile-nav-toggle">☰ Menu</button>
+  <div id="mobile-nav-links">
+    <a href="#home">Home</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#travel">Travel</a>
+    <a href="https://www.amazon.com/wedding-registry/link-to-your-registry" target="_blank">Registry</a>
+    <a href="#party">Wedding Party</a>
+    <a href="#gallery">Gallery</a>
+    <a href="video.html">Video</a>
+    <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank">RSVP</a>
+  </div>
+</nav>
+<div id="nav-countdown"></div>
+
 
   <!-- MOBILE NAMES & COUNTDOWN -->
   <div id="mobile-names-countdown">
@@ -201,6 +251,7 @@
     document.addEventListener("DOMContentLoaded", function(){
       const toggle = document.getElementById("mobile-nav-toggle");
       const links = document.getElementById("mobile-nav-links");
+
       if(toggle && links){
         toggle.addEventListener("click", function(){
           links.style.display = links.style.display === "flex" ? "none" : "flex";
@@ -230,10 +281,7 @@
         setInterval(() => {
           const now = new Date().getTime();
           const distance = countdownDate - now;
-          if(distance<0){
-            el.innerHTML="The big day is here!";
-            return;
-          }
+          if(distance<0){ el.innerHTML="The big day is here!"; return; }
           const days = Math.floor(distance / (1000*60*60*24));
           const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
           const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
@@ -247,17 +295,18 @@
     });
   </script>
 
+
   <!-- HOME -->
   <header id="home">
     <!-- MOBILE-ONLY NAMES & COUNTDOWN -->
-    <div id="mobile-names-countdown">
-      <h1>Da'Quan</h1>
-      <h1>Conway</h1>
-      <h1>&</h1>
-      <h1>Savannah</h1>
-      <h1>Conway</h1>
-      <div id="mobile-names-countdown-timer"></div>
-    </div>
+<div id="mobile-names-countdown">
+  <h1>Da'Quan</h1>
+  <h1>Conway</h1>
+  <h1>&</h1>
+  <h1>Savannah</h1>
+  <h1>Conway</h1>
+  <div id="mobile-names-countdown-timer"></div>
+</div>
 
     <!-- Slideshow -->
     <div class="header-slideshow">
@@ -274,24 +323,24 @@
     </div>
   </header>
 
-  <!-- MOBILE-ONLY NAMES & COUNTDOWN SECTION -->
-  <section id="names-countdown-mobile">
-    <div id="names-countdown-wrapper-mobile">
-      <h1>Da'Quan</h1>
-      <h1>Conway</h1>
-      <h1>&</h1>
-      <h1>Savannah</h1>
-      <h1>Conway</h1>
-      <div id="names-countdown-timer-mobile"></div>
-    </div>
-  </section>
+<!-- MOBILE-ONLY NAMES & COUNTDOWN SECTION -->
+<section id="names-countdown-mobile">
+  <div id="names-countdown-wrapper-mobile">
+    <h1>Da'Quan</h1>
+    <h1>Conway</h1>
+    <h1>&</h1>
+    <h1>Savannah</h1>
+    <h1>Conway</h1>
+    <div id="names-countdown-timer-mobile"></div>
+  </div>
+</section>
 
   <!-- OUR STORY -->
   <section id="story">
     <h2>Our Story</h2>
     <hr class="divider"/>
     <div class="story-content">
-     It all started with… a roommate application. Da’Quan was just having another normal day and Savannah was just trying to sign her very first apartment lease. But God had other plans. Savannah was in a rush to sign her new lease because all the good apartments were getting taken. Desperate not to lose out on another apartment she decided to meet up with her roommate at her current location. However, her roommate mentioned she had just finished working out with a friend.
+It all started with… a roommate application. Da’Quan was just having another normal day and Savannah was just trying to sign her very first apartment lease. But God had other plans. Savannah was in a rush to sign her new lease because all the good apartments were getting taken. Desperate not to lose out on another apartment she decided to meet up with her roommate at her current location. However, her roommate mentioned she had just finished working out with a friend.
 
 That friend, happened to be one of Da’Quan’s best friends and current roommate. Fate brought the two together through a series of coincidental events. All it took for him was one gaze to know he had to figure out who this never before seen woman was. With little hesitation he asked for Savannah’s Instagram, and the story began.
 
@@ -299,7 +348,6 @@ What started as a single DM turned into hours of conversation, a first date fill
 
 Eventually, the moment came. Not the moment (yet), but a pretty important one:
 At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will you be my girlfriend?” written out in chocolate syrup on a dessert plate (Savannah having made it clear, a few times, that time was ticking). Roses included. That night marked the start of something even bigger than either of them imagined. A love story full of laughter, long talks that never feel long enough, a strong bond and most importantly, building their relationship with Jesus together. And now, they can’t wait to continue their never ending chapter together.
-
     </div>
   </section>
 
@@ -312,10 +360,12 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
     <div class="place-content">
       <h2>The Place</h2>
       <p>
-        Nestled in the heart of Estes Park, surrounded by Colorado’s breathtaking mountain peaks, our ceremony will take place where love meets nature — calm, beautiful, and timeless.
+        Nestled in the heart of Estes Park, surrounded by Colorado’s breathtaking mountain peaks,
+        our ceremony will take place where love meets nature — calm, beautiful, and timeless.
       </p>
     </div>
   </section>
+
   <hr class="divider"/>
 
   <!-- SCHEDULE -->
@@ -326,6 +376,7 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
       <p>Details about ceremony, reception, and other wedding day events will go here.</p>
     </div>
   </section>
+
   <hr class="divider"/>
 
   <!-- TRAVEL -->
@@ -336,6 +387,7 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
       <p>Information about accommodations, transportation, and directions to the venue will go here.</p>
     </div>
   </section>
+
   <hr class="divider"/>
 
   <!-- WEDDING PARTY -->
@@ -431,6 +483,7 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
       </div>
     </div>
   </section>
+
   <hr class="divider"/>
 
   <!-- GALLERY -->
@@ -449,60 +502,72 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
   <footer>
     <p>With love — Da'Quan & Savannah • August 26, 2026</p>
   </footer>
+<script>
+  // ===== SLIDESHOW =====
+  const slides = document.querySelectorAll(".header-slideshow .slide");
+  let currentSlide = 0;
 
-  <script>
-    // ===== SLIDESHOW =====
-    const slides = document.querySelectorAll(".header-slideshow .slide");
-    let currentSlide = 0;
-    function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle("active", i === index);
-      });
-    }
-    function nextSlide() {
-      currentSlide = (currentSlide + 1) % slides.length;
-      showSlide(currentSlide);
-    }
-    setInterval(nextSlide, 5000);
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle("active", i === index);
+    });
+  }
 
-    // ===== COUNTDOWN =====
-    const countdownDate = new Date("August 4, 2026 00:00:00").getTime();
-    const countdownEl = document.getElementById("countdown");
-    if (countdownEl) {
-      const countdownInterval = setInterval(() => {
-        const now = new Date().getTime();
-        const distance = countdownDate - now;
-        if (distance < 0) {
-          clearInterval(countdownInterval);
-          countdownEl.innerHTML = "The big day is here!";
-          return;
-        }
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-      }, 1000);
-    }
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
 
-    // ===== OPTIONAL: MOBILE COUNTDOWN =====
-    const mobileCountdownEl = document.getElementById("names-countdown-timer-mobile");
-    if (mobileCountdownEl) {
-      const mobileInterval = setInterval(() => {
-        const now = new Date().getTime();
-        const distance = countdownDate - now;
-        if (distance < 0) {
-          clearInterval(mobileInterval);
-          mobileCountdownEl.innerHTML = "The big day is here!";
-          return;
-        }
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        mobileCountdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-      }, 1000);
-    }
-  </script>
+  setInterval(nextSlide, 5000); // Change slide every 5 seconds
+
+  // ===== COUNTDOWN =====
+  const countdownDate = new Date("August 4, 2026 00:00:00").getTime();
+  const countdownEl = document.getElementById("countdown");
+
+  if (countdownEl) {
+    const countdownInterval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
+
+      if (distance < 0) {
+        clearInterval(countdownInterval);
+        countdownEl.innerHTML = "The big day is here!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdownEl.innerHTML = `
+        ${days}d ${hours}h ${minutes}m ${seconds}s
+      `;
+    }, 1000);
+  }
+
+  // ===== OPTIONAL: MOBILE COUNTDOWN (if still used somewhere else) =====
+  const mobileCountdownEl = document.getElementById("names-countdown-timer-mobile");
+  if (mobileCountdownEl) {
+    const mobileInterval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
+
+      if (distance < 0) {
+        clearInterval(mobileInterval);
+        mobileCountdownEl.innerHTML = "The big day is here!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      mobileCountdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
+  }
+</script>
 </body>
 </html>
+
