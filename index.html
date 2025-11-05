@@ -58,7 +58,7 @@
 
     #nav-countdown {
       position: absolute;
-      right: 5rem; /* slightly inset from right edge */
+      right: 3.5rem; /* moved slightly left from before */
       font-weight: 700;
       color: #ffe9a9;
     }
@@ -74,12 +74,14 @@
       overflow: hidden;
     }
 
+    /* Slideshow */
     .header-slideshow {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       z-index: 0;
+      overflow: hidden;
     }
     .header-slideshow img {
       position: absolute;
@@ -92,9 +94,18 @@
     .header-slideshow img.active {
       opacity: 1;
     }
+    /* Overlay */
+    .header-slideshow::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      z-index: 1;
+    }
+
     .header-content {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -228,8 +239,7 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
     </div>
   </section>
 
-
-  <!-- PLACE (background video restored) -->
+  <!-- PLACE -->
   <section id="place">
     <video autoplay muted loop playsinline>
       <source src="estes-park.mp4" type="video/mp4"/>
@@ -244,8 +254,6 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
     </div>
   </section>
 
-  <hr class="divider"/>
-
   <!-- SCHEDULE -->
   <section id="schedule">
     <h2>Schedule</h2>
@@ -254,8 +262,6 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
       <p>Details about ceremony, reception, and other wedding day events will go here.</p>
     </div>
   </section>
-
-  <hr class="divider"/>
 
   <!-- TRAVEL -->
   <section id="travel">
@@ -266,10 +272,11 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
     </div>
   </section>
 
-  <hr class="divider"/>
-
   <!-- WEDDING PARTY -->
   <section id="party">
+    <h2>Wedding Party</h2>
+    <hr class="divider"/>
+<section id="party">
     <h2>Wedding Party</h2>
     <hr class="divider"/>
 
@@ -363,8 +370,6 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
     </div>
   </section>
 
-  <hr class="divider"/>
-
   <!-- GALLERY -->
   <section id="gallery">
     <h2>Gallery</h2>
@@ -379,65 +384,56 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
 
   <!-- FOOTER -->
   <footer>
-    <p>With love — Da'Quan & Savannah • August 26, 2026</p>
+    <p>With love — Da'Quan & Savannah • August 4, 2026</p>
   </footer>
 
   <script>
-  // Header slideshow
-  const slides = document.querySelectorAll('.header-slideshow .slide');
-  let currentSlide = 0;
-  function nextSlide() {
-    slides[currentSlide].classList.remove('active');
-    currentSlide = (currentSlide + 1) % slides.length;
-    slides[currentSlide].classList.add('active');
-  }
-  setInterval(nextSlide, 5000);
-
-  // Countdown for header
-  const weddingDate = new Date("August 4, 2026 00:00:00").getTime();
-  const countdownEl = document.getElementById("countdown");
-  const navCountdownEl = document.getElementById("nav-countdown");
-
-  function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = weddingDate - now;
-    if(distance < 0){
-      countdownEl.innerHTML = "Wedding Day!";
-      navCountdownEl.innerHTML = "Wedding Day!";
-      clearInterval(countdownInterval);
-      return;
+    // Slideshow
+    const slides = document.querySelectorAll('.header-slideshow .slide');
+    let currentSlide = 0;
+    function nextSlide() {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('active');
     }
-    const days = Math.floor(distance / (1000*60*60*24));
-    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-    const seconds = Math.floor((distance % (1000*60)) / 1000);
-    const text = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    countdownEl.innerHTML = text;
-    navCountdownEl.innerHTML = text;
-  }
+    setInterval(nextSlide, 5000);
 
-  const countdownInterval = setInterval(updateCountdown, 1000);
-  updateCountdown();
+    // Countdown
+    const weddingDate = new Date("August 4, 2026 00:00:00").getTime();
+    const countdownEl = document.getElementById("countdown");
+    const navCountdownEl = document.getElementById("nav-countdown");
 
-  // Hide nav countdown on mobile
-  function checkNavCountdownVisibility() {
-    if(window.innerWidth < 900) {
-      navCountdownEl.style.display = "none";
-    } else {
-      navCountdownEl.style.display = "inline-block";
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+      if(distance < 0){
+        countdownEl.innerHTML = "Wedding Day!";
+        navCountdownEl.innerHTML = "Wedding Day!";
+        clearInterval(countdownInterval);
+        return;
+      }
+      const days = Math.floor(distance / (1000*60*60*24));
+      const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+      const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+      const seconds = Math.floor((distance % (1000*60)) / 1000);
+      const text = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      countdownEl.innerHTML = text;
+      navCountdownEl.innerHTML = text;
     }
-  }
-  window.addEventListener("resize", checkNavCountdownVisibility);
-  checkNavCountdownVisibility();
-</script>
+
+    const countdownInterval = setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Hide nav countdown on mobile
+    function checkNavCountdownVisibility() {
+      if(window.innerWidth < 900) {
+        navCountdownEl.style.display = "none";
+      } else {
+        navCountdownEl.style.display = "inline-block";
+      }
+    }
+    window.addEventListener("resize", checkNavCountdownVisibility);
+    checkNavCountdownVisibility();
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
