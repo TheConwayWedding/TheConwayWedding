@@ -16,53 +16,6 @@
       line-height: 1.6;
     }
 
-    /* ===== NAV ===== */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1.4rem;
-      padding: 1rem 1.5rem;
-      background: rgba(0,0,0,0.55);
-      backdrop-filter: blur(6px);
-      color: #fff8e7;
-    }
-    nav a {
-      color: #fff6da;
-      text-decoration: none;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      transition: color 0.25s ease;
-      position: relative;
-      padding: 0.25rem 0;
-    }
-    nav a::after{
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      height: 2px;
-      bottom: -6px;
-      width: 0;
-      margin: 0 auto;
-      background: linear-gradient(90deg, transparent, #e5c982, transparent);
-      transition: width 0.25s ease;
-    }
-    nav a:hover { color: #ffe9a9; }
-    nav a:hover::after, nav a.active::after { width: 70%; }
-
-    #nav-countdown {
-      position: absolute;
-      right: 4rem;
-      font-weight: 700;
-      color: #ffe9a9;
-    }
-
     header, section { padding-top: 4.5rem; }
 
     /* ===== HEADER / HOME ===== */
@@ -100,9 +53,7 @@
       transition: opacity 1.5s ease-in-out;
     }
 
-    .header-slideshow img.active {
-      opacity: 1;
-    }
+    .header-slideshow img.active { opacity: 1; }
 
     .header-content {
       position: relative;
@@ -115,77 +66,156 @@
       width: 100%;
     }
 
-    /* ===== MOBILE DROPDOWN MENU ===== */
-    #mobile-nav { display: none; }
-    #mobile-nav-toggle { 
-      background: #c7a96b; 
-      border: none; 
-      font-size: 1.3rem; 
-      padding: 0.5rem 1rem; 
-      border-radius: 6px; 
-      cursor: pointer; 
-      color: #3B352F; 
+    /* ===== MOBILE-ONLY DROPDOWN NAV ===== */
+    /* Desktop nav intentionally removed — mobile dropdown only. */
+    #mobile-nav {
+      display: none; /* default hidden, shown in media query */
+      position: fixed;
+      top: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1002;
+      width: 100%;
+      max-width: 420px;
+      pointer-events: none; /* allow inner button to control pointer-events */
+    }
+
+    #mobile-nav-inner {
+      pointer-events: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    #mobile-nav-toggle {
+      background: #c7a96b;
+      border: none;
+      font-size: 1.2rem;
+      padding: 0.5rem 0.9rem;
+      border-radius: 8px;
+      cursor: pointer;
+      color: #3B352F;
       font-weight: 700;
+      box-shadow: 0 6px 18px rgba(199,169,107,0.12);
+    }
+
+    #mobile-nav-links {
+      display: none;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-top: 0.6rem;
+      background: rgba(0,0,0,0.72);
+      padding: 0.8rem;
+      border-radius: 10px;
+      position: absolute;
+      top: 3.6rem;
+      right: 10%;
+      width: calc(80% - 20px);
+      max-width: 260px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    #mobile-nav-links a {
+      color: #fff6da;
+      font-weight: 700;
+      text-decoration: none;
+      display: block;
+      padding: 0.35rem 0.2rem;
+    }
+
+    #mobile-nav-links a:hover { color: #ffe9a9; }
+
+    /* Nav countdown (mobile only) */
+    #nav-countdown {
+      display: none;
+      text-align: center;
+      margin-top: 0.5rem;
+      font-weight: 700;
+      color: #ffe9a9;
       z-index: 1001;
     }
-    #mobile-nav-links { display: none; flex-direction: column; gap: 0.8rem; margin-top: 0.5rem; background: rgba(0,0,0,0.65); padding: 1rem; border-radius: 8px; position: absolute; top: 3.5rem; width: 80%; max-width: 220px; right: 10%; }
-    #mobile-nav-links a { color:#fff6da; font-weight:700; text-decoration:none; }
-    #mobile-nav-links a:hover { color:#ffe9a9; }
 
-    /* MOBILE RESPONSIVE HEADER TEXT */
+    /* Show mobile nav only on small screens */
     @media (max-width: 768px) {
+      #mobile-nav { display: block; }
+      #nav-countdown { display: block; }
+      /* Hide header desktop overlay content on mobile if needed */
       .header-content { display: none; }
-      #mobile-nav { display: block; position: relative; margin-top: 1rem; }
-
-      #mobile-names-countdown { display: block; }
+      header#home { padding-top: 5.5rem; }
     }
 
-    /* ===== COUNTDOWN ===== */
-    #countdown, #names-countdown-timer-mobile {
+    /* ===== MOBILE NAMES & COUNTDOWN (keeps section layout tidy) ===== */
+    #mobile-names-countdown {
+      display: none;
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(59,53,47,0.6);
+      backdrop-filter: blur(4px);
+      border-radius: 12px;
+      margin: 1rem auto;
+      color: #fff6da;
+      max-width: 90%;
+      z-index: 1;
+      position: relative;
+    }
+
+    #mobile-names-countdown h1 {
+      margin: 0.15rem 0;
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    #mobile-names-countdown-timer {
+      margin-top: 0.6rem;
+      font-size: 1.1rem;
+      color: #ffe9a9;
+      font-weight: 700;
+    }
+
+    @media (max-width: 768px) {
+      #mobile-names-countdown { display: block; }
+      #mobile-names-countdown h1 { font-size: calc(6vw + 8px); }
+    }
+
+    /* ===== GENERIC SECTION STYLES (kept minimal here) ===== */
+    section { padding: 4.5rem 1.5rem; text-align: center; }
+    hr.divider { border: none; height: 2px; width: 80px; margin: 1rem auto 1.6rem; background: linear-gradient(to right, transparent, #e5c982, transparent); }
+
+    /* Countdown small style (used in header desktop if present) */
+    #countdown {
       font-size: 1.2rem;
       color: #ffe9a9;
       font-weight: 700;
-      text-align: center;
       margin-top: 1rem;
+      z-index: 1;
     }
 
   </style>
 </head>
 <body>
-
-  <!-- NAV -->
-  <nav>
-    <div style="display:flex; gap:1.4rem; justify-content:center;">
-      <a href="#home">Home</a>
-      <a href="#schedule">Schedule</a>
-      <a href="#travel">Travel</a>
-      <a href="https://www.amazon.com/wedding-registry/link-to-your-registry" target="_blank">Registry</a>
-      <a href="#party">Wedding Party</a>
-      <a href="#gallery">Gallery</a>
-      <a href="video.html">Video</a>
-      <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank">RSVP</a>
+  <!-- MOBILE NAV (only visible on ≤768px) -->
+  <nav id="mobile-nav" aria-label="Mobile menu">
+    <div id="mobile-nav-inner">
+      <button id="mobile-nav-toggle" aria-expanded="false" aria-controls="mobile-nav-links">☰ Menu</button>
     </div>
-    <div id="nav-countdown"></div>
+
+    <div id="mobile-nav-links" role="menu" aria-hidden="true">
+      <a role="menuitem" href="#home">Home</a>
+      <a role="menuitem" href="#schedule">Schedule</a>
+      <a role="menuitem" href="#travel">Travel</a>
+      <a role="menuitem" href="https://www.amazon.com/wedding-registry/link-to-your-registry" target="_blank" rel="noopener">Registry</a>
+      <a role="menuitem" href="#party">Wedding Party</a>
+      <a role="menuitem" href="#gallery">Gallery</a>
+      <a role="menuitem" href="video.html">Video</a>
+      <a role="menuitem" href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank" rel="noopener">RSVP</a>
+    </div>
   </nav>
-  <!-- NAV (MOBILE-ONLY DROPDOWN) -->
-<nav id="mobile-nav">
-  <button id="mobile-nav-toggle">☰ Menu</button>
-  <div id="mobile-nav-links">
-    <a href="#home">Home</a>
-    <a href="#schedule">Schedule</a>
-    <a href="#travel">Travel</a>
-    <a href="https://www.amazon.com/wedding-registry/link-to-your-registry" target="_blank">Registry</a>
-    <a href="#party">Wedding Party</a>
-    <a href="#gallery">Gallery</a>
-    <a href="video.html">Video</a>
-    <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank">RSVP</a>
-  </div>
-</nav>
-<div id="nav-countdown"></div>
 
+  <div id="nav-countdown" aria-hidden="true"></div>
 
-  <!-- MOBILE NAMES & COUNTDOWN -->
-  <div id="mobile-names-countdown">
+  <!-- MOBILE NAMES & COUNTDOWN (kept above header content on mobile) -->
+  <div id="mobile-names-countdown" aria-hidden="true">
     <h1>Da'Quan</h1>
     <h1>Conway</h1>
     <h1>&</h1>
@@ -194,80 +224,21 @@
     <div id="mobile-names-countdown-timer"></div>
   </div>
 
-  <script>
-    // ===== MOBILE MENU TOGGLE =====
-    document.addEventListener("DOMContentLoaded", function(){
-      const toggle = document.getElementById("mobile-nav-toggle");
-      const links = document.getElementById("mobile-nav-links");
-
-      if(toggle && links){
-        toggle.addEventListener("click", function(){
-          links.style.display = links.style.display === "flex" ? "none" : "flex";
-        });
-      }
-
-      // ===== SLIDESHOW =====
-      const slides = document.querySelectorAll(".header-slideshow img");
-      let currentSlide = 0;
-      function showSlide(index){
-        slides.forEach((slide, i) => slide.classList.toggle("active", i===index));
-      }
-      function nextSlide(){
-        currentSlide = (currentSlide+1)%slides.length;
-        showSlide(currentSlide);
-      }
-      if(slides.length>0){
-        setInterval(nextSlide, 5000);
-        showSlide(currentSlide);
-      }
-
-      // ===== COUNTDOWN =====
-      const countdownDate = new Date("August 4, 2026 00:00:00").getTime();
-      function updateCountdown(elId){
-        const el = document.getElementById(elId);
-        if(!el) return;
-        setInterval(() => {
-          const now = new Date().getTime();
-          const distance = countdownDate - now;
-          if(distance<0){ el.innerHTML="The big day is here!"; return; }
-          const days = Math.floor(distance / (1000*60*60*24));
-          const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-          const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-          const seconds = Math.floor((distance % (1000*60))/1000);
-          el.innerHTML=`${days}d ${hours}h ${minutes}m ${seconds}s`;
-        },1000);
-      }
-      updateCountdown("countdown");
-      updateCountdown("mobile-names-countdown-timer");
-      updateCountdown("nav-countdown");
-    });
-  </script>
-
-
   <!-- HOME -->
   <header id="home">
-    <!-- MOBILE-ONLY NAMES & COUNTDOWN -->
-<div id="mobile-names-countdown">
-  <h1>Da'Quan</h1>
-  <h1>Conway</h1>
-  <h1>&</h1>
-  <h1>Savannah</h1>
-  <h1>Conway</h1>
-  <div id="mobile-names-countdown-timer"></div>
-</div>
-
-    <!-- Slideshow -->
-    <div class="header-slideshow">
-      <img src="slide1.jpg" class="slide active" alt="Slide 1">
-      <img src="slide2.jpg" class="slide" alt="Slide 2">
-      <img src="slide3.jpg" class="slide" alt="Slide 3">
+    <!-- Slideshow sits behind everything -->
+    <div class="header-slideshow" aria-hidden="true">
+      <img src="slide1.jpg" class="slide active" alt="">
+      <img src="slide2.jpg" class="slide" alt="">
+      <img src="slide3.jpg" class="slide" alt="">
     </div>
 
-    <div class="header-content">
+    <!-- Desktop overlay content (hidden on mobile) -->
+    <div class="header-content" role="banner">
       <h1>Da'Quan & Savannah</h1>
       <h1 style="margin:0.3rem 0; font-size:3rem; letter-spacing:2px; color:#fff6da;">Conway</h1>
       <p style="margin:0.3rem 0; font-size:1.15rem; color:#fdf9f3; font-style:italic;">August 4th, 2026</p>
-      <div id="countdown"></div>
+      <div id="countdown" aria-hidden="true"></div>
     </div>
   </header>
 
@@ -446,76 +417,117 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <section id="story">
+    <h2>Our Story</h2>
+    <hr class="divider"/>
+    <div class="story-content">…</div>
+  </section>
+
+  <section id="place">…</section>
+  <section id="schedule">…</section>
+  <section id="travel">…</section>
+  <section id="party">…</section>
+  <section id="gallery">…</section>
+
   <footer>
     <p>With love — Da'Quan & Savannah • August 26, 2026</p>
   </footer>
-<script>
-  // ===== SLIDESHOW =====
-  const slides = document.querySelectorAll(".header-slideshow .slide");
-  let currentSlide = 0;
 
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.classList.toggle("active", i === index);
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // ELEMENTS
+      const toggle = document.getElementById("mobile-nav-toggle");
+      const links = document.getElementById("mobile-nav-links");
+      const navCountdown = document.getElementById("nav-countdown");
+
+      // MOBILE MENU TOGGLE (keyboard+accessible)
+      function closeMenu() {
+        if (links) {
+          links.style.display = "none";
+          links.setAttribute("aria-hidden", "true");
+          if (toggle) toggle.setAttribute("aria-expanded", "false");
+        }
+      }
+      function openMenu() {
+        if (links) {
+          links.style.display = "flex";
+          links.style.flexDirection = "column";
+          links.setAttribute("aria-hidden", "false");
+          if (toggle) toggle.setAttribute("aria-expanded", "true");
+        }
+      }
+      if (toggle && links) {
+        // start closed
+        closeMenu();
+
+        toggle.addEventListener("click", function (e) {
+          const isOpen = links.style.display === "flex";
+          if (isOpen) closeMenu();
+          else openMenu();
+        });
+
+        // Close when tapping any link (mobile UX)
+        links.querySelectorAll("a").forEach(a => {
+          a.addEventListener("click", () => {
+            closeMenu();
+          });
+        });
+
+        // Close on escape
+        document.addEventListener("keydown", (ev) => {
+          if (ev.key === "Escape") closeMenu();
+        });
+
+        // Close menu if viewport resized above mobile breakpoint
+        window.addEventListener("resize", () => {
+          if (window.innerWidth > 768) closeMenu();
+        });
+      }
+
+      // SLIDESHOW
+      const slides = document.querySelectorAll(".header-slideshow img");
+      let currentSlide = 0;
+      function showSlide(index) {
+        slides.forEach((s, i) => s.classList.toggle("active", i === index));
+      }
+      function nextSlide() {
+        if (!slides.length) return;
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+      }
+      if (slides.length) {
+        showSlide(currentSlide);
+        setInterval(nextSlide, 5000);
+      }
+
+      // COUNTDOWN (shared function updates multiple elements safely)
+      const weddingTime = new Date("August 4, 2026 00:00:00").getTime();
+      function updateCountdownElement(el) {
+        if (!el) return;
+        const now = Date.now();
+        const distance = weddingTime - now;
+        if (distance <= 0) {
+          el.textContent = "The big day is here!";
+          return;
+        }
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        el.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
+
+      // Start intervals for any countdown elements that exist
+      const countdownTargets = ["countdown", "mobile-names-countdown-timer", "names-countdown-timer-mobile", "nav-countdown"];
+      countdownTargets.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          updateCountdownElement(el);
+          setInterval(() => updateCountdownElement(el), 1000);
+        }
+      });
     });
-  }
-
-  function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-  }
-
-  setInterval(nextSlide, 5000); // Change slide every 5 seconds
-
-  // ===== COUNTDOWN =====
-  const countdownDate = new Date("August 4, 2026 00:00:00").getTime();
-  const countdownEl = document.getElementById("countdown");
-
-  if (countdownEl) {
-    const countdownInterval = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = countdownDate - now;
-
-      if (distance < 0) {
-        clearInterval(countdownInterval);
-        countdownEl.innerHTML = "The big day is here!";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      countdownEl.innerHTML = `
-        ${days}d ${hours}h ${minutes}m ${seconds}s
-      `;
-    }, 1000);
-  }
-
-  // ===== OPTIONAL: MOBILE COUNTDOWN (if still used somewhere else) =====
-  const mobileCountdownEl = document.getElementById("names-countdown-timer-mobile");
-  if (mobileCountdownEl) {
-    const mobileInterval = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = countdownDate - now;
-
-      if (distance < 0) {
-        clearInterval(mobileInterval);
-        mobileCountdownEl.innerHTML = "The big day is here!";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      mobileCountdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }, 1000);
-  }
-</script>
+  </script>
 </body>
 </html>
 
