@@ -66,56 +66,52 @@
     header, section { padding-top: 4.5rem; }
 
     /* ===== HEADER / HOME ===== */
-    header#home {
-      position: relative;
-      padding: 8.5rem 1rem 6rem;
-      text-align: center;
-      color: #fff6da;
-      overflow: hidden;
-    }
+   /* ===== HEADER / HOME ===== */
+header#home {
+  position: relative;
+  height: 90vh; /* take up 90% of the viewport height */
+  padding: 0;   /* remove previous padding */
+  text-align: center;
+  color: #fff6da;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertically center header content */
+}
 
-    /* Slideshow */
-    .header-slideshow {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      overflow: hidden;
-    }
-    .header-slideshow img {
+.header-slideshow {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.header-slideshow img {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 100%;
-  height: 100%;
+  width: auto;      /* let width scale automatically */
+  height: 100%;     /* cover full height */
   object-fit: cover;
-  object-position: center; /* <-- ensures the image stays centered */
-  transform: translate(-50%, -50%); /* <-- centers the image in both directions */
+  object-position: center;
+  transform: translate(-50%, -50%);
   opacity: 0;
   transition: opacity 1.5s ease-in-out;
 }
+
 .header-slideshow img.active {
   opacity: 1;
 }
 
-    }
-    /* Overlay */
-    .header-slideshow::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.35);
-      z-index: 1;
-    }
+.header-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-    .header-content {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
     header#home h1 { font-size: 3rem; margin: 0 0 0.6rem; letter-spacing: 2px; }
     header#home p { font-size: 1.15rem; margin: 0; color: #fdf9f3; font-style: italic; }
     #countdown { margin-top:1rem; font-size:1.25rem; color:#ffe9a9; }
@@ -442,5 +438,6 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
   </script>
 </body>
 </html>
+
 
 
