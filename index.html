@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -18,18 +18,19 @@
 
     /* ===== NAV ===== */
     nav {
-      background: rgba(0,0,0,0.55);
-      backdrop-filter: blur(6px);
-      color: #fff8e7;
-      padding: 1rem 1.5rem;
       position: fixed;
-      width: 100%;
       top: 0;
       left: 0;
+      width: 100%;
       z-index: 1000;
       display: flex;
       justify-content: center;
+      align-items: center;
       gap: 1.4rem;
+      padding: 1rem 1.5rem;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(6px);
+      color: #fff8e7;
     }
     nav a {
       color: #fff6da;
@@ -55,16 +56,52 @@
     nav a:hover { color: #ffe9a9; }
     nav a:hover::after, nav a.active::after { width: 70%; }
 
+    #nav-countdown {
+      position: absolute;
+      right: 5rem; /* slightly inset from right edge */
+      font-weight: 700;
+      color: #ffe9a9;
+    }
+
     header, section { padding-top: 4.5rem; }
 
-    /* ===== HOME ===== */
+    /* ===== HEADER / HOME ===== */
     header#home {
+      position: relative;
       padding: 8.5rem 1rem 6rem;
       text-align: center;
       color: #fff6da;
+      overflow: hidden;
+    }
+
+    .header-slideshow {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    .header-slideshow img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+    .header-slideshow img.active {
+      opacity: 1;
+    }
+    .header-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     header#home h1 { font-size: 3rem; margin: 0 0 0.6rem; letter-spacing: 2px; }
     header#home p { font-size: 1.15rem; margin: 0; color: #fdf9f3; font-style: italic; }
+    #countdown { margin-top:1rem; font-size:1.25rem; color:#ffe9a9; }
 
     /* ===== GENERIC SECTION ===== */
     section { padding: 4.5rem 1.5rem; text-align: center; }
@@ -80,16 +117,7 @@
 
     /* ===== OUR STORY ===== */
     #story { background: rgba(0,0,0,0.28); backdrop-filter: blur(4px); }
-    .story-content { 
-      max-width: 900px; 
-      margin: 0 auto; 
-      text-align: left; 
-      background: rgba(59,53,47,0.62); 
-      border-radius: 16px; 
-      padding: 2rem; 
-      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-      line-height:1.75;
-    }
+    .story-content { max-width: 900px; margin: 0 auto; text-align: left; background: rgba(59,53,47,0.62); border-radius: 14px; padding: 1.6rem; }
 
     /* ===== PLACE ===== */
     #place { position: relative; height: 100vh; overflow: hidden; display:flex; align-items: center; justify-content: center; padding:0; }
@@ -111,104 +139,28 @@
       margin: 0 auto;
       align-items: flex-start;
     }
-    .party-side {
-      flex: 1 1 45%;
-      min-width: 260px;
-    }
-    .party-side .side-title {
-      text-align: center;
-      margin-bottom: 1rem;
-      color: #fff6da;
-      font-size: 1.2rem;
-      font-weight: 700;
-    }
-    .party-side .members-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      justify-items: center;
-    }
-    .party-member {
-      background: rgba(59,53,47,0.62);
-      border-radius: 12px;
-      padding: 1rem;
-      text-align: center;
-      margin-bottom: 0;
-    }
-    .party-member img {
-      border-radius: 8px;
-      width:140px;
-      height:140px;
-      object-fit:cover;
-      display:block;
-      margin:0 auto 0.5rem;
-      border:4px solid rgba(230,200,130,0.12);
-    }
+    .party-side { flex: 1 1 45%; min-width: 260px; }
+    .party-side .side-title { text-align: center; margin-bottom: 1rem; color: #fff6da; font-size: 1.2rem; font-weight: 700; }
+    .party-side .members-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; justify-items: center; }
+    .party-member { background: rgba(59,53,47,0.62); border-radius: 12px; padding: 1rem; text-align: center; margin-bottom: 0; }
+    .party-member img { border-radius: 8px; width:140px; height:140px; object-fit:cover; display:block; margin:0 auto 0.5rem; border:4px solid rgba(230,200,130,0.12); }
     .party-member h3 { margin:0.25rem 0; color:#ffe9a9; font-size:1.05rem; }
     .party-member .role { color:#fff8e7; font-size:0.95rem; margin-bottom:0.35rem; }
     .party-member .bio { color:#fdf9f3; font-size:0.95rem; line-height:1.45; margin:0; }
-
-    .party-highlight {
-      display:flex;
-      justify-content:center;
-      gap:3rem;
-      margin-bottom:2rem;
-    }
-    .party-highlight .party-member {
-      max-width:220px;
-    }
-    .party-highlight .party-member img {
-      width:220px;
-      height:220px;
-      border-radius:8px;
-      border:4px solid #e5c982;
-      object-fit:cover;
-    }
+    .party-highlight { display:flex; justify-content:center; gap:3rem; margin-bottom:2rem; }
+    .party-highlight .party-member { max-width:220px; }
+    .party-highlight .party-member img { width:220px; height:220px; border-radius:8px; border:4px solid #e5c982; object-fit:cover; }
 
     /* ===== GALLERY ===== */
-    #gallery .photo-grid {
-      display: grid;
-      gap: 1rem;
-      grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
-      max-width:1000px;
-      margin:1.2rem auto 0;
-    }
-    .photo-grid img { width:100%; height:160px; object-fit:cover; border-radius:10px; transition: transform 0.3s; }
-    .photo-grid img:hover { transform: scale(1.05); }
+    #gallery .photo-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); max-width:1000px; margin:1.2rem auto 0; }
+    .photo-grid img { width:100%; height:160px; object-fit:cover; border-radius:10px; }
 
     /* ===== BUTTONS ===== */
-    button, a.button {
-      background-color: #c7a96b;
-      color: #3B352F;
-      border: none;
-      padding: 0.72rem 1.25rem;
-      border-radius: 8px;
-      font-family: "Georgia", serif;
-      font-size: 1rem;
-      letter-spacing: 0.02em;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      text-decoration: none;
-      display: inline-block;
-    }
-    button:hover, a.button:hover {
-      background-color: #e5c982;
-      color: #2c261f;
-      transform: translateY(-3px);
-      box-shadow: 0 6px 18px rgba(199,169,107,0.25);
-    }
+    button, a.button { background-color: #c7a96b; color: #3B352F; border: none; padding: 0.72rem 1.25rem; border-radius: 8px; font-family: "Georgia", serif; font-size: 1rem; letter-spacing: 0.02em; cursor: pointer; transition: all 0.25s ease; text-decoration: none; display: inline-block; }
+    button:hover, a.button:hover { background-color: #e5c982; color: #2c261f; transform: translateY(-3px); box-shadow: 0 6px 18px rgba(199,169,107,0.25); }
 
     /* ===== FOOTER ===== */
-    footer {
-      background: rgba(0,0,0,0.5);
-      color:#fff8e7;
-      padding:2rem 1rem;
-      text-align:center;
-      font-size:0.95rem;
-      letter-spacing:0.04em;
-      margin-top:2rem;
-      backdrop-filter: blur(4px);
-    }
+    footer { background: rgba(0,0,0,0.5); color:#fff8e7; padding:2rem 1rem; text-align:center; font-size:0.95rem; letter-spacing:0.04em; margin-top:2rem; backdrop-filter: blur(4px); }
     footer a { color:#ffe9a9; text-decoration:none; font-weight:700; }
     footer a:hover { color:#fff6da; text-decoration:underline; }
 
@@ -219,7 +171,6 @@
       .party-highlight { flex-direction: column; gap:1.2rem; }
       .party-highlight .party-member img { width:160px; height:160px; }
     }
-
     @media (max-width: 700px){
       header#home { padding:6.5rem 1rem 4.5rem; }
       .place-content, .section-box { margin:1rem; padding:1.2rem; }
@@ -229,101 +180,35 @@
 </head>
 <body>
 
-<!-- NAV -->
-<nav style="position:fixed; top:0; left:0; width:100%; z-index:1000; display:flex; justify-content:center; align-items:center; gap:1.4rem; padding:1rem 1.5rem; background: rgba(0,0,0,0.55); backdrop-filter: blur(6px); color:#fff8e7;">
-  
-  <!-- Nav links (centered) -->
-  <div style="display:flex; gap:1.4rem; justify-content:center;">
-    <a href="#home">Home</a>
-    <a href="#schedule">Schedule</a>
-    <a href="#travel">Travel</a>
-    <a href="https://www.amazon.com/wedding-registry/link-to-your-registry" target="_blank">Registry</a>
-    <a href="#party">Wedding Party</a>
-    <a href="#gallery">Gallery</a>
-    <a href="video.html">Video</a>
-    <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank">RSVP</a>
-  </div>
+  <!-- NAV -->
+  <nav>
+    <div style="display:flex; gap:1.4rem; justify-content:center;">
+      <a href="#home">Home</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#travel">Travel</a>
+      <a href="https://www.amazon.com/wedding-registry/link-to-your-registry" target="_blank">Registry</a>
+      <a href="#party">Wedding Party</a>
+      <a href="#gallery">Gallery</a>
+      <a href="video.html">Video</a>
+      <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank">RSVP</a>
+    </div>
+    <div id="nav-countdown"></div>
+  </nav>
 
-  <!-- Countdown (slightly inset from right edge) -->
-  <div id="nav-countdown" style="position:absolute; right:0.2rem; font-weight:700; color:#ffe9a9;"></div>
-</nav>
-
-<script>
-  // Countdown for nav bar
-  const weddingDate = new Date("August 4, 2026 00:00:00").getTime();
-  const navCountdownEl = document.getElementById("nav-countdown");
-
-  function updateNavCountdown() {
-    const now = new Date().getTime();
-    const distance = weddingDate - now;
-
-    if(distance < 0){
-      navCountdownEl.innerHTML = "Wedding Day!";
-      clearInterval(navCountdownInterval);
-      return;
-    }
-
-    const days = Math.floor(distance / (1000*60*60*24));
-    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-    const seconds = Math.floor((distance % (1000*60)) / 1000);
-
-    navCountdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-  }
-
-  const navCountdownInterval = setInterval(updateNavCountdown, 1000);
-  updateNavCountdown();
-
-  // Hide countdown on mobile
-  function checkNavCountdownVisibility() {
-    if(window.innerWidth < 900) {
-      navCountdownEl.style.display = "none";
-    } else {
-      navCountdownEl.style.display = "inline-block";
-    }
-  }
-
-  window.addEventListener("resize", checkNavCountdownVisibility);
-  checkNavCountdownVisibility(); // initial check
-</script>
-
-
-
- <!-- HOME -->
-<header id="home">
-  <h1>Da'Quan & Savannah</h1>
-  <h1 style="margin:0.3rem 0; font-size:3rem; letter-spacing:2px; color:#fff6da;">Conway</h1>
-  <p style="margin:0.3rem 0; font-size:1.15rem; color:#fdf9f3; font-style:italic;">August 4th, 2026</p>
-  <div id="countdown" style="margin-top:1rem; font-size:1.25rem; color:#ffe9a9;"></div>
-</header>
-
-<script>
-  // Set the wedding date
-  const weddingDate = new Date("August 4, 2026 00:00:00").getTime();
-  const countdownEl = document.getElementById("countdown");
-
-  function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = weddingDate - now;
-
-    if(distance < 0) {
-      countdownEl.innerHTML = "The wedding day is here!";
-      clearInterval(countdownInterval);
-      return;
-    }
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-  }
-
-  const countdownInterval = setInterval(updateCountdown, 1000);
-  updateCountdown(); // initialize immediately
-</script>
-
+  <!-- HOME -->
+  <header id="home">
+    <div class="header-slideshow">
+      <img src="slide1.jpg" class="slide active" alt="Slide 1">
+      <img src="slide2.jpg" class="slide" alt="Slide 2">
+      <img src="slide3.jpg" class="slide" alt="Slide 3">
+    </div>
+    <div class="header-content">
+      <h1>Da'Quan & Savannah</h1>
+      <h1 style="margin:0.3rem 0; font-size:3rem; letter-spacing:2px; color:#fff6da;">Conway</h1>
+      <p style="margin:0.3rem 0; font-size:1.15rem; color:#fdf9f3; font-style:italic;">August 4th, 2026</p>
+      <div id="countdown"></div>
+    </div>
+  </header>
 
   <hr class="divider"/>
 
@@ -498,30 +383,55 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
   </footer>
 
   <script>
-    // Optional: Highlight current section in nav while scrolling
-    const sections = document.querySelectorAll("section, header");
-    const navLinks = document.querySelectorAll("nav a");
+  // Header slideshow
+  const slides = document.querySelectorAll('.header-slideshow .slide');
+  let currentSlide = 0;
+  function nextSlide() {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+  }
+  setInterval(nextSlide, 5000);
 
-    window.addEventListener("scroll", () => {
-      let current = "";
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 60;
-        if (pageYOffset >= sectionTop) {
-          current = section.getAttribute("id");
-        }
-      });
-      navLinks.forEach(link => {
-        link.classList.remove("active");
-        if (link.getAttribute("href") === "#" + current) {
-          link.classList.add("active");
-        }
-      });
-    });
-  </script>
+  // Countdown for header
+  const weddingDate = new Date("August 4, 2026 00:00:00").getTime();
+  const countdownEl = document.getElementById("countdown");
+  const navCountdownEl = document.getElementById("nav-countdown");
 
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+    if(distance < 0){
+      countdownEl.innerHTML = "Wedding Day!";
+      navCountdownEl.innerHTML = "Wedding Day!";
+      clearInterval(countdownInterval);
+      return;
+    }
+    const days = Math.floor(distance / (1000*60*60*24));
+    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+    const seconds = Math.floor((distance % (1000*60)) / 1000);
+    const text = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    countdownEl.innerHTML = text;
+    navCountdownEl.innerHTML = text;
+  }
+
+  const countdownInterval = setInterval(updateCountdown, 1000);
+  updateCountdown();
+
+  // Hide nav countdown on mobile
+  function checkNavCountdownVisibility() {
+    if(window.innerWidth < 900) {
+      navCountdownEl.style.display = "none";
+    } else {
+      navCountdownEl.style.display = "inline-block";
+    }
+  }
+  window.addEventListener("resize", checkNavCountdownVisibility);
+  checkNavCountdownVisibility();
+</script>
 </body>
 </html>
-
 
 
 
