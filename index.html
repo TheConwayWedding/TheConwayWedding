@@ -196,38 +196,45 @@ header#home {
     hr.divider { border: none; height: 2px; width: 80px; margin: 1rem auto 1.6rem; background: linear-gradient(to right, transparent, #e5c982, transparent); }
     section p { color: #fdf9f3; font-size: 1.05rem; line-height: 1.7; max-width: 800px; margin: 0 auto; white-space: pre-line; }
 
-    /* MOBILE-ONLY NAMES & COUNTDOWN */
+/* MOBILE-ONLY FULLSCREEN NAMES & COUNTDOWN */
 #names-countdown-mobile {
   display: none; /* hidden by default */
-  text-align: center;
-  padding: 2rem 1rem;
-  background: rgba(59,53,47,0.6);
+  height: 100vh; /* full viewport height */
+  width: 100%;
+  background: rgba(59,53,47,0.85); /* dark overlay for entire section */
   backdrop-filter: blur(4px);
-  border-radius: 12px;
-  margin: 1.5rem auto;
-  color: #fff6da;
-  max-width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  padding: 1rem;
 }
 
 #names-countdown-mobile h1 {
-  margin: 0.25rem 0;
-  font-size: 1.8rem;
-  line-height: 1.2;
+  margin: 0.2rem 0;
+  font-size: 10vw; /* responsive, adjusts to screen width */
+  font-weight: 800;
+  line-height: 1;
+  color: #fff6da;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.4);
 }
 
 #names-countdown-timer-mobile {
-  margin-top: 0.8rem;
-  font-size: 1.2rem;
+  margin-top: 1rem;
+  font-size: 6vw;  /* slightly smaller than names */
   font-weight: 700;
   color: #ffe9a9;
+  text-shadow: 1px 1px 8px rgba(0,0,0,0.3);
 }
 
 /* Show only on mobile */
 @media (max-width: 768px) {
   #names-countdown-mobile {
-    display: block;
+    display: flex;
   }
 }
+
 
    
     /* ===== OUR STORY ===== */
@@ -845,6 +852,7 @@ mobileNavToggle.addEventListener("click", () => {
   </script>
 </body>
 </html>
+
 
 
 
