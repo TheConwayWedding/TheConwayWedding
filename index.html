@@ -69,14 +69,11 @@
    /* ===== HEADER / HOME ===== */
 header#home {
   position: relative;
-  height: 90vh; /* take up 90% of the viewport height */
-  padding: 0;   /* remove previous padding */
+  padding: 8.5rem 1rem 6rem;
   text-align: center;
   color: #fff6da;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* vertically center header content */
+  min-height: 100vh; /* ensures header is at least full viewport height */
 }
 
 .header-slideshow {
@@ -85,23 +82,25 @@ header#home {
   width: 100%;
   height: 100%;
   z-index: 0;
+  overflow: hidden;
 }
 
 .header-slideshow img {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: auto;      /* let width scale automatically */
-  height: 100%;     /* cover full height */
-  object-fit: cover;
-  object-position: center;
+  min-width: 100%;
+  min-height: 100%;
   transform: translate(-50%, -50%);
+  object-fit: cover;
   opacity: 0;
   transition: opacity 1.5s ease-in-out;
 }
 
 .header-slideshow img.active {
   opacity: 1;
+}
+
 }
 
 .header-content {
@@ -438,6 +437,7 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
   </script>
 </body>
 </html>
+
 
 
 
