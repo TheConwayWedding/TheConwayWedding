@@ -239,10 +239,40 @@
   </nav>
 
   <!-- HOME -->
-  <header id="home">
-    <h1>Da'Quan & Savannah</h1>
-    <p>Join us in celebrating our forever</p>
-  </header>
+ <!-- HOME -->
+<header id="home">
+  <h1>Da'Quan & Savannah</h1>
+  <h2 style="margin:0.3rem 0; font-size:2rem; color:#ffe9a9;">Conway</h2>
+  <p style="margin:0.3rem 0; font-size:1.2rem; color:#fdf9f3;">August 4th, 2026</p>
+  <div id="countdown" style="margin-top:1rem; font-size:1.25rem; color:#ffe9a9;"></div>
+</header>
+
+<script>
+  // Set the wedding date
+  const weddingDate = new Date("August 4, 2026 00:00:00").getTime();
+  const countdownEl = document.getElementById("countdown");
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    if(distance < 0) {
+      countdownEl.innerHTML = "The wedding day is here!";
+      clearInterval(countdownInterval);
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
+
+  const countdownInterval = setInterval(updateCountdown, 1000);
+  updateCountdown(); // initialize immediately
+</script>
 
   <hr class="divider"/>
 
@@ -262,7 +292,6 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
     </div>
   </section>
 
-  <hr class="divider"/>
 
   <!-- PLACE (background video restored) -->
   <section id="place">
@@ -442,3 +471,4 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
 
 </body>
 </html>
+
