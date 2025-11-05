@@ -16,7 +16,13 @@
       line-height: 1.6;
     }
 
+
     /* ===== NAV ===== */
+    @media (max-width: 768px) {
+  nav > div:first-child { /* desktop links container */
+    display: none;
+  }
+}
     nav {
       position: fixed;
       top: 0;
@@ -58,169 +64,564 @@
 
     #nav-countdown {
       position: absolute;
-      right: 4rem;
+      right: 4rem; /* adjust so visible */
       font-weight: 700;
       color: #ffe9a9;
     }
 
     header, section { padding-top: 4.5rem; }
 
-    /* ===== HEADER / HOME ===== */
-    header#home {
-      position: relative;
-      height: 100vh;
-      padding: 0;
-      text-align: center;
-      color: #fff6da;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .header-slideshow {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-    }
-
-    .header-slideshow img {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: auto;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      transform: translate(-50%, -50%);
-      opacity: 0;
-      transition: opacity 1.5s ease-in-out;
-    }
-
-    .header-slideshow img.active {
-      opacity: 1;
-    }
-
-    .header-content {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.5);
-      padding: 0 1rem;
-      width: 100%;
-    }
-
-    /* ===== MOBILE DROPDOWN MENU ===== */
-    #mobile-nav { display: none; }
-    #mobile-nav-toggle { 
-      background: #c7a96b; 
-      border: none; 
-      font-size: 1.3rem; 
-      padding: 0.5rem 1rem; 
-      border-radius: 6px; 
-      cursor: pointer; 
-      color: #3B352F; 
-      font-weight: 700;
-      z-index: 1001;
-    }
-    #mobile-nav-links { display: none; flex-direction: column; gap: 0.8rem; margin-top: 0.5rem; background: rgba(0,0,0,0.65); padding: 1rem; border-radius: 8px; position: absolute; top: 3.5rem; width: 80%; max-width: 220px; right: 10%; }
-    #mobile-nav-links a { color:#fff6da; font-weight:700; text-decoration:none; }
-    #mobile-nav-links a:hover { color:#ffe9a9; }
-
-    /* MOBILE RESPONSIVE HEADER TEXT */
-    @media (max-width: 768px) {
-      .header-content { display: none; }
-      #mobile-nav { display: block; position: relative; margin-top: 1rem; }
-
-      #mobile-names-countdown { display: block; }
-    }
-
-    /* ===== COUNTDOWN ===== */
-    #countdown, #names-countdown-timer-mobile {
-      font-size: 1.2rem;
-      color: #ffe9a9;
-      font-weight: 700;
-      text-align: center;
-      margin-top: 1rem;
-    }
-    /* ===== MOBILE-ONLY DROPDOWN MENU ===== */
-#mobile-nav {
-  display: none;
-  position: fixed;
-  top: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-  width: 100%;
-  text-align: center;
+    /* Mobile-only nav */
+#mobile-nav-dropdown {
+  display: none; /* hide on desktop */
+  position: relative;
 }
 
-#mobile-nav-toggle {
-  background: #c7a96b;
+#mobile-nav-dropdown #mobile-nav-toggle {
+  font-size: 1.8rem;
+  background: rgba(59,53,47,0.7);
+  color: #fff6da;
   border: none;
-  font-size: 1.4rem;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
   cursor: pointer;
-  color: #3B352F;
-  font-weight: 700;
 }
 
 #mobile-nav-links {
   display: none;
   flex-direction: column;
-  gap: 0.8rem;
-  margin-top: 0.5rem;
-  background: rgba(0,0,0,0.65);
+  background: rgba(59,53,47,0.85);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
   padding: 1rem;
-  border-radius: 8px;
-  width: 80%;
-  max-width: 260px;
-  margin: 0.5rem auto 0;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 1001;
 }
 
 #mobile-nav-links a {
   color: #fff6da;
-  font-weight: 700;
   text-decoration: none;
+  padding: 0.5rem 0;
+  font-weight: 700;
 }
 
 #mobile-nav-links a:hover {
   color: #ffe9a9;
 }
 
-#nav-countdown {
+/* Show toggle button only on mobile */
+@media (max-width: 768px) {
+  #mobile-nav-dropdown {
+    display: block;
+  }
+}
+
+  /* ===== HEADER / HOME ===== */
+header#home {
+  position: relative;
+  height: 100vh; /* full viewport height */
+  padding: 0;
   text-align: center;
-  margin-top: 1rem;
-  font-weight: 700;
-  color: #ffe9a9;
-  display: none;
+  color: #fff6da;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical centering */
+  align-items: center; /* horizontal centering */
+}
+
+.header-slideshow {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.header-slideshow img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.header-slideshow img.active {
+  opacity: 1;
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* horizontal centering */
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  padding: 0 1rem;
+  width: 100%;
+}
+
+/* ===== Mobile-only header text & dropdown ===== */
+@media (max-width: 768px) {
+  .header-content { display: none; }
+
+  #mobile-header-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(59,53,47,0.6);
+    backdrop-filter: blur(4px);
+    border-radius: 12px;
+    margin: 1rem auto;
+    color: #fff6da;
+    max-width: 90%; /* ensure centered container */
+  }
+
+  #mobile-header-text h1 {
+    margin: 0.25rem 0; /* consistent spacing */
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  #mobile-countdown {
+    margin-top: 0.8rem;
+    font-size: 1.2rem;
+    color: #ffe9a9;
+    font-weight: 700;
+  }
+}
+
+}
+
+    <header id="home">
+
+  <!-- Desktop overlay content -->
+  <div class="header-content">
+    <h1>Da'Quan & Savannah</h1>
+    <h1 style="margin:0.3rem 0; font-size:3rem; letter-spacing:2px; color:#fff6da;">Conway</h1>
+    <p style="margin:0.3rem 0; font-size:1.15rem; color:#fdf9f3; font-style:italic;">August 4th, 2026</p>
+    <div id="countdown"></div>
+  </div>
+
+  <!-- Mobile dropdown nav -->
+  <div id="mobile-nav">
+    <button id="mobile-nav-toggle">☰ Menu</button>
+    <div id="mobile-nav-links">
+      <a href="#home">Home</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#travel">Travel</a>
+      <a href="https://www.amazon.com/wedding-registry/link-to-your-registry" target="_blank">Registry</a>
+      <a href="#party">Wedding Party</a>
+      <a href="#gallery">Gallery</a>
+      <a href="video.html">Video</a>
+      <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank">RSVP</a>
+    </div>
+  </div>
+</header>
+
+  <!-- Slideshow -->
+  <div class="header-slideshow">
+    <img src="slide1.jpg" class="slide active" alt="Slide 1">
+    <img src="slide2.jpg" class="slide" alt="Slide 2">
+    <img src="slide3.jpg" class="slide" alt="Slide 3">
+  </div>
+
+    /* ===== GENERIC SECTION ===== */
+    section { padding: 4.5rem 1.5rem; text-align: center; }
+    section h2 {
+      color: #fff6da;
+      font-size: 2.2rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin: 0 0 0.6rem;
+    }
+    hr.divider { border: none; height: 2px; width: 80px; margin: 1rem auto 1.6rem; background: linear-gradient(to right, transparent, #e5c982, transparent); }
+    section p { color: #fdf9f3; font-size: 1.05rem; line-height: 1.7; max-width: 800px; margin: 0 auto; white-space: pre-line; }
+
+/* MOBILE-ONLY FULLSCREEN NAMES & COUNTDOWN */
+#names-countdown-mobile {
+  display: none; /* hidden by default on desktop */
 }
 
 /* Show only on mobile */
 @media (max-width: 768px) {
-  #mobile-nav {
-    display: block;
+  #names-countdown-mobile {
+    display: flex;             /* enable flex only on mobile */
+    height: 100vh;             /* full viewport height */
+    width: 100%;
+    background: rgba(59,53,47,0.85); /* dark overlay for entire section */
+    backdrop-filter: blur(4px);
+    justify-content: center;   /* vertical centering */
+    align-items: center;       /* horizontal centering */
+    text-align: center;
+    flex-direction: column;
+    padding: 0 1rem;           /* slight padding on sides */
+    box-sizing: border-box;    /* ensure padding doesn’t overflow */
   }
-  #nav-countdown {
-    display: block;
+
+  #names-countdown-mobile h1 {
+    margin: 0.1rem 0;
+    font-size: 10vw;           /* responsive size */
+    font-weight: 800;
+    line-height: 1;
+    color: #fff6da;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.4);
+  }
+
+  #names-countdown-timer-mobile {
+    margin-top: 1rem;
+    font-size: 6vw;            /* slightly smaller than names */
+    font-weight: 700;
+    color: #ffe9a9;
+    text-shadow: 1px 1px 8px rgba(0,0,0,0.3);
   }
 }
 
 
+
+
+    /* ===== OUR STORY ===== */
+    /* ===== SECTION HEADERS CENTERED ===== */
+section h2,
+.story-content h2,
+.place-content h2,
+.section-box h2 {
+  color: #fff6da;
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0 0 0.6rem;
+  text-align: center !important; /* force centering */
+}
+    #story { background: rgba(0,0,0,0.28); backdrop-filter: blur(4px); }
+    .story-content { max-width: 900px; margin: 0 auto; text-align: left; background: rgba(59,53,47,0.62); border-radius: 14px; padding: 1.6rem; }
+    /* ===== SECTION HEADERS CENTERED ===== */
+}
+
+    /* ===== SECTION HEADERS CENTERED ===== */
+section h2 {
+  color: #fff6da;
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0 0 0.6rem;
+  text-align: center; /* Force centering */
+}
+
+/* Override inner wrappers that might interfere */
+.story-content h2,
+.place-content h2,
+.section-box h2 {
+  text-align: center;
+}
+
+
+    /* ===== PLACE ===== */
+    #place { position: relative; height: 100vh; overflow: hidden; display:flex; align-items: center; justify-content: center; padding:0; }
+    #place video { position: absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; filter: brightness(0.55); }
+    .place-content { position: relative; z-index:1; background: rgba(59,53,47,0.72); padding:2rem; border-radius:14px; max-width:820px; margin:2rem; text-align:center; backdrop-filter: blur(6px); }
+    .place-content h2 { margin-top:0; color:#fff6da; font-size:2.4rem; }
+    .place-content img { width:100%; max-width:560px; border-radius:12px; margin-top:1rem; }
+
+    /* ===== SCHEDULE & TRAVEL ===== */
+    .section-box { max-width:800px; margin:0 auto; background: rgba(59,53,47,0.62); border-radius:14px; padding:2rem; text-align:left; backdrop-filter: blur(4px); }
+    /* ===== SECTION HEADERS CENTERED ===== */
+section h2 {
+  color: #fff6da;
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0 0 0.6rem;
+  text-align: center; /* Force centering */
+}
+
+/* Override inner wrappers that might interfere */
+.story-content h2,
+.place-content h2,
+.section-box h2 {
+  text-align: center;
+}
+
+
+    /* ===== WEDDING PARTY ===== */
+
+
+/* ===== WEDDING PARTY ===== */
+/* ===== SECTION HEADERS CENTERED ===== */
+section h2 {
+  color: #fff6da;
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0 0 0.6rem;
+  text-align: center; /* Force centering */
+}
+
+/* Override inner wrappers that might interfere */
+.story-content h2,
+.place-content h2,
+.section-box h2 {
+  text-align: center;
+}
+
+    #party { 
+  background: rgba(0,0,0,0.22); 
+  backdrop-filter: blur(3px); 
+}
+
+.party-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: flex-start;
+}
+
+.party-side { 
+  flex: 1 1 45%; 
+  min-width: 260px; 
+}
+
+.party-side .side-title { 
+  text-align: center; 
+  margin-bottom: 1rem; 
+  color: #fff6da; 
+  font-size: 1.2rem; 
+  font-weight: 700; 
+}
+
+.party-side .members-grid { 
+  display: grid; 
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 1rem; 
+  justify-items: center; 
+}
+
+.party-member { 
+  background: rgba(59,53,47,0.62); 
+  border-radius: 12px; 
+  padding: 1rem; 
+  text-align: center; 
+  margin-bottom: 0; 
+}
+
+.party-member img { 
+  border-radius: 8px; 
+  width: 140px; 
+  height: 140px; 
+  object-fit: cover; 
+  display: block; 
+  margin: 0 auto 0.5rem; 
+  border: 4px solid rgba(230,200,130,0.12); 
+}
+
+.party-member h3 { 
+  margin: 0.25rem 0; 
+  color: #ffe9a9; 
+  font-size: 1.05rem; 
+}
+
+.party-member .role { 
+  color: #fff8e7; 
+  font-size: 0.95rem; 
+  margin-bottom: 0.35rem; 
+}
+
+.party-member .bio { 
+  color: #fdf9f3; 
+  font-size: 0.95rem; 
+  line-height: 1.45; 
+  margin: 0; 
+}
+
+.party-highlight { 
+  display: flex; 
+  justify-content: center; 
+  gap: 3rem; 
+  margin-bottom: 2rem; 
+}
+
+.party-highlight .party-member { 
+  max-width: 220px; 
+}
+
+.party-highlight .party-member img { 
+  width: 220px; 
+  height: 220px; 
+  border-radius: 8px; 
+  border: 4px solid #e5c982; 
+  object-fit: cover; 
+}
+
+/* ===== Wedding Party Mobile Fix ===== */
+@media (max-width: 768px) {
+  /* Stack the Best Man & Maid of Honor vertically */
+  .party-highlight {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .party-highlight .party-member {
+    max-width: 80%;
+  }
+
+  /* Stack regular members as well */
+  .party-grid {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .party-side {
+    width: 100%;
+  }
+
+  .party-side .members-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .party-member img {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+    .party-side { flex: 1 1 45%; min-width: 260px; }
+    .party-side .side-title { text-align: center; margin-bottom: 1rem; color: #fff6da; font-size: 1.2rem; font-weight: 700; }
+    .party-side .members-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; justify-items: center; }
+    .party-member { background: rgba(59,53,47,0.62); border-radius: 12px; padding: 1rem; text-align: center; margin-bottom: 0; }
+    .party-member img { border-radius: 8px; width:140px; height:140px; object-fit:cover; display:block; margin:0 auto 0.5rem; border:4px solid rgba(230,200,130,0.12); }
+    .party-member h3 { margin:0.25rem 0; color:#ffe9a9; font-size:1.05rem; }
+    .party-member .role { color:#fff8e7; font-size:0.95rem; margin-bottom:0.35rem; }
+    .party-member .bio { color:#fdf9f3; font-size:0.95rem; line-height:1.45; margin:0; }
+    .party-highlight { display:flex; justify-content:center; gap:3rem; margin-bottom:2rem; }
+    .party-highlight .party-member { max-width:220px; }
+    .party-highlight .party-member img { width:220px; height:220px; border-radius:8px; border:4px solid #e5c982; object-fit:cover; }
+
+
+
+
+
+    /* ===== GALLERY ===== */
+   /* ===== SECTION HEADERS CENTERED ===== */
+section h2 {
+  color: #fff6da;
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0 0 0.6rem;
+  text-align: center; /* Force centering */
+}
+
+/* Override inner wrappers that might interfere */
+.story-content h2,
+.place-content h2,
+.section-box h2 {
+  text-align: center;
+}
+
+    #gallery .photo-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); max-width:1000px; margin:1.2rem auto 0; }
+    .photo-grid img { width:100%; height:160px; object-fit:cover; border-radius:10px; }
+
+    /* ===== BUTTONS ===== */
+    button, a.button { background-color: #c7a96b; color: #3B352F; border: none; padding: 0.72rem 1.25rem; border-radius: 8px; font-family: "Georgia", serif; font-size: 1rem; letter-spacing: 0.02em; cursor: pointer; transition: all 0.25s ease; text-decoration: none; display: inline-block; }
+    button:hover, a.button:hover { background-color: #e5c982; color: #2c261f; transform: translateY(-3px); box-shadow: 0 6px 18px rgba(199,169,107,0.25); }
+
+    /* ===== FOOTER ===== */
+    footer { background: rgba(0,0,0,0.5); color:#fff8e7; padding:2rem 1rem; text-align:center; font-size:0.95rem; letter-spacing:0.04em; margin-top:2rem; backdrop-filter: blur(4px); }
+    footer a { color:#ffe9a9; text-decoration:none; font-weight:700; }
+    footer a:hover { color:#fff6da; text-decoration:underline; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .party-grid { flex-direction: column; gap: 1.5rem; }
+      .party-side { width: 100%; }
+      .party-highlight { flex-direction: column; gap:1.2rem; }
+      .party-highlight .party-member img { width:160px; height:160px; }
+    }
+    @media (max-width: 700px){
+      header#home { padding:6.5rem 1rem 4.5rem; }
+      .place-content, .section-box { margin:1rem; padding:1.2rem; }
+      .party-member img { width:120px; height:120px; }
+    }
+}
+    /* ===== SECTION HEADERS CENTERED ===== */
+section h2,
+.story-content h2,
+.place-content h2,
+.section-box h2 {
+  color: #fff6da;
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0 0 0.6rem;
+  text-align: center !important; /* force centering */
+}
+    #mobile-names-countdown {
+  display: none; /* hidden by default */
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(59,53,47,0.6);
+  backdrop-filter: blur(4px);
+  border-radius: 12px;
+  margin: 1rem auto;
+  color: #fff6da;
+  max-width: 90%;
+}
+
+#mobile-names-countdown h1 {
+  margin: 0.25rem 0;
+  font-size: 1.8rem;
+  line-height: 1.2;
+}
+
+#mobile-names-countdown-timer {
+  margin-top: 0.8rem;
+  font-size: 1.2rem;
+  color: #ffe9a9;
+  font-weight: 700;
+}
+
+/* Show only on mobile */
+@media (max-width: 768px) {
+  #mobile-names-countdown {
+    display: block;
+  }
+}
+
   </style>
 </head>
-@@ -167,366 +231,383 @@
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div style="display:flex; gap:1.4rem; justify-content:center;">
+      <a href="#home">Home</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#travel">Travel</a>
+      <a href="https://www.amazon.com/wedding-registry/link-to-your-registry" target="_blank">Registry</a>
+      <a href="#party">Wedding Party</a>
+      <a href="#gallery">Gallery</a>
+      <a href="video.html">Video</a>
+      <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank">RSVP</a>
     </div>
     <div id="nav-countdown"></div>
-  </nav>
-  <!-- NAV (MOBILE-ONLY DROPDOWN) -->
-<nav id="mobile-nav">
+    <!-- MOBILE NAV TOGGLE (only visible on mobile) -->
+<div id="mobile-nav-dropdown">
   <button id="mobile-nav-toggle">☰ Menu</button>
   <div id="mobile-nav-links">
     <a href="#home">Home</a>
@@ -232,69 +633,8 @@
     <a href="video.html">Video</a>
     <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank">RSVP</a>
   </div>
-</nav>
-<div id="nav-countdown"></div>
-
-
-  <!-- MOBILE NAMES & COUNTDOWN -->
-  <div id="mobile-names-countdown">
-    <h1>Da'Quan</h1>
-    <h1>Conway</h1>
-    <h1>&</h1>
-    <h1>Savannah</h1>
-    <h1>Conway</h1>
-    <div id="mobile-names-countdown-timer"></div>
-  </div>
-
-  <script>
-    // ===== MOBILE MENU TOGGLE =====
-    document.addEventListener("DOMContentLoaded", function(){
-      const toggle = document.getElementById("mobile-nav-toggle");
-      const links = document.getElementById("mobile-nav-links");
-
-      if(toggle && links){
-        toggle.addEventListener("click", function(){
-          links.style.display = links.style.display === "flex" ? "none" : "flex";
-        });
-      }
-
-      // ===== SLIDESHOW =====
-      const slides = document.querySelectorAll(".header-slideshow img");
-      let currentSlide = 0;
-      function showSlide(index){
-        slides.forEach((slide, i) => slide.classList.toggle("active", i===index));
-      }
-      function nextSlide(){
-        currentSlide = (currentSlide+1)%slides.length;
-        showSlide(currentSlide);
-      }
-      if(slides.length>0){
-        setInterval(nextSlide, 5000);
-        showSlide(currentSlide);
-      }
-
-      // ===== COUNTDOWN =====
-      const countdownDate = new Date("August 4, 2026 00:00:00").getTime();
-      function updateCountdown(elId){
-        const el = document.getElementById(elId);
-        if(!el) return;
-        setInterval(() => {
-          const now = new Date().getTime();
-          const distance = countdownDate - now;
-          if(distance<0){ el.innerHTML="The big day is here!"; return; }
-          const days = Math.floor(distance / (1000*60*60*24));
-          const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-          const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-          const seconds = Math.floor((distance % (1000*60))/1000);
-          el.innerHTML=`${days}d ${hours}h ${minutes}m ${seconds}s`;
-        },1000);
-      }
-      updateCountdown("countdown");
-      updateCountdown("mobile-names-countdown-timer");
-      updateCountdown("nav-countdown");
-    });
-  </script>
-
+</div>
+  </nav>
 
   <!-- HOME -->
   <header id="home">
@@ -502,72 +842,93 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
   <footer>
     <p>With love — Da'Quan & Savannah • August 26, 2026</p>
   </footer>
-<script>
-  // ===== SLIDESHOW =====
-  const slides = document.querySelectorAll(".header-slideshow .slide");
+
+  <script>
+  // Header slideshow
+  const slides = document.querySelectorAll('.header-slideshow .slide');
   let currentSlide = 0;
-
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.classList.toggle("active", i === index);
-    });
-  }
-
   function nextSlide() {
+    slides[currentSlide].classList.remove('active');
     currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
+    slides[currentSlide].classList.add('active');
   }
+  setInterval(nextSlide, 5000);
 
-  setInterval(nextSlide, 5000); // Change slide every 5 seconds
+ // Mobile-only countdown
+const namesCountdownTimerMobile = document.getElementById("names-countdown-timer-mobile");
 
-  // ===== COUNTDOWN =====
-  const countdownDate = new Date("August 4, 2026 00:00:00").getTime();
+function updateNamesCountdownMobile() {
+  namesCountdownTimerMobile.innerHTML = countdownEl.innerHTML;
+}
+setInterval(updateNamesCountdownMobile, 1000);
+
+    // Countdown for header
+  const weddingDate = new Date("August 4, 2026 00:00:00").getTime();
   const countdownEl = document.getElementById("countdown");
+  const navCountdownEl = document.getElementById("nav-countdown");
 
-  if (countdownEl) {
-    const countdownInterval = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = countdownDate - now;
-
-      if (distance < 0) {
-        clearInterval(countdownInterval);
-        countdownEl.innerHTML = "The big day is here!";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      countdownEl.innerHTML = `
-        ${days}d ${hours}h ${minutes}m ${seconds}s
-      `;
-    }, 1000);
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+    if(distance < 0){
+      countdownEl.innerHTML = "Wedding Day!";
+      navCountdownEl.innerHTML = "Wedding Day!";
+      clearInterval(countdownInterval);
+      return;
+    }
+    const days = Math.floor(distance / (1000*60*60*24));
+    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+    const seconds = Math.floor((distance % (1000*60)) / 1000);
+    const text = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    countdownEl.innerHTML = text;
+    navCountdownEl.innerHTML = text;
   }
 
-  // ===== OPTIONAL: MOBILE COUNTDOWN (if still used somewhere else) =====
-  const mobileCountdownEl = document.getElementById("names-countdown-timer-mobile");
-  if (mobileCountdownEl) {
-    const mobileInterval = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = countdownDate - now;
+  const countdownInterval = setInterval(updateCountdown, 1000);
+  updateCountdown();
 
-      if (distance < 0) {
-        clearInterval(mobileInterval);
-        mobileCountdownEl.innerHTML = "The big day is here!";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      mobileCountdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }, 1000);
+  // Hide nav countdown on mobile
+  function checkNavCountdownVisibility() {
+    if(window.innerWidth < 900) {
+      navCountdownEl.style.display = "none";
+    } else {
+      navCountdownEl.style.display = "inline-block";
+    }
   }
-</script>
+  window.addEventListener("resize", checkNavCountdownVisibility);
+  checkNavCountdownVisibility();
+    // Copy countdown to mobile
+const mobileCountdownEl = document.getElementById("mobile-countdown");
+
+function updateMobileCountdown() {
+  mobileCountdownEl.innerHTML = countdownEl.innerHTML;
+}
+setInterval(updateMobileCountdown, 1000);
+
+// Mobile dropdown toggle
+    // Mobile dropdown toggle
+const mobileNavToggle = document.getElementById("mobile-nav-toggle");
+const mobileNavLinks = document.getElementById("mobile-nav-links");
+
+mobileNavToggle.addEventListener("click", () => {
+  if (mobileNavLinks.style.display === "flex") {
+    mobileNavLinks.style.display = "none";
+  } else {
+    mobileNavLinks.style.display = "flex";
+  }
+});
+    const mobileNavToggleBtn = document.getElementById("mobile-nav-toggle");
+const mobileNavLinks = document.getElementById("mobile-nav-links");
+
+mobileNavToggleBtn.addEventListener("click", () => {
+  if(mobileNavLinks.style.display === "flex") {
+    mobileNavLinks.style.display = "none";
+  } else {
+    mobileNavLinks.style.display = "flex";
+  }
+});
+  </script>
 </body>
 </html>
 
