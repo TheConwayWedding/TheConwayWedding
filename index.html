@@ -145,14 +145,21 @@
 
     /* ===== WEDDING PARTY ===== */
    
-    /* ===== Wedding Party Mobile Fix ===== */
 @media (max-width: 768px) {
   .party-grid {
-    grid-template-columns: 1fr;
-    justify-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
   }
 
+  .party-member {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+}
+
+    
   .party-member {
     width: 80%;
   }
@@ -461,6 +468,7 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
   </script>
 </body>
 </html>
+
 
 
 
