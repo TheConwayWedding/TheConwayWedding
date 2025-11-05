@@ -16,6 +16,7 @@
       line-height: 1.6;
     }
 
+
     /* ===== NAV ===== */
     nav {
       position: fixed;
@@ -151,6 +152,16 @@ header#home {
 }
 
     <header id="home">
+    </header>
+    <!-- MOBILE-ONLY NAMES & COUNTDOWN -->
+<div id="mobile-names-countdown">
+  <h1>Da'Quan</h1>
+  <h1>Conway</h1>
+  <h1>&</h1>
+  <h1>Savannah</h1>
+  <h1>Conway</h1>
+  <div id="mobile-names-countdown-timer"></div>
+</div>
   <!-- Slideshow -->
   <div class="header-slideshow">
     <img src="slide1.jpg" class="slide active" alt="Slide 1">
@@ -484,6 +495,37 @@ section h2,
   margin: 0 0 0.6rem;
   text-align: center !important; /* force centering */
 }
+    #mobile-names-countdown {
+  display: none; /* hidden by default */
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(59,53,47,0.6);
+  backdrop-filter: blur(4px);
+  border-radius: 12px;
+  margin: 1rem auto;
+  color: #fff6da;
+  max-width: 90%;
+}
+
+#mobile-names-countdown h1 {
+  margin: 0.25rem 0;
+  font-size: 1.8rem;
+  line-height: 1.2;
+}
+
+#mobile-names-countdown-timer {
+  margin-top: 0.8rem;
+  font-size: 1.2rem;
+  color: #ffe9a9;
+  font-weight: 700;
+}
+
+/* Show only on mobile */
+@media (max-width: 768px) {
+  #mobile-names-countdown {
+    display: block;
+  }
+}
 
   </style>
 </head>
@@ -506,6 +548,16 @@ section h2,
 
   <!-- HOME -->
   <header id="home">
+    <!-- MOBILE-ONLY NAMES & COUNTDOWN -->
+<div id="mobile-names-countdown">
+  <h1>Da'Quan</h1>
+  <h1>Conway</h1>
+  <h1>&</h1>
+  <h1>Savannah</h1>
+  <h1>Conway</h1>
+  <div id="mobile-names-countdown-timer"></div>
+</div>
+
     <!-- Slideshow -->
     <div class="header-slideshow">
       <img src="slide1.jpg" class="slide active" alt="Slide 1">
@@ -758,6 +810,7 @@ mobileNavToggle.addEventListener("click", () => {
   </script>
 </body>
 </html>
+
 
 
 
