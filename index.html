@@ -779,7 +779,15 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
   }
   setInterval(nextSlide, 5000);
 
-  // Countdown for header
+ // Mobile-only countdown
+const namesCountdownTimerMobile = document.getElementById("names-countdown-timer-mobile");
+
+function updateNamesCountdownMobile() {
+  namesCountdownTimerMobile.innerHTML = countdownEl.innerHTML;
+}
+setInterval(updateNamesCountdownMobile, 1000);
+
+    // Countdown for header
   const weddingDate = new Date("August 4, 2026 00:00:00").getTime();
   const countdownEl = document.getElementById("countdown");
   const navCountdownEl = document.getElementById("nav-countdown");
@@ -837,6 +845,7 @@ mobileNavToggle.addEventListener("click", () => {
   </script>
 </body>
 </html>
+
 
 
 
