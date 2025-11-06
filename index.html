@@ -16,53 +16,64 @@
       line-height: 1.6;
     }
 
-    /* ===== NAV ===== */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1.4rem;
-      padding: 1rem 1.5rem;
-      background: rgba(0,0,0,0.55);
-      backdrop-filter: blur(6px);
-      color: #fff8e7;
-    }
-    nav a {
-      color: #fff6da;
-      text-decoration: none;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      transition: color 0.25s ease;
-      position: relative;
-      padding: 0.25rem 0;
-    }
-    nav a::after{
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      height: 2px;
-      bottom: -6px;
-      width: 0;
-      margin: 0 auto;
-      background: linear-gradient(90deg, transparent, #e5c982, transparent);
-      transition: width 0.25s ease;
-    }
-    nav a:hover { color: #ffe9a9; }
-    nav a:hover::after, nav a.active::after { width: 70%; }
+/* ===== NAV ===== */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: center; /* desktop: center nav */
+  align-items: center;
+  gap: 1.4rem;
+  padding: 1rem 1.5rem;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+  color: #fff8e7;
+}
 
-    #nav-countdown {
-      position: absolute;
-      right: 4rem; /* adjust so visible */
-      font-weight: 700;
-      color: #ffe9a9;
-    }
-    .menu-toggle {
+/* Desktop links container */
+.nav-links {
+  display: flex;                /* <- show as horizontal links on desktop */
+  gap: 1.4rem;
+  justify-content: center;
+  align-items: center;
+}
+
+nav a {
+  color: #fff6da;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  transition: color 0.25s ease;
+  position: relative;
+  padding: 0.25rem 0;
+}
+nav a::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  bottom: -6px;
+  width: 0;
+  margin: 0 auto;
+  background: linear-gradient(90deg, transparent, #e5c982, transparent);
+  transition: width 0.25s ease;
+}
+nav a:hover { color: #ffe9a9; }
+nav a:hover::after, nav a.active::after { width: 70%; }
+
+#nav-countdown {
+  position: absolute;
+  right: 4rem;
+  font-weight: 700;
+  color: #ffe9a9;
+}
+
+/* hamburger toggle (hidden on desktop) */
+.menu-toggle {
   display: none;
   font-size: 1.8rem;
   cursor: pointer;
@@ -73,40 +84,57 @@
   z-index: 1100;
 }
 
-/* Hide links on mobile initially */
+/* ===== MOBILE: collapse to hamburger ===== */
 @media (max-width: 900px) {
   nav {
     justify-content: space-between;
-    padding: 1rem 1.5rem;
+    padding: 0.9rem 1rem;
   }
+
+  /* Collapse desktop links; we show the dropdown only when nav.open */
   .nav-links {
-    display: none;
+    display: none;              /* hidden by default on mobile */
     flex-direction: column;
     position: absolute;
-    top: 60px;
+    top: 100%;                  /* place right under the nav bar */
     right: 0;
+    left: 0;
     width: 100%;
-    background: rgba(0,0,0,0.9);
+    background: rgba(0,0,0,0.92);
     backdrop-filter: blur(6px);
     text-align: center;
-    padding: 1rem 0;
+    padding: 0.5rem 0 1rem;
+    gap: 0;
   }
+
   .nav-links a {
     display: block;
-    padding: 0.75rem 0;
-    font-size: 1.1rem;
+    padding: 0.9rem 1rem;
+    font-size: 1.05rem;
+    border-top: 1px solid rgba(255,255,255,0.03);
   }
+
   .menu-toggle {
     display: block;
   }
+
+  /* show links when nav has .open */
   nav.open .nav-links {
     display: flex;
+    animation: navDrop 220ms ease;
   }
+
+  /* small drop animation */
+  @keyframes navDrop {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* hide countdown on mobile to keep header tidy */
   #nav-countdown {
     display: none !important;
   }
 }
-
 
     header, section { padding-top: 4.5rem; }
 
@@ -293,7 +321,7 @@
 </head>
 <body>
 
- <!-- NAV -->
+<!-- NAV -->
 <nav>
   <div class="nav-links">
     <a href="#home">Home</a>
@@ -305,11 +333,14 @@
     <a href="video.html">Video</a>
     <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank">RSVP</a>
   </div>
+
   <div id="nav-countdown"></div>
-  <div class="menu-toggle" id="menu-toggle">
+
+  <div class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false" role="button">
     ☰
   </div>
 </nav>
+
 
   <!-- HOME -->
   <header id="home">
@@ -545,9 +576,43 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
   }
   window.addEventListener("resize", checkNavCountdownVisibility);
   checkNavCountdownVisibility();
+// Mobile hamburger toggle (safe-guarded)
+(function(){
+  const menuToggle = document.getElementById('menu-toggle');
+  const nav = document.querySelector('nav');
+  if (!menuToggle || !nav) return;
+
+  menuToggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    menuToggle.textContent = open ? '✕' : '☰';
+    menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  // Close menu when a link is clicked (mobile UX)
+  const navLinks = document.querySelectorAll('.nav-links a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (nav.classList.contains('open')) {
+        nav.classList.remove('open');
+        menuToggle.textContent = '☰';
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
+  // Optional: close the mobile menu on ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav.classList.contains('open')) {
+      nav.classList.remove('open');
+      menuToggle.textContent = '☰';
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+})();
   </script>
 </body>
 </html>
+
 
 
 
