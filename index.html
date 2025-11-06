@@ -320,6 +320,28 @@ nav a:hover::after, nav a.active::after { width: 70%; }
     height: 160px;
   }
 }
+    @media (max-width: 900px) {
+  header h1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.2;
+    text-align: center;
+    white-space: pre-line; /* allows line breaks if we insert them later */
+  }
+
+  /* break the text into separate lines visually */
+  header h1::after {
+    content: attr(data-mobile-text);
+    display: block;
+    white-space: pre-line;
+  }
+
+  /* hide the original text visually on mobile */
+  header h1 {
+    font-size: 2rem; /* adjust as needed */
+  }
+}
 
   </style>
 </head>
@@ -357,6 +379,7 @@ nav a:hover::after, nav a.active::after { width: 70%; }
 
     <div class="header-content">
       <h1>Da'Quan & Savannah</h1>
+      <h1 data-mobile-text="Da’Quan\n&\nSavannah">Da’Quan & Savannah</h1>
       <h1 style="margin:0.3rem 0; font-size:3rem; letter-spacing:2px; color:#fff6da;">Conway</h1>
       <p style="margin:0.3rem 0; font-size:1.15rem; color:#fdf9f3; font-style:italic;">August 4th, 2026</p>
       <div id="countdown"></div>
@@ -616,6 +639,7 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
   </script>
 </body>
 </html>
+
 
 
 
