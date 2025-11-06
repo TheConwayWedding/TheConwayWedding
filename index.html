@@ -109,7 +109,6 @@
 
 
     header, section { padding-top: 4.5rem; }
-    /* ===== MOBILE DROPDOWN MENU ===== */
 
     /* ===== HEADER / HOME ===== */
     header#home {
@@ -546,16 +545,10 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
   }
   window.addEventListener("resize", checkNavCountdownVisibility);
   checkNavCountdownVisibility();
-    const menuToggle = document.getElementById('menu-toggle');
-const nav = document.querySelector('nav');
-
-menuToggle.addEventListener('click', () => {
-  nav.classList.toggle('open');
-  menuToggle.textContent = nav.classList.contains('open') ? '✕' : '☰';
-});
   </script>
 </body>
 </html>
+
 
 
 
