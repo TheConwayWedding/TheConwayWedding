@@ -348,7 +348,15 @@ nav a:hover::after, nav a.active::after { width: 70%; }
     color: #fff6da;
   }
 }
-      /* ===== Center dropdown menu on mobile ===== */
+     /* ===== Add tabs between Our Story paragraphs ===== */
+#our-story p {
+  text-indent: 1.5em;
+  margin-bottom: 1.2rem;
+  line-height: 1.8;
+}
+
+/* ===== MOBILE ONLY: Center dropdown menu ===== */
+@media (max-width: 900px) {
   nav {
     justify-content: center;
   }
@@ -367,11 +375,6 @@ nav a:hover::after, nav a.active::after { width: 70%; }
     width: 90%;
     border-radius: 10px;
   }
-    /* ===== Add tabs between Our Story paragraphs ===== */
-#our-story p {
-  text-indent: 1.5em;
-  margin-bottom: 1.2rem;
-  line-height: 1.8;
 }
 
 
@@ -690,6 +693,7 @@ nav a:hover::after, nav a.active::after { width: 70%; }
   </script>
 </body>
 </html>
+
 
 
 
