@@ -64,6 +64,52 @@
     }
 
     header, section { padding-top: 4.5rem; }
+    /* ===== MOBILE DROPDOWN MENU ===== */
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #ffe9a9;
+  position: absolute;
+  right: 1.5rem;
+  top: 0.9rem;
+  z-index: 1100;
+}
+
+/* Hide links on mobile initially */
+@media (max-width: 900px) {
+  nav {
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+  }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.9);
+    backdrop-filter: blur(6px);
+    text-align: center;
+    padding: 1rem 0;
+  }
+  .nav-links a {
+    display: block;
+    padding: 0.75rem 0;
+    font-size: 1.1rem;
+  }
+  .menu-toggle {
+    display: block;
+  }
+  nav.open .nav-links {
+    display: flex;
+  }
+  #nav-countdown {
+    display: none !important;
+  }
+}
+
 
     /* ===== HEADER / HOME ===== */
     header#home {
@@ -248,20 +294,23 @@
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <div style="display:flex; gap:1.4rem; justify-content:center;">
-      <a href="#home">Home</a>
-      <a href="#schedule">Schedule</a>
-      <a href="#travel">Travel</a>
-      <a href="https://www.amazon.com//wedding/share/Savannah-and-DaQuan" target="_blank">Registry</a>
-      <a href="#party">Wedding Party</a>
-      <a href="#gallery">Gallery</a>
-      <a href="video.html">Video</a>
-      <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank">RSVP</a>
-    </div>
-    <div id="nav-countdown"></div>
-  </nav>
+ <!-- NAV -->
+<nav>
+  <div class="nav-links">
+    <a href="#home">Home</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#travel">Travel</a>
+    <a href="https://www.amazon.com//wedding/share/Savannah-and-DaQuan" target="_blank">Registry</a>
+    <a href="#party">Wedding Party</a>
+    <a href="#gallery">Gallery</a>
+    <a href="video.html">Video</a>
+    <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank">RSVP</a>
+  </div>
+  <div id="nav-countdown"></div>
+  <div class="menu-toggle" id="menu-toggle">
+    ☰
+  </div>
+</nav>
 
   <!-- HOME -->
   <header id="home">
@@ -497,8 +546,16 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
   }
   window.addEventListener("resize", checkNavCountdownVisibility);
   checkNavCountdownVisibility();
+    const menuToggle = document.getElementById('menu-toggle');
+const nav = document.querySelector('nav');
+
+menuToggle.addEventListener('click', () => {
+  nav.classList.toggle('open');
+  menuToggle.textContent = nav.classList.contains('open') ? '✕' : '☰';
+});
   </script>
 </body>
 </html>
+
 
 
