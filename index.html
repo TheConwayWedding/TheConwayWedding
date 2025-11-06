@@ -969,8 +969,36 @@ mobileNavToggleBtn.addEventListener("click", () => {
         links.style.display = links.style.display === "flex" ? "none" : "flex";
       });
     }
+     // ===== NAVBAR COUNTDOWN =====
+  document.addEventListener("DOMContentLoaded", function () {
+    const countdownDate = new Date("August 4, 2026 00:00:00").getTime();
+    const navCountdown = document.getElementById("nav-countdown");
+
+    if (!navCountdown) return;
+
+    function updateNavCountdown() {
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
+
+      if (distance < 0) {
+        navCountdown.textContent = "The big day is here!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      navCountdown.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    updateNavCountdown(); // Run immediately
+    setInterval(updateNavCountdown, 1000); // Update every second
+  });
   </script>
   </script>
 </body>
 </html>
+
 
