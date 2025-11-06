@@ -87,9 +87,14 @@ nav a:hover::after, nav a.active::after { width: 70%; }
 /* ===== MOBILE: collapse to hamburger ===== */
 @media (max-width: 900px) {
   nav {
-    justify-content: space-between;
-    padding: 0.9rem 1rem;
-  }
+    nav {
+  justify-content: space-between;
+  padding: 0.9rem 1rem;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+
 
   /* Collapse desktop links; we show the dropdown only when nav.open */
   .nav-links {
@@ -612,6 +617,7 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
   </script>
 </body>
 </html>
+
 
 
 
