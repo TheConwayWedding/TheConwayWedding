@@ -348,6 +348,26 @@ nav a:hover::after, nav a.active::after { width: 70%; }
     color: #fff6da;
   }
 }
+      /* ===== Center dropdown menu on mobile ===== */
+  nav {
+    justify-content: center;
+  }
+
+  .menu-toggle {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    top: 0.9rem;
+  }
+
+  .nav-links {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    border-radius: 10px;
+  }
+
 
   </style>
 </head>
@@ -651,6 +671,7 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
   </script>
 </body>
 </html>
+
 
 
 
