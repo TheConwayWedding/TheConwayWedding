@@ -221,6 +221,29 @@
       .place-content, .section-box { margin:1rem; padding:1.2rem; }
       .party-member img { width:120px; height:120px; }
     }
+    @media (max-width: 900px) {
+  .party-grid {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .party-side {
+    width: 100%;
+  }
+  .party-highlight {
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: center; /* ✅ centers the cards horizontally */
+  }
+  .party-highlight .party-member {
+    max-width: 280px; /* ✅ optional: prevents overly wide cards */
+    text-align: center; /* ✅ ensures text stays centered */
+  }
+  .party-highlight .party-member img {
+    width: 160px;
+    height: 160px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -477,4 +500,5 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
   </script>
 </body>
 </html>
+
 
