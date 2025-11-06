@@ -325,29 +325,21 @@ nav a:hover::after, nav a.active::after { width: 70%; }
   /* ensure header layout has breathing room */
   header#home { padding: 6.5rem 1rem 4.5rem; }
 
-  /* hide the real text, show the stacked content via ::after */
-  .hero-title {
-    /* keep spacing but hide original text */
-    font-size: 2rem;
-    letter-spacing: 1px;
-    color: transparent;         /* hides the original inline text */
-    position: relative;
-    margin: 0;
-    line-height: 1.2;
-    text-align: center;
-    -webkit-text-stroke: 0;     /* avoid ghosting in some browsers */
-  }
+/* ===== STACK HEADER TEXT ON MOBILE ===== */
+.hero-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2.4rem;
+  line-height: 1.2;
+  text-align: center;
+  color: #fff6da;
+}
 
-  /* replace with stacked mobile text */
-  .hero-title::after {
-    content: attr(data-mobile-text);
-    display: block;
-    white-space: pre-line;      /* honors the \n in the data attribute */
-    color: #fff6da;             /* visible color for mobile stacked text */
-    font-size: 2rem;            /* adjust as needed */
-    line-height: 1.15;
-    letter-spacing: 0.06em;
-  }
+.hero-title span {
+  display: block;
+}
+
 
   /* keep the last name visible and nicely spaced on mobile */
   .hero-lastname {
@@ -393,7 +385,11 @@ nav a:hover::after, nav a.active::after { width: 70%; }
 
   <div class="header-content">
     <!-- single H1 used for desktop and mobile -->
-    <h1 class="hero-title" data-mobile-text="Da’Quan\n&\nSavannah">Da'Quan &amp; Savannah</h1>
+   <h1 class="hero-title">
+  <span>Da’Quan</span>
+  <span>&</span>
+  <span>Savannah</span>
+</h1>
 
     <h2 class="hero-lastname" style="margin:0.3rem 0; font-size:3rem; letter-spacing:2px; color:#fff6da;">Conway</h2>
     <p style="margin:0.3rem 0; font-size:1.15rem; color:#fdf9f3; font-style:italic;">August 4th, 2026</p>
@@ -655,6 +651,7 @@ At a cozy little restaurant, with cheesecake and candles, Da’Quan had “Will 
   </script>
 </body>
 </html>
+
 
 
 
