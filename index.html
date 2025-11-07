@@ -359,13 +359,14 @@ nav a:hover::after, nav a.active::after { width: 70%; }
 @media (max-width: 900px) {
   nav {
     justify-content: center;
+    position: relative;
   }
 
   .menu-toggle {
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-    top: 0.9rem;
+    position: relative;   /* change from absolute */
+    left: auto;           /* remove left 50% */
+    transform: none;      /* remove transform */
+    margin: 0 auto;       /* center in flex */
   }
 
   .nav-links {
@@ -693,6 +694,7 @@ nav a:hover::after, nav a.active::after { width: 70%; }
   </script>
 </body>
 </html>
+
 
 
 
