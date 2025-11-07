@@ -356,27 +356,32 @@ nav a:hover::after, nav a.active::after { width: 70%; }
 }
 
 /* ===== MOBILE ONLY: Center dropdown menu ===== */
+/* ===== MOBILE NAV FIX ===== */
 @media (max-width: 900px) {
   nav {
-    position: relative; /* keep nav normal */
-    padding: 0; /* we’ll handle spacing with the hamburger */
+    position: relative;
+    padding: 0;
+    justify-content: center;
   }
 
+  /* Hamburger: fixed at top center, above links */
   .menu-toggle {
-    position: fixed;      /* fixed relative to viewport */
-    top: 0.9rem;          /* distance from top */
-    left: 50%;            /* center horizontally */
-    transform: translateX(-50%); 
-    z-index: 1100;        /* above everything else */
+    display: block;
+    position: fixed;
+    top: 0.9rem;           /* distance from top */
+    left: 50%;             /* center horizontally */
+    transform: translateX(-50%);
+    z-index: 1100;         /* above dropdown */
     font-size: 1.8rem;
     cursor: pointer;
   }
 
+  /* Dropdown links: absolute under hamburger */
   .nav-links {
-    display: none;              /* hidden by default */
+    display: none;               /* hidden by default */
     flex-direction: column;
-    position: absolute;         /* dropdown relative to nav */
-    top: 3rem;                  /* below hamburger */
+    position: absolute;          /* relative to nav */
+    top: 3rem;                   /* just below hamburger */
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
@@ -385,14 +390,35 @@ nav a:hover::after, nav a.active::after { width: 70%; }
     text-align: center;
     border-radius: 10px;
     padding: 0.5rem 0 1rem;
-    z-index: 1050;              /* below hamburger */
+    gap: 0;
+    z-index: 1050;               /* below hamburger */
   }
 
+  .nav-links a {
+    display: block;
+    padding: 0.9rem 1rem;
+    font-size: 1.05rem;
+    border-top: 1px solid rgba(255,255,255,0.03);
+  }
+
+  /* Show links when nav has .open */
   nav.open .nav-links {
     display: flex;
     animation: navDrop 220ms ease;
   }
+
+  /* Countdown hidden on mobile */
+  #nav-countdown {
+    display: none !important;
+  }
+
+  /* Small drop animation */
+  @keyframes navDrop {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
 }
+
 
 
 
@@ -711,6 +737,7 @@ nav a:hover::after, nav a.active::after { width: 70%; }
   </script>
 </body>
 </html>
+
 
 
 
