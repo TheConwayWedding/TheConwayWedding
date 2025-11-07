@@ -357,22 +357,43 @@ nav a:hover::after, nav a.active::after { width: 70%; }
 
 /* ===== MOBILE ONLY: Center dropdown menu ===== */
 @media (max-width: 900px) {
+  nav {
+    position: relative; /* keep nav normal */
+    padding: 0; /* we’ll handle spacing with the hamburger */
+  }
+
   .menu-toggle {
-    position: fixed;      /* stays at top-center of screen */
-    top: 0.9rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1100;
+    position: fixed;      /* fixed relative to viewport */
+    top: 0.9rem;          /* distance from top */
+    left: 50%;            /* center horizontally */
+    transform: translateX(-50%); 
+    z-index: 1100;        /* above everything else */
+    font-size: 1.8rem;
+    cursor: pointer;
   }
 
   .nav-links {
-    top: 100%;
+    display: none;              /* hidden by default */
+    flex-direction: column;
+    position: absolute;         /* dropdown relative to nav */
+    top: 3rem;                  /* below hamburger */
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
+    background: rgba(0,0,0,0.92);
+    backdrop-filter: blur(6px);
+    text-align: center;
     border-radius: 10px;
+    padding: 0.5rem 0 1rem;
+    z-index: 1050;              /* below hamburger */
+  }
+
+  nav.open .nav-links {
+    display: flex;
+    animation: navDrop 220ms ease;
   }
 }
+
 
 
 
@@ -690,6 +711,7 @@ nav a:hover::after, nav a.active::after { width: 70%; }
   </script>
 </body>
 </html>
+
 
 
 
