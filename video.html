@@ -3,69 +3,202 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Full Screen Video</title>
+<title>Full Screen Video with Styled Nav</title>
 <style>
-  body, html {
+  /* ===== BASE ===== */
+  html, body {
     margin: 0;
     padding: 0;
     height: 100%;
     overflow: hidden;
-    font-family: Arial, sans-serif;
+    font-family: "Georgia", serif;
+    background: #000;
   }
 
-  /* Nav bar */
+  /* ===== NAV ===== */
   nav {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 60px;
-    background: rgba(0,0,0,0.7);
+    z-index: 1000;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10;
+    gap: 1.4rem;
+    padding: 1rem 1.5rem;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(6px);
+    color: #fff8e7;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.4rem;
+    justify-content: center;
+    align-items: center;
   }
 
   nav a {
-    color: white;
+    color: #fff6da;
     text-decoration: none;
-    margin: 0 1rem;
-    font-weight: bold;
-    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    transition: color 0.25s ease;
+    position: relative;
+    padding: 0.25rem 0;
   }
 
-  /* Full screen video */
+  nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    bottom: -6px;
+    width: 0;
+    margin: 0 auto;
+    background: linear-gradient(90deg, transparent, #e5c982, transparent);
+    transition: width 0.25s ease;
+  }
+
+  nav a:hover::after { width: 70%; }
+  nav a:hover { color: #ffe9a9; }
+
+  /* ===== MOBILE: collapse to hamburger ===== */
+  .menu-toggle {
+    display: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #ffe9a9;
+    position: absolute;
+    right: 1.5rem;
+    top: 0.9rem;
+    z-index: 1100;
+  }
+
+  @media (max-width: 900px) {
+    nav {
+      justify-content: center;
+    }
+
+    .menu-toggle {
+      display: block;
+      left: 50%;
+      right: auto;
+      transform: translateX(-50%);
+    }
+
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(6px);
+      text-align: center;
+      padding: 0.5rem 0 1rem;
+      gap: 0;
+      border-radius: 10px;
+    }
+
+    nav.open .nav-links {
+      display: flex;
+      animation: navDrop 220ms ease;
+    }
+
+    @keyframes navDrop {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .nav-links a {
+      display: block;
+      padding: 0.9rem 1rem;
+      font-size: 1.05rem;
+      border-top: 1px solid rgba(255,255,255,0.03);
+    }
+  }
+
+  /* ===== FULL SCREEN VIDEO ===== */
   #videoWrapper {
     position: absolute;
-    top: 60px; /* leave room for navbar */
+    top: 0;
     left: 0;
     width: 100%;
-    height: calc(100% - 60px);
+    height: 100%;
     overflow: hidden;
   }
 
   #videoWrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     border: 0;
   }
+
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-  <a href="index.html">Home</a>
-  <a href="video.html">Video</a>
-  <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank">RSVP</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="video.html">Video</a>
+    <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank">RSVP</a>
+  </div>
+  <div class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false" role="button">
+    ☰
+  </div>
 </nav>
 
+<!-- FULL SCREEN VIDEO -->
 <div id="videoWrapper">
   <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&autoplay=1&mute=1&controls=1" 
           allow="autoplay; fullscreen" 
           allowfullscreen>
   </iframe>
 </div>
+
+<script>
+  // Mobile hamburger toggle
+  (function(){
+    const menuToggle = document.getElementById('menu-toggle');
+    const nav = document.querySelector('nav');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    if (!menuToggle || !nav) return;
+
+    menuToggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      menuToggle.textContent = open ? '✕' : '☰';
+      menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (nav.classList.contains('open')) {
+          nav.classList.remove('open');
+          menuToggle.textContent = '☰';
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && nav.classList.contains('open')) {
+        nav.classList.remove('open');
+        menuToggle.textContent = '☰';
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+</script>
 
 </body>
 </html>
