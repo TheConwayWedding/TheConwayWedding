@@ -77,17 +77,18 @@
     z-index: 1100;
   }
 
-  @media (max-width: 900px) {
-    nav {
-      justify-content: center;
-    }
+@media (max-width: 900px) {
+  nav {
+    justify-content: center;
+    position: relative;
+  }
 
-    .menu-toggle {
-      display: block;
-      left: 50%;
-      right: auto;
-      transform: translateX(-50%);
-    }
+  .menu-toggle {
+    position: relative;   /* change from absolute */
+    left: auto;           /* remove left 50% */
+    transform: none;      /* remove transform */
+    margin: 0 auto;       /* center in flex */
+  }
 
     .nav-links {
       display: none;
@@ -202,3 +203,4 @@
 
 </body>
 </html>
+
