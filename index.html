@@ -357,16 +357,12 @@ nav a:hover::after, nav a.active::after { width: 70%; }
 
 /* ===== MOBILE ONLY: Center dropdown menu ===== */
 @media (max-width: 900px) {
-  nav {
-    justify-content: center;
-    position: relative;
-  }
-
   .menu-toggle {
-    position: relative;   /* change from absolute */
-    left: auto;           /* remove left 50% */
-    transform: none;      /* remove transform */
-    margin: 0 auto;       /* center in flex */
+    position: fixed;      /* stays at top-center of screen */
+    top: 0.9rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1100;
   }
 
   .nav-links {
@@ -694,6 +690,7 @@ nav a:hover::after, nav a.active::after { width: 70%; }
   </script>
 </body>
 </html>
+
 
 
 
