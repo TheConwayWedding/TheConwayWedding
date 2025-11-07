@@ -495,19 +495,30 @@ checkNavCountdownVisibility();
     menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
 
-  navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const target = document.querySelector(link.getAttribute('href'));
-      if(target) target.scrollIntoView({ behavior:'smooth' });
-      if(nav.classList.contains('open')) {
-        nav.classList.remove('open');
-        menuToggle.textContent = '☰';
-        menuToggle.setAttribute('aria-expanded', 'false');
-      }
-    });
-  });
+ navLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    const href = link.getAttribute('href');
 
+    // Check if link is external or goes to another page
+    if (href.startsWith('http') || href.endsWith('.html')) {
+      return; // allow normal navigation
+    }
+
+    // Otherwise, handle internal smooth scroll
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Close mobile menu after clicking
+    if (nav.classList.contains('open')) {
+      nav.classList.remove('open');
+      menuToggle.textContent = '☰';
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+});
   document.addEventListener('keydown', (e) => {
     if(e.key === 'Escape' && nav.classList.contains('open')) {
       nav.classList.remove('open');
@@ -519,6 +530,7 @@ checkNavCountdownVisibility();
   </script>
 </body>
 </html>
+
 
 
 
