@@ -265,58 +265,6 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
   font-size: 2rem;
   cursor: pointer;
 }
-    /* ===== MOBILE ONLY ===== */
-@media (max-width: 768px) {
-  nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-  }
-
-  .menu-icon {
-    display: block;
-    font-size: 1.8rem;
-    cursor: pointer;
-    z-index: 1100;
-  }
-
-  nav ul {
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 0 0 12px 12px;
-    padding: 20px 0;
-    display: none;
-  }
-
-  nav ul.show {
-    display: flex;
-    animation: fadeIn 0.3s ease;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-}
-
 
 
 
@@ -328,12 +276,6 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
 
 <!-- NAV -->
 <nav>
-  <div class="nav-container">
-      <h1 class="logo">Da'Quan & Savannah</h1>
-
-      <!-- Hamburger Icon (only visible on mobile) -->
-      <div class="menu-icon" id="menu-icon">☰</div>
-    
   <div class="nav-links">
     <a href="#home">Home</a>
     <a href="#schedule">Schedule</a>
@@ -672,27 +614,10 @@ checkNavCountdownVisibility();
   lightbox.addEventListener('click', () => {
     lightbox.classList.remove('show');
   });
-     const menuIcon = document.getElementById('menu-icon');
-  const navLinks = document.getElementById('nav-links');
-
-  // Toggle menu only on mobile
-  menuIcon.addEventListener('click', () => {
-    if (window.innerWidth <= 768) {
-      navLinks.classList.toggle('show');
-    }
-  });
-
-  // Optional: auto-close menu when a link is clicked
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      if (window.innerWidth <= 768) {
-        navLinks.classList.remove('show');
-      }
-    });
-  });
   </script>
 </body>
 </html>
+
 
 
 
