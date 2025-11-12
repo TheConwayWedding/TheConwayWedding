@@ -598,9 +598,30 @@ checkNavCountdownVisibility();
     }
   });
 })();
+      // Create lightbox container
+  const lightbox = document.createElement('div');
+  lightbox.classList.add('lightbox');
+  document.body.appendChild(lightbox);
+
+  const images = document.querySelectorAll('.photo-grid a');
+  images.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const img = document.createElement('img');
+      img.src = link.href;
+      while (lightbox.firstChild) lightbox.removeChild(lightbox.firstChild);
+      lightbox.appendChild(img);
+      lightbox.classList.add('show');
+    });
+  });
+
+  lightbox.addEventListener('click', () => {
+    lightbox.classList.remove('show');
+  });
   </script>
 </body>
 </html>
+
 
 
 
