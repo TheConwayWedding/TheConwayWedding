@@ -215,6 +215,23 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
   border: 4px solid rgba(230,200,130,0.12);
   margin-bottom: 0.75rem;
 }
+    @media (max-width: 768px) {
+  /* Mobile Gallery */
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    padding: 0 10px;
+  }
+
+  .photo-grid img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+}
+
 
 
 
@@ -550,6 +567,7 @@ checkNavCountdownVisibility();
   </script>
 </body>
 </html>
+
 
 
 
