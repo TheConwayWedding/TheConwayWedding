@@ -59,113 +59,51 @@ nav a:hover::after, nav a.active::after { width: 70%; }
 #nav-countdown { position: absolute; right: 4rem; font-weight: 700; color: #ffe9a9; }
 
 /* ===== MOBILE NAV ===== */
-@media (max-width: 768px) {
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  position: fixed;
+  top: 0.9rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1100;
+}
+@media (max-width: 900px) {
   nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-    transition: background 0.3s ease;
+    justify-content: center;
+    padding: 0.9rem 1rem;
+    background: transparent !important;
+    backdrop-filter: none !important;
   }
-
-  /* Menu icon (hamburger) styling */
-  .menu-icon {
-    display: block;
-    cursor: pointer;
-    padding: 15px;
-    z-index: 1100;
-  }
-
-  /* Hide the nav links by default */
-  nav ul {
+  .menu-toggle { display: block; }
+  .nav-links {
     display: none;
     flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    background: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(10px);
     position: absolute;
-    top: 60px; /* below the nav bar */
-    left: 0;
-    width: 100%;
-    padding: 20px 0;
-    border-radius: 0 0 12px 12px;
+    top: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    background: rgba(0,0,0,0.92);
+    backdrop-filter: blur(6px);
+    text-align: center;
+    border-radius: 10px;
+    padding: 0.5rem 0 1rem;
+    gap: 0;
+    z-index: 1050;
   }
-
-  /* Show the nav links when the menu is active */
-  nav.active ul {
-    display: flex;
-  }
-
-  nav a {
-    color: #222;
-    font-size: 1.1rem;
-    text-decoration: none;
-  }
-
-  nav a:hover {
-    color: #000;
-  }
-}
-    /* Mobile nav adjustments */
-@media (max-width: 768px) {
-  nav {
-    background: transparent;  /* remove normal nav background */
-    backdrop-filter: none;    /* remove blur */
-    border-bottom: none;
-    padding: 0.5rem 1rem;
-    justify-content: flex-end;
-  }
-
-  .nav-links {
-    display: none; /* hide menu links by default */
-    flex-direction: column;
-    gap: 1rem;
-    position: absolute;
-    top: 50px; /* below the hamburger */
-    left: 0;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.25); /* semi-transparent blurred menu */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 1rem 0;
-    border-radius: 0 0 12px 12px;
-    z-index: 1000;
-  }
-
-  nav.active .nav-links {
-    display: flex;
-  }
-
-  .menu-icon {
+  .nav-links a {
     display: block;
-    cursor: pointer;
-    font-size: 1.8rem;
-    z-index: 1100;
-    color: #3B352F;
+    padding: 0.9rem 1rem;
+    font-size: 1.05rem;
+    border-top: 1px solid rgba(255,255,255,0.03);
   }
+  nav.open .nav-links { display: flex; animation: navDrop 220ms ease; }
+  #nav-countdown { display: none !important; }
 
-  nav a {
-    color: #222;
-    font-size: 1.1rem;
-    text-decoration: none;
-    font-weight: 600;
-  }
-
-  nav a:hover {
-    color: #000;
-  }
-
-  #nav-countdown {
-    display: none; /* hide countdown on mobile */
-  }
+  @keyframes navDrop { from { opacity:0; transform:translateY(-6px);} to{opacity:1; transform:translateY(0);} }
 }
-
 
 /* ===== HEADER ===== */
 header#home {
@@ -268,7 +206,7 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
   border: 4px solid rgba(230,200,130,0.12);
   margin-bottom: 0.75rem;
 }
-    @media (max-width: 768px) {
+     @media (max-width: 768px) {
   /* Mobile Gallery */
   .photo-grid {
     display: grid;
@@ -284,43 +222,6 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
     border-radius: 8px;
   }
 }
-    /* Lightbox */
-.lightbox {
-  display: none;
-  position: fixed;
-  z-index: 2000;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  justify-content: center;
-  align-items: center;
-}
-
-.lightbox img {
-  max-width: 90%;
-  max-height: 85%;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-}
-
-.lightbox.show {
-  display: flex;
-}
-
-.lightbox:after {
-  content: "✕";
-  position: absolute;
-  top: 20px;
-  right: 25px;
-  color: #fff;
-  font-size: 2rem;
-  cursor: pointer;
-}
-
-
-
 
 
   </style>
@@ -329,8 +230,6 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
 
 <!-- NAV -->
 <nav>
-  <div id="menu-toggle" class="menu-icon" aria-label="Toggle menu" aria-expanded="false">☰</div>
-
   <div class="nav-links">
     <a href="#home">Home</a>
     <a href="#schedule">Schedule</a>
@@ -343,12 +242,15 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
   </div>
 
   <div id="nav-countdown"></div>
+
+  <div class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false" role="button">
+    ☰
+  </div>
 </nav>
 
 
-
   <!-- HOME -->
-<header id="home">
+  <header id="home">
   <!-- Slideshow -->
   <div class="header-slideshow">
     <img src="slide1.jpg" class="slide active" alt="Slide 1">
@@ -357,18 +259,12 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
   </div>
 
   <div class="header-content">
-    <h1 class="hero-title">
-      <span>Da’Quan</span>
-      <span>&</span>
-      <span>Savannah</span>
-    </h1>
-
-    <h2 class="hero-lastname">Conway</h2>
-    <p class="wedding-date">August 4th, 2026</p>
-    <div id="countdown"></div>
-  </div>
-</header>
-
+    <!-- single H1 used for desktop and mobile -->
+   <h1 class="hero-title">
+  <span>Da’Quan</span>
+  <span>&</span>
+  <span>Savannah</span>
+</h1>
 
     <h2 class="hero-lastname" style="margin:0.3rem 0; font-size:3rem; letter-spacing:2px; color:#fff6da;">Conway</h2>
     <p style="margin:0.3rem 0; font-size:1.15rem; color:#fdf9f3; font-style:italic;">August 4th, 2026</p>
@@ -440,11 +336,13 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
     <h2>Travel</h2>
     <hr class="divider"/>
     <div class="section-box">
-      
+
+      <p>https://www.theestesparkresort.com/</p>
       <p>The Estes Park Resort </p></p>
-     
+
+      <p>https://www.trailborn.com/rocky-mountains/offers/?utm_campaign=LD-|-Search-|-Estes-|-Brand&gad_source=1&gad_campaignid=22234207381&gbraid=0AAAAAph9RDrH50nnuGlzfezkV6BB1Ibm7&gclid=CjwKCAiA8bvIBhBJEiwAu5ayrEuXrdeG_ZMPT-ZrOZXdqU_oxS0EZH4LGiE2A80BBBOAMbP9ggbjwBoCyyEQAvD_BwE.</p>
       <p>Trailborn Rocky Mountains</p>
-      
+
     </div>
   </section>
 
@@ -502,47 +400,46 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
           </div>
           <div class="party-member">
             <img src="groomsman6.jpg" alt="Groomsman 6"/>
+            <h3>JLiQuan</h3>
             <h3>LiQuan</h3>
             <p class="bio">Reliable and steady — a true brother.</p>
             </div>
           <div class="party-member">
-            <img src="groomsman6.jpg" alt="Groomsman 6"/>
-            <h3>Cyle</h3>
-            <p class="bio">Reliable and steady — a true brother.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="party-side">
-        <div class="side-title">Bridesmaids</div>
+@@ -398,170 +398,171 @@
         <div class="members-grid" style="justify-items:end;">
           <div class="party-member">
             <img src="bridesmaid1.jpg" alt="Bridesmaid 1"/>
+            <h3>Sarah</h3>
             <h3>Ina</h3>
             <p class="bio">Savannah’s friend and constant cheerleader.</p>
           </div>
           <div class="party-member">
             <img src="bridesmaid2.jpg" alt="Bridesmaid 2"/>
+            <h3>Jessica</h3>
             <h3>Adalay</h3>
             <p class="bio">Creative spirit with a loving heart.</p>
           </div>
           <div class="party-member">
             <img src="bridesmaid3.jpg" alt="Bridesmaid 3"/>
+            <h3>Rachel</h3>
             <h3>Miesha</h3>
             <p class="bio">Always spreads joy and kindness.</p>
           </div>
           <div class="party-member">
             <img src="bridesmaid4.jpg" alt="Bridesmaid 4"/>
+            <h3>Hannah</h3>
             <h3>Angel</h3>
             <p class="bio">Supportive and fun-loving.</p>
           </div>
           <div class="party-member">
             <img src="bridesmaid5.jpg" alt="Bridesmaid 5"/>
+            <h3>Olivia</h3>
             <h3>Quincy</h3>
             <p class="bio">Always ready to lend a helping hand.</p>
           </div>
           <div class="party-member">
             <img src="bridesmaid6.jpg" alt="Bridesmaid 6"/>
+            <h3>Emma</h3>
             <h3>Jedaiah</h3>
             <p class="bio">Brings laughter and warmth everywhere she goes.</p>
           </div>
@@ -554,15 +451,16 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
   <hr class="divider"/>
 
   <!-- GALLERY -->
-<section id="gallery">
-  <div class="photo-grid">
-    <a href="images/photo1.jpg"><img src="images/photo1.jpg" alt="Photo 1"></a>
-    <a href="images/photo2.jpg"><img src="images/photo2.jpg" alt="Photo 2"></a>
-    <a href="images/photo3.jpg"><img src="images/photo3.jpg" alt="Photo 3"></a>
-    <a href="images/photo4.jpg"><img src="images/photo4.jpg" alt="Photo 4"></a>
-  </div>
-</section>
-
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <hr class="divider"/>
+    <div class="photo-grid">
+      <img src="photo1.jpg" alt="Photo 1"/>
+      <img src="photo2.jpg" alt="Photo 2"/>
+      <img src="photo3.jpg" alt="Photo 3"/>
+      <img src="photo4.jpg" alt="Photo 4"/>
+    </div>
+  </section>
 
   <!-- FOOTER -->
   <footer>
@@ -655,65 +553,6 @@ checkNavCountdownVisibility();
     }
   });
 })();
-      // Create lightbox container
-  const lightbox = document.createElement('div');
-  lightbox.classList.add('lightbox');
-  document.body.appendChild(lightbox);
-
-  const images = document.querySelectorAll('.photo-grid a');
-  images.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const img = document.createElement('img');
-      img.src = link.href;
-      while (lightbox.firstChild) lightbox.removeChild(lightbox.firstChild);
-      lightbox.appendChild(img);
-      lightbox.classList.add('show');
-    });
-  });
-
-  lightbox.addEventListener('click', () => {
-    lightbox.classList.remove('show');
-  });
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
