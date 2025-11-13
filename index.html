@@ -78,25 +78,34 @@ nav a:hover::after, nav a.active::after { width: 70%; }
     backdrop-filter: none !important;
   }
 
-  .menu-toggle { display: block; }
+  .menu-toggle {
+    display: block;
+    font-size: 1.8rem;
+    cursor: pointer;
+    position: fixed;
+    top: 0.9rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1100;
+  }
 
   .nav-links {
     display: flex;
     flex-direction: column;
-    position: fixed; /* full screen */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    padding-top: 5rem;
-    background: rgba(0,0,0,0.6);
+    padding-top: 6rem;
+    background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(10px);
     opacity: 0;
     pointer-events: none;
     transform: translateY(-20px);
     transition: opacity 0.35s ease, transform 0.35s ease;
     z-index: 1050;
-    gap: 1.5rem;
+    gap: 2rem;
     align-items: center;
     justify-content: flex-start;
   }
@@ -109,17 +118,29 @@ nav a:hover::after, nav a.active::after { width: 70%; }
 
   .nav-links a {
     display: block;
-    padding: 1rem 2rem;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: #fff6da;
-    border-top: 1px solid rgba(255,255,255,0.05);
+    text-decoration: none;
+    font-weight: 700;
+    position: relative;
     transition: color 0.25s ease;
   }
 
-  .nav-links a:hover { color: #ffe9a9; }
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -6px;
+    width: 0; height: 2px;
+    margin: 0 auto;
+    background: linear-gradient(90deg, transparent, #e5c982, transparent);
+    transition: width 0.25s ease;
+  }
+
+  .nav-links a:hover::after, .nav-links a:hover { color: #ffe9a9; width: 70%; }
 
   #nav-countdown { display: none !important; }
 }
+
 
 /* ===== HEADER ===== */
 header#home {
@@ -748,6 +769,7 @@ revealMobileIntro(); // check in case already in view
   </script>
 </body>
 </html>
+
 
 
 
