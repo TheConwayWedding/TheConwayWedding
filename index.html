@@ -285,6 +285,16 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
   font-size: 2rem;
   cursor: pointer;
 }
+    @media (max-width: 900px) {
+  /* Hide all content over slideshow on mobile */
+  .header-content,
+  .hero-title,
+  .hero-lastname,
+  #countdown {
+    display: none !important;
+  }
+}
+
 
 
 
@@ -640,6 +650,7 @@ lightbox.addEventListener('click', () => {
   </script>
 </body>
 </html>
+
 
 
 
