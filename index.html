@@ -431,6 +431,40 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
     margin: 0.15em 0;
   }
 }
+    .header-slideshow {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.header-slideshow img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.header-slideshow img.active {
+  opacity: 1;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 900px) {
+  .header-slideshow img {
+    width: 100%;
+    height: auto;
+  }
+}
+
 
   </style>
 </head>
@@ -462,22 +496,61 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
   <header id="home">
   <!-- Slideshow -->
   <div class="header-slideshow">
-    <img src="slide1.jpg" class="slide active" alt="Slide 1">
-        <img src="slide2.jpg" class="slide" alt="Slide 2">
-    <img src="slide3.jpg" class="slide" alt="Slide 3">
-        <img src="slide4.jpg" class="slide" alt="Slide 4">
-   <img src="slide5.jpg" class="slide" alt="Slide 5">
-        <img src="slide6.jpg" class="slide" alt="Slide 6">
+    <img 
+      src="slide1-mobile.jpg" 
+      srcset="slide1-mobile.jpg 768w, slide1.jpg 1920w" 
+      sizes="100vw" 
+      class="slide active" 
+      alt="Slide 1" 
+      loading="lazy">
+
+    <img 
+      src="slide2-mobile.jpg" 
+      srcset="slide2-mobile.jpg 768w, slide2.jpg 1920w" 
+      sizes="100vw" 
+      class="slide" 
+      alt="Slide 2" 
+      loading="lazy">
+
+    <img 
+      src="slide3-mobile.jpg" 
+      srcset="slide3-mobile.jpg 768w, slide3.jpg 1920w" 
+      sizes="100vw" 
+      class="slide" 
+      alt="Slide 3" 
+      loading="lazy">
+
+    <img 
+      src="slide4-mobile.jpg" 
+      srcset="slide4-mobile.jpg 768w, slide4.jpg 1920w" 
+      sizes="100vw" 
+      class="slide" 
+      alt="Slide 4" 
+      loading="lazy">
+
+    <img 
+      src="slide5-mobile.jpg" 
+      srcset="slide5-mobile.jpg 768w, slide5.jpg 1920w" 
+      sizes="100vw" 
+      class="slide" 
+      alt="Slide 5" 
+      loading="lazy">
+
+    <img 
+      src="slide6-mobile.jpg" 
+      srcset="slide6-mobile.jpg 768w, slide6.jpg 1920w" 
+      sizes="100vw" 
+      class="slide" 
+      alt="Slide 6" 
+      loading="lazy">
   </div>
 
- 
-    <div class="header-content">
-    <!-- single H1 used for desktop and mobile -->
-   <h1 class="hero-title">
-  <span>Da’Quan</span>
-  <span>&</span>
-  <span>Savannah</span>
-</h1>
+  <!-- Mobile Intro -->
+  <div class="mobile-intro">
+    <span>Da’Quan</span>
+    <span>&</span>
+    <span>Savannah</span>
+    <span>Conway</span>
 
     <h2 class="hero-lastname" style="margin:0.3rem 0; font-size:3rem; letter-spacing:2px; color:#fff6da;">Conway</h2>
     <p style="margin:0.3rem 0; font-size:1.15rem; color:#fdf9f3; font-style:italic;">August 4th, 2026</p>
@@ -805,10 +878,42 @@ function revealMobileIntro() {
 
 window.addEventListener('scroll', revealMobileIntro);
 revealMobileIntro(); // check in case already in view
+    const slides = document.querySelectorAll('.header-slideshow .slide');
+let currentSlide = 0;
+
+function preloadImage(img) {
+  return new Promise((resolve) => {
+    const temp = new Image();
+    temp.src = img.src;
+    temp.onload = () => resolve();
+  });
+}
+
+// Preload first slide immediately
+preloadImage(slides[0]).then(() => slides[0].classList.add('active'));
+
+async function nextSlide() {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = (currentSlide + 1) % slides.length;
+
+  const nextImg = slides[currentSlide];
+
+  // Lazy load the image if needed
+  if (!nextImg.dataset.loaded) {
+    await preloadImage(nextImg);
+    nextImg.dataset.loaded = "true";
+  }
+
+  nextImg.classList.add('active');
+}
+
+setInterval(nextSlide, 5000);
+
     
   </script>
 </body>
 </html>
+
 
 
 
