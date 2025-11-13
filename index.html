@@ -294,6 +294,16 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
     display: none !important;
   }
 }
+    .section-blur {
+  position: relative;
+  background: rgba(59, 53, 47, 0.72); /* semi-transparent */
+  backdrop-filter: blur(6px);
+  border-radius: 14px;
+  padding: 2rem;
+  max-width: 820px;
+  margin: 2rem auto;
+  text-align: center;
+}
 
 
 
@@ -394,29 +404,25 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
 
   <hr class="divider"/>
 
-  <!-- SCHEDULE -->
-  <section id="schedule">
-    <h2>Schedule</h2>
-    <hr class="divider"/>
-    <div class="section-box">
-      <p>Details about ceremony, reception, and other wedding day events will go here.</p>
-    </div>
-  </section>
-
+<!-- SCHEDULE -->
+<section id="schedule">
+  <h2>Schedule</h2>
   <hr class="divider"/>
+  <div class="section-blur">
+    <p>Details about ceremony, reception, and other wedding day events will go here.</p>
+  </div>
+</section>
 
-  <!-- TRAVEL -->
-  <section id="travel">
-    <h2>Travel</h2>
-    <hr class="divider"/>
-    <div class="section-box">
+<!-- TRAVEL -->
+<section id="travel">
+  <h2>Travel</h2>
+  <hr class="divider"/>
+  <div class="section-blur">
+    <p>The Estes Park Resort</p>
+    <p>Trailborn Rocky Mountains</p>
+  </div>
+</section>
 
-      <p>The Estes Park Resort </p></p>
-
-      <p>Trailborn Rocky Mountains</p>
-
-    </div>
-  </section>
 
   <hr class="divider"/>
 
@@ -650,6 +656,7 @@ lightbox.addEventListener('click', () => {
   </script>
 </body>
 </html>
+
 
 
 
