@@ -304,8 +304,8 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
   margin: 2rem auto;
   text-align: center;
 }
-    /* Mobile-only intro under slideshow */
-@media (max-width: 900px) {
+  /* Mobile-only intro under slideshow */
+    @media (max-width: 900px) {
   .mobile-intro {
     display: flex;
     flex-direction: column;
@@ -316,16 +316,26 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
     color: #fff6da;
     text-shadow: 0 2px 6px rgba(0,0,0,0.5);
     font-family: "Georgia", serif;
-    font-size: 2rem;
-    line-height: 1.4;
-    letter-spacing: 1px;
+    font-size: 12vw;      /* large, responsive font */
+    line-height: 1.1;
+    letter-spacing: 0.5vw;
+    font-weight: 700;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   }
 
   .mobile-intro span {
     display: block;
-    margin: 0.3rem 0;
+    margin: 0.15em 0;     /* slight spacing between words */
+  }
+
+  .mobile-intro.show {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
+
 /* Fade-in animation */
 .mobile-intro {
   opacity: 0;
@@ -715,6 +725,7 @@ revealMobileIntro(); // check in case already in view
   </script>
 </body>
 </html>
+
 
 
 
