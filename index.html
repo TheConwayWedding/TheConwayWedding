@@ -304,6 +304,40 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
   margin: 2rem auto;
   text-align: center;
 }
+    /* Mobile-only intro under slideshow */
+@media (max-width: 900px) {
+  .mobile-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    text-align: center;
+    color: #fff6da;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    font-family: "Georgia", serif;
+    font-size: 2rem;
+    line-height: 1.4;
+    letter-spacing: 1px;
+  }
+
+  .mobile-intro span {
+    display: block;
+    margin: 0.3rem 0;
+  }
+}
+/* Fade-in animation */
+.mobile-intro {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.mobile-intro.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 
 
@@ -355,6 +389,15 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
     <div id="countdown"></div>
   </div>
 </header>
+
+  <!-- Mobile Intro under slideshow -->
+<div class="mobile-intro">
+  <span>Da’Quan</span>
+  <span>&</span>
+  <span>Savannah</span>
+  <span>Conway</span>
+</div>
+
 
 
   <!-- OUR STORY -->
@@ -653,9 +696,26 @@ images.forEach(link => {
 lightbox.addEventListener('click', () => {
   lightbox.classList.remove('show');
 });
+    // Mobile intro fade-in on scroll
+const mobileIntro = document.querySelector('.mobile-intro');
+
+function revealMobileIntro() {
+  if (!mobileIntro) return;
+  const top = mobileIntro.getBoundingClientRect().top;
+  const windowHeight = window.innerHeight;
+  if (top < windowHeight * 0.85) { // trigger slightly before fully in view
+    mobileIntro.classList.add('show');
+    window.removeEventListener('scroll', revealMobileIntro); // only once
+  }
+}
+
+window.addEventListener('scroll', revealMobileIntro);
+revealMobileIntro(); // check in case already in view
+    
   </script>
 </body>
 </html>
+
 
 
 
