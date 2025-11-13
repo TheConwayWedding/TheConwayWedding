@@ -395,6 +395,43 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
 #travel a:hover::after {
   width: 70%;
 }
+    /* Hide mobile intro on desktop */
+.mobile-intro {
+  display: none;
+}
+
+/* Show only on mobile */
+@media (max-width: 900px) {
+  .mobile-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    text-align: center;
+    color: #fff6da;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    font-family: "Georgia", serif;
+    font-size: 12vw;      /* large, responsive font */
+    line-height: 1.1;
+    letter-spacing: 0.5vw;
+    font-weight: 700;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .mobile-intro.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .mobile-intro span {
+    display: block;
+    margin: 0.15em 0;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -773,6 +810,7 @@ revealMobileIntro(); // check in case already in view
   </script>
 </body>
 </html>
+
 
 
 
