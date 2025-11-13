@@ -13,7 +13,15 @@ body {
   color: #fdf9f3;
   background: url('https://www.transparenttextures.com/patterns/wood-pattern.png') repeat #3B352F;
   line-height: 1.6;
+  padding-top: 5rem; /* add this so content isn't hidden under fixed nav */
 }
+
+/* remove fade-in opacity for FAQ sections on first load */
+.faq-section {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 /* ===== NAV ===== */
 nav {
