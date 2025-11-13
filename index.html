@@ -347,11 +347,33 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
   opacity: 1;
   transform: translateY(0);
 }
+    /* Travel links */
+#travel a {
+  color: #fff6da;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  position: relative;
+  transition: color 0.25s ease;
+}
 
+#travel a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -3px;
+  width: 0; height: 2px;
+  margin: 0 auto;
+  background: linear-gradient(90deg, transparent, #e5c982, transparent);
+  transition: width 0.25s ease;
+}
 
+#travel a:hover {
+  color: #ffe9a9;
+}
 
-
-
+#travel a:hover::after {
+  width: 70%;
+}
   </style>
 </head>
 <body>
@@ -466,15 +488,15 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
   </div>
 </section>
 
-<!-- TRAVEL -->
 <section id="travel">
   <h2>Travel</h2>
   <hr class="divider"/>
   <div class="section-blur">
-    <p>The Estes Park Resort</p>
-    <p>Trailborn Rocky Mountains</p>
+    <p><a href="https://www.estesparkresort.com" target="_blank">The Estes Park Resort</a></p>
+    <p><a href="https://www.trailbornrockymountains.com" target="_blank">Trailborn Rocky Mountains</a></p>
   </div>
 </section>
+
 
 
   <hr class="divider"/>
@@ -725,6 +747,7 @@ revealMobileIntro(); // check in case already in view
   </script>
 </body>
 </html>
+
 
 
 
