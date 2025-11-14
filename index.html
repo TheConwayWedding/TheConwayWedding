@@ -453,6 +453,27 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
 .section-blur a:focus::after {
   width: 70%;
 }
+    /* MOBILE OVERLAY IMAGE — visible only on mobile */
+.mobile-overlay {
+  display: none;              /* hidden on desktop */
+  position: absolute;
+  z-index: 5;
+  width: 70%;
+  max-width: 380px;
+  bottom: 3rem;               /* you can adjust this */
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+}
+
+/* Show only on screens under 900px */
+@media (max-width: 900px) {
+  .mobile-overlay {
+    display: block;
+  }
+}
+
 
   </style>
 </head>
@@ -487,6 +508,9 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
     <img src="Slide3.HEIC" class="slide" alt="Slide 3">
     <img src="Slide4.HEIC" class="slide" alt="Slide 4">
   </div>
+    <!-- MOBILE OVERLAY IMAGE -->
+<img src="IMG_2611.jpg" class="mobile-overlay" alt="Mobile Overlay Image">
+
 
 
     <div class="header-content">
@@ -817,6 +841,7 @@ if (lightbox) {
     </script>
 </body>
 </html>
+
 
 
 
