@@ -356,61 +356,19 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
     display: block;
     margin: 0.15em 0; /* spacing between lines/words */
   }
+
+  .mobile-intro .dramatic-amp {
+    font-size: 1.5em; /* make & bigger */
+    color: #e5c982;
+    transform: translateY(-0.1em);
+  }
 }
-
-/* Fade-in when scrolled into view */
-.mobile-intro.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-
-
 
 /* Fade-in animation */
-.mobile-intro {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
 .mobile-intro.show {
   opacity: 1;
   transform: translateY(0);
 }
-    /* Travel links */
-#travel a {
-  color: #fff6da;
-  text-decoration: none;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  position: relative;
-  transition: color 0.25s ease;
-}
-
-#travel a::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0; bottom: -3px;
-  width: 0; height: 2px;
-  margin: 0 auto;
-  background: linear-gradient(90deg, transparent, #e5c982, transparent);
-  transition: width 0.25s ease;
-}
-
-#travel a:hover {
-  color: #ffe9a9;
-}
-
-#travel a:hover::after {
-  width: 70%;
-}
-    /* Hide mobile intro on desktop */
-.mobile-intro {
-  display: none;
-}
-
-
 
   </style>
 </head>
@@ -783,6 +741,7 @@ revealMobileIntro();
   </script>
 </body>
 </html>
+
 
 
 
