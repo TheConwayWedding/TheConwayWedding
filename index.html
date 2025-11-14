@@ -343,12 +343,14 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
     font-size: 1em; /* scale relative to .mobile-intro font size */
   }
 
-  /* Second line: Conway */
+ /* Second line: Conway */
   .mobile-intro .lastname {
     display: block;
     margin-top: 0.25em;
-    font-size: 0.7em; /* slightly smaller than names */
+    font-size: clamp(2.5rem, 12vw, 5rem); /* make it much bigger */
+    font-weight: 900;
     color: #fff6da;
+    line-height: 1.1;
   }
 }
 
@@ -714,6 +716,7 @@ if (lightbox) {
     </script>
 </body>
 </html>
+
 
 
 
