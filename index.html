@@ -353,6 +353,18 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
     line-height: 1.1;
   }
 }
+    /* Hide header content over slideshow on mobile only */
+@media (max-width: 900px) {
+  .header-content {
+    display: none !important;
+  }
+
+  /* Make sure mobile intro section is visible */
+  .mobile-intro-section {
+    display: block !important;
+  }
+}
+
 
 
   </style>
@@ -716,6 +728,7 @@ if (lightbox) {
     </script>
 </body>
 </html>
+
 
 
 
