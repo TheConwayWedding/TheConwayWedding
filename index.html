@@ -325,7 +325,7 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
   margin: 2rem auto;
   text-align: center;
 }
-    /* ===== MOBILE INTRO SECTION ===== */
+/* ===== MOBILE INTRO SECTION ===== */
 @media (max-width: 900px) {
   .mobile-intro-section {
     display: block; /* show only on mobile */
@@ -356,37 +356,14 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
     display: block;
     margin: 0.15em 0; /* spacing between lines/words */
   }
-
-  /* Dramatic & styling */
-  .mobile-intro .dramatic-amp {
-    display: inline-block;
-    font-size: 1.5em;            /* larger than surrounding text */
-    color: #e5c982;              /* golden accent */
-    transform: translateY(-10%); /* lift slightly */
-    margin: 0 0.15em;            /* spacing from names */
-    font-weight: 900;            /* bold for emphasis */
-    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
-    transition: transform 0.4s ease, color 0.4s ease;
-  }
-
-  .mobile-intro .dramatic-amp:hover {
-    transform: translateY(-15%) scale(1.1);
-    color: #fff6da;
-  }
 }
 
-/* Initial hidden state for fade-in */
-.mobile-intro {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-/* Show state when scrolled into view */
+/* Fade-in when scrolled into view */
 .mobile-intro.show {
   opacity: 1;
   transform: translateY(0);
 }
+
 
 
 
@@ -806,6 +783,7 @@ revealMobileIntro();
   </script>
 </body>
 </html>
+
 
 
 
