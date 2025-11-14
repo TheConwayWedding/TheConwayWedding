@@ -1,1 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery — Da'Quan & Savannah Wedding</title>
+<style>
+  /* ===== BASE ===== */
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: "Georgia", serif;
+    color: #fdf9f3;
+    background: #3B352F; /* Charcoal Grey */
+    line-height: 1.6;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.4rem;
+    padding: 1rem 1.5rem;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(6px);
+    color: #fff8e7;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.4rem;
+    justify-content: center;
+    align-items: center;
+  }
+  nav a {
+    color: #fff6da;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    position: relative;
+    padding: 0.25rem 0;
+    transition: color 0.25s ease;
+  }
+  nav a::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -6px;
+    width: 0; height: 2px;
+    margin: 0 auto;
+    background: linear-gradient(90deg, transparent, #e5c982, transparent);
+    transition: width 0.25s ease;
+  }
+  nav a:hover { color: #ffe9a9; }
+  nav a:hover::after, nav a.active::after { width: 70%; }
+
+  /* ===== MOBILE NAV ===== */
+  .menu-toggle {
+    display: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    position: fixed;
+    top: 0.9rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1100;
+  }
+
+  @media (max-width: 900px) {
+    nav {
+      justify-content: center;
+      padding: 0.9rem 1rem;
+      background: transparent !important;
+      backdrop-filter: none !important;
+    }
+
+    .menu-toggle {
+      display: block;
+    }
+
+    .nav-links {
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding-top: 6rem;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-20px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      z-index: 1050;
+      gap: 2rem;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    nav.open .nav-links {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .nav-links a {
+      font-size: 1.5rem;
+    }
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    padding: 10rem 1.5rem 4rem;
+    text-align: center;
+  }
+  header h1 {
+    font-size: 3rem;
+    color: #fff6da;
+    letter-spacing: 2px;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  hr.divider {
+    border:none;
+    height:2px;
+    width:80px;
+    margin:1rem auto 1.6rem;
+    background: linear-gradient(to right, transparent, #e5c982, transparent);
+  }
+
+  /* ===== GALLERY GRID ===== */
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  .photo-grid img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.25s ease;
+  }
+  .photo-grid img:hover {
+    transform: scale(1.05);
+  }
+
+  /* ===== LIGHTBOX ===== */
+  .lightbox {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  .lightbox img {
+    max-width: 90%;
+    max-height: 85%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  }
+  .lightbox.show { display: flex; }
+  .lightbox .arrow {
+    position: absolute;
+    top: 50%;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
+    transform: translateY(-50%);
+    padding: 0 1rem;
+  }
+  .lightbox .prev { left: 0; }
+  .lightbox .next { right: 0; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: rgba(0,0,0,0.5);
+    color:#fff8e7;
+    padding:2rem 1rem;
+    text-align:center;
+    font-size:0.95rem;
+    letter-spacing:0.04em;
+    margin-top:2rem;
+    backdrop-filter:blur(4px);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="https://www.amazon.com//wedding/share/Savannah-and-DaQuan" target="_blank">Registry</a>
+    <a href="gallery.html" class="active">Gallery</a>
+    <a href="video.html">Video</a>
+    <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank">RSVP</a>
+    <a href="FAQs.html">FAQs</a>
+  </div>
+  <div class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false" role="button">
+    ☰
+  </div>
+</nav>
+
+<!-- HEADER -->
+<header>
+  <h1>Gallery</h1>
+  <hr class="divider">
+</header>
+
+<!-- GALLERY GRID -->
+<section class="photo-grid">
+  <!-- 20 images -->
+  <img src="photo1.jpg" alt="Photo 1">
+  <img src="photo2.jpg" alt="Photo 2">
+  <img src="photo3.jpg" alt="Photo 3">
+  <img src="photo4.jpg" alt="Photo 4">
+  <img src="photo5.jpg" alt="Photo 5">
+  <img src="photo6.jpg" alt="Photo 6">
+  <img src="photo7.jpg" alt="Photo 7">
+  <img src="photo8.jpg" alt="Photo 8">
+  <img src="photo9.jpg" alt="Photo 9">
+  <img src="photo10.jpg" alt="Photo 10">
+  <img src="photo11.jpg" alt="Photo 11">
+  <img src="photo12.jpg" alt="Photo 12">
+  <img src="photo13.jpg" alt="Photo 13">
+  <img src="photo14.jpg" alt="Photo 14">
+  <img src="photo15.jpg" alt="Photo 15">
+  <img src="photo16.jpg" alt="Photo 16">
+  <img src="photo17.jpg" alt="Photo 17">
+  <img src="photo18.jpg" alt="Photo 18">
+  <img src="photo19.jpg" alt="Photo 19">
+  <img src="photo20.jpg" alt="Photo 20">
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <span class="arrow prev">&#10094;</span>
+  <span class="arrow next">&#10095;</span>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>With love — Da'Quan & Savannah • August 26, 2026</p>
+</footer>
+
+<script>
+  // ===== MOBILE NAV TOGGLE =====
+  const menuToggle = document.getElementById('menu-toggle');
+  const nav = document.querySelector('nav');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  menuToggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    menuToggle.textContent = open ? '✕' : '☰';
+    menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if(nav.classList.contains('open')) {
+        nav.classList.remove('open');
+        menuToggle.textContent = '☰';
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
+  // ===== LIGHTBOX WITH NAVIGATION =====
+  const lightbox = document.getElementById('lightbox');
+  const images = document.querySelectorAll('.photo-grid img');
+  let currentIndex = 0;
+
+  function showLightbox(index) {
+    currentIndex = index;
+    const lbImg = document.createElement('img');
+    lbImg.src = images[currentIndex].src;
+    while (lightbox.firstChild && !lightbox.firstChild.classList.contains('arrow')) {
+      lightbox.removeChild(lightbox.firstChild);
+    }
+    lightbox.insertBefore(lbImg, lightbox.querySelector('.prev'));
+    lightbox.classList.add('show');
+  }
+
+  images.forEach((img, i) => {
+    img.addEventListener('click', () => showLightbox(i));
+  });
+
+  lightbox.addEventListener('click', e => {
+    if(e.target === lightbox) lightbox.classList.remove('show');
+  });
+
+  const prev = lightbox.querySelector('.prev');
+  const next = lightbox.querySelector('.next');
+
+  prev.addEventListener('click', e => {
+    e.stopPropagation();
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    showLightbox(currentIndex);
+  });
+
+  next.addEventListener('click', e => {
+    e.stopPropagation();
+    currentIndex = (currentIndex + 1) % images.length;
+    showLightbox(currentIndex);
+  });
+
+  document.addEventListener('keydown', e => {
+    if(lightbox.classList.contains('show')){
+      if(e.key === 'Escape') lightbox.classList.remove('show');
+      if(e.key === 'ArrowLeft') prev.click();
+      if(e.key === 'ArrowRight') next.click();
+    }
+  });
+</script>
+</body>
+</html>
 
