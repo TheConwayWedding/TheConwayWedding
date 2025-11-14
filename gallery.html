@@ -285,14 +285,22 @@
 
   function showLightbox(index) {
     currentIndex = index;
+    // Remove existing lightbox images (keep arrows)
+    lightbox.querySelectorAll('img').forEach(img => img.remove());
+
+    // Create new lightbox image
     const lbImg = document.createElement('img');
     lbImg.src = images[currentIndex].src;
-    while (lightbox.firstChild && !lightbox.firstChild.classList.contains('arrow')) {
-      lightbox.removeChild(lightbox.firstChild);
-    }
-    lightbox.insertBefore(lbImg, lightbox.querySelector('.prev'));
+
+    // Insert after arrows
+    const nextArrow = lightbox.querySelector('.next');
+    lightbox.insertBefore(lbImg, nextArrow);
+
     lightbox.classList.add('show');
-  }
+}
+.lightbox img {
+    pointer-events: auto;
+}
 
   images.forEach((img, i) => {
     img.addEventListener('click', () => showLightbox(i));
