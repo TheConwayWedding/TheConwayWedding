@@ -364,6 +364,49 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
     display: block !important;
   }
 }
+    /* Mobile travel links */
+@media (max-width: 900px) {
+  #travel a {
+    display: block;             /* stack vertically */
+    font-size: 1.5rem;          /* bigger font for tapping */
+    text-align: center;          /* center text */
+    padding: 0.5rem 0;
+  }
+
+  #travel a::after {
+    bottom: -5px;                /* adjust underline position */
+  }
+}
+/* Travel Links Styled Like Nav Links */
+#travel a {
+  color: #fff6da;              /* matches nav links */
+  text-decoration: none;        /* remove default underline */
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  position: relative;
+  transition: color 0.25s ease;
+  padding: 0.25rem 0;
+}
+
+#travel a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -3px;
+  width: 0;
+  height: 2px;
+  margin: 0 auto;
+  background: linear-gradient(90deg, transparent, #e5c982, transparent);
+  transition: width 0.25s ease;
+}
+
+#travel a:hover, #travel a:focus {
+  color: #ffe9a9;
+}
+
+#travel a:hover::after, #travel a:focus::after {
+  width: 70%;
+}
+
 
 
 
@@ -480,14 +523,16 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
   </div>
 </section>
 
+<!-- TRAVEL -->
 <section id="travel">
   <h2>Travel</h2>
   <hr class="divider"/>
   <div class="section-blur">
-    <p><a href="https://www.theestesparkresort.com/?gad_source=1&gad_campaignid=12013426453&gbraid=0AAAAABrLHy8ApOckMA0E7sMbvxp_ikUiC&gclid=CjwKCAiA_dDIBhB6EiwAvzc1cLCgjyY9zP9meZh1kFTwgKnDBKrj2DrhXsI43mdl8_QbY22r0WMpnhoCmfEQAvD_BwE" target="_blank">The Estes Park Resort</a></p>
+    <p><a href="https://www.theestesparkresort.com" target="_blank">The Estes Park Resort</a></p>
     <p><a href="https://www.trailbornrockymountains.com" target="_blank">Trailborn Rocky Mountains</a></p>
   </div>
 </section>
+
 
 
 
@@ -728,6 +773,7 @@ if (lightbox) {
     </script>
 </body>
 </html>
+
 
 
 
