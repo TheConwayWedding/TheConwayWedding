@@ -306,26 +306,7 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
   font-size: 2rem;
   cursor: pointer;
 }
-    @media (max-width: 900px) {
-  /* Hide all content over slideshow on mobile */
-  .header-content,
-  .hero-title,
-  .hero-lastname,
-  #countdown {
-    display: none !important;
-  }
-}
-    .section-blur {
-  position: relative;
-  background: rgba(59, 53, 47, 0.72); /* semi-transparent */
-  backdrop-filter: blur(6px);
-  border-radius: 14px;
-  padding: 2rem;
-  max-width: 820px;
-  margin: 2rem auto;
-  text-align: center;
-}
-/* MOBILE INTRO SECTION */
+   /* MOBILE INTRO SECTION */
 @media (max-width: 900px) {
   .mobile-intro-section {
     display: block; /* show only on mobile */
@@ -343,7 +324,7 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
     color: #fff6da;
     text-shadow: 0 2px 6px rgba(0,0,0,0.5);
     font-family: "Georgia", serif;
-    font-size: clamp(2rem, 10vw, 5rem); /* responsive font size */
+    font-size: clamp(1.5rem, 6vw, 3rem); /* smaller and responsive */
     line-height: 1.1;
     font-weight: 700;
     opacity: 0;
@@ -351,9 +332,15 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   }
 
+  .mobile-intro.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   /* First line: Da’Quan & Savannah */
   .mobile-intro .names {
-    display: inline-block;  /* keeps all on one line */
+    display: inline-block;
+    font-size: 1em; /* scale relative to .mobile-intro font size */
   }
 
   /* Second line: Conway */
@@ -364,6 +351,7 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
     color: #fff6da;
   }
 }
+
 
   </style>
 </head>
@@ -726,6 +714,7 @@ if (lightbox) {
     </script>
 </body>
 </html>
+
 
 
 
