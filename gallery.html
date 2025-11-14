@@ -183,6 +183,16 @@
   }
   .lightbox .prev { left: 0; }
   .lightbox .next { right: 0; }
+  .lightbox img {
+    pointer-events: auto;
+}
+.lightbox .arrow {
+    z-index: 2100; /* higher than image */
+}
+.lightbox img {
+    z-index: 2001; /* above lightbox background but below arrows */
+}
+
 
   /* ===== FOOTER ===== */
   footer {
@@ -297,9 +307,6 @@
     lightbox.insertBefore(lbImg, nextArrow);
 
     lightbox.classList.add('show');
-}
-.lightbox img {
-    pointer-events: auto;
 }
 
   images.forEach((img, i) => {
