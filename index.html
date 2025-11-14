@@ -193,10 +193,11 @@ section p { color:#fdf9f3; font-size:1.05rem; line-height:1.7; max-width:800px; 
 .party-member h3 { margin:0.25rem 0; color:#ffe9a9; font-size:1.05rem; }
 .party-member .role { color:#fff8e7; font-size:0.95rem; margin-bottom:0.35rem; }
 .party-member .bio { color:#fdf9f3; font-size:0.95rem; line-height:1.45; margin:0; }
-.party-side:first-child .members-grid .party-member:nth-child(7) {
-  margin-left: auto;
-  margin-right: auto;
+.party-grid > .party-side:first-child .members-grid > .party-member:nth-child(7) {
+  grid-column: 1 / -1;
+  justify-self: center;
 }
+
 
 
 /* ===== GALLERY ===== */
@@ -816,6 +817,7 @@ if (lightbox) {
     </script>
 </body>
 </html>
+
 
 
 
