@@ -431,6 +431,43 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
     margin: 0.15em 0;
   }
 }
+    /* Mobile intro section under slideshow */
+.mobile-intro-section {
+  display: none; /* hide on desktop */
+  padding: 4rem 1rem;
+  text-align: center;
+  background: rgba(59,53,47,0.72);
+  backdrop-filter: blur(6px);
+}
+
+.mobile-intro-section .mobile-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff6da;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  font-family: "Georgia", serif;
+  font-size: clamp(2.5rem, 12vw, 6rem);
+  line-height: 1.1;
+  letter-spacing: 0.5vw;
+  font-weight: 700;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.mobile-intro-section .mobile-intro span {
+  display: block;
+  margin: 0.15em 0;
+}
+
+@media (max-width: 900px) {
+  .mobile-intro-section {
+    display: block; /* show only on mobile */
+  }
+}
+
   </style>
 </head>
 <body>
@@ -480,12 +517,13 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
   </div>
 </header>
 
-  <!-- Mobile Intro under slideshow -->
-<div class="mobile-intro">
-  <span>Da’Quan & Savannah</span>
-  <span>Conway</span>
-</div>
-
+<!-- MOBILE INTRO SECTION -->
+<section id="mobile-intro" class="mobile-intro-section">
+  <div class="mobile-intro">
+    <span>Da’Quan & Savannah</span>
+    <span>Conway</span>
+  </div>
+</section>
 
 
   <!-- OUR STORY -->
@@ -782,10 +820,26 @@ function revealMobileIntro() {
 
 window.addEventListener('scroll', revealMobileIntro);
 revealMobileIntro(); // check in case already in view
+    // Mobile intro fade-in on scroll
+const mobileIntro = document.querySelector('.mobile-intro-section .mobile-intro');
+
+function revealMobileIntro() {
+  if (!mobileIntro) return;
+  const top = mobileIntro.getBoundingClientRect().top;
+  const windowHeight = window.innerHeight;
+  if (top < windowHeight * 0.85) {
+    mobileIntro.classList.add('show');
+    window.removeEventListener('scroll', revealMobileIntro);
+  }
+}
+
+window.addEventListener('scroll', revealMobileIntro);
+revealMobileIntro();
 
   </script>
 </body>
 </html>
+
 
 
 
