@@ -604,7 +604,7 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
   </footer>
 
   <script>
-// Header slideshow
+// ===== HEADER SLIDESHOW =====
 const slides = document.querySelectorAll('.header-slideshow .slide');
 let currentSlide = 0;
 function nextSlide() {
@@ -614,7 +614,7 @@ function nextSlide() {
 }
 setInterval(nextSlide, 5000);
 
-// Countdown
+// ===== COUNTDOWN =====
 const weddingDate = new Date("August 4, 2026 00:00:00").getTime();
 const countdownEl = document.getElementById("countdown");
 const navCountdownEl = document.getElementById("nav-countdown");
@@ -622,29 +622,31 @@ const navCountdownEl = document.getElementById("nav-countdown");
 function updateCountdown() {
   const now = new Date().getTime();
   const distance = weddingDate - now;
+
   if(distance < 0){
     countdownEl.innerHTML = navCountdownEl.innerHTML = "Wedding Day!";
     clearInterval(countdownInterval);
     return;
   }
+
   const days = String(Math.floor(distance / (1000*60*60*24))).padStart(2,'0');
   const hours = String(Math.floor((distance % (1000*60*60*24)) / (1000*60*60))).padStart(2,'0');
   const minutes = String(Math.floor((distance % (1000*60*60)) / (1000*60))).padStart(2,'0');
   const seconds = String(Math.floor((distance % (1000*60)) / 1000)).padStart(2,'0');
+
   const text = `${days}d ${hours}h ${minutes}m ${seconds}s`;
   countdownEl.innerHTML = navCountdownEl.innerHTML = text;
 }
 const countdownInterval = setInterval(updateCountdown, 1000);
 updateCountdown();
 
-// Hide nav countdown on mobile
 function checkNavCountdownVisibility() {
   navCountdownEl.style.display = (window.innerWidth < 900) ? "none" : "inline-block";
 }
 window.addEventListener("resize", checkNavCountdownVisibility);
 checkNavCountdownVisibility();
 
-// Mobile hamburger toggle + smooth scroll
+// ===== MOBILE NAV TOGGLE & SMOOTH SCROLL =====
 (function(){
   const menuToggle = document.getElementById('menu-toggle');
   const nav = document.querySelector('nav');
@@ -657,30 +659,27 @@ checkNavCountdownVisibility();
     menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
 
- navLinks.forEach(link => {
-  link.addEventListener('click', (e) => {
-    const href = link.getAttribute('href');
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
 
-    // Check if link is external or goes to another page
-    if (href.startsWith('http') || href.endsWith('.html')) {
-      return; // allow normal navigation
-    }
+      if (href.startsWith('http') || href.endsWith('.html')) {
+        return; // allow normal navigation
+      }
 
-    // Otherwise, handle internal smooth scroll
-    e.preventDefault();
-    const target = document.querySelector(href);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
 
-    // Close mobile menu after clicking
-    if (nav.classList.contains('open')) {
-      nav.classList.remove('open');
-      menuToggle.textContent = '☰';
-      menuToggle.setAttribute('aria-expanded', 'false');
-    }
+      // Close mobile menu after clicking
+      if (nav.classList.contains('open')) {
+        nav.classList.remove('open');
+        menuToggle.textContent = '☰';
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
   });
-});
+
   document.addEventListener('keydown', (e) => {
     if(e.key === 'Escape' && nav.classList.contains('open')) {
       nav.classList.remove('open');
@@ -689,7 +688,9 @@ checkNavCountdownVisibility();
     }
   });
 })();
-    const lightbox = document.getElementById('lightbox');
+
+// ===== LIGHTBOX =====
+const lightbox = document.getElementById('lightbox');
 const images = document.querySelectorAll('.photo-grid a');
 
 images.forEach(link => {
@@ -703,44 +704,34 @@ images.forEach(link => {
   });
 });
 
-// Close lightbox when clicking outside image or on "X"
-lightbox.addEventListener('click', () => {
-  lightbox.classList.remove('show');
-});
-    // Mobile intro fade-in on scroll
-const mobileIntro = document.querySelector('.mobile-intro');
-
-function revealMobileIntro() {
-  if (!mobileIntro) return;
-  const top = mobileIntro.getBoundingClientRect().top;
-  const windowHeight = window.innerHeight;
-  if (top < windowHeight * 0.85) { // trigger slightly before fully in view
-    mobileIntro.classList.add('show');
-    window.removeEventListener('scroll', revealMobileIntro); // only once
-  }
+if (lightbox) {
+  lightbox.addEventListener('click', () => {
+    lightbox.classList.remove('show');
+  });
 }
 
-window.addEventListener('scroll', revealMobileIntro);
-revealMobileIntro(); // check in case already in view
-    // Mobile intro fade-in on scroll
-const mobileIntro = document.querySelector('.mobile-intro-section .mobile-intro');
-
-function revealMobileIntro() {
+// ===== MOBILE INTRO FADE-IN =====
+(function() {
+  const mobileIntro = document.querySelector('.mobile-intro-section .mobile-intro');
   if (!mobileIntro) return;
-  const top = mobileIntro.getBoundingClientRect().top;
-  const windowHeight = window.innerHeight;
-  if (top < windowHeight * 0.85) {
-    mobileIntro.classList.add('show');
-    window.removeEventListener('scroll', revealMobileIntro);
+
+  function revealMobileIntro() {
+    const top = mobileIntro.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+
+    if (top < windowHeight * 0.85) { // trigger when near viewport
+      mobileIntro.classList.add('show');
+      window.removeEventListener('scroll', revealMobileIntro);
+    }
   }
-}
 
-window.addEventListener('scroll', revealMobileIntro);
-revealMobileIntro();
-
-  </script>
+  window.addEventListener('scroll', revealMobileIntro);
+  revealMobileIntro(); // in case already in view
+})();
+    </script>
 </body>
 </html>
+
 
 
 
