@@ -431,6 +431,17 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
     margin: 0.15em 0;
   }
 }
+    @media (max-width: 900px) {
+  .mobile-intro {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2; /* above slideshow and header content */
+    text-align: center;
+  }
+}
+
 
   </style>
 </head>
@@ -787,6 +798,7 @@ revealMobileIntro(); // check in case already in view
   </script>
 </body>
 </html>
+
 
 
 
