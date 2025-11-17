@@ -79,7 +79,7 @@
 
 @media (max-width: 900px) {
   .menu-toggle {
-    position: fixed;      /* stays at top-center of screen */
+    position: fixed;
     top: 0.9rem;
     left: 50%;
     transform: translateX(-50%);
@@ -137,6 +137,7 @@
     width: 100%;
     height: 100%;
     border: 0;
+    object-fit: cover;
   }
 
 </style>
@@ -157,9 +158,10 @@
 
 <!-- FULL SCREEN VIDEO -->
 <div id="videoWrapper">
-  <iframe src="https://www.youtube.com/watch?v=hvSvEm5qXeA" 
-          allow="autoplay; fullscreen" 
-          allowfullscreen>
+  <iframe 
+    src="https://www.youtube.com/embed/hvSvEm5qXeA?autoplay=1&mute=1&controls=0&loop=1&playlist=hvSvEm5qXeA"
+    allow="autoplay; fullscreen"
+    allowfullscreen>
   </iframe>
 </div>
 
@@ -199,6 +201,7 @@
 
 </body>
 </html>
+
 
 
 
