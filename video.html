@@ -120,7 +120,7 @@
     }
   }
 
-  /* ===== FULL SCREEN VIDEO ===== */
+  /* ===== FULLSCREEN VIDEO ===== */
   #videoWrapper {
     position: absolute;
     top: 0;
@@ -128,15 +128,12 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
+    z-index: 0;
   }
 
-  #videoWrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
+  #videoWrapper video {
     width: 100%;
     height: 100%;
-    border: 0;
     object-fit: cover;
   }
 
@@ -161,7 +158,6 @@
   #fullscreen-btn:hover {
     background: rgba(255,255,255,1);
   }
-
 </style>
 </head>
 <body>
@@ -180,71 +176,84 @@
 
 <!-- FULL SCREEN VIDEO -->
 <div id="videoWrapper">
-  <iframe 
-    id="mainVideo"
-    src="https://www.youtube.com/embed/hvSvEm5qXeA?autoplay=1&mute=1&controls=0&loop=1&playlist=hvSvEm5qXeA"
-    allow="autoplay; fullscreen"
-    allowfullscreen>
-  </iframe>
+  <video id="weddingVideo" autoplay muted loop playsinline>
+    <source src="video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
 </div>
 
-<!-- FULLSCREEN + UNMUTE BUTTON -->
+<!-- FULLSCREEN + UNMUTE BUTTON (Desktop only) -->
 <button id="fullscreen-btn">Enter Fullscreen & Unmute</button>
 
 <script>
- const fsBtn = document.getElementById('fullscreen-btn');
-const videoWrapper = document.getElementById('videoWrapper');
-const iframe = document.getElementById('mainVideo');
+  // Mobile detection
+  const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+  const video = document.getElementById('weddingVideo');
+  const fsBtn = document.getElementById('fullscreen-btn');
 
-// Detect mobile
-const isMobile = window.innerWidth <= 900;
-
-if (isMobile) {
-  // Attempt automatic fullscreen on mobile after short delay
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      if (videoWrapper.requestFullscreen) {
-        videoWrapper.requestFullscreen();
-      } else if (videoWrapper.webkitRequestFullscreen) {
-        videoWrapper.webkitRequestFullscreen();
-      } else if (videoWrapper.msRequestFullscreen) {
-        videoWrapper.msRequestFullscreen();
+  // Mobile: attempt fullscreen automatically
+  if (isMobile) {
+    video.addEventListener('loadedmetadata', () => {
+      if (video.requestFullscreen) {
+        video.requestFullscreen();
+      } else if (video.webkitEnterFullscreen) { // iOS
+        video.webkitEnterFullscreen();
       }
+    });
 
-      // Optional: unmute after first tap on mobile
-      const unmuteHandler = () => {
-        iframe.src = iframe.src.replace('mute=1', 'mute=0');
-        document.removeEventListener('touchstart', unmuteHandler);
-      };
-      document.addEventListener('touchstart', unmuteHandler, { once: true });
+    // Unmute on first touch
+    document.addEventListener('touchstart', () => {
+      video.muted = false;
+    }, { once: true });
 
-    }, 500); // delay to allow page load
-  });
-}
-
-// Desktop: keep existing button behavior
-fsBtn.addEventListener('click', () => {
-  if (videoWrapper.requestFullscreen) {
-    videoWrapper.requestFullscreen();
-  } else if (videoWrapper.webkitRequestFullscreen) {
-    videoWrapper.webkitRequestFullscreen();
-  } else if (videoWrapper.msRequestFullscreen) {
-    videoWrapper.msRequestFullscreen();
+    // Hide desktop button on mobile
+    fsBtn.style.display = 'none';
   }
 
-  // Unmute video
-  iframe.src = iframe.src.replace('mute=1', 'mute=0');
+  // Desktop: Fullscreen + unmute button
+  fsBtn.addEventListener('click', () => {
+    if (video.requestFullscreen) {
+      video.requestFullscreen();
+    } else if (video.webkitRequestFullscreen) {
+      video.webkitRequestFullscreen();
+    }
 
-  fsBtn.style.display = 'none';
-});
+    video.muted = false;
+    fsBtn.style.display = 'none';
+  });
+
+  // Mobile hamburger toggle
+  (function(){
+    const menuToggle = document.getElementById('menu-toggle');
+    const nav = document.querySelector('nav');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    if (!menuToggle || !nav) return;
+
+    menuToggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      menuToggle.textContent = open ? '✕' : '☰';
+      menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (nav.classList.contains('open')) {
+          nav.classList.remove('open');
+          menuToggle.textContent = '☰';
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && nav.classList.contains('open')) {
+        nav.classList.remove('open');
+        menuToggle.textContent = '☰';
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
