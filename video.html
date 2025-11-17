@@ -77,14 +77,14 @@
     z-index: 1100;
   }
 
-@media (max-width: 900px) {
-  .menu-toggle {
-    position: fixed;
-    top: 0.9rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1100;
-  }
+  @media (max-width: 900px) {
+    .menu-toggle {
+      position: fixed;
+      top: 0.9rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1100;
+    }
 
     .nav-links {
       display: none;
@@ -140,6 +140,28 @@
     object-fit: cover;
   }
 
+  /* ===== FULLSCREEN BUTTON ===== */
+  #fullscreen-btn {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2000;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    background: rgba(255,255,255,0.85);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #000;
+    font-weight: bold;
+    transition: background 0.25s ease;
+  }
+
+  #fullscreen-btn:hover {
+    background: rgba(255,255,255,1);
+  }
+
 </style>
 </head>
 <body>
@@ -159,11 +181,15 @@
 <!-- FULL SCREEN VIDEO -->
 <div id="videoWrapper">
   <iframe 
+    id="mainVideo"
     src="https://www.youtube.com/embed/hvSvEm5qXeA?autoplay=1&mute=1&controls=0&loop=1&playlist=hvSvEm5qXeA"
     allow="autoplay; fullscreen"
     allowfullscreen>
   </iframe>
 </div>
+
+<!-- FULLSCREEN + UNMUTE BUTTON -->
+<button id="fullscreen-btn">Enter Fullscreen & Unmute</button>
 
 <script>
   // Mobile hamburger toggle
@@ -197,10 +223,33 @@
       }
     });
   })();
+
+  // Fullscreen + unmute
+  const fsBtn = document.getElementById('fullscreen-btn');
+  const videoWrapper = document.getElementById('videoWrapper');
+  const iframe = document.getElementById('mainVideo');
+
+  fsBtn.addEventListener('click', () => {
+    // Fullscreen
+    if (videoWrapper.requestFullscreen) {
+      videoWrapper.requestFullscreen();
+    } else if (videoWrapper.webkitRequestFullscreen) {
+      videoWrapper.webkitRequestFullscreen();
+    } else if (videoWrapper.msRequestFullscreen) {
+      videoWrapper.msRequestFullscreen();
+    }
+
+    // Unmute video by reloading iframe with mute=0
+    iframe.src = iframe.src.replace('mute=1', 'mute=0');
+
+    // Hide button
+    fsBtn.style.display = 'none';
+  });
 </script>
 
 </body>
 </html>
+
 
 
 
