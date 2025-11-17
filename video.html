@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Full Screen Video with Styled Nav</title>
+<title>Wedding Fullscreen Video</title>
 <style>
-  /* ===== BASE ===== */
   html, body {
     margin: 0;
     padding: 0;
@@ -65,7 +64,6 @@
   nav a:hover::after { width: 70%; }
   nav a:hover { color: #ffe9a9; }
 
-  /* ===== MOBILE: collapse to hamburger ===== */
   .menu-toggle {
     display: none;
     font-size: 1.8rem;
@@ -120,7 +118,7 @@
     }
   }
 
-  /* ===== FULLSCREEN VIDEO ===== */
+  /* ===== VIDEO ===== */
   #videoWrapper {
     position: absolute;
     top: 0;
@@ -137,12 +135,9 @@
     object-fit: cover;
   }
 
-  /* ===== FULLSCREEN BUTTON ===== */
-  #fullscreen-btn {
+  /* ===== BUTTONS ===== */
+  .fullscreen-btn {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     z-index: 2000;
     padding: 1rem 2rem;
     font-size: 1.2rem;
@@ -155,8 +150,30 @@
     transition: background 0.25s ease;
   }
 
-  #fullscreen-btn:hover {
+  .fullscreen-btn:hover {
     background: rgba(255,255,255,1);
+  }
+
+  #desktop-btn {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  #mobile-btn {
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+  }
+
+  @media (max-width: 900px) {
+    #desktop-btn {
+      display: none;
+    }
+    #mobile-btn {
+      display: block;
+    }
   }
 </style>
 </head>
@@ -169,12 +186,10 @@
     <a href="video.html">Video</a>
     <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank">RSVP</a>
   </div>
-  <div class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false" role="button">
-    ☰
-  </div>
+  <div class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false" role="button">☰</div>
 </nav>
 
-<!-- FULL SCREEN VIDEO -->
+<!-- VIDEO -->
 <div id="videoWrapper">
   <video id="weddingVideo" autoplay muted loop playsinline>
     <source src="video.mp4" type="video/mp4">
@@ -182,44 +197,43 @@
   </video>
 </div>
 
-<!-- FULLSCREEN + UNMUTE BUTTON (Desktop only) -->
-<button id="fullscreen-btn">Enter Fullscreen & Unmute</button>
+<!-- BUTTONS -->
+<button id="desktop-btn" class="fullscreen-btn">Enter Fullscreen & Unmute</button>
+<button id="mobile-btn" class="fullscreen-btn">Tap to Play Fullscreen</button>
 
 <script>
+  const video = document.getElementById('weddingVideo');
+  const desktopBtn = document.getElementById('desktop-btn');
+  const mobileBtn = document.getElementById('mobile-btn');
+
   // Mobile detection
   const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-  const video = document.getElementById('weddingVideo');
-  const fsBtn = document.getElementById('fullscreen-btn');
 
-  // Mobile: attempt fullscreen automatically
   if (isMobile) {
-    video.addEventListener('loadedmetadata', () => {
+    mobileBtn.addEventListener('click', () => {
+      // Unmute
+      video.muted = false;
+      // Play video
+      video.play();
+      // Fullscreen
       if (video.requestFullscreen) {
         video.requestFullscreen();
       } else if (video.webkitEnterFullscreen) { // iOS
         video.webkitEnterFullscreen();
       }
+      mobileBtn.style.display = 'none';
     });
-
-    // Unmute on first touch
-    document.addEventListener('touchstart', () => {
-      video.muted = false;
-    }, { once: true });
-
-    // Hide desktop button on mobile
-    fsBtn.style.display = 'none';
   }
 
-  // Desktop: Fullscreen + unmute button
-  fsBtn.addEventListener('click', () => {
+  // Desktop button
+  desktopBtn.addEventListener('click', () => {
+    video.muted = false;
     if (video.requestFullscreen) {
       video.requestFullscreen();
     } else if (video.webkitRequestFullscreen) {
       video.webkitRequestFullscreen();
     }
-
-    video.muted = false;
-    fsBtn.style.display = 'none';
+    desktopBtn.style.display = 'none';
   });
 
   // Mobile hamburger toggle
@@ -257,3 +271,4 @@
 
 </body>
 </html>
+
