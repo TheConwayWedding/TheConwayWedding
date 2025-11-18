@@ -119,7 +119,7 @@
   }
 
   /* ===== VIDEO ===== */
-  #videoWrapper {
+  #videoWrapper, #player {
     position: absolute;
     top: 0;
     left: 0;
@@ -129,11 +129,9 @@
     z-index: 0;
   }
 
-  #videoWrapper iframe {
+  #player iframe {
     width: 100%;
     height: 100%;
-    border: 0;
-    object-fit: cover; /* fill container */
   }
 
   /* ===== BUTTONS ===== */
@@ -153,18 +151,8 @@
 
   .fullscreen-btn:hover { background: rgba(255,255,255,1); }
 
-  #desktop-btn {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  #mobile-btn {
-    bottom: 1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: none;
-  }
+  #desktop-btn { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+  #mobile-btn { bottom: 1.5rem; left: 50%; transform: translateX(-50%); display: none; }
 
   @media (max-width: 900px) {
     #desktop-btn { display: none; }
@@ -186,79 +174,103 @@
 
 <!-- VIDEO -->
 <div id="videoWrapper">
-  <iframe id="weddingVideo" 
-          src="https://www.youtube.com/embed/hvSvEm5qXeA?autoplay=1&mute=1&loop=1&playlist=hvSvEm5qXeA&controls=0&modestbranding=1&rel=0" 
-          frameborder="0"
-          allow="autoplay; fullscreen"
-          allowfullscreen>
-  </iframe>
+  <div id="player"></div>
 </div>
 
 <!-- BUTTONS -->
-<button id="desktop-btn" class="fullscreen-btn">Enter Fullscreen & Unmute</button>
-<button id="mobile-btn" class="fullscreen-btn">Tap to Play Fullscreen</button>
+<button id="desktop-btn" class="fullscreen-btn">Fullscreen & Unmute</button>
+<button id="mobile-btn" class="fullscreen-btn">Tap to Fullscreen & Unmute</button>
 
+<!-- YouTube IFrame API -->
+<script src="https://www.youtube.com/iframe_api"></script>
 <script>
-  const iframe = document.getElementById('weddingVideo');
-  const desktopBtn = document.getElementById('desktop-btn');
-  const mobileBtn = document.getElementById('mobile-btn');
-  const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-
-  // Mobile button
-  if (isMobile) {
-    mobileBtn.addEventListener('click', () => {
-      // Request fullscreen
-      if (iframe.requestFullscreen) {
-        iframe.requestFullscreen();
-      } else if (iframe.webkitRequestFullscreen) { // iOS
-        iframe.webkitRequestFullscreen();
+let player;
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('player', {
+    videoId: 'hvSvEm5qXeA', // your video ID
+    playerVars: {
+      autoplay: 1,
+      loop: 1,
+      playlist: 'hvSvEm5qXeA',
+      controls: 0,
+      modestbranding: 1,
+      rel: 0,
+      mute: 1,
+      playsinline: 1
+    },
+    events: {
+      onReady: (event) => {
+        event.target.playVideo();
       }
-      mobileBtn.style.display = 'none';
-      // Cannot autoplay sound automatically on mobile; user tapped, so sound can be unmuted via YouTube player UI
-    });
-  }
-
-  // Desktop button
-  desktopBtn.addEventListener('click', () => {
-    if (iframe.requestFullscreen) {
-      iframe.requestFullscreen();
-    } else if (iframe.webkitRequestFullscreen) {
-      iframe.webkitRequestFullscreen();
     }
-    desktopBtn.style.display = 'none';
+  });
+}
+
+const desktopBtn = document.getElementById('desktop-btn');
+const mobileBtn = document.getElementById('mobile-btn');
+const playerDiv = document.getElementById('player');
+const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+
+// Fullscreen helper
+function goFullscreen(el) {
+  if (el.requestFullscreen) el.requestFullscreen();
+  else if (el.webkitEnterFullscreen) el.webkitEnterFullscreen();
+  else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+  else if (el.msRequestFullscreen) el.msRequestFullscreen();
+}
+
+// Desktop button
+desktopBtn.addEventListener('click', () => {
+  goFullscreen(playerDiv);
+  player.unMute();
+  player.playVideo();
+  desktopBtn.style.display = 'none';
+});
+
+// Mobile button
+if (isMobile) {
+  mobileBtn.style.display = 'block';
+  mobileBtn.addEventListener('click', () => {
+    goFullscreen(playerDiv);
+    player.unMute();
+    player.playVideo();
+    mobileBtn.style.display = 'none';
+  });
+} else {
+  mobileBtn.style.display = 'none';
+}
+
+// Mobile hamburger toggle
+(function(){
+  const menuToggle = document.getElementById('menu-toggle');
+  const nav = document.querySelector('nav');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  if (!menuToggle || !nav) return;
+
+  menuToggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    menuToggle.textContent = open ? '✕' : '☰';
+    menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
 
-  // Mobile hamburger toggle
-  (function(){
-    const menuToggle = document.getElementById('menu-toggle');
-    const nav = document.querySelector('nav');
-    const navLinks = document.querySelectorAll('.nav-links a');
-    if (!menuToggle || !nav) return;
-
-    menuToggle.addEventListener('click', () => {
-      const open = nav.classList.toggle('open');
-      menuToggle.textContent = open ? '✕' : '☰';
-      menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        if (nav.classList.contains('open')) {
-          nav.classList.remove('open');
-          menuToggle.textContent = '☰';
-          menuToggle.setAttribute('aria-expanded', 'false');
-        }
-      });
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && nav.classList.contains('open')) {
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (nav.classList.contains('open')) {
         nav.classList.remove('open');
         menuToggle.textContent = '☰';
         menuToggle.setAttribute('aria-expanded', 'false');
       }
     });
-  })();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav.classList.contains('open')) {
+      nav.classList.remove('open');
+      menuToggle.textContent = '☰';
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+})();
 </script>
 
 </body>
