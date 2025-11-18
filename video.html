@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Wedding Fullscreen Video</title>
+<title>Wedding Fullscreen YouTube Video</title>
 <style>
   html, body {
     margin: 0;
@@ -129,10 +129,11 @@
     z-index: 0;
   }
 
-  #videoWrapper video {
+  #videoWrapper iframe {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    border: 0;
+    object-fit: cover; /* fill container */
   }
 
   /* ===== BUTTONS ===== */
@@ -150,9 +151,7 @@
     transition: background 0.25s ease;
   }
 
-  .fullscreen-btn:hover {
-    background: rgba(255,255,255,1);
-  }
+  .fullscreen-btn:hover { background: rgba(255,255,255,1); }
 
   #desktop-btn {
     top: 50%;
@@ -168,12 +167,8 @@
   }
 
   @media (max-width: 900px) {
-    #desktop-btn {
-      display: none;
-    }
-    #mobile-btn {
-      display: block;
-    }
+    #desktop-btn { display: none; }
+    #mobile-btn { display: block; }
   }
 </style>
 </head>
@@ -198,41 +193,37 @@
           allowfullscreen>
   </iframe>
 </div>
+
 <!-- BUTTONS -->
 <button id="desktop-btn" class="fullscreen-btn">Enter Fullscreen & Unmute</button>
 <button id="mobile-btn" class="fullscreen-btn">Tap to Play Fullscreen</button>
 
 <script>
-  const video = document.getElementById('weddingVideo');
+  const iframe = document.getElementById('weddingVideo');
   const desktopBtn = document.getElementById('desktop-btn');
   const mobileBtn = document.getElementById('mobile-btn');
-
-  // Mobile detection
   const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
+  // Mobile button
   if (isMobile) {
     mobileBtn.addEventListener('click', () => {
-      // Unmute
-      video.muted = false;
-      // Play video
-      video.play();
-      // Fullscreen
-      if (video.requestFullscreen) {
-        video.requestFullscreen();
-      } else if (video.webkitEnterFullscreen) { // iOS
-        video.webkitEnterFullscreen();
+      // Request fullscreen
+      if (iframe.requestFullscreen) {
+        iframe.requestFullscreen();
+      } else if (iframe.webkitRequestFullscreen) { // iOS
+        iframe.webkitRequestFullscreen();
       }
       mobileBtn.style.display = 'none';
+      // Cannot autoplay sound automatically on mobile; user tapped, so sound can be unmuted via YouTube player UI
     });
   }
 
   // Desktop button
   desktopBtn.addEventListener('click', () => {
-    video.muted = false;
-    if (video.requestFullscreen) {
-      video.requestFullscreen();
-    } else if (video.webkitRequestFullscreen) {
-      video.webkitRequestFullscreen();
+    if (iframe.requestFullscreen) {
+      iframe.requestFullscreen();
+    } else if (iframe.webkitRequestFullscreen) {
+      iframe.webkitRequestFullscreen();
     }
     desktopBtn.style.display = 'none';
   });
@@ -272,5 +263,3 @@
 
 </body>
 </html>
-
-
