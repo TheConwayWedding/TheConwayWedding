@@ -152,8 +152,11 @@
   .fullscreen-btn:hover { background: rgba(255,255,255,1); }
 
   #desktop-btn { top: 50%; left: 50%; transform: translate(-50%, -50%); }
-  #mobile-video-container { display: none; }
 
+  /* ===== MOBILE FULLSCREEN OVERLAY ===== */
+  #mobile-video-overlay {
+    display: none; /* Only show on mobile */
+  }
 </style>
 </head>
 <body>
@@ -176,15 +179,19 @@
 <!-- DESKTOP FULLSCREEN BUTTON -->
 <button id="desktop-btn" class="fullscreen-btn">Fullscreen & Unmute</button>
 
-<!-- MOBILE VIDEO BOX -->
-<div id="mobile-video-container">
-  <a href="https://youtu.be/hvSvEm5qXeA" target="_blank" style="display:block; width:100%; text-align:center; text-decoration:none;">
-    <div style="position:relative; width:90%; max-width:600px; margin:2rem auto; padding-bottom:56.25%; border-radius:10px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.4); cursor:pointer;">
-      <img src="https://img.youtube.com/vi/hvSvEm5qXeA/maxresdefault.jpg" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;">
-      <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:2rem; color:white; font-weight:bold;">▶</div>
-    </div>
-    <p style="color:white; text-align:center; margin-top:0.5rem;">Tap to Watch Fullscreen on YouTube</p>
-  </a>
+<!-- MOBILE FULLSCREEN TRANSPARENT OVERLAY -->
+<div id="mobile-video-overlay">
+  <a href="https://youtu.be/hvSvEm5qXeA" target="_blank" style="
+      display:block;
+      width:100vw;
+      height:100vh;
+      position:fixed;
+      top:0;
+      left:0;
+      z-index:2000;
+      background:transparent;
+      cursor:pointer;
+  " aria-label="Watch Fullscreen on YouTube"></a>
 </div>
 
 <!-- YouTube IFrame API -->
@@ -212,7 +219,7 @@ function onYouTubeIframeAPIReady() {
 
 const desktopBtn = document.getElementById('desktop-btn');
 const playerDiv = document.getElementById('player');
-const mobileContainer = document.getElementById('mobile-video-container');
+const mobileOverlay = document.getElementById('mobile-video-overlay');
 const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
 // Desktop button
@@ -224,10 +231,12 @@ desktopBtn.addEventListener('click', () => {
   desktopBtn.style.display = 'none';
 });
 
-// Show mobile YouTube box instead
+// Mobile overlay
 if (isMobile) {
-  mobileContainer.style.display = 'block';
+  mobileOverlay.style.display = 'block';
   desktopBtn.style.display = 'none';
+} else {
+  mobileOverlay.style.display = 'none';
 }
 
 // Mobile hamburger toggle
