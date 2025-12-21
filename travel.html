@@ -542,7 +542,130 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
 
 <!-- COPY SAME SCRIPT BLOCK FROM index.html -->
 <script>
-  /* PASTE YOUR EXISTING SCRIPT HERE — 1:1 */
+// ===== HEADER SLIDESHOW =====
+const slides = document.querySelectorAll('.header-slideshow .slide');
+let currentSlide = 0;
+function nextSlide() {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = (currentSlide + 1) % slides.length;
+  slides[currentSlide].classList.add('active');
+}
+setInterval(nextSlide, 5000);
+
+// ===== COUNTDOWN =====
+const weddingDate = new Date("August 4, 2026 00:00:00").getTime();
+const countdownEl = document.getElementById("countdown");
+const navCountdownEl = document.getElementById("nav-countdown");
+
+function updateCountdown() {
+  const now = new Date().getTime();
+  const distance = weddingDate - now;
+
+  if(distance < 0){
+    countdownEl.innerHTML = navCountdownEl.innerHTML = "Wedding Day!";
+    clearInterval(countdownInterval);
+    return;
+  }
+
+  const days = String(Math.floor(distance / (1000*60*60*24))).padStart(2,'0');
+  const hours = String(Math.floor((distance % (1000*60*60*24)) / (1000*60*60))).padStart(2,'0');
+  const minutes = String(Math.floor((distance % (1000*60*60)) / (1000*60))).padStart(2,'0');
+  const seconds = String(Math.floor((distance % (1000*60)) / 1000)).padStart(2,'0');
+
+  const text = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  countdownEl.innerHTML = navCountdownEl.innerHTML = text;
+}
+const countdownInterval = setInterval(updateCountdown, 1000);
+updateCountdown();
+
+function checkNavCountdownVisibility() {
+  navCountdownEl.style.display = (window.innerWidth < 900) ? "none" : "inline-block";
+}
+window.addEventListener("resize", checkNavCountdownVisibility);
+checkNavCountdownVisibility();
+
+// ===== MOBILE NAV TOGGLE & SMOOTH SCROLL =====
+(function(){
+  const menuToggle = document.getElementById('menu-toggle');
+  const nav = document.querySelector('nav');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  if (!menuToggle || !nav) return;
+
+  menuToggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    menuToggle.textContent = open ? '✕' : '☰';
+    menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+
+      if (href.startsWith('http') || href.endsWith('.html')) {
+        return; // allow normal navigation
+      }
+
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+
+      // Close mobile menu after clicking
+      if (nav.classList.contains('open')) {
+        nav.classList.remove('open');
+        menuToggle.textContent = '☰';
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && nav.classList.contains('open')) {
+      nav.classList.remove('open');
+      menuToggle.textContent = '☰';
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+})();
+
+// ===== LIGHTBOX =====
+const lightbox = document.getElementById('lightbox');
+const images = document.querySelectorAll('.photo-grid a');
+
+images.forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const img = document.createElement('img');
+    img.src = link.href;
+    while (lightbox.firstChild) lightbox.removeChild(lightbox.firstChild);
+    lightbox.appendChild(img);
+    lightbox.classList.add('show');
+  });
+});
+
+if (lightbox) {
+  lightbox.addEventListener('click', () => {
+    lightbox.classList.remove('show');
+  });
+}
+
+// ===== MOBILE INTRO FADE-IN =====
+(function() {
+  const mobileIntro = document.querySelector('.mobile-intro-section .mobile-intro');
+  if (!mobileIntro) return;
+
+  function revealMobileIntro() {
+    const top = mobileIntro.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+
+    if (top < windowHeight * 0.85) { // trigger when near viewport
+      mobileIntro.classList.add('show');
+      window.removeEventListener('scroll', revealMobileIntro);
+    }
+  }
+
+  window.addEventListener('scroll', revealMobileIntro);
+  revealMobileIntro(); // in case already in view
+})();
 </script>
 
 </body>
