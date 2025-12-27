@@ -110,16 +110,15 @@ body {
 /* ===== TRAVEL HERO — REUSED PLACE BACKGROUND ===== */
 #travel-hero {
   position: relative;
-  min-height: 100vh;      /* ✅ was height */
-  overflow-y: auto;       /* ✅ allow scroll */
+  min-height: 100vh;
+  overflow-y: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8rem 1.5rem 4rem; /* ✅ space for nav + bottom */
+  padding: 8rem 1.5rem 4rem; /* space for nav + bottom */
 }
 
-
-/* Mountains video (same behavior as #place) */
+/* Mountains video */
 #travel-hero video {
   position: absolute;
   inset: 0;
@@ -182,15 +181,47 @@ body {
   font-weight: 700;
 }
 
-/* Mobile spacing */
+/* ===== HOTEL LINKS ===== */
+.section-blur {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.section-blur a {
+  display: inline-block;
+  background: rgba(230,200,130,0.85);
+  color: #3B352F;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+  text-align: center;
+}
+
+.section-blur a:hover,
+.section-blur a:focus {
+  background: #e5c982;
+  color: #2c261f;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(199,169,107,0.25);
+}
+
+/* Mobile adjustments */
 @media (max-width: 700px) {
   #travel-hero {
-    align-items: flex-start;   /* stack from top */
-    padding-top: 6.5rem;       /* nav-safe spacing */
+    align-items: flex-start;
+    padding-top: 6.5rem;
   }
 
   .travel-content {
-    margin-bottom: 3rem;       /* avoid cutoff at bottom */
+    margin-bottom: 3rem;
+  }
+
+  .section-blur a {
+    width: 100%;
   }
 }
 </style>
@@ -202,20 +233,21 @@ body {
 <nav id="site-nav">
   <div class="menu-toggle" onclick="toggleNav()">☰</div>
   <div class="nav-links">
-   <a href="#index.html">Home</a>
-    <a href="https://www.amazon.com//wedding/share/Savannah-and-DaQuan" target="_blank">Registry</a>
+    <a href="index.html">Home</a>
+    <a href="https://www.amazon.com/wedding/share/Savannah-and-DaQuan" target="_blank">Registry</a>
     <a href="gallery.html">Gallery</a>
     <a href="video.html">Video</a>
     <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank">RSVP</a>
     <a href="travel.html" class="active">Travel</a>
     <a href="FAQs.html">FAQs</a>
+  </div>
 </nav>
 
 <!-- TRAVEL HERO -->
 <section id="travel-hero">
- <video autoplay muted loop playsinline>
-      <source src="estes-lake.mp4" type="video/mp4"/>
-      <source src="estes-park.mp4" type="video/mp4"/>
+  <video autoplay muted loop playsinline>
+    <source src="estes-lake.mp4" type="video/mp4"/>
+    <source src="estes-park.mp4" type="video/mp4"/>
   </video>
 
   <div class="travel-content">
@@ -268,31 +300,22 @@ body {
     <p class="highlight">
       We can’t wait to celebrate and adventure with you!
     </p>
-      <div class="section-blur">
-    <p>
+
+    <div class="section-blur">
       <a href="https://www.trailbornrockymountains.com" target="_blank">
         Trailborn Rocky Mountains (Recommended stay)
       </a>
-    </p>
 
-    <p>
-     <a href="https://www.theestesparkresort.com" target="_blank">
-        The Estes Park Resort     (Luxury alternative)
+      <a href="https://www.theestesparkresort.com" target="_blank">
+        The Estes Park Resort (Luxury alternative)
       </a>
-    </p>
 
-    <p>
       <a href="https://www.ihg.com/holidayinn/hotels/us/en/estes-park/denep/hoteldetail" target="_blank">
-        Holiday Inn      (Cost Friendly Alternative)
+        Holiday Inn (Cost Friendly Alternative)
       </a>
-    </p>
+    </div>
   </div>
 </section>
-
-  </div>
-
-</section>
-
 
 <script>
 function toggleNav() {
