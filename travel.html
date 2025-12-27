@@ -15,18 +15,16 @@ body {
   color: #fff6da;
 }
 
-/* ===== NORMALIZED NAV ===== */
+/* ===== NAV ===== */
 #site-nav {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   padding: 1rem 1.5rem;
   background: rgba(0,0,0,0.6);
   backdrop-filter: blur(6px);
@@ -92,10 +90,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     background: rgba(0,0,0,0.7);
     backdrop-filter: blur(10px);
-
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.35s ease;
@@ -111,87 +107,84 @@ body {
   }
 }
 
-/* ===== TRAVEL HERO (NO IMAGE) ===== */
+/* ===== TRAVEL HERO — REUSED PLACE BACKGROUND ===== */
 #travel-hero {
-  height: 100vh;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 8rem;
   position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.5rem;
 }
 
-.travel-title {
-  position: sticky;
-  top: 2.5rem;
-  z-index: 2;
+/* Mountains video (same behavior as #place) */
+#travel-hero video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  filter: brightness(0.55);
+}
+
+/* Content card */
+.travel-content {
+  position: relative;
+  z-index: 1;
+  background: rgba(59,53,47,0.72);
+  backdrop-filter: blur(6px);
+  border-radius: 16px;
+  padding: 2.5rem 2.25rem;
+  max-width: 900px;
+  text-align: left;
+}
+
+/* Title */
+.travel-content h1 {
   text-align: center;
-}
-
-.travel-title h1 {
-  font-size: clamp(2.4rem, 6vw, 4rem);
-  margin: 0;
-  letter-spacing: 0.08em;
   text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: clamp(2.4rem, 6vw, 3.8rem);
+  margin: 0 0 1rem;
 }
 
-.travel-title hr {
+.travel-content hr {
   border: none;
   height: 2px;
   width: 90px;
-  margin: 1rem auto 0;
+  margin: 0 auto 1.75rem;
   background: linear-gradient(to right, transparent, #e5c982, transparent);
 }
 
-/* ===== TRAVEL CONTENT ===== */
-#travel {
-  padding: 2rem 1.5rem 5rem;
+/* Copy */
+.travel-content p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  margin-bottom: 1.2rem;
+  color: #fdf9f3;
 }
 
-.section-blur {
-  background: rgba(59,53,47,0.65);
-  border-radius: 14px;
-  padding: 2rem;
-  max-width: 820px;
-  margin: 0 auto;
-  text-align: center;
-  backdrop-filter: blur(6px);
+/* Bullets */
+.travel-content ul {
+  margin: 1rem 0 1.5rem 1.25rem;
 }
 
-.section-blur p {
-  margin: 1rem 0;
+.travel-content li {
+  margin-bottom: 0.5rem;
 }
 
-.section-blur a {
-  color: #fff6da;
+/* Emphasis */
+.highlight {
+  color: #ffe9a9;
   font-weight: 700;
-  text-decoration: none;
-  position: relative;
 }
 
-.section-blur a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -4px;
-  margin: auto;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #e5c982, transparent);
-  transition: width 0.25s ease;
-}
-
-.section-blur a:hover::after {
-  width: 70%;
-}
-
-/* ===== MOBILE TAP TARGETS ===== */
-@media (max-width: 900px) {
-  .section-blur a {
-    display: block;
-    font-size: 1.4rem;
-    margin: 0.75rem 0;
+/* Mobile spacing */
+@media (max-width: 700px) {
+  .travel-content {
+    padding: 2rem 1.5rem;
   }
 }
 </style>
@@ -212,23 +205,66 @@ body {
 
 <!-- TRAVEL HERO -->
 <section id="travel-hero">
-  <div class="travel-title">
+
+  <!-- 🔁 REUSE SAME VIDEO FILE AS #place -->
+  <video autoplay muted loop playsinline>
+    <source src="mountains.mp4" type="video/mp4">
+  </video>
+
+  <div class="travel-content">
     <h1>Travel</h1>
     <hr />
+
+    <p>
+      Since we’re dragging you out to Colorado, we’d love for everyone to turn this trip
+      into a personal mini-vacation—with our wedding right in the middle.
+    </p>
+
+    <p>
+      Our wedding day is <span class="highlight">August 4th</span>. The minimum travel window
+      is <span class="highlight">August 3rd–5th</span>, but we’d love for you to stay longer
+      if you’re able—ideally <span class="highlight">August 2nd–6th</span>.
+    </p>
+
+    <p>
+      We plan on exploring Colorado, organizing a few group outings, and spending quality
+      time together outside of the wedding. You’re more than welcome to do your own thing,
+      tag along with our plans, or mix and match. The 4th is our day. Everything else is yours.
+    </p>
+
+    <p>
+      We’ll be staying at the <span class="highlight">Trailborn Hotel</span> from
+      <span class="highlight">August 2nd–6th</span>, which is about
+      <span class="highlight">5 minutes from the wedding venue</span>.
+    </p>
+
+    <ul>
+      <li>Room blocks: <span class="highlight">August 3rd–5th</span></li>
+      <li>Discounted group code: <span class="highlight">2608CONWAY</span></li>
+      <li>$229/night + tax (with discount)</li>
+      <li>
+        Be sure to select the <span class="highlight">GROUP CODE</span> dropdown when booking
+        (the PROMO code will not work)
+      </li>
+    </ul>
+
+    <p>
+      If you’d like to extend your stay (2nd–6th, 2nd–5th, 3rd–6th, or another arrangement),
+      you can still receive the discounted rate—just contact Da’Quan or Savannah before booking.
+    </p>
+
+    <p>
+      Below are a few alternative hotels in the area, and you’re also more than welcome to book
+      an Airbnb or other accommodations if you prefer.
+    </p>
+
+    <p class="highlight">
+      We can’t wait to celebrate and adventure with you!
+    </p>
   </div>
+
 </section>
 
-<!-- TRAVEL CONTENT -->
-<section id="travel">
-  <div class="section-blur">
-    <p><a href="#">Recommended Hotels</a></p>
-    <p><a href="#">Airport Information</a></p>
-    <p><a href="#">Transportation & Shuttles</a></p>
-    <p><a href="#">Things To Do</a></p>
-  </div>
-</section>
-
-<!-- JS -->
 <script>
 function toggleNav() {
   document.getElementById("site-nav").classList.toggle("open");
