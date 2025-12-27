@@ -5,17 +5,20 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Travel — Da'Quan & Savannah</title>
 
-  <!-- COPY THE SAME <style> BLOCK FROM index.html -->
-  <!-- Do NOT change anything yet -->
   <style>
-    /* ===== BASE ===== */
+/* ===== BASE ===== */
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
   font-family: "Georgia", serif;
   color: #fdf9f3;
-  background: #3B352F; /* Charcoal Grey */
+  background: #3B352F;
   line-height: 1.6;
+}
+
+/* Lock scroll when mobile nav open */
+body.nav-open {
+  overflow: hidden;
 }
 
 /* ===== NAV ===== */
@@ -31,14 +34,15 @@ nav {
   padding: 1rem 1.5rem;
   background: rgba(0,0,0,0.55);
   backdrop-filter: blur(6px);
-  color: #fff8e7;
 }
+
 .nav-links {
   display: flex;
   gap: 1.4rem;
   justify-content: center;
   align-items: center;
 }
+
 nav a {
   color: #fff6da;
   text-decoration: none;
@@ -46,20 +50,30 @@ nav a {
   letter-spacing: 0.04em;
   position: relative;
   padding: 0.25rem 0;
-  transition: color 0.25s ease;
 }
+
 nav a::after {
   content: "";
   position: absolute;
   left: 0; right: 0; bottom: -6px;
-  width: 0; height: 2px;
+  width: 0;
+  height: 2px;
   margin: 0 auto;
   background: linear-gradient(90deg, transparent, #e5c982, transparent);
   transition: width 0.25s ease;
 }
-nav a:hover { color: #ffe9a9; }
-nav a:hover::after, nav a.active::after { width: 70%; }
-#nav-countdown { position: absolute; right: 4rem; font-weight: 700; color: #ffe9a9; }
+
+nav a:hover::after,
+nav a.active::after {
+  width: 70%;
+}
+
+#nav-countdown {
+  position: absolute;
+  right: 4rem;
+  font-weight: 700;
+  color: #ffe9a9;
+}
 
 /* ===== MOBILE NAV ===== */
 .menu-toggle {
@@ -74,333 +88,104 @@ nav a:hover::after, nav a.active::after { width: 70%; }
 }
 
 @media (max-width: 900px) {
-  nav {
-    justify-content: center;
-    padding: 0.9rem 1rem;
-    background: transparent !important;
-    backdrop-filter: none !important;
-  }
-
   .menu-toggle {
     display: block;
-    font-size: 1.8rem;
-    cursor: pointer;
-    position: fixed;
-    top: 0.9rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1100;
   }
 
   .nav-links {
-    display: flex;
-    flex-direction: column;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    padding-top: 6rem;
-    background: rgba(0, 0, 0, 0.6);
+    padding: 6rem 0 2rem;
+    background: rgba(0,0,0,0.7);
     backdrop-filter: blur(10px);
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-20px);
-    transition: opacity 0.35s ease, transform 0.35s ease;
+    transform: translateY(-100%);
+    transition: transform 0.4s ease;
     z-index: 1050;
+
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
     align-items: center;
-    justify-content: flex-start;
   }
 
   nav.open .nav-links {
-    opacity: 1;
-    pointer-events: auto;
     transform: translateY(0);
   }
 
-  .nav-links a {
-    display: block;
-    font-size: 1.5rem;
-    color: #fff6da;
-    text-decoration: none;
-    font-weight: 700;
-    position: relative;
-    transition: color 0.25s ease;
+  nav.open {
+    background: rgba(0,0,0,0.6);
   }
 
-  .nav-links a::after {
-    content: "";
-    position: absolute;
-    left: 0; right: 0; bottom: -6px;
-    width: 0; height: 2px;
-    margin: 0 auto;
-    background: linear-gradient(90deg, transparent, #e5c982, transparent);
-    transition: width 0.25s ease;
+  #nav-countdown {
+    display: none;
   }
-
-  .nav-links a:hover::after, .nav-links a:hover { color: #ffe9a9; width: 70%; }
-
-  #nav-countdown { display: none !important; }
 }
 
+/* ===== PAGE TITLE ===== */
+#page-title {
+  padding-top: 9rem;
+  padding-bottom: 2rem;
+  text-align: center;
+}
 
-/* ===== HEADER ===== */
-header#home {
-  position: relative; height: 100vh; padding:0; text-align: center;
-  color: #fff6da; overflow: hidden;
-  display: flex; flex-direction: column; justify-content: center;
+#page-title h1 {
+  font-size: 2.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  color: #fff6da;
 }
-.header-slideshow {
-  position: absolute; inset:0; width:100%; height:100%; z-index:0;
+
+#page-title p {
+  font-style: italic;
+  color: #ffe9a9;
+  margin: 0;
 }
-.header-slideshow img {
-  position: absolute; top:50%; left:50%; transform:translate(-50%, -50%);
-  width:auto; height:100%; object-fit:cover; object-position:center;
-  opacity:0; transition: opacity 1.5s ease-in-out; will-change: opacity;
-}
-.header-slideshow img.active { opacity:1; }
-.header-content { position: relative; z-index:1; display:flex; flex-direction:column; align-items:center; text-shadow:0 2px 6px rgba(0,0,0,0.5); padding:0 1rem; }
-.hero-title { display:flex; flex-direction: column; align-items:center; font-size:2.4rem; line-height:1.2; text-align:center; }
-.hero-title span { display:block; }
-.hero-lastname { margin-top:0.35rem; font-size:2rem; color:#fff6da; }
-#countdown { margin-top:1rem; font-size:1.25rem; color:#ffe9a9; }
 
 /* ===== SECTIONS ===== */
-section { padding: 4.5rem 1.5rem; text-align:center; }
-section h2 { color:#fff6da; font-size:2.2rem; letter-spacing:1px; text-transform:uppercase; margin:0 0 0.6rem; }
-hr.divider { border:none; height:2px; width:80px; margin:1rem auto 1.6rem; background: linear-gradient(to right, transparent, #e5c982, transparent); }
-section p { color:#fdf9f3; font-size:1.05rem; line-height:1.7; max-width:800px; margin:0 auto; white-space:pre-line; }
-
-/* ===== STORY ===== */
-#story { background: rgba(0,0,0,0.28); backdrop-filter: blur(4px); }
-.story-content { max-width:900px; margin:0 auto; text-align:left; background: rgba(59,53,47,0.62); border-radius:14px; padding:1.6rem; }
-#story p { text-indent:1.5em; margin-bottom:1.2rem; line-height:1.8; }
-
-/* ===== PLACE ===== */
-#place { position: relative; height:100vh; overflow:hidden; display:flex; align-items:center; justify-content:center; padding:0; }
-#place video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; filter:brightness(0.55); }
-.place-content { position:relative; z-index:1; background: rgba(59,53,47,0.72); padding:2rem; border-radius:14px; max-width:820px; margin:2rem; text-align:center; backdrop-filter: blur(6px); }
-.place-content h2 { margin-top:0; color:#fff6da; font-size:2.4rem; }
-.place-content p { margin:0; }
-
-/* ===== PARTY ===== */
-#party { background: rgba(0,0,0,0.22); backdrop-filter: blur(3px); }
-.party-highlight { display:flex; justify-content:center; gap:3rem; margin-bottom:2rem; flex-wrap:wrap; }
-.party-grid { display:flex; justify-content:space-between; gap:3rem; max-width:1200px; margin:0 auto; flex-wrap:wrap; }
-.party-side { flex:1 1 45%; min-width:260px; }
-.side-title { text-align:center; margin-bottom:1rem; color:#fff6da; font-size:1.2rem; font-weight:700; }
-.members-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; justify-items:center; }
-.party-member { background: rgba(59,53,47,0.62); border-radius:12px; padding:1rem; text-align:center; margin-bottom:0; }
-.party-member img { border-radius:8px; width:140px; height:140px; object-fit:cover; display:block; margin:0 auto 0.5rem; border:4px solid rgba(230,200,130,0.12); }
-.party-member h3 { margin:0.25rem 0; color:#ffe9a9; font-size:1.05rem; }
-.party-member .role { color:#fff8e7; font-size:0.95rem; margin-bottom:0.35rem; }
-.party-member .bio { color:#fdf9f3; font-size:0.95rem; line-height:1.45; margin:0; }
-.party-grid > .party-side:first-child .members-grid > .party-member:nth-child(7) {
-  grid-column: 1 / -1;
-  justify-self: center;
+section {
+  padding: 3rem 1.5rem;
+  text-align: center;
 }
 
-
-
-/* ===== GALLERY ===== */
-.photo-grid { display:grid; gap:1rem; grid-template-columns:repeat(auto-fit, minmax(160px,1fr)); max-width:1000px; margin:1.2rem auto 0; }
-.photo-grid img { width:100%; height:160px; object-fit:cover; border-radius:10px; }
-
-/* ===== BUTTONS ===== */
-button, a.button { background-color:#c7a96b; color:#3B352F; border:none; padding:0.72rem 1.25rem; border-radius:8px; font-family:"Georgia",serif; font-size:1rem; letter-spacing:0.02em; cursor:pointer; transition:all 0.25s ease; text-decoration:none; display:inline-block; }
-button:hover, a.button:hover { background-color:#e5c982; color:#2c261f; transform:translateY(-3px); box-shadow:0 6px 18px rgba(199,169,107,0.25); }
-
-/* ===== FOOTER ===== */
-footer { background: rgba(0,0,0,0.5); color:#fff8e7; padding:2rem 1rem; text-align:center; font-size:0.95rem; letter-spacing:0.04em; margin-top:2rem; backdrop-filter:blur(4px);}
-footer a { color:#ffe9a9; text-decoration:none; font-weight:700; }
-footer a:hover { color:#fff6da; text-decoration:underline; }
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 700px) {
-  header#home { padding:6.5rem 1rem 4.5rem; }
-  .place-content, .section-box { margin:1rem; padding:1.2rem; }
-  .party-member img { width:120px; height:120px; }
-}
-    @media (max-width: 700px) {
-  .party-highlight {
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-  }
-  .party-highlight .party-member {
-    width: 85%;
-    max-width: 280px;
-  }
+section h2 {
+  color: #fff6da;
+  font-size: 2.2rem;
+  text-transform: uppercase;
 }
 
-    /* === Fix for Maid of Honor box to match Best Man === */
-.party-highlight .party-member {
-  width: 240px;              /* lock identical width */
-  min-height: 340px;         /* equal height for both cards */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+hr.divider {
+  border: none;
+  height: 2px;
+  width: 80px;
+  margin: 1rem auto 1.6rem;
+  background: linear-gradient(to right, transparent, #e5c982, transparent);
 }
 
-.party-highlight .party-member img {
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 10px;
-  border: 4px solid rgba(230,200,130,0.12);
-  margin-bottom: 0.75rem;
-}
-    /* Photo grid for mobile and desktop */
-.photo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 1rem;
-  max-width: 1000px;
-  margin: 1.2rem auto 0;
+.section-blur {
+  background: rgba(59,53,47,0.62);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  max-width: 820px;
+  margin: 0 auto;
+  backdrop-filter: blur(6px);
 }
 
-.photo-grid img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-/* Mobile-specific grid */
-@media (max-width: 768px) {
-  .photo-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.5rem;
-  }
-
-  .photo-grid img {
-    height: 120px;
-  }
-}
-
-/* Lightbox styles */
-.lightbox {
-  display: none;
-  position: fixed;
-  z-index: 2000;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.8);
-  justify-content: center;
-  align-items: center;
-}
-
-.lightbox img {
-  max-width: 90%;
-  max-height: 85%;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-}
-
-.lightbox.show {
-  display: flex;
-}
-
-.lightbox:after {
-  content: "✕";
-  position: absolute;
-  top: 20px;
-  right: 25px;
-  color: #fff;
-  font-size: 2rem;
-  cursor: pointer;
-}
-   /* MOBILE INTRO SECTION */
-@media (max-width: 900px) {
-  .mobile-intro-section {
-    display: block; /* show only on mobile */
-    padding: 4rem 1rem;
-    text-align: center;
-    background: rgba(59,53,47,0.72);
-    backdrop-filter: blur(6px);
-  }
-
-  .mobile-intro {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #fff6da;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.5);
-    font-family: "Georgia", serif;
-    font-size: clamp(1.5rem, 6vw, 3rem); /* smaller and responsive */
-    line-height: 1.1;
-    font-weight: 700;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  }
-
-  .mobile-intro.show {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* First line: Da’Quan & Savannah */
-  .mobile-intro .names {
-    display: inline-block;
-    font-size: 1em; /* scale relative to .mobile-intro font size */
-  }
-
- /* Second line: Conway */
-  .mobile-intro .lastname {
-    display: block;
-    margin-top: 0.25em;
-    font-size: clamp(2.5rem, 12vw, 5rem); /* make it much bigger */
-    font-weight: 900;
-    color: #fff6da;
-    line-height: 1.1;
-  }
-}
-    /* Hide header content over slideshow on mobile only */
-@media (max-width: 900px) {
-  .header-content {
-    display: none !important;
-  }
-
-  /* Make sure mobile intro section is visible */
-  .mobile-intro-section {
-    display: block !important;
-  }
-}
-    /* Mobile travel links */
-@media (max-width: 900px) {
-  #travel a {
-    display: block;             /* stack vertically */
-    font-size: 1.5rem;          /* bigger font for tapping */
-    text-align: center;          /* center text */
-    padding: 0.5rem 0;
-  }
-
-  #travel a::after {
-    bottom: -5px;                /* adjust underline position */
-  }
-}
-/* Travel Links Styled Like Nav Links */
-#travel a {
-  color: #fff6da;              /* matches nav links */
-  text-decoration: none;        /* remove default underline */
+.section-blur a {
+  display: block;
+  color: #fff6da;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  text-decoration: none;
+  margin: 0.75rem 0;
   position: relative;
-  transition: color 0.25s ease;
-  padding: 0.25rem 0;
 }
 
-#travel a::after {
+.section-blur a::after {
   content: "";
   position: absolute;
-  left: 0; right: 0; bottom: -3px;
+  left: 0; right: 0; bottom: -4px;
   width: 0;
   height: 2px;
   margin: 0 auto;
@@ -408,85 +193,28 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
   transition: width 0.25s ease;
 }
 
-#travel a:hover, #travel a:focus {
-  color: #ffe9a9;
-}
-
-#travel a:hover::after, #travel a:focus::after {
+.section-blur a:hover::after {
   width: 70%;
 }
-/* ===== TRAVEL & SCHEDULE SECTIONS ===== */
-#schedule .section-blur,
-#travel .section-blur {
-  background: rgba(59,53,47,0.62); /* matches Wedding Party cards */
-  border-radius: 12px;              /* same as party-member */
-  padding: 1.5rem 2rem;
-  max-width: 820px;
-  margin: 2rem auto;
+
+/* ===== FOOTER ===== */
+footer {
+  background: rgba(0,0,0,0.5);
+  color: #fff8e7;
+  padding: 2rem 1rem;
   text-align: center;
-  backdrop-filter: blur(6px);       /* optional, same as place-content */
+  font-size: 0.95rem;
+  margin-top: 3rem;
 }
-
-/* Make links inside Travel look like nav links */
-.section-blur a {
-  color: #fff6da;
-  font-weight: 700;
-  text-decoration: none;
-  position: relative;
-  padding: 0.25rem 0;
-  transition: color 0.25s ease;
-}
-
-.section-blur a::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0; bottom: -4px;
-  width: 0; height: 2px;
-  margin: 0 auto;
-  background: linear-gradient(90deg, transparent, #e5c982, transparent);
-  transition: width 0.25s ease;
-}
-
-.section-blur a:hover,
-.section-blur a:focus {
-  color: #ffe9a9;
-}
-
-.section-blur a:hover::after,
-.section-blur a:focus::after {
-  width: 70%;
-}
-    /* MOBILE OVERLAY IMAGE — visible only on mobile */
-.mobile-overlay {
-  display: none;              /* hidden on desktop */
-  position: absolute;
-  z-index: 5;
-  width: 70%;
-  max-width: 380px;
-  bottom: 3rem;               /* you can adjust this */
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 12px;
-}
-
-/* Show only on screens under 900px */
-@media (max-width: 900px) {
-  .mobile-overlay {
-    display: block;
-  }
-}
-
-
   </style>
 </head>
 
 <body>
 
-<!-- NAV (identical to main page) -->
 <nav>
   <div class="nav-links">
     <a href="index.html">Home</a>
-    <a href="https://www.amazon.com//wedding/share/Savannah-and-DaQuan" target="_blank">Registry</a>
+    <a href="https://www.amazon.com/wedding/share/Savannah-and-DaQuan" target="_blank">Registry</a>
     <a href="gallery.html">Gallery</a>
     <a href="video.html">Video</a>
     <a href="travel.html" class="active">Travel</a>
@@ -494,51 +222,28 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
   </div>
 
   <div id="nav-countdown"></div>
-
-  <div class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false" role="button">
-    ☰
-  </div>
+  <div class="menu-toggle" id="menu-toggle">☰</div>
 </nav>
 
-<!-- HERO / HEADER -->
-<header id="home" style="height:60vh;">
-  <div class="header-slideshow">
-    <img src="slide2.jpg" class="slide active" alt="">
-  </div>
+<section id="page-title">
+  <h1>Travel</h1>
+  <p>Where to stay for our wedding weekend</p>
+</section>
 
-  <div class="header-content">
-    <h1 class="hero-title">
-      <span>Travel</span>
-    </h1>
-    <p style="margin-top:0.5rem; font-style:italic;">
-      Where to stay for our wedding weekend
-    </p>
-  </div>
-</header>
-
-<!-- TRAVEL CONTENT -->
 <section id="travel">
   <h2>Travel</h2>
-  <hr class="divider"/>
+  <hr class="divider" />
 
   <div class="section-blur">
-    <p>
-      <a href="https://www.trailbornrockymountains.com" target="_blank">
-        Trailborn Rocky Mountains (Recommended stay)
-      </a>
-    </p>
-
-    <p>
-     <a href="https://www.theestesparkresort.com" target="_blank">
-        The Estes Park Resort     (Luxury alternative)
-      </a>
-    </p>
-
-    <p>
-      <a href="https://www.ihg.com/holidayinn/hotels/us/en/estes-park/denep/hoteldetail" target="_blank">
-        Holiday Inn      (Cost Friendly Alternative)
-      </a>
-    </p>
+    <a href="https://www.trailbornrockymountains.com" target="_blank">
+      Trailborn Rocky Mountains (Recommended Stay)
+    </a>
+    <a href="https://www.theestesparkresort.com" target="_blank">
+      The Estes Park Resort (Luxury Alternative)
+    </a>
+    <a href="https://www.ihg.com/holidayinn/hotels/us/en/estes-park/denep/hoteldetail" target="_blank">
+      Holiday Inn (Cost-Friendly Alternative)
+    </a>
   </div>
 </section>
 
@@ -546,133 +251,45 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
   <p>With love — Da'Quan & Savannah • August 26, 2026</p>
 </footer>
 
-<!-- COPY SAME SCRIPT BLOCK FROM index.html -->
 <script>
-// ===== HEADER SLIDESHOW =====
-const slides = document.querySelectorAll('.header-slideshow .slide');
-let currentSlide = 0;
-function nextSlide() {
-  slides[currentSlide].classList.remove('active');
-  currentSlide = (currentSlide + 1) % slides.length;
-  slides[currentSlide].classList.add('active');
-}
-setInterval(nextSlide, 5000);
-
 // ===== COUNTDOWN =====
-const weddingDate = new Date("August 4, 2026 00:00:00").getTime();
-const countdownEl = document.getElementById("countdown");
+const weddingDate = new Date("August 26, 2026 00:00:00").getTime();
 const navCountdownEl = document.getElementById("nav-countdown");
 
 function updateCountdown() {
   const now = new Date().getTime();
   const distance = weddingDate - now;
 
-  if(distance < 0){
-    countdownEl.innerHTML = navCountdownEl.innerHTML = "Wedding Day!";
-    clearInterval(countdownInterval);
+  if (distance < 0) {
+    navCountdownEl.innerHTML = "Wedding Day!";
     return;
   }
 
-  const days = String(Math.floor(distance / (1000*60*60*24))).padStart(2,'0');
-  const hours = String(Math.floor((distance % (1000*60*60*24)) / (1000*60*60))).padStart(2,'0');
-  const minutes = String(Math.floor((distance % (1000*60*60)) / (1000*60))).padStart(2,'0');
-  const seconds = String(Math.floor((distance % (1000*60)) / 1000)).padStart(2,'0');
-
-  const text = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-  countdownEl.innerHTML = navCountdownEl.innerHTML = text;
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  navCountdownEl.innerHTML = `${days} days to go`;
 }
-const countdownInterval = setInterval(updateCountdown, 1000);
+setInterval(updateCountdown, 60000);
 updateCountdown();
 
-function checkNavCountdownVisibility() {
-  navCountdownEl.style.display = (window.innerWidth < 900) ? "none" : "inline-block";
-}
-window.addEventListener("resize", checkNavCountdownVisibility);
-checkNavCountdownVisibility();
+// ===== MOBILE NAV =====
+const menuToggle = document.getElementById('menu-toggle');
+const nav = document.querySelector('nav');
 
-// ===== MOBILE NAV TOGGLE & SMOOTH SCROLL =====
-(function(){
-  const menuToggle = document.getElementById('menu-toggle');
-  const nav = document.querySelector('nav');
-  const navLinks = document.querySelectorAll('.nav-links a');
-  if (!menuToggle || !nav) return;
-
-  menuToggle.addEventListener('click', () => {
-    const open = nav.classList.toggle('open');
-    menuToggle.textContent = open ? '✕' : '☰';
-    menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-
-  navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      const href = link.getAttribute('href');
-
-      if (href.startsWith('http') || href.endsWith('.html')) {
-        return; // allow normal navigation
-      }
-
-      e.preventDefault();
-      const target = document.querySelector(href);
-      if (target) target.scrollIntoView({ behavior: 'smooth' });
-
-      // Close mobile menu after clicking
-      if (nav.classList.contains('open')) {
-        nav.classList.remove('open');
-        menuToggle.textContent = '☰';
-        menuToggle.setAttribute('aria-expanded', 'false');
-      }
-    });
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if(e.key === 'Escape' && nav.classList.contains('open')) {
-      nav.classList.remove('open');
-      menuToggle.textContent = '☰';
-      menuToggle.setAttribute('aria-expanded', 'false');
-    }
-  });
-})();
-
-// ===== LIGHTBOX =====
-const lightbox = document.getElementById('lightbox');
-const images = document.querySelectorAll('.photo-grid a');
-
-images.forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    const img = document.createElement('img');
-    img.src = link.href;
-    while (lightbox.firstChild) lightbox.removeChild(lightbox.firstChild);
-    lightbox.appendChild(img);
-    lightbox.classList.add('show');
-  });
+menuToggle.addEventListener('click', () => {
+  const open = nav.classList.toggle('open');
+  document.body.classList.toggle('nav-open', open);
+  menuToggle.textContent = open ? '✕' : '☰';
 });
 
-if (lightbox) {
-  lightbox.addEventListener('click', () => {
-    lightbox.classList.remove('show');
-  });
-}
-
-// ===== MOBILE INTRO FADE-IN =====
-(function() {
-  const mobileIntro = document.querySelector('.mobile-intro-section .mobile-intro');
-  if (!mobileIntro) return;
-
-  function revealMobileIntro() {
-    const top = mobileIntro.getBoundingClientRect().top;
-    const windowHeight = window.innerHeight;
-
-    if (top < windowHeight * 0.85) { // trigger when near viewport
-      mobileIntro.classList.add('show');
-      window.removeEventListener('scroll', revealMobileIntro);
-    }
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && nav.classList.contains('open')) {
+    nav.classList.remove('open');
+    document.body.classList.remove('nav-open');
+    menuToggle.textContent = '☰';
   }
-
-  window.addEventListener('scroll', revealMobileIntro);
-  revealMobileIntro(); // in case already in view
-})();
+});
 </script>
 
 </body>
 </html>
+
