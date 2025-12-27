@@ -110,15 +110,15 @@ body {
 /* ===== TRAVEL HERO — REUSED PLACE BACKGROUND ===== */
 #travel-hero {
   position: relative;
-  min-height: 100vh;
-  overflow-y: auto;
+  min-height: 100vh;      
+  overflow-y: auto;       
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8rem 1.5rem 4rem; /* space for nav + bottom */
+  padding: 8rem 1.5rem 4rem; 
 }
 
-/* Mountains video */
+/* Mountains video (same behavior as #place) */
 #travel-hero video {
   position: absolute;
   inset: 0;
@@ -181,47 +181,49 @@ body {
   font-weight: 700;
 }
 
-/* ===== HOTEL LINKS ===== */
-.section-blur {
-  margin-top: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+/* ===== HOTEL LINKS STYLE ===== */
+.section-blur a {
+  font-family: Georgia, serif;
+  font-weight: 700;
+  color: #ffe9a9;        
+  text-decoration: none;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  position: relative;    
+  transition: color 0.25s ease;
 }
 
-.section-blur a {
-  display: inline-block;
-  background: rgba(230,200,130,0.85);
-  color: #3B352F;
-  font-weight: 700;
-  text-decoration: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 10px;
-  transition: all 0.25s ease;
-  text-align: center;
+.section-blur a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  bottom: -2px;           
+  width: 0;
+  height: 2px;
+  margin: 0 auto;
+  background: linear-gradient(90deg, transparent, #ffe9a9, transparent);
+  transition: width 0.25s ease;
+}
+
+.section-blur a:hover::after,
+.section-blur a:focus::after {
+  width: 70%;
 }
 
 .section-blur a:hover,
 .section-blur a:focus {
-  background: #e5c982;
-  color: #2c261f;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(199,169,107,0.25);
+  color: #fff6da;         
 }
 
-/* Mobile adjustments */
+/* Mobile spacing */
 @media (max-width: 700px) {
   #travel-hero {
-    align-items: flex-start;
-    padding-top: 6.5rem;
+    align-items: flex-start;   
+    padding-top: 6.5rem;       
   }
 
   .travel-content {
-    margin-bottom: 3rem;
-  }
-
-  .section-blur a {
-    width: 100%;
+    margin-bottom: 3rem;       
   }
 }
 </style>
@@ -234,7 +236,7 @@ body {
   <div class="menu-toggle" onclick="toggleNav()">☰</div>
   <div class="nav-links">
     <a href="index.html">Home</a>
-    <a href="https://www.amazon.com/wedding/share/Savannah-and-DaQuan" target="_blank">Registry</a>
+    <a href="https://www.amazon.com//wedding/share/Savannah-and-DaQuan" target="_blank">Registry</a>
     <a href="gallery.html">Gallery</a>
     <a href="video.html">Video</a>
     <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank">RSVP</a>
@@ -246,8 +248,8 @@ body {
 <!-- TRAVEL HERO -->
 <section id="travel-hero">
   <video autoplay muted loop playsinline>
-    <source src="estes-lake.mp4" type="video/mp4"/>
-    <source src="estes-park.mp4" type="video/mp4"/>
+      <source src="estes-lake.mp4" type="video/mp4"/>
+      <source src="estes-park.mp4" type="video/mp4"/>
   </video>
 
   <div class="travel-content">
@@ -302,17 +304,9 @@ body {
     </p>
 
     <div class="section-blur">
-      <a href="https://www.trailbornrockymountains.com" target="_blank">
-        Trailborn Rocky Mountains (Recommended stay)
-      </a>
-
-      <a href="https://www.theestesparkresort.com" target="_blank">
-        The Estes Park Resort (Luxury alternative)
-      </a>
-
-      <a href="https://www.ihg.com/holidayinn/hotels/us/en/estes-park/denep/hoteldetail" target="_blank">
-        Holiday Inn (Cost Friendly Alternative)
-      </a>
+      <p><a href="https://www.trailbornrockymountains.com" target="_blank">Trailborn Rocky Mountains (Recommended stay)</a></p>
+      <p><a href="https://www.theestesparkresort.com" target="_blank">The Estes Park Resort (Luxury alternative)</a></p>
+      <p><a href="https://www.ihg.com/holidayinn/hotels/us/en/estes-park/denep/hoteldetail" target="_blank">Holiday Inn (Cost Friendly Alternative)</a></p>
     </div>
   </div>
 </section>
