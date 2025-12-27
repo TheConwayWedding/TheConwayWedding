@@ -110,13 +110,14 @@ body {
 /* ===== TRAVEL HERO — REUSED PLACE BACKGROUND ===== */
 #travel-hero {
   position: relative;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;      /* ✅ was height */
+  overflow-y: auto;       /* ✅ allow scroll */
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 1.5rem;
+  padding: 8rem 1.5rem 4rem; /* ✅ space for nav + bottom */
 }
+
 
 /* Mountains video (same behavior as #place) */
 #travel-hero video {
@@ -183,8 +184,13 @@ body {
 
 /* Mobile spacing */
 @media (max-width: 700px) {
+  #travel-hero {
+    align-items: flex-start;   /* stack from top */
+    padding-top: 6.5rem;       /* nav-safe spacing */
+  }
+
   .travel-content {
-    padding: 2rem 1.5rem;
+    margin-bottom: 3rem;       /* avoid cutoff at bottom */
   }
 }
 </style>
