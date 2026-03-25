@@ -472,6 +472,53 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
     display: block;
   }
 }
+    /* ===== SCHEDULE UPGRADE ===== */
+.schedule-card {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 14px;
+  background: rgba(59,53,47,0.65);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+.schedule-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(229,201,130,0.15);
+}
+
+.schedule-item:last-child {
+  border-bottom: none;
+}
+
+.time {
+  font-weight: 700;
+  color: #ffe9a9;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+.event {
+  color: #fdf9f3;
+  font-size: 1.05rem;
+}
+
+/* Mobile stack */
+@media (max-width: 600px) {
+  .schedule-item {
+    flex-direction: column;
+    gap: 0.3rem;
+    text-align: center;
+  }
+
+  .time {
+    font-size: 1.2rem;
+  }
+}
 
 
   </style>
@@ -487,7 +534,7 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
     <a href="video.html">Video</a>
     <a href="https://www.zola.com/wedding/savannahanddaquan/rsvp" target="_blank">RSVP</a>
     <a href="travel.html">Travel</a>
-     <a href="itinerary.html" class="active">Itinerary</a>
+     <a href="itinerary.html">Itinerary</a>
     <a href="FAQs.html">FAQs</a>
   </div>
 
@@ -587,16 +634,34 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
 <section id="schedule">
   <h2>Schedule</h2>
   <hr class="divider"/>
-  <div class="section-blur">
-    <p>
-    Wedding Day
-    Thursday, August 4th 2026
-    4:00pm-10:30pm
-    Arrival time 3:30pm
-    </p>
+
+  <div class="schedule-card">
+    <div class="schedule-item">
+      <span class="time">3:30 PM</span>
+      <span class="event">Guest Arrival</span>
+    </div>
+
+    <div class="schedule-item">
+      <span class="time">4:00 PM</span>
+      <span class="event">Ceremony Begins</span>
+    </div>
+
+    <div class="schedule-item">
+      <span class="time">5:00 PM</span>
+      <span class="event">Cocktail Hour</span>
+    </div>
+
+    <div class="schedule-item">
+      <span class="time">6:30 PM</span>
+      <span class="event">Reception</span>
+    </div>
+
+    <div class="schedule-item">
+      <span class="time">10:30 PM</span>
+      <span class="event">Send-Off</span>
+    </div>
   </div>
 </section>
-
 
   <hr class="divider"/>
 
