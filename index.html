@@ -524,6 +524,38 @@ footer a:hover { color:#fff6da; text-decoration:underline; }
   color: #ffe9a9;
   margin-top: 0.2rem;
 } 
+    .schedule-link,
+.schedule-link:visited {
+  display: inline-block;
+  margin-top: 0.3rem;
+  font-size: 0.9rem;
+  color: #ffe9a9; /* gold */
+  text-decoration: none;
+  position: relative;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.schedule-link::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -3px;
+  width: 0;
+  height: 2px;
+  margin: 0 auto;
+  background: linear-gradient(90deg, transparent, #e5c982, transparent);
+  transition: width 0.25s ease;
+}
+
+.schedule-link:hover,
+.schedule-link:focus {
+  color: #fff6da;
+}
+
+.schedule-link:hover::after,
+.schedule-link:focus::after {
+  width: 70%;
+}
 
 /* Mobile stack */
 @media (max-width: 600px) {
